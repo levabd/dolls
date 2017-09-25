@@ -45,5 +45,5 @@ interface IExamInterface
     /// <param name="collider">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int CheckAction(string toolCode, Dictionary<string, string> toolParams, string actionCode, System.Nullable<GameObject> locatedCollider, out string errorMessage);
+    int CheckAction(string toolCode, Dictionary<string, string> toolParams, string actionCode, out string errorMessage, GameObject locatedCollider = null);
 }
