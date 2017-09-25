@@ -17,6 +17,7 @@ public class SyringePositionControl : MonoBehaviour {
     private GameObject clickCollider;
     private bool step1 = true, step2 = false;
 	void Start () {
+        Syringe.SetActive(false);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 	}
 	
@@ -31,7 +32,7 @@ public class SyringePositionControl : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
-                if (hit.transform.gameObject.name == colliderTrue.name)
+                if (hit.transform.gameObject.tag == "ColliderTrue")
                 {
                     step2 = true;
                 }
