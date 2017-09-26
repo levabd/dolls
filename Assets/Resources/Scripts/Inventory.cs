@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
     [Header("Заполните список кнопок")]
-    public List<Item> list;
+    public List<ToolItem> list;
     [Header("Укажите панель основную панель меню")]
     public GameObject inventory;
     public int colummnCount = 8;
@@ -76,7 +76,7 @@ public class Inventory : MonoBehaviour {
     {
         for (int i = 0; i < cellCount; i++)
         {
-            Item it = list[i];
+            ToolItem it = list[i];
             ControlActivateMethod activMethod = new ControlActivateMethod();
 
             if (inventory.transform.childCount > i)

@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 26b2609d0dc26474a82cb5ece440a559
+guid: b51a443002217df4d83e882f72330756
 timeCreated: 1493662796
 licenseType: Store
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: BioHazard_container
     100002: BioHazard_container_cap
@@ -373,6 +373,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -383,6 +385,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -390,7 +393,10 @@ ModelImporter:
     globalScale: 100
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
@@ -406,6 +412,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

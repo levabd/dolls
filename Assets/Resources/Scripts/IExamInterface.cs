@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-
-using UnityEngine;
 
 interface IExamInterface
 {
@@ -19,31 +16,31 @@ interface IExamInterface
     /// <summary>
     /// Correct ordered list of steps. Defining during exam creation
     /// </summary>
-    List<Tuple<int, string>> CorrectSteps { get; }
-	
-	/// <summary>
-    /// Tools codes and action codes
+    List<string> CorrectSteps { get; }
+
+    /// <summary>
+    /// Available tools codes and action codes for tools
     /// </summary>
-    Dictionary<string, List<string>> ToolActions { get; }
+    Dictionary<ToolItem, Dictionary<string, string>> ToolActions { get; }
 
     /// <summary>
     /// Collider intersection checking
     /// </summary>
-    /// <param name="toolCode">Current medical tool</param>
+    /// <param name="toolTag">Current medical tool</param>
     /// <param name="toolParams">Dictionary of medical tool parameters</param>
-    /// <param name="collider">Current collider checking for</param>
+    /// <param name="colliderTag">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <returns>True if moving is valid. Othervise False with errorMessage</returns>
-    bool CheckMove(string toolCode, Dictionary<string, string> toolParams, GameObject collider, out string errorMessage);
+    bool CheckMove(string toolTag, Dictionary<string, string> toolParams, string colliderTag, out string errorMessage);
 
     /// <summary>
     /// Action step checking
     /// </summary>
-    /// <param name="toolCode">Current medical tool</param>
+    /// <param name="toolTag">Current medical tool</param>
     /// <param name="toolParams">Dictionary of medical tool parameters</param>
     /// <param name="actionCode">Tool action codename</param>
-    /// <param name="collider">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int CheckAction(string toolCode, Dictionary<string, string> toolParams, string actionCode, out string errorMessage, GameObject locatedCollider = null);
+    int CheckAction(string toolTag, Dictionary<string, string> toolParams, string actionCode, out string errorMessage, string locatedColliderTag = null);
 }
