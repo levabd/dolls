@@ -19,6 +19,14 @@ public class Inventory : MonoBehaviour {
     // Use this for initialization
     void Start () {
         containerSize = new Vector2(100, 100);
+        inventory.SetActive(true);
+        int cellCount = list.Count;
+        int invChildCount = inventory.transform.childCount;
+
+        inventory.GetComponent<GridLayoutGroup>().cellSize = containerSize;
+        AddCell(cellCount, invChildCount);
+        ItemToInventory(cellCount);
+        RowControl(cellCount, colummnCount);
     }
 	
 	void Update () {
@@ -38,14 +46,14 @@ public class Inventory : MonoBehaviour {
         //    }
         //    else
         //    {
-                inventory.SetActive(true);
-                int cellCount = list.Count;
-                int invChildCount = inventory.transform.childCount;
+                //inventory.SetActive(true);
+                //int cellCount = list.Count;
+                //int invChildCount = inventory.transform.childCount;
                 
-                inventory.GetComponent<GridLayoutGroup>().cellSize = containerSize;
-                AddCell(cellCount, invChildCount);
-                ItemToInventory(cellCount);
-                RowControl(cellCount, colummnCount);                
+                //inventory.GetComponent<GridLayoutGroup>().cellSize = containerSize;
+                //AddCell(cellCount, invChildCount);
+                //ItemToInventory(cellCount);
+                //RowControl(cellCount, colummnCount);                
         //    }
         //}
 	}
