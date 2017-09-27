@@ -8,6 +8,10 @@ public class ToolItem : MonoBehaviour {
     public string sprite;
     [Header("Физический объект")]
     public string prefab;
-    [Header("Действие кнопки")]
-    public string action;    
+    [Header("Текущее состояние обьекта")]
+    public Dictionary<string, string> stateParams;
+    [Header("Код инструмента")]
+    public string codeName;
+    [Header("Подпись инструмента(может быть изменена)")]
+    public string title;
 }
