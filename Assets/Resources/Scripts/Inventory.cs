@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour {
                 img.transform.SetParent(inventory.transform.GetChild(i).transform);
                 img.GetComponent<Image>().sprite = Resources.Load<Sprite>(it.sprite);
                 img.transform.localScale = inventory.transform.GetChild(i).transform.localScale;
-                img.AddComponent<Button>().onClick.AddListener(() => activMethod.ControlItems(it.action));
+                img.AddComponent<Button>().onClick.AddListener(() => activMethod.ControlItems(it.codeName));
             }
             else break;
         }

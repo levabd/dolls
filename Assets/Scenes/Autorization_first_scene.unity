@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -302,9 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623a45793de3714bb28c1e53fb2dedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoginInput: {fileID: 1614296104}
-  PasswordInput: {fileID: 204258539}
-  LoginPanel: {fileID: 285010409}
 --- !u!1 &191769868
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &602941178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -813,7 +810,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 85f9d03026fc6544db7e38cc72238341, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 615729a47d02f724cba728c84f57d76c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -839,9 +836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d623a45793de3714bb28c1e53fb2dedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoginInput: {fileID: 1614296104}
-  PasswordInput: {fileID: 204258539}
-  LoginPanel: {fileID: 285010409}
 --- !u!1 &683777910
 GameObject:
   m_ObjectHideFlags: 0
