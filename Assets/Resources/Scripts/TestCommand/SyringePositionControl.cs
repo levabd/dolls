@@ -14,7 +14,6 @@ public class SyringePositionControl : MonoBehaviour {
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
     public GameObject colliderTrue;
-    private GameObject clickCollider;
     private bool step1 = true, step2 = false;
 	void Start () {
         Syringe.SetActive(false);
