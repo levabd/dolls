@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class ToolItem : MonoBehaviour {
     [Header("Иконка предмета")]
-    public Sprite sprite;
+    public Sprite Sprite;
     [Header("Физический объект")]
-    public string prefab;
+    public string Prefab;
     [Header("Текущее состояние обьекта")]
-    public Dictionary<string, string> stateParams;
+    public Dictionary<string, string> StateParams;
     [Header("Код инструмента")]
-    public string codeName;
+    public string CodeName;
     [Header("Подпись инструмента(может быть изменена)")]
     [Multiline]
-    public string title;
+    public string Title;
     
     // Use this for initialization
     void Start () {

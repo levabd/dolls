@@ -1,24 +1,29 @@
-﻿using System;
-
-class TweezersHelper
+﻿
+// ReSharper disable once CheckNamespace
+public static class TweezersHelper
 {
     public static void GetBalls(ref ToolItem tool)
     {
-        if (tool.stateParams.ContainsKey("has_balls"))
-            tool.stateParams["has_balls"] = "true";
-        else
-            tool.stateParams.Add("has_balls", "true");
+        tool.StateParams["has_balls"] = "true";
 
-        tool.title = "Пинцет с ваткой";
+        tool.Title = "Пинцет с ваткой";
     }
 
     public static void RemoveBall(ref ToolItem tool)
     {
-        if (tool.stateParams.ContainsKey("has_balls"))
-            tool.stateParams["has_balls"] = "false";
-        else
-            tool.stateParams.Add("has_balls", "false");
+        tool.StateParams["has_balls"] = "false";
 
-        tool.title = "Пинцет без ничего";
+        tool.Title = "Пинцет без ничего";
+    }
+
+    public static bool RemoveBallsAction(this BaseExam exam, ref ToolItem tool, string actionCode)
+    {
+        if (tool.CodeName == "tweezers" && actionCode == "remove_balls")
+        {
+            RemoveBall(ref tool);
+            return true;
+        }
+
+        return false;
     }
 }

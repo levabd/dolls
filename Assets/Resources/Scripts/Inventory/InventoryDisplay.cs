@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class InventoryDisplay : MonoBehaviour {
-    public Transform targetTransform;
-    public InventoryItemDisplay itemDisplayPrefab;
+    public Transform TargetTransform;
+    public InventoryItemDisplay ItemDisplayPrefab;
     // Use this for initialization
     void Start () {
        
@@ -19,8 +19,8 @@ public class InventoryDisplay : MonoBehaviour {
     {
         foreach (ToolItem item in items)
         {
-            InventoryItemDisplay display = (InventoryItemDisplay)Instantiate(itemDisplayPrefab);
-            display.transform.SetParent(targetTransform, false);
+            InventoryItemDisplay display = Instantiate(ItemDisplayPrefab);
+            display.transform.SetParent(TargetTransform, false);
             display.Prime(item);    
 
         }

@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+// ReSharper disable once CheckNamespace
 public class InventoryItemDisplay : MonoBehaviour {
-    public Text textName;
-    public Image sprite;
+    public Text TextName;
+    public Image Sprite;
 
     public delegate void InventoryItemDisplayDelegate(ToolItem item);
-    public static event InventoryItemDisplayDelegate onClick;
+    public static event InventoryItemDisplayDelegate OnClick;
 
-    public ToolItem item;
+    public ToolItem Item;
 	// Use this for initialization
+    // ReSharper disable once UnusedMember.Local
 	void Start () {
-        if (item != null) Prime(item);
+        if (Item != null) Prime(Item);
 	}
 	
 	// Update is called once per frame
@@ -23,27 +23,27 @@ public class InventoryItemDisplay : MonoBehaviour {
 
     public void Prime(ToolItem item)
     {
-        this.item = item;
-        if (textName != null)
+        Item = item;
+        if (TextName != null)
         {
-            textName.text = item.title;
+            TextName.text = item.Title;
         }
-        if (sprite != null)
+        if (Sprite != null)
         {
-            sprite.sprite = item.sprite;
+            Sprite.sprite = item.Sprite;
         }
     }
 
     public void Click()
     {
-        Debug.Log("Clicked" + item.title);
-        if (onClick != null)
+        Debug.Log("Clicked" + Item.Title);
+        if (OnClick != null)
         {
-            onClick.Invoke(item);
+            OnClick.Invoke(Item);
         }
         else
         {
-            Debug.Log("Nobody was listening to" + item.title);
+            Debug.Log("Nobody was listening to" + Item.Title);
         }
     }
 }

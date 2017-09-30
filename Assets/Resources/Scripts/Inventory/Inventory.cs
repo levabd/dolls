@@ -1,17 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class Inventory : MonoBehaviour {
-    public List<ToolItem> items = new List<ToolItem>();
-    public InventoryDisplay inventoryDisplayPrefab;
+    public List<ToolItem> Items = new List<ToolItem>();
+    public InventoryDisplay InventoryDisplayPrefab;
     public Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
+    
     // Use this for initialization
+    // ReSharper disable once UnusedMember.Local
     void Start () {
 
         AddItemsFromExamToList();
-        InventoryDisplay inventory = (InventoryDisplay)Instantiate(inventoryDisplayPrefab);
-        inventory.Prime(items);
+        InventoryDisplay inventory = Instantiate(InventoryDisplayPrefab);
+        inventory.Prime(Items);
 
         
     }
@@ -31,7 +33,7 @@ public class Inventory : MonoBehaviour {
             tool.name = string.Format(examTool.Key);
             Debug.Log(tool.name);
             ToolItem it = tool.GetComponent<ToolItem>();
-            items.Add(it);
+            Items.Add(it);
         }
     }
 

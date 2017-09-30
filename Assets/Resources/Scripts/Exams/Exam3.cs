@@ -1,66 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Exam3: BaseExam
+// ReSharper disable once CheckNamespace
+class Exam3 : BaseExam
 {
-    private DateTime needleRemovingMoment;
+    private DateTime _needleRemovingMoment;
 
-    public override string Name
-    {
-        get { return "Центральный венозный доступ №3 Подключичная подключичный доступ у детей"; }
-    }
+    public override string Name => "Центральный венозный доступ №3 Подключичная подключичный доступ у детей";
 
-    public override TupleList<string, string> CorrectSteps
+    public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        get
-        {
-            return new TupleList<string, string>
-            {
-                { "wear_gloves",                    "Надеть перчатки" }, // Я пошёл с Надеждой в душ. Вдруг пришёл надежин муж. То ли мне надеть одежду? То ли мне одеть Надежду? 
-                { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-                { "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
-                { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
-                { "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
-                { "tweezers_iodine_balls",          "Взять смоченные марлевые шарики" },
-                { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
-                { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-                { "anesthesia",                     "Сделать местную анестезию." },
-                { "puncture_needle",                "Взять иглу для пункции вены." },
-                { "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
-                { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
-                { "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
-                { "wire_insertion",                 "Вставка проводника." },
-                { "needle_removing",                "Удаление иглы." },
-                { "catheter_insertion",             "Вставка катетера по проводнику." },
-                { "catheter_pushing",               "Углубление вращательными движениями." },
-                { "wire_removing",                  "Извлечение проводника." },
-                { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
-                { "fixation_with_plaster",          "Фиксация пластырем." }
-            };
-        }
-    }
+        { "wear_gloves",                    "Надеть перчатки" },
+        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
+        { "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
+        { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
+        { "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
+        { "tweezers_iodine_balls",          "Взять смоченные марлевые шарики" },
+        { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
+        { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
+        { "anesthesia",                     "Сделать местную анестезию." },
+        { "puncture_needle",                "Взять иглу для пункции вены." },
+        { "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
+        { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
+        { "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
+        { "wire_insertion",                 "Вставка проводника." },
+        { "needle_removing",                "Удаление иглы." },
+        { "catheter_insertion",             "Вставка катетера по проводнику." },
+        { "catheter_pushing",               "Углубление вращательными движениями." },
+        { "wire_removing",                  "Извлечение проводника." },
+        { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        { "fixation_with_plaster",          "Фиксация пластырем." }
+    };
 
-    public override Dictionary<string, string> InventoryTool
+    public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        get
-        {
-            return new Dictionary<string, string>
-            {
-                { "gloves",                         "Перчатки" },
-                { "syringe",                        "Шприц без иглы" },
-                { "gauze_balls",                    "Стерильные марлевые шарики" },
-                { "tweezers",                       "Пинцет без ничего" },
-                { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
-                { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
-                { "catheter",                       "Катетер" },
-                { "patch",                          "Пластырь" }
-            };
-        }
-    }
+        { "gloves",                         "Перчатки" },
+        { "syringe",                        "Шприц без иглы" },
+        { "gauze_balls",                    "Стерильные марлевые шарики" },
+        { "tweezers",                       "Пинцет без ничего" },
+        { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
+        { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
+        { "catheter_1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
+        { "catheter_06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
+        { "patch",                          "Пластырь" }
+    };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
     {
-        switch (tool.codeName)
+        switch (tool.CodeName)
         {
             case "gloves":
                 return new TupleList<string, string>
@@ -77,8 +64,8 @@ class Exam3: BaseExam
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
                     { "22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
                     { "wire_needle",            "Взять иглу для проводниковой анестезии" },
-                    { "45_punction_needle",     "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "65_punction_needle",     "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,8 мм и срезом острия иглы под углом 65°" },
+                    { "45_10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
+                    { "45_7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
                     { "filling_novocaine_half", "Наполнить 0,25% новокаина наполовину" }
                 };
@@ -119,14 +106,23 @@ class Exam3: BaseExam
                     { "push", "Вставить проводник" },
                     { "pull", "Удалить проводник" }
                 };
-            case "catheter":
+            case "catheter_1":
                 return new TupleList<string, string>
                 {
                     { "push",                           "Вставить катетер по проводнику" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
                     { "rotation_insertion",             "Вставлять вращательными движениями" },
-                    { "direct_insertion",               "Вставлять прямыми движениями" },
+                    { "direct_insertion",               "Вставлять прямыми движениями" }
+                };
+            case "catheter_06":
+                return new TupleList<string, string>
+                {
+                    { "push",                           "Вставить катетер по проводнику" },
+                    { "remove",                         "Удалить катетер" },
+                    { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
+                    { "rotation_insertion",             "Вставлять вращательными движениями" },
+                    { "direct_insertion",               "Вставлять прямыми движениями" }
                 };
             case "patch":
                 return new TupleList<string, string>
@@ -141,225 +137,84 @@ class Exam3: BaseExam
     public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
-        if (tool.codeName == "syringe" && colliderTag.Contains("arteria"))
+        TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
-            errorMessage = "Пункция артерий";
-            return false;
-        }
-        else if (tool.codeName == "syringe" && colliderTag.Contains("brachial_plexus"))
-        {
-            errorMessage = "Травма плечевого нервного сплетения";
-            return false;
-        }
-        else if (tool.codeName == "syringe" && colliderTag.Contains("trachea"))
-        {
-            errorMessage = "Травма трахеи";
-            return false;
-        }
-        else if (tool.codeName == "syringe" && colliderTag.Contains("thyroid"))
-        {
-            errorMessage = "Травма щитовидной железы";
-            return false;
-        }
-        else if (tool.codeName == "syringe" && colliderTag.Contains("lungs"))
-        {
-            errorMessage = "Пневмоторакс";
-            return false;
-        }
-        else if (tool.codeName == "syringe" && colliderTag.Contains("subclavian_vein_final_target"))
-        {
-            bool pistonPulling = false;
-            if (tool.stateParams.ContainsKey("piston_pulling"))
-                pistonPulling = Convert.ToBoolean(tool.stateParams["piston_pulling"]);
+            { "arteria", "Пункция артерий"},
+            { "brachial_plexus", "Травма плечевого нервного сплетения"},
+            { "trachea", "Травма трахеи"},
+            { "thyroid", "Травма щитовидной железы"},
+            { "lungs", "Пневмоторакс"},
+        };
 
-            if (pistonPulling)
+        foreach (var syringeError in criticalSyringeErrors)
+        {
+            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
             {
-                if (tool.stateParams.ContainsKey("blood_inside"))
-                    tool.stateParams["blood_inside"] = "true";
-                else
-                    tool.stateParams.Add("blood_inside", "true");
-                // TODO: Запустить анимацию крови
+                errorMessage = syringeError.Item2;
+                return false;
             }
-            return true;
         }
+
+        if (tool.CodeName == "syringe" && (colliderTag != "subclavian_vein_final_target" || colliderTag != "subclavian_vein_target"))
+        {
+            errorMessage = "Пункция не в том месте";
+            return false;
+        }
+
+        if (tool.CodeName == "tweezers" && colliderTag != "disinfection_subclavian_target")
+        {
+            errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        this.BloodInsideMove(ref tool, colliderTag, "subclavian_vein_final_target");
 
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = null)
+    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
-        // { "wear_gloves",                    "Надеть перчатки" },
-        if (tool.codeName == "gloves" && actionCode == "wear")
-            return 1;
+        // Безопасные операции
+        if (this.BallClearAction(ref tool, actionCode)) return null;
+        if (this.RemoveBallsAction(ref tool, actionCode)) return null;
+        if (this.PistonPullingAction(ref tool, actionCode)) return null;
+        if (actionCode == "null") return null;
 
-        //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        else if (tool.codeName == "gauze_balls" && actionCode == "spirit_60")
-        {
-            errorMessage = "Не та жидкость";
-            return 2;
-        }
-        else if (tool.codeName == "gauze_balls" && actionCode == "spirit_70")
-        {
-            BallHelper.TryWetBall(ref tool, "spirit_70", out errorMessage);
-            return 2;
-        }
-        else if (tool.codeName == "gauze_balls" && actionCode == "spirit_80")
-        {
-            errorMessage = "Не та жидкость";
-            return 2;
-        }
-        else if (tool.codeName == "gauze_balls" && actionCode == "clear")
-        {
-            BallHelper.ClearBall(ref tool);
-            return null;
-        }
+        int returnedStep;
 
-        //{ "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
-        else if (tool.codeName == "tweezers" && actionCode == "tweezers_balls")
-        {
-            TweezersHelper.GetBalls(ref tool);
-            return LastTakenStep() == 2 ? 3 : 6;
-        }
-        else if (tool.codeName == "tweezers" && actionCode == "remove_balls")
-        {
-            TweezersHelper.RemoveBall(ref tool);
-            return null;
-        }
-
-        //{ "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
-        //{ "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
-        else if (tool.codeName == "tweezers" && actionCode == "top_down")
-        {
-            if (locatedColliderTag != "disinfection_subclavian_target")
-                errorMessage = "Дезинфекцию надо делать не тут";
-            return LastTakenStep() == 3 ? 4 : 7;
-        }
-        else if (tool.codeName == "tweezers" && actionCode == "right_left")
-        {
-            errorMessage = "Не так происходит дезинфекция";
-            return LastTakenStep() == 3 ? 4 : 7;
-        }
-
-        //{ "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
-        else if (tool.codeName == "gauze_balls" && actionCode == "iodine_1")
-        {
-            BallHelper.TryWetBall(ref tool, "iodine_1", out errorMessage);
-            return 5;
-        }
-        else if (tool.codeName == "gauze_balls" && actionCode == "iodine_3")
-        {
-            errorMessage = "Не та жидкость";
-            return 5;
-        }
+        // Перчатки + Спирт + Йод
+        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+            "disinfection_subclavian_target", out returnedStep)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        else if (tool.codeName == "syringe" && actionCode == "anesthesia_needle")
-        {
-            if (LastTakenStep() != 7)
-                errorMessage = "Не та игла на текущем шаге";
-            else
-                SyringeHelper.TryGetNeedle(ref tool, "anesthesia_needle", out errorMessage);
-            return 8;
-        }
-        else if (tool.codeName == "syringe" && actionCode == "22G_needle")
-        {
-            errorMessage = "Не та игла";
-            return 8;
-        }
-        else if (tool.codeName == "syringe" && actionCode == "wire_needle")
-        {
-            errorMessage = "Не та игла";
-            return 8;
-        }
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 7)) return 8;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
-        else if (tool.codeName == "syringe" && actionCode == "anesthesia")
+        if (tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
             SyringeHelper.CheckAnestesiaNeedle(ref tool, out errorMessage);
             return 9;
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        else if (tool.codeName == "syringe" && actionCode == "45_punction_needle")
-        {
-            if (LastTakenStep() != 9)
-                errorMessage = "Не та игла на текущем шаге";
-            else
-                SyringeHelper.TryGetNeedle(ref tool, "45_punction_needle", out errorMessage);
-            return 10;
-        }
-        else if (tool.codeName == "syringe" && actionCode == "65_punction_needle")
-        {
-            errorMessage = "Не та игла";
-            return 10;
-        }
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "45_7_punction_needle", 9)) return 10;
 
         //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
-        else if (tool.codeName == "syringe" && actionCode == "filling_novocaine_full")
-        {
-            errorMessage = "Слишком много новокаина";
-            return 11;
-        }
-        else if (tool.codeName == "syringe" && actionCode == "filling_novocaine_half")
-            return 11;
-
-        else if (tool.codeName == "syringe" && actionCode == "piston_pulling")
-        {
-            errorMessage = "";
-            if (tool.stateParams.ContainsKey("piston_pulling"))
-                tool.stateParams["piston_pulling"] = "true";
-            else
-                tool.stateParams.Add("piston_pulling", "true");
-            return null;
-        }
+        if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
-        else if (tool.codeName == "syringe" && actionCode == "needle_removing")
-        {
-            needleRemovingMoment = DateTime.Now;
+        if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+            ref _needleRemovingMoment, "subclavian_vein_final_target", 30, 40)) return 12;
 
-            if (tool.stateParams.ContainsKey("piston_pulling"))
-                tool.stateParams.Remove("piston_pulling");
-
-            string entryAngle = "";
-            if (!tool.stateParams.TryGetValue("entry_angle", out entryAngle))
-            {
-                errorMessage = "Неправильный угол установки";
-                return 12;
-            }
-
-            if (!float.Parse(entryAngle).CheckRange(30, 45))
-            {
-                errorMessage = "Неправильный угол установки";
-                return 12;
-            }
-
-            string bloodInside = "";
-            if (!tool.stateParams.TryGetValue("blood_inside", out bloodInside))
-            {
-                errorMessage = "Во время углубления не был потянут поршень на себя";
-                return 12;
-            }
-
-            if (!Convert.ToBoolean(bloodInside))
-            {
-                errorMessage = "Во время углубления не был потянут поршень на себя";
-                return 12;
-            }
-
-            SyringeHelper.RemoveNeedle(ref tool);
-            if (locatedColliderTag == "subclavian_vein_final_target")
-                return 12;
-            else
-                return null;
-        }
+        // Отсоединяем в любом другом месте
+        if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
 
         //{ "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
-        else if (tool.codeName == "needle" && actionCode == "finger_covering")
+        if (tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - needleRemovingMoment).TotalSeconds > 3)
+            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 3)
             {
                 errorMessage = "Воздушная эмболия";
                 return null;
@@ -367,84 +222,16 @@ class Exam3: BaseExam
             return 13;
         }
 
-        //{ "wire_insertion",                 "Вставка проводника." },
-        else if (tool.codeName == "soft_catheter_conductor" && actionCode == "push")
-        {
-            if (LastTakenStep() != 13)
-                errorMessage = "Некуда вставить проводник";
-            return 14;
-        }
-        else if (tool.codeName == "standart_catheter_conductor" && actionCode == "push")
-        {
-            errorMessage = "Не тот проводник";
-            return 14;
-        }
-
-        //{ "needle_removing",                "Удаление иглы." },
-        else if (tool.codeName == "needle" && actionCode == "needle_removing")
-        {
-            if (LastTakenStep() != 14)
-                errorMessage = "Нельзя удалять иглу без проводника";
-            return 15;
-        }
-        //{ "catheter_insertion",             "Вставка катетера по проводнику." },
-        else if (tool.codeName == "catheter" && actionCode == "push")
-        {
-            if (LastTakenStep() != 15)
-                errorMessage = "Нельзя вставить катетер без проводника";
-
-            return 16;
-        }
-
-        //{ "catheter_pushing",               "Углубление вращательными движениями." },
-        else if (tool.codeName == "catheter" && actionCode == "rotation_insertion")
-        {
-            if (LastTakenStep() != 16)
-                errorMessage = "Некуда углублять катетер";
-            return 17;
-        }
-        else if (tool.codeName == "catheter" && actionCode == "direct_insertion")
-        {
-            errorMessage = "Некорректный способ углубления катетера";
-            return 17;
-        }
-        else if (tool.codeName == "catheter" && actionCode == "remove")
+        // Критическая ошибка
+        if (tool.CodeName == "catheter_1" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;
         }
 
-        //{ "wire_removing",                  "Извлечение проводника." },
-        else if (tool.codeName == "soft_catheter_conductor" && actionCode == "pull")
-        {
-            if (LastTakenStep() != 17)
-                errorMessage = "Нельзя удалять иглу без катетера";
-            return 18;
-        }
-        else if (tool.codeName == "standart_catheter_conductor" && actionCode == "pull")
-        {
-            errorMessage = "Не тот проводник";
-            return 18;
-        }
-
-        //{ "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
-        else if (tool.codeName == "catheter" && actionCode == "liquid_transfusion_connection")
-        {
-            if (LastTakenStep() != 18)
-                errorMessage = "Сначала должен быть корректно установлен катетер";
-            return 19;
-        }
-
-        //{ "fixation_with_plaster",          "Фиксация пластырем." }
-        else if (tool.codeName == "patch" && actionCode == "stick")
-        {
-            if (locatedColliderTag != "subclavian_vein_catheter")
-                errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
-            return 20;
-        }
-
-        else if (actionCode == "null")
-            return null;
+        // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+            "catheter_1", "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
 
         return null;
     }

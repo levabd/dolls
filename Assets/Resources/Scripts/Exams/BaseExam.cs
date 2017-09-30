@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
+// ReSharper disable once CheckNamespace
 public abstract class BaseExam: IExamInterface
 {
-    private TupleList<int, bool, string> takenSteps;
+    private readonly TupleList<int, bool, string> _takenSteps = new TupleList<int, bool, string>();
 
-    public TupleList<int, bool, string> TakenSteps{ get { return takenSteps; } }
+    public TupleList<int, bool, string> TakenSteps => _takenSteps;
 
     public int LastTakenStep()
     {
         int lastStep = 0;
-        if (this.TakenSteps.Count() != 0)
-            lastStep = this.TakenSteps.Last().Item1;
+        if (TakenSteps.Count != 0)
+            lastStep = TakenSteps.Last().Item1;
 
         return lastStep;
     }
@@ -24,14 +25,14 @@ public abstract class BaseExam: IExamInterface
         // TODO: Save Taken Step to DB
         // Step Name = CorrectSteps[stepNumber - 1].Item2
 
-        takenSteps.Add(step);
+        _takenSteps.Add(step);
     }
 
     public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
-        string _errorMessage = "";
-        bool result = CheckMove(ref tool, colliderTag, out _errorMessage);
-        errorMessage = _errorMessage;
+        string currentErrorMessage;
+        bool result = CheckMove(ref tool, colliderTag, out currentErrorMessage);
+        errorMessage = currentErrorMessage;
         if (!result)
         {
             // TODO: Save false result to DB
@@ -39,18 +40,18 @@ public abstract class BaseExam: IExamInterface
         return result;
     }
 
-    public bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = null)
+    public bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
-        string _errorMessage = "";
-        int? stepNumber = CheckAction(ref tool, actionCode, out _errorMessage, locatedColliderTag);
-        errorMessage = _errorMessage;
+        string currentErrorMessage;
+        int? stepNumber = CheckAction(ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
+        errorMessage = currentErrorMessage;
         if ((stepNumber == null) && (!String.IsNullOrEmpty(errorMessage)))
         {
             // TODO: Save false result to DB
             return false;
         }
 
-        bool stepResult = String.IsNullOrEmpty(errorMessage) ? true : false;
+        bool stepResult = String.IsNullOrEmpty(errorMessage);
         TakeStep(stepNumber ?? 0, stepResult, errorMessage);
 
         return true;
@@ -58,11 +59,11 @@ public abstract class BaseExam: IExamInterface
 
     public bool Finish()
     {
-        if (takenSteps.Count != CorrectSteps.Count)
+        if (_takenSteps.Count != CorrectSteps.Count)
             return false;
         
         int currentStepNumber = 0;
-        foreach (var step in takenSteps)
+        foreach (var step in _takenSteps)
         {
             if (step.Item1 != currentStepNumber)
                 return false;
@@ -83,6 +84,6 @@ public abstract class BaseExam: IExamInterface
 
     public abstract bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage);
 
-    public abstract int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = null);
+    public abstract int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
 }
 

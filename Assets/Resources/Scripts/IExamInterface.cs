@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 
+// ReSharper disable once CheckNamespace
 interface IExamInterface
 {
     /// <summary>
@@ -56,7 +56,7 @@ interface IExamInterface
     /// <param name="errorMessage">Displayed error message</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = null);
+    int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
 
     /// <summary>
     /// Action step checking
@@ -66,7 +66,7 @@ interface IExamInterface
     /// <param name="errorMessage">Displayed error message</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = null);
+    bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
 
     /// <summary>
     /// Final steps check
