@@ -51,6 +51,7 @@ public static class SyringeHelper
         List<string> needleList = new List<string>
         {
             "anesthesia_needle",
+            "simple_needle",
             "22G_needle",
             "wire_needle",
             "45_4_punction_needle",
@@ -60,24 +61,19 @@ public static class SyringeHelper
             "45_4_14_punction_needle"
         };
 
-        foreach (string needle in  needleList)
-        {
-            if (tool.CodeName == "syringe" && actionCode == needle)
-            {
-                if (actionCode == targetNeedle)
-                {
-                    if (exam.LastTakenStep() != lastStep)
-                        errorMessage = "Не та игла на текущем шаге";
-                    else
-                        TryGetNeedle(ref tool, targetNeedle, out errorMessage);
-                }
+        if (tool.CodeName != "syringe" || !needleList.Contains(actionCode))
+            return false;
 
-                errorMessage = "Не та игла";
-                return true;
-            }
+        if (actionCode == targetNeedle)
+        {
+            if (exam.LastTakenStep() != lastStep)
+                errorMessage = "Не та игла на текущем шаге";
+            else
+                TryGetNeedle(ref tool, targetNeedle, out errorMessage);
         }
 
-        return false;
+        errorMessage = "Не та игла";
+        return true;
     }
 
     public static bool HalfFillingNovocaine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage)
@@ -150,13 +146,9 @@ public static class SyringeHelper
                 pistonPulling = Convert.ToBoolean(tool.StateParams["piston_pulling"]);
 
             if (pistonPulling)
-            {
-                if (tool.StateParams.ContainsKey("blood_inside"))
-                    tool.StateParams["blood_inside"] = "true";
-                else
-                    tool.StateParams.Add("blood_inside", "true");
+                tool.StateParams["blood_inside"] = "true";
                 // Запустить анимацию крови
-            }
+
             return true;
         }
 

@@ -1,10 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 public static class BallHelper
 {
-    public static bool TryWetBall(ref ToolItem tool, string liquid, out string errorMessage)
+    public static bool TryWetBall(ref ToolItem tool, string liquid, string targetLiquid, out string errorMessage)
     {
+        List<string> liquidList = new List<string>
+        {
+            "spirit_70",
+            "spirit_60",
+            "spirit_80",
+            "iodine_1",
+            "iodine_3"
+        };
+
         errorMessage = "";
 
         if (tool.StateParams.ContainsKey("wet") && Convert.ToBoolean(tool.StateParams["wet"]))
@@ -13,12 +23,21 @@ public static class BallHelper
             return false;
         }
 
+        if (!liquidList.Contains(liquid))
+            return false;
+
         tool.StateParams.Add("wet", "true");
         tool.StateParams["liquid"] = liquid;
 
         tool.Title = "Смоченные марлевые шарики";
 
-        return true;
+        if (liquid != targetLiquid)
+        {
+            errorMessage = "Не та жидкость";
+            return false;
+        }
+
+        return false;
     }
 
     public static bool BallClearAction(this BaseExam exam, ref ToolItem tool, string actionCode)
