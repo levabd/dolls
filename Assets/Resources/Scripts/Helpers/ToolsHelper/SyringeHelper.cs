@@ -52,13 +52,13 @@ public static class SyringeHelper
         {
             "anesthesia_needle",
             "simple_needle",
-            "22G_needle",
+            "g22G_needle",
             "wire_needle",
-            "45_4_punction_needle",
-            "45_10_punction_needle",
-            "45_7_punction_needle",
-            "45_8_punction_needle",
-            "45_4_14_punction_needle"
+            "a45_d4_punction_needle",
+            "a45_d10_punction_needle",
+            "a45_d7_punction_needle",
+            "a45_d8_punction_needle",
+            "a45_d4_d14_punction_needle"
         };
 
         if (tool.CodeName != "syringe" || !needleList.Contains(actionCode))

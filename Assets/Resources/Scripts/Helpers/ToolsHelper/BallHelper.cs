@@ -8,11 +8,11 @@ public static class BallHelper
     {
         List<string> liquidList = new List<string>
         {
-            "spirit_70",
-            "spirit_60",
-            "spirit_80",
-            "iodine_1",
-            "iodine_3"
+            "spirit_p70",
+            "spirit_p60",
+            "spirit_p80",
+            "iodine_p1",
+            "iodine_p3"
         };
 
         errorMessage = "";

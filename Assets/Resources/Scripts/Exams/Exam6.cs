@@ -41,8 +41,8 @@ class Exam6 : BaseExam
         { "tweezers",                       "Пинцет без ничего" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
         { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
-        { "catheter_1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
-        { "catheter_06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
+        { "catheter_d1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
+        { "catheter_d06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
         { "patch",                          "Пластырь" }
     };
 
@@ -63,11 +63,11 @@ class Exam6 : BaseExam
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
                     { "wire_needle",            "Взять иглу для проводниковой анестезии" },
-                    { "45_8_punction_needle",   "Взять иглу для пункции вены длинной не менее 8 см с внутренним просветом канала 1,6-1,8 мм и срезом острия иглы под углом 40-45°" },
-                    { "45_7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
-                    { "45_4_14_punction_needle","Взять иглу для пункции вены длинной 4 см с внутренним просветом канала 1,4-1,6 мм и срезом острия иглы под углом 40-45°" },
+                    { "a45_d8_punction_needle",   "Взять иглу для пункции вены длинной не менее 8 см с внутренним просветом канала 1,6-1,8 мм и срезом острия иглы под углом 40-45°" },
+                    { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
+                    { "a45_d4_d14_punction_needle","Взять иглу для пункции вены длинной 4 см с внутренним просветом канала 1,4-1,6 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
                     { "filling_novocaine_half", "Наполнить 0,25% новокаина наполовину" },
                     { "filling_nacl_half",      "Наполнить 0,9% раствором натрия хлорида наполовину"}
@@ -75,11 +75,11 @@ class Exam6 : BaseExam
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
-                    { "spirit_70",  "Промокнуть в 70% раствором спирта" },
-                    { "spirit_60",  "Промокнуть в 60% раствор спирта" },
-                    { "spirit_80",  "Промокнуть в 80% раствор спирта" },
-                    { "iodine_1",   "Промокнуть в 1% раствором йодоната" },
-                    { "iodine_3",   "Промокнуть в 3% раствором йодоната" },
+                    { "spirit_p70",  "Промокнуть в 70% раствором спирта" },
+                    { "spirit_p60",  "Промокнуть в 60% раствор спирта" },
+                    { "spirit_p80",  "Промокнуть в 80% раствор спирта" },
+                    { "iodine_p1",   "Промокнуть в 1% раствором йодоната" },
+                    { "iodine_p3",   "Промокнуть в 3% раствором йодоната" },
                     { "clear",      "Взять новый шарик (очистить)" }
                 };
             case "needle":
@@ -109,7 +109,7 @@ class Exam6 : BaseExam
                     { "push", "Вставить проводник" },
                     { "pull", "Удалить проводник" }
                 };
-            case "catheter_1":
+            case "catheter_d1":
                 return new TupleList<string, string>
                 {
                     { "push",                           "Вставить катетер по проводнику" },
@@ -118,7 +118,7 @@ class Exam6 : BaseExam
                     { "rotation_insertion",             "Вставлять вращательными движениями" },
                     { "direct_insertion",               "Вставлять прямыми движениями" }
                 };
-            case "catheter_06":
+            case "catheter_d06":
                 return new TupleList<string, string>
                 {
                     { "push",                           "Вставить катетер по проводнику" },
@@ -207,7 +207,7 @@ class Exam6 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "45_8_punction_needle", 10)) return 11;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
         if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 12;
@@ -231,7 +231,7 @@ class Exam6 : BaseExam
         }
 
         // Критическая ошибка
-        if (tool.CodeName == "catheter_1" && actionCode == "remove")
+        if (tool.CodeName == "catheter_d1" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;
@@ -239,7 +239,7 @@ class Exam6 : BaseExam
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "catheter_1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
+            "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;
     }

@@ -110,7 +110,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref tool, actionCode, "spirit_70", out errorMessage);
+            BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -157,7 +157,7 @@ public static class ExamHelpers
         //{ "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("iodine"))
         {
-            BallHelper.TryWetBall(ref tool, actionCode, "iodine_1", out errorMessage);
+            BallHelper.TryWetBall(ref tool, actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -196,7 +196,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref tool, actionCode, "spirit_70", out errorMessage);
+            BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -242,7 +242,7 @@ public static class ExamHelpers
         //{ "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("iodine"))
         {
-            BallHelper.TryWetBall(ref tool, actionCode, "iodine_1", out errorMessage);
+            BallHelper.TryWetBall(ref tool, actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -299,7 +299,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref tool, actionCode, "spirit_70", out errorMessage);
+            BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = exam.LastTakenStep() == 4 ? 5 : 11;
             returnedStep = injection ? returnedStep + 1 : returnedStep;
             return true;
@@ -330,8 +330,8 @@ public static class ExamHelpers
             return true;
         }
 
-        // { "take_the_blood_10",              "Набрать 10мл. крови." },
-        if (!injection && tool.CodeName == "syringe" && actionCode == "take_the_blood_10")
+        // { "take_the_blood_ml10",              "Набрать 10мл. крови." },
+        if (!injection && tool.CodeName == "syringe" && actionCode == "take_the_blood_ml10")
         {
             if (locatedColliderTag != finalTarget)
                 errorMessage = "Забор крови не из того места";
@@ -412,6 +412,148 @@ public static class ExamHelpers
                 errorMessage = "Это действие надо совершать сразу после надевания на иглу колпачка";
             returnedStep = injection ? 17 : 15;
             return true;
+        }
+
+        returnedStep = 0;
+        return false;
+    }
+
+    public static bool VenflonInstallation(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
+        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, bool head = false)
+    {
+        // { "wear_gloves",                    "Надеть перчатки" },
+        if (tool.CodeName == "gloves" && actionCode == "wear")
+        {
+            tool.StateParams["weared"] = "true";
+            returnedStep = 1;
+            return true;
+        }
+
+        // { "tourniquet",                     "Взять жгут и наложить" },
+        if (tool.CodeName == "tourniquet" && actionCode == "lay")
+        {
+            if (!locatedColliderTag.Contains(tourniquetCollider))
+                errorMessage = "Не туда наложен жгут";
+            // Вена увеличивается.
+            returnedStep = 2;
+            return true;
+        }
+
+        // { "palpation",                      "Пальпируем вену." },
+        if (tool.CodeName == "hand" && actionCode == "palpation")
+        {
+            if (!locatedColliderTag.Contains(palpationCollider))
+                errorMessage = "Пальпируется не то место";
+            returnedStep = 3;
+            return true;
+        }
+
+        //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
+        if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
+        {
+            BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
+            returnedStep = 4;
+            return true;
+        }
+
+        // { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
+        if (tool.CodeName == "gauze_balls" && actionCode == "top_down")
+        {
+            if (locatedColliderTag != disinfectionCollider)
+                errorMessage = "Дезинфекцию надо делать не тут";
+            returnedStep = 5;
+            return true;
+        }
+
+        // { "throw_balls",                    "Выкинуть шарики." },
+        if (tool.CodeName == "gauze_balls" && actionCode == "throw_balls")
+        {
+            returnedStep = 6;
+            return true;
+        }
+
+        // { "stretch_the_skin",               "Натянуть кожу." },
+        if (tool.CodeName == "hand" && actionCode == "stretch_the_skin")
+        {
+            if (!locatedColliderTag.Contains(stretchCollider))
+                errorMessage = "Натянуто не то место";
+            returnedStep = 7;
+            return true;
+        }
+
+        // { "pull_mandren",                   "Потягиваем мадрен." },
+        if (tool.CodeName == "venflon" && actionCode == "pull_mandren")
+        {
+            if (locatedColliderTag != finalTarget)
+                errorMessage = "Забор крови не из того места";
+            else
+            {
+                if (exam.LastTakenStep() != 8)
+                    errorMessage = "Не была натянута кожа";
+                else if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(head ? 20 : 10, head ? 30 : 20))
+                    errorMessage = "Неправильный угол установки";
+                else
+                    tool.StateParams["mandren_pulling"] = "true";
+            }
+            returnedStep = 8;
+            return true;
+        }
+
+        // { "remove_tourniquet",              "Снимаем жгут." },
+        if (tool.CodeName == "tourniquet" && actionCode == "remove")
+        {
+            if (!locatedColliderTag.Contains(tourniquetCollider))
+                errorMessage = "Не туда наложен жгут";
+            returnedStep = 9;
+            return true;
+        }
+
+        // { "clamp_the_vein",                 "Пережать вену." },
+        if (tool.CodeName == "hand" && actionCode == "clamp")
+        {
+            if (!locatedColliderTag.Contains("external_jugular_vein"))
+                errorMessage = "Сдавлена не та вена(место)";
+            returnedStep = 10;
+            return true;
+        }
+
+        // { "remove_mandren",                 "Вытаскиваем мадрен." },
+        if (tool.CodeName == "venflon" && actionCode == "remove_mandren")
+        {
+            if (exam.LastTakenStep() != 10)
+                errorMessage = "Не была пережата вена";
+            returnedStep = 11;
+            return true;
+        }
+
+        // { "filling_nacl_half",              "Наполнить 0,9% раствором натрия хлорида наполовину"},
+        if (tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
+        {
+            returnedStep = 12;
+            return true;
+        }
+
+        // { "nacl_to_cateter",                "Ввести физраствор в катетер" },
+        if (tool.CodeName == "syringe" && actionCode == "nacl_to_cateter")
+        {
+            returnedStep = 13;
+            return true;
+        }
+
+        // { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        if (tool.CodeName == "venflon" && actionCode == "liquid_transfusion_connection")
+        {
+            if (exam.LastTakenStep() != (head ? 13 : 11))
+                errorMessage = "Сначала должен быть корректно установлен катетер";
+            returnedStep = head ? 14 : 12;
+        }
+
+        // { "fixation_with_plaster",          "Фиксация пластырем." }
+        if (tool.CodeName == "patch" && actionCode == "stick")
+        {
+            if (!locatedColliderTag.Contains("catheter"))
+                errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
+            returnedStep = head ? 15 : 13;
         }
 
         returnedStep = 0;
