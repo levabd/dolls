@@ -399,7 +399,7 @@ public static class ExamHelpers
         // { "put_on_the_cap",                 "Надеть колпачек на иглу." },
         if (tool.CodeName == "syringe" && actionCode == "put_on_the_cap")
         {
-            if (exam.LastTakenStep() != (injection ? 15 : 13)
+            if (exam.LastTakenStep() != (injection ? 15 : 13))
                 errorMessage = "Игла в теле или была давно извлечена. Сначала надо было извлечь и сразу надеть колпачек";
             returnedStep = injection ? 16 : 14;
             return true;

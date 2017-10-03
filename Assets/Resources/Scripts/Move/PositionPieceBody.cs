@@ -32,6 +32,7 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100))
             {
                 CheckPosition = Check.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
+                
                 Cursor.SetCursor(null, hotSpot, cursorMode);
                 
                 if (CheckPosition)
