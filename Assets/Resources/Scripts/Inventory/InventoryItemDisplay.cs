@@ -36,7 +36,7 @@ public class InventoryItemDisplay : MonoBehaviour {
 
     public void Click()
     {
-        Debug.Log("Clicked" + Item.Title);
+        //Debug.Log("You clicked on " + Item.Title);
         if (OnClick != null)
         {
             OnClick.Invoke(Item);

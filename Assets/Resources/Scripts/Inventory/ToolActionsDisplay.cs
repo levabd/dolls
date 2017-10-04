@@ -17,13 +17,13 @@ public class ToolActionsDisplay : MonoBehaviour {
 
     }
 
-    public void Prime(TupleList<string, string> actions)
+    public void Prime(TupleList<string, string> actions, ToolItem item)
     {
         foreach (var action in actions)
         {
             ToolItemActionDisplay display = Instantiate(toolItemActionDisplayPrefab);
             display.transform.SetParent(targetTransform, false);
-            display.Prime(action);
+            display.Prime(action, item);
         }
     }
 }

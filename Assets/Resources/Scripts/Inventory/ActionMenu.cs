@@ -34,7 +34,7 @@ public  class ActionMenu : MonoBehaviour {
             Destroy(GameObject.Find("ActionsDisplay(Clone)"));
             ToolActionsDisplay actionMenu = Instantiate(toolActDPrefab) as ToolActionsDisplay;
             actionMenu.transform.SetParent(mainTargetTransform, false);
-            actionMenu.Prime(actions);
+            actionMenu.Prime(actions, item);
             isCreate = false;
         }
     }
