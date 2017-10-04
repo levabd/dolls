@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4486067390892156}
   - component: {fileID: 114506003332956650}
   m_Layer: 0
-  m_Name: Syringe
+  m_Name: syringe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,10 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e327d013a477d3a42bb67048a09dff23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 1041755191e3f7c40b4ee4b626041372, type: 3}
-  prefab: Prefabs/Tools/syringe
-  codeName: syringe
-  title: "\u0428\u043F\u0440\u0438\u0446 \u0431\u0435\u0437 \u0438\u0433\u043B\u044B"
+  Sprite: {fileID: 21300000, guid: 1041755191e3f7c40b4ee4b626041372, type: 3}
+  Prefab: Prefabs/Tools/syringe
+  CodeName: syringe
+  Title: "\u0428\u043F\u0440\u0438\u0446 \u0431\u0435\u0437 \u0438\u0433\u043B\u044B"
 --- !u!136 &136628577512991490
 CapsuleCollider:
   m_ObjectHideFlags: 1

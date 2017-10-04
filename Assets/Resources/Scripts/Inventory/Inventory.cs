@@ -4,6 +4,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public class Inventory : MonoBehaviour {
     public List<ToolItem> Items = new List<ToolItem>();
+    public Transform TargetTransform;
     public InventoryDisplay InventoryDisplayPrefab;
     public Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
     
@@ -13,6 +14,7 @@ public class Inventory : MonoBehaviour {
 
         AddItemsFromExamToList();
         InventoryDisplay inventory = Instantiate(InventoryDisplayPrefab);
+        inventory.transform.SetParent(TargetTransform, false);
         inventory.Prime(Items);
 
         
@@ -26,12 +28,15 @@ public class Inventory : MonoBehaviour {
 
     void AddItemsFromExamToList() {
         foreach (KeyValuePair<string, string> examTool in InventoryTools)
-        {// Debug.Log("Key = {0}, Value = {1}"+ examTool.Key + examTool.Value);
+        {
+            // Debug.Log("Key = {0}, Value = {1}"+ examTool.Key + examTool.Value);
+           // Debug.Log("Prefabs/Tools/" + examTool.Key);
 
-            Debug.Log("Prefabs/Tools/" + examTool.Key);
             GameObject tool = (GameObject)Instantiate(Resources.Load("Prefabs/Tools/" + examTool.Key));
             tool.name = string.Format(examTool.Key);
-            Debug.Log(tool.name);
+
+           // Debug.Log(tool.name);
+
             ToolItem it = tool.GetComponent<ToolItem>();
             Items.Add(it);
         }
