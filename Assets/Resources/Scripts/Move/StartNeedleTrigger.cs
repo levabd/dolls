@@ -9,13 +9,13 @@ public class StartNeedleTrigger : MonoBehaviour {
 
     private MockExam Check;
     private bool CheckObject;
-    private ToolItem tool;
-    public GameObject MainToolObject;
+    public ToolItem tool;
+    //public GameObject MainToolObject;
     private string errorMessage;
 
     void Start () {
         Check = new MockExam();
-        tool = MainToolObject.GetComponent<ToolItem>();
+        //tool = MainToolObject.GetComponent<ToolItem>();
     }
 
 	void Update () {

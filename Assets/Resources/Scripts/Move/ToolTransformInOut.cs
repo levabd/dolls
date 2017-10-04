@@ -29,11 +29,11 @@ public class ToolTransformInOut : MonoBehaviour {
     }
     public void TransformIn()
     {
-        Tool.transform.localPosition = new Vector3(Tool.transform.localPosition.x, Tool.transform.localPosition.y + 0.005f, Tool.transform.localPosition.z);
+        Tool.transform.localPosition = new Vector3(Tool.transform.localPosition.x , Tool.transform.localPosition.y , Tool.transform.localPosition.z + 0.005f);
 
     }
     public void TransformOut()
     {
-        Tool.transform.localPosition = new Vector3(Tool.transform.localPosition.x, Tool.transform.localPosition.y - 0.005f, Tool.transform.localPosition.z);
+        Tool.transform.localPosition = new Vector3(Tool.transform.localPosition.x , Tool.transform.localPosition.y , Tool.transform.localPosition.z - 0.005f);
     }
 }

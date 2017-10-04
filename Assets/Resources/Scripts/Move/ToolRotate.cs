@@ -10,15 +10,14 @@ public class ToolRotate : MonoBehaviour {
     private GameObject Tool;
     public Text ToolAngels;
     private int toolAngel = 0;
-    private ToolItem TI;
+    public ToolItem toolItem;
 
 
 	// Use this for initialization
 	void Start () {
         Tool = GameObject.Find(ToolPrefab.name);
-        //TI = Tool.GetComponent<ToolItem>();
-        Tool.GetComponent<ToolItem>().StateParams.Add("entry_age", "0");
-        //TI.StateParams.Add("entry_age", "0");
+
+        toolItem.StateParams.Add("entry_age", "0");;
 
 	}
     // Update is called once per frame
@@ -26,8 +25,8 @@ public class ToolRotate : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D))
         {
             IncreaseAngle();
-            //print($"{TI.StateParams["entry_age"]}");
-            print($"{Tool.GetComponent<ToolItem>().StateParams["entry_age"]}");
+
+            print($"{toolItem.StateParams["entry_age"]}");
             
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -37,16 +36,16 @@ public class ToolRotate : MonoBehaviour {
     }
     public void IncreaseAngle()
     {
-        Tool.transform.localEulerAngles = new Vector3(Tool.transform.localEulerAngles.x, Tool.transform.localEulerAngles.y, Tool.transform.localEulerAngles.z - 5f);
+        Tool.transform.localEulerAngles = new Vector3(Tool.transform.localEulerAngles.x, Tool.transform.localEulerAngles.y - 5f, Tool.transform.localEulerAngles.z );
         toolAngel += 10;
-        Tool.GetComponent<ToolItem>().StateParams["entry_age"] = System.Convert.ToString(toolAngel);
+        toolItem.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
 
     }
     public void ReduceAngle()
     {
-        Tool.transform.localEulerAngles = new Vector3(Tool.transform.localEulerAngles.x, Tool.transform.localEulerAngles.y, Tool.transform.localEulerAngles.z + 5f);
+        Tool.transform.localEulerAngles = new Vector3(Tool.transform.localEulerAngles.x, Tool.transform.localEulerAngles.y + 5f, Tool.transform.localEulerAngles.z );
         toolAngel -= 10;
-        Tool.GetComponent<ToolItem>().StateParams["entry_age"] = "работает";
-        //TI.StateParams["entry_age"] = "работает";
+        toolItem.StateParams["entry_age"] = "работает";
+        
     }
 }
