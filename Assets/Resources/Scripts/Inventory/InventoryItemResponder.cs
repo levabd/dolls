@@ -2,9 +2,9 @@
 
 // ReSharper disable once CheckNamespace
 public class InventoryItemResponder : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    public ActionMenu actionMenu;
+    // Use this for initialization
+    void Start () {
         InventoryItemDisplay.OnClick += HandleonClick;
 	}
 
@@ -18,10 +18,10 @@ public class InventoryItemResponder : MonoBehaviour {
 
     void HandleonClick(ToolItem item)
     {
-        Debug.Log("Test Click" + item.Title);
-        Debug.Log("Code name" + item.CodeName);
-        TupleList<string, string>  itemAct = new  Exam1().ToolActions(item);
+        //Debug.Log("Test Click   " + item.CodeName);
 
+        actionMenu.item = item;
+        actionMenu.isCreate = true;
     }
 
     // Update is called once per frame
