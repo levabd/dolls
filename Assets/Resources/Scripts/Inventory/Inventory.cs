@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
     public Transform TargetTransform;
     public InventoryDisplay InventoryDisplayPrefab;
     public Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
-   
+
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local
     void Start () {
@@ -16,17 +16,16 @@ public class Inventory : MonoBehaviour {
         InventoryDisplay inventory = Instantiate(InventoryDisplayPrefab);
         inventory.transform.SetParent(TargetTransform, false);
         inventory.Prime(Items);
-
         
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+       
+    }
 
-
-    void AddItemsFromExamToList() {
+        void AddItemsFromExamToList()
+    {
         foreach (KeyValuePair<string, string> examTool in InventoryTools)
         {
             // Debug.Log("Key = {0}, Value = {1}"+ examTool.Key + examTool.Value);

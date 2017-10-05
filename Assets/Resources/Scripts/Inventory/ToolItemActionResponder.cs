@@ -30,6 +30,9 @@ public class ToolItemActionResponder : MonoBehaviour {
         exam.Action(ref toolItem, actionName, out errorMessage);
 
         Debug.Log("This Error = " + errorMessage);
+       GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
+        
+        //Debug.Log(mainText);
 
         //Dictionary<string, string> stateParams =  toolItem.StateParams;
         //foreach (KeyValuePair<string, string> stateParam in stateParams)

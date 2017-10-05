@@ -94,6 +94,7 @@ public static class ExamHelpers
         // { "wear_gloves",                    "Надеть перчатки" },
         if (tool.CodeName == "gloves" && actionCode == "wear")
         {
+            tool.Title = "Перчатки надеты";
             tool.StateParams["weared"] = "true";
             returnedStep = !shave ? 1 : 2;
             return true;

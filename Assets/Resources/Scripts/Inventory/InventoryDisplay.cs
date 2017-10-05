@@ -20,6 +20,7 @@ public class InventoryDisplay : MonoBehaviour {
         foreach (ToolItem item in items)
         {
             InventoryItemDisplay display = Instantiate(ItemDisplayPrefab);
+            display.name = item.name+"_item";
             display.transform.SetParent(TargetTransform, false);
             display.Prime(item);    
 
