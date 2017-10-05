@@ -17,7 +17,7 @@ class Exam10 : BaseExam
         { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         { "throw_balls",                    "Выкинуть шарики." },
         { "stretch_the_skin",               "Натянуть кожу." },
-        { "take_the_blood_ml10",              "Набрать 10мл. крови." },
+        { "take_the_blood_ml10",            "Набрать 10мл. крови." },
         { "remove_tourniquet",              "Снимаем жгут." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "attach_balls",                   "Прикладываем к месту инъекции ватный шарик." },
@@ -114,7 +114,7 @@ class Exam10 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеить" }
+                    { "get", "Взять" }
                 };
             default:
                 return new TupleList<string, string>();

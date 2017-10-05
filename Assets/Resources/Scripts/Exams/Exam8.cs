@@ -28,6 +28,7 @@ class Exam8 : BaseExam
         { "catheter_pushing",               "Углубление вращательными движениями." },
         { "wire_removing",                  "Извлечение проводника." },
         { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        { "get_plaster",                    "Взять пластырь" },
         { "fixation_with_plaster",          "Фиксация пластырем." },
         { "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }
     };
@@ -126,8 +127,8 @@ class Exam8 : BaseExam
                     { "push",                           "Вставить катетер по проводнику" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "rotation_insertion",             "Вставлять вращательными движениями" },
-                    { "direct_insertion",               "Вставлять прямыми движениями" }
+                    { "rotation_insertion",             "Угулубить вращательными движениями" },
+                    { "direct_insertion",               "Угулубить прямыми движениями" }
                 };
             case "catheter_d06":
                 return new TupleList<string, string>
@@ -135,13 +136,13 @@ class Exam8 : BaseExam
                     { "push",                           "Вставить катетер по проводнику" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "rotation_insertion",             "Вставлять вращательными движениями" },
-                    { "direct_insertion",               "Вставлять прямыми движениями" }
+                    { "rotation_insertion",             "Угулубить вращательными движениями" },
+                    { "direct_insertion",               "Угулубить прямыми движениями" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеить" }
+                    { "get", "Взять" }
                 };
             default:
                 return new TupleList<string, string>();

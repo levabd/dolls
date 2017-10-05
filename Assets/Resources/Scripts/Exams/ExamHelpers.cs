@@ -17,6 +17,7 @@ public static class ExamHelpers
         {
             errorMessage = "Не тот проводник";
             returnedStep = expectedFirstStep;
+            return true;
         }
 
         //{ "needle_removing",                "Удаление иглы." },
@@ -25,6 +26,7 @@ public static class ExamHelpers
             if (exam.LastTakenStep() != expectedFirstStep)
                 errorMessage = "Нельзя удалять иглу без проводника";
             returnedStep = expectedFirstStep + 1;
+            return true;
         }
         //{ "catheter_insertion",             "Вставка катетера по проводнику." },
         if (tool.CodeName == catheter && actionCode == "push")
@@ -32,6 +34,7 @@ public static class ExamHelpers
             if (exam.LastTakenStep() != expectedFirstStep + 1)
                 errorMessage = "Нельзя вставить катетер без проводника";
             returnedStep = expectedFirstStep + 2;
+            return true;
         }
 
         //{ "catheter_pushing",               "Углубление вращательными движениями." },
@@ -40,25 +43,29 @@ public static class ExamHelpers
             if (exam.LastTakenStep() != expectedFirstStep + 2)
                 errorMessage = "Некуда углублять катетер";
             returnedStep = expectedFirstStep + 3;
+            return true;
         }
         if (tool.CodeName == catheter && actionCode == "direct_insertion")
         {
             errorMessage = "Некорректный способ углубления катетера";
             returnedStep = expectedFirstStep + 3;
+            return true;
         }
 
         //{ "wire_removing",                  "Извлечение проводника." },
         if (tool.CodeName == "standart_catheter_conductor" && actionCode == "pull")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 3)
-                errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять иглу без катетера" : "Не тот проводник";
+                errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять проводник на этом шаге" : "Не тот проводник";
             returnedStep = expectedFirstStep + 4;
+            return true;
         }
         if (tool.CodeName == "soft_catheter_conductor" && actionCode == "pull")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 3)
-                errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять иглу без катетера" : "Не тот проводник";
+                errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять проводник на этом шаге" : "Не тот проводник";
             returnedStep = expectedFirstStep + 4;
+            return true;
         }
 
         //{ "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
@@ -67,6 +74,14 @@ public static class ExamHelpers
             if (exam.LastTakenStep() != expectedFirstStep + 4)
                 errorMessage = "Сначала должен быть корректно установлен катетер";
             returnedStep = expectedFirstStep + 5;
+            return true;
+        }
+
+        // { "get_plaster",                    "Взять пластырь" },
+        if (tool.CodeName == "patch" && actionCode == "get")
+        {
+            returnedStep = expectedFirstStep + 6;
+            return true;
         }
 
         //{ "fixation_with_plaster",          "Фиксация пластырем." }
@@ -74,7 +89,8 @@ public static class ExamHelpers
         {
             if (!locatedColliderTag.Contains("catheter"))
                 errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
-            returnedStep = expectedFirstStep + 6;
+            returnedStep = expectedFirstStep + 7;
+            return true;
         }
 
         returnedStep = 0;
@@ -547,6 +563,14 @@ public static class ExamHelpers
             if (exam.LastTakenStep() != (head ? 13 : 11))
                 errorMessage = "Сначала должен быть корректно установлен катетер";
             returnedStep = head ? 14 : 12;
+            return true;
+        }
+
+        // { "get_plaster",                    "Взять пластырь" },
+        if (tool.CodeName == "patch" && actionCode == "get")
+        {
+            returnedStep = head ? 15 : 13;
+            return true;
         }
 
         // { "fixation_with_plaster",          "Фиксация пластырем." }
@@ -554,7 +578,8 @@ public static class ExamHelpers
         {
             if (!locatedColliderTag.Contains("catheter"))
                 errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
-            returnedStep = head ? 15 : 13;
+            returnedStep = head ? 16 : 14;
+            return true;
         }
 
         returnedStep = 0;

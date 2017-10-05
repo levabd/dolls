@@ -115,7 +115,7 @@ class Exam11 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеить" }
+                    { "get", "Взять" }
                 };
             default:
                 return new TupleList<string, string>();

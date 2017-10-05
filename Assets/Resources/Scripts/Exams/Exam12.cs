@@ -21,6 +21,7 @@ class Exam12 : BaseExam
         { "clamp_the_vein",                 "Пережать вену." },
         { "remove_mandren",                 "Вытаскиваем мадрен." },
         { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        { "get_plaster",                    "Взять пластырь" },
         { "fixation_with_plaster",          "Фиксация пластырем." },
     };
 
@@ -97,7 +98,7 @@ class Exam12 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеить" }
+                    { "get", "Взять" }
                 };
             default:
                 return new TupleList<string, string>();

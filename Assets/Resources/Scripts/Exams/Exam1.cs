@@ -23,12 +23,13 @@ class Exam1 : BaseExam
         { "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         { "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
-        { "wire_insertion",                 "Вставка проводн ика." },
+        { "wire_insertion",                 "Вставка проводника." },
         { "needle_removing",                "Удаление иглы." },
         { "catheter_insertion",             "Вставка катетера по проводнику." },
         { "catheter_pushing",               "Углубление вращательными движениями." },
         { "wire_removing",                  "Извлечение проводника." },
         { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        { "get_plaster",                    "Взять пластырь" },
         { "fixation_with_plaster",          "Фиксация пластырем." }
     };
 
@@ -112,8 +113,8 @@ class Exam1 : BaseExam
                     { "push",                           "Вставить катетер по проводнику" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "rotation_insertion",             "Вставлять вращательными движениями" },
-                    { "direct_insertion",               "Вставлять прямыми движениями" }
+                    { "rotation_insertion",             "Углублять вращательными движениями" },
+                    { "direct_insertion",               "Углублять прямыми движениями" }
                 };
             case "catheter_d06":
                 return new TupleList<string, string>
@@ -121,13 +122,13 @@ class Exam1 : BaseExam
                     { "push",                           "Вставить катетер по проводнику" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "rotation_insertion",             "Вставлять вращательными движениями" },
-                    { "direct_insertion",               "Вставлять прямыми движениями" }
+                    { "rotation_insertion",             "Углублять вращательными движениями" },
+                    { "direct_insertion",               "Углублять прямыми движениями" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеить" }
+                    { "get", "Взять" }
                 };
             default:
                 return new TupleList<string, string>();
