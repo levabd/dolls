@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
     public Transform TargetTransform;
     public InventoryDisplay InventoryDisplayPrefab;
     public Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
-    
+   
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local
     void Start () {
@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour {
         foreach (KeyValuePair<string, string> examTool in InventoryTools)
         {
             // Debug.Log("Key = {0}, Value = {1}"+ examTool.Key + examTool.Value);
-            Debug.Log("Create new ToolItem from Prefabs/Tools/" + examTool.Key);
+            //Debug.Log("Create new ToolItem from Prefabs/Tools/" + examTool.Key);
 
             GameObject tool = (GameObject)Instantiate(Resources.Load("Prefabs/Tools/" + examTool.Key));
             tool.name = string.Format(examTool.Key);

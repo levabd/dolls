@@ -20,13 +20,24 @@ public class ToolItemActionResponder : MonoBehaviour {
         ToolItemActionDisplay.OnAction -= HandleonClick;
     }
 
-    void HandleonClick(string actionName, ToolItem toolItem)
+    void HandleonClick(string actionName,ref ToolItem toolItem)
     {
-        Debug.Log("This ToolAction = " + actionName);
-        Debug.Log("This ToolItem = " + toolItem.name);
+        //Debug.Log("This ToolAction = " + actionName);
+        //Debug.Log("This ToolItem = " + toolItem.name);
+
         Exam1 exam = new Exam1();
         string errorMessage = "";
-        exam.Action(ref toolItem,actionName, out errorMessage);
+        exam.Action(ref toolItem, actionName, out errorMessage);
+
+        Debug.Log("This Error = " + errorMessage);
+
+        //Dictionary<string, string> stateParams =  toolItem.StateParams;
+        //foreach (KeyValuePair<string, string> stateParam in stateParams)
+        //{
+        //    Debug.Log( stateParam.Key +" " + stateParam.Value);
+
+        //}
+
     }
 
     // Update is called once per frame

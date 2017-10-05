@@ -8,7 +8,7 @@ public class ToolItemActionDisplay : MonoBehaviour {
     public Text actionTextName;
     string actionName;
     public ToolItem ToolItem;
-    public delegate void ToolItemActionDisplayDelegate(string actionName, ToolItem Item);
+    public delegate void ToolItemActionDisplayDelegate(string actionName,ref ToolItem Item);
     public static event ToolItemActionDisplayDelegate OnAction;
     Tuple<string, string> action;
     // Use this for initialization
@@ -34,7 +34,7 @@ public class ToolItemActionDisplay : MonoBehaviour {
 
         actionName = action.Item1;
         ToolItem = item;
-        
+
     }
 
     public void Click()
@@ -42,7 +42,7 @@ public class ToolItemActionDisplay : MonoBehaviour {
         //Debug.Log("You clicked on " + actionName);
         if (OnAction != null)
         {
-            OnAction.Invoke(actionName, ToolItem);
+            OnAction.Invoke(actionName, ref ToolItem);
         }
         else
         {
