@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 public class ToolItemActionResponder : MonoBehaviour {
-
+    public ControlStatusDisplay ctrlStat;
     // Use this for initialization
     void Start()
     {
@@ -29,11 +29,18 @@ public class ToolItemActionResponder : MonoBehaviour {
         string errorMessage = "";
         exam.Action(ref toolItem, actionName, out errorMessage);
 
-        Debug.Log("This Error = " + errorMessage);
-       GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
-        
+        //Debug.Log("This Error = " + errorMessage);
+
+        string examName = exam.Name;
+        bool activeControl = true;
+        ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
+
+        //Update ToolItem Title
+        GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
+
         //Debug.Log(mainText);
 
+        //Check ToolItem.StateParams
         //Dictionary<string, string> stateParams =  toolItem.StateParams;
         //foreach (KeyValuePair<string, string> stateParam in stateParams)
         //{
@@ -48,4 +55,5 @@ public class ToolItemActionResponder : MonoBehaviour {
     {
 
     }
+    
 }

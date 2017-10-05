@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToolActionsDisplay : MonoBehaviour {
     public Transform targetTransform;
     public ToolItemActionDisplay toolItemActionDisplayPrefab;
+    public ActionSeparator actionSeparator;
     // Use this for initialization
     void Start()
     {
@@ -21,9 +22,18 @@ public class ToolActionsDisplay : MonoBehaviour {
     {
         foreach (var action in actions)
         {
-            ToolItemActionDisplay display = Instantiate(toolItemActionDisplayPrefab);
-            display.transform.SetParent(targetTransform, false);
-            display.Prime(action, item);
+            if (action.Item1 == "null")
+            {
+                ActionSeparator separator = Instantiate(actionSeparator);
+                separator.transform.SetParent(targetTransform, false);
+            }
+            else
+            {
+                ToolItemActionDisplay display = Instantiate(toolItemActionDisplayPrefab);
+                display.transform.SetParent(targetTransform, false);
+                display.Prime(action, item);
+            }
+            
         }
     }
 }
