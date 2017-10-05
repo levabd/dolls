@@ -16,6 +16,7 @@ public class PositionPieceBody : MonoBehaviour {
     private bool CheckPosition;
     public ToolItem tool;
     private string errorMessage;
+    public EndExamControlPanel examControl;
     
 
     void Start () {
@@ -32,8 +33,9 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100))
             {
                 CheckPosition = Check.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
-                
+                CheckPosition =false;
                 Cursor.SetCursor(null, hotSpot, cursorMode);
+
                 
                 if (CheckPosition)
                 {
@@ -44,7 +46,8 @@ public class PositionPieceBody : MonoBehaviour {
                 }
                 else
                 {
-                    print(errorMessage);
+                    examControl.EndExam(false, errorMessage);
+                    
 
                 }
 
