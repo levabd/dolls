@@ -7,13 +7,14 @@ using System;
 public class ToolItemActionDisplay : MonoBehaviour {
     public Text actionTextName;
     string actionName;
-    public delegate void ToolItemActionDisplayDelegate(string actionName);
+    public ToolItem ToolItem;
+    public delegate void ToolItemActionDisplayDelegate(string actionName,ref ToolItem Item);
     public static event ToolItemActionDisplayDelegate OnAction;
     Tuple<string, string> action;
     // Use this for initialization
     void Start()
     {
-        if (action != null) Prime(action);
+        //if (action != null) Prime(action);
         
     }
 
@@ -23,7 +24,7 @@ public class ToolItemActionDisplay : MonoBehaviour {
 
     }
 
-    public void Prime(Tuple<string, string> action)
+    public void Prime(Tuple<string, string> action, ToolItem item)
     {
         this.action = action;
         if (actionTextName != null)
@@ -32,15 +33,16 @@ public class ToolItemActionDisplay : MonoBehaviour {
         }
 
         actionName = action.Item1;
-        
+        ToolItem = item;
+
     }
 
     public void Click()
     {
-        Debug.Log("Clicked" + actionName);
+        //Debug.Log("You clicked on " + actionName);
         if (OnAction != null)
         {
-            OnAction.Invoke(actionName);
+            OnAction.Invoke(actionName, ref ToolItem);
         }
         else
         {

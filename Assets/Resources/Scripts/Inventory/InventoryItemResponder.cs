@@ -18,8 +18,7 @@ public class InventoryItemResponder : MonoBehaviour {
 
     void HandleonClick(ToolItem item)
     {
-        //Debug.Log("Test Click   " + item.CodeName);
-
+        //Debug.Log("You clicked on " + item.CodeName);
         actionMenu.item = item;
         actionMenu.isCreate = true;
     }

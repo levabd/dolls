@@ -8,7 +8,7 @@ public class ToolItem : MonoBehaviour {
     [Header("Физический объект")]
     public string Prefab;
     [Header("Текущее состояние обьекта")]
-    public Dictionary<string, string> StateParams;
+    public Dictionary<string, string> StateParams = new Dictionary<string, string>();
     [Header("Код инструмента")]
     public string CodeName;
     [Header("Подпись инструмента(может быть изменена)")]
