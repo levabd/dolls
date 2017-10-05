@@ -11,7 +11,8 @@ public class PositionPieceBody : MonoBehaviour {
     public Texture2D cursorTexture;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
-    private bool step1 = true, step2 = false;
+    public bool step1 = false;
+    private bool step2 = false;
     private MockExam Check;
     private bool CheckPosition;
     public ToolItem tool;
@@ -21,11 +22,14 @@ public class PositionPieceBody : MonoBehaviour {
 
     void Start () {
         Check = new MockExam();
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 	
 
 	void Update () {
+        if (step1)
+        {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
         if (Input.GetMouseButtonDown(0) && step1 == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -33,7 +37,8 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100))
             {
                 CheckPosition = Check.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
-                CheckPosition =false;
+                //CheckPosition = false;
+                //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);
 
                 
@@ -47,8 +52,6 @@ public class PositionPieceBody : MonoBehaviour {
                 else
                 {
                     examControl.EndExam(false, errorMessage);
-                    
-
                 }
 
                 step1 = false;

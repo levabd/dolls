@@ -499,7 +499,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.012
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114223474056185698, guid: c2580516ba6f61f4e811119bb9677dd7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c2580516ba6f61f4e811119bb9677dd7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &628913626
@@ -544,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 628913626}
   cursorTexture: {fileID: 2800000, guid: 38c48a52d700ae74daaec01bd4028c82, type: 3}
+  step1: 0
   tool: {fileID: 0}
   examControl: {fileID: 1413395091}
 --- !u!1 &666863446
@@ -1379,7 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d17f0e37ac2e4aa0cd02dfe366091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetTransform: {fileID: 0}
+  TargetTransform: {fileID: 1413395090}
   PassedBackgroundPanel: {fileID: 224332214585093256, guid: 9303cb55851fb8c4893b178c63a2aac5,
     type: 2}
   NotPassedBackgroundPanel: {fileID: 224941548451230844, guid: 08db599297a2f3f40aa7ba5f427b5f98,

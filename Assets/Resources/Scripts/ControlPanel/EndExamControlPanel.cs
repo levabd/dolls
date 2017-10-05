@@ -54,7 +54,7 @@ public class EndExamControlPanel : MonoBehaviour {
     {
         Transform panel = Instantiate(PassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
-        //panel.transform.SetParent(gameObject.transform, false);
+        
         Transform miniPanel = Instantiate(BlueEndPanel);
         miniPanel.transform.SetParent(panel, false);
         Transform HeadInMiniPanel = Instantiate(HeadPanel);
@@ -70,7 +70,7 @@ public class EndExamControlPanel : MonoBehaviour {
     {
         Transform panel = Instantiate(NotPassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
-        //panel.transform.SetParent(gameObject.transform, false);
+        
         Transform miniPanel = Instantiate(RedEndPanel);
         miniPanel.transform.SetParent(panel, false);
         Transform HeadInMiniPanel = Instantiate(HeadPanel);
