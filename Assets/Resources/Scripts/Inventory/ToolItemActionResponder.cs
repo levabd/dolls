@@ -6,6 +6,7 @@ using System;
 
 public class ToolItemActionResponder : MonoBehaviour {
     public ControlStatusDisplay ctrlStat;
+    public ActionController actionCtrl;
     // Use this for initialization
     void Start()
     {
@@ -30,13 +31,17 @@ public class ToolItemActionResponder : MonoBehaviour {
         exam.Action(ref toolItem, actionName, out errorMessage);
 
         //Debug.Log("This Error = " + errorMessage);
+        //Update ToolItem Title & Icon
+        GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
+        GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprite;
+
 
         string examName = exam.Name;
         bool activeControl = true;
         ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
 
-        //Update ToolItem Title
-        GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
+        actionCtrl.ActionControl(activeControl, ref toolItem, actionName);
+
 
         //Debug.Log(mainText);
 
