@@ -46,9 +46,9 @@ public class ControlStatusDisplay : MonoBehaviour {
         this.actionName = actionName;
         this.errorMessage = errorMessage;
         this.activeControl = activeControl;
-        Debug.Log(this.examName);
-        Debug.Log(this.item);
-        Debug.Log(this.errorMessage);
+        //Debug.Log(this.examName);
+        //Debug.Log(this.item);
+        //Debug.Log(this.errorMessage);
     }
 
     void ControlStatusUpdate()

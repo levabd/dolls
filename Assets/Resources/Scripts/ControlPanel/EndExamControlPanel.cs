@@ -27,9 +27,9 @@ public class EndExamControlPanel : MonoBehaviour {
 
 
     void Start () {
-        //ActiveEndPanel = true;
-        //PassedExam = false;
-        //errorMessage = "fgfgfgfgfg";
+        ActiveEndPanel = true;
+        PassedExam = false;
+        errorMessage = "fgfgfgfgfg";
 	}
 	
 
