@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4675278349407094}
   - component: {fileID: 114112971880769502}
   m_Layer: 0
-  m_Name: Full Syringe
+  m_Name: venflon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e327d013a477d3a42bb67048a09dff23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
-  Prefab: Prefabs/Tools/
-  CodeName: 
-  Title: 
+  Sprite:
+  - {fileID: 21300000, guid: 0efbee2564730df4588788856742d0d2, type: 3}
+  Prefab: Prefabs/Tools/venflon
+  CodeName: venflon
+  Title: "\u041A\u0430\u0442\u0435\u0442\u0435\u0440 Venflon"

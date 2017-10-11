@@ -14,7 +14,7 @@ public class InventoryItemDisplay : MonoBehaviour {
     // ReSharper disable once UnusedMember.Local
 	void Start () {
         if (Item != null) Prime(Item);
-	}
+	} 
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,7 +30,7 @@ public class InventoryItemDisplay : MonoBehaviour {
         }
         if (Sprite != null)
         {
-            Sprite.sprite = item.Sprite;
+            Sprite.sprite = item.Sprite[0];
         }
     }
 

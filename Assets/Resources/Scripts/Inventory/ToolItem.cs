@@ -4,8 +4,8 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public class ToolItem : MonoBehaviour {
     [Header("Иконка предмета")]
-    public Sprite Sprite;
-    [Header("Физический объект")]
+    public Sprite[] Sprite; 
+    [Header("Физический объект")] 
     public string Prefab;
     [Header("Текущее состояние обьекта")]
     public Dictionary<string, string> StateParams = new Dictionary<string, string>();
