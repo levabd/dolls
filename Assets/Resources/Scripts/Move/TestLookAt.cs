@@ -13,5 +13,6 @@ public class TestLookAt : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.LookAt(target.transform);
+        
     }
 }
