@@ -7,6 +7,8 @@ public class ToolItem : MonoBehaviour {
     public Sprite[] Sprite; 
     [Header("Физический объект")] 
     public string Prefab;
+    [Header("Курсор")]
+    public Texture2D cursorTexture;
     [Header("Текущее состояние обьекта")]
     public Dictionary<string, string> StateParams = new Dictionary<string, string>();
     [Header("Код инструмента")]
