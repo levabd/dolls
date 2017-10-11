@@ -3,8 +3,10 @@ using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public class ToolItem : MonoBehaviour {
-    [Header("Иконка предмета")]
-    public Sprite[] Sprite; 
+    [Header("Перечень иконок предмета")]
+    public Sprite[] IconList;
+    [Header("Иконока предмета")]
+    public Sprite CurrentIcon;
     [Header("Физический объект")] 
     public string Prefab;
     [Header("Курсор")]

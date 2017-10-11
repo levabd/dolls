@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
@@ -112,6 +113,7 @@ public static class ExamHelpers
         {
             tool.Title = "Перчатки надеты";
             tool.StateParams["weared"] = "true";
+            tool.CurrentIcon = tool.IconList[2];
             returnedStep = !shave ? 1 : 2;
             return true;
         }
@@ -133,13 +135,14 @@ public static class ExamHelpers
             return true;
         }
 
-
         //{ "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
         if (tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
-            TweezersHelper.GetBalls(ref tool);
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
+            string ballsLiquid = exam.LastTakenStep() == lastStep4Spirit ? "spirit" : "none";
+            if (exam.LastTakenStep() == lastStep4Spirit + 3) ballsLiquid = "iodine";
+            TweezersHelper.GetBalls(ref tool, ballsLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -222,9 +225,11 @@ public static class ExamHelpers
         //{ "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
         if (tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
-            TweezersHelper.GetBalls(ref tool);
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
+            string ballsLiquid = exam.LastTakenStep() == lastStep4Spirit ? "spirit" : "none";
+            if (exam.LastTakenStep() == lastStep4Spirit + 3) ballsLiquid = "iodine";
+            TweezersHelper.GetBalls(ref tool, ballsLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -350,6 +355,13 @@ public static class ExamHelpers
         // { "take_the_blood_ml10",              "Набрать 10мл. крови." },
         if (!injection && tool.CodeName == "syringe" && actionCode == "take_the_blood_ml10")
         {
+            if (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"]))
+            {
+                errorMessage = "Отсутсвует игла";
+                returnedStep = 0;
+                return false;
+            }
+
             if (locatedColliderTag != finalTarget)
                 errorMessage = "Забор крови не из того места";
             else
@@ -502,7 +514,7 @@ public static class ExamHelpers
         if (tool.CodeName == "venflon" && actionCode == "pull_mandren")
         {
             if (locatedColliderTag != finalTarget)
-                errorMessage = "Забор крови не из того места";
+                errorMessage = "Не то место для катетеризации";
             else
             {
                 if (exam.LastTakenStep() != 8)

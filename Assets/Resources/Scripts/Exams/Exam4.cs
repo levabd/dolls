@@ -76,9 +76,9 @@ class Exam4 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
                     { "a45_d4_punction_needle",   "Взять иглу для пункции вены длинной не менее 4 см с внутренним просветом канала 1,0-1,4 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
@@ -156,7 +156,10 @@ class Exam4 : BaseExam
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
             { "axillary_artery", "Пункция подмышейчной артерии. Не отступили 1 см от места пальпации."},
-            { "brachial_plexus", "Травма плечевого нервного сплетения"}
+            { "brachial_plexus", "Травма плечевого нервного сплетения"},
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
         };
 
         foreach (var syringeError in criticalSyringeErrors)
@@ -171,6 +174,18 @@ class Exam4 : BaseExam
         if (tool.CodeName == "syringe" && (colliderTag != "axillary_vien" || colliderTag != "axillary_vien_final_target"))
         {
             errorMessage = "Пункция не в том месте";
+            return false;
+        }
+
+        if (tool.CodeName == "tourniquet" && colliderTag != "axillary_artery")
+        {
+            errorMessage = "Не туда наложен жгут";
+            return false;
+        }
+
+        if (tool.CodeName == "hand" && colliderTag != "axillary_artery")
+        {
+            errorMessage = "Пальпируется не то место";
             return false;
         }
 
@@ -222,6 +237,7 @@ class Exam4 : BaseExam
 
         //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
+        if (errorMessage == "Отсутсвует игла") return null;
 
         //{ "tourniquet",                     "Снимаем жгут." },
         if (tool.CodeName == "tourniquet" && actionCode == "remove")

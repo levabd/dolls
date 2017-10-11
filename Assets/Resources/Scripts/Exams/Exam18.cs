@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-class Exam13 : BaseExam
+class Exam18 : BaseExam
 {
     private bool _needleInsideTarget;
 
-    public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
+    public override string Name => "Периферический венозный доступ №18 Внтуртивенная инъекция в вену стопы";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
         { "wear_gloves",                    "Надеть перчатки" },
         { "puncture_needle",                "Взять иглу для забора крови" },
+        { "filling_drug_solution",          "Наполнить лекарственным раствором" },
         { "tourniquet",                     "Взять жгут и наложить" },
         { "palpation",                      "Пальпируем вену." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         { "throw_balls",                    "Выкинуть шарики." },
         { "stretch_the_skin",               "Натянуть кожу." },
-        { "take_the_blood_ml10",              "Набрать 10мл. крови." },
         { "remove_tourniquet",              "Снимаем жгут." },
+        { "administer_drug",                "Ввести препарат." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "attach_balls",                   "Прикладываем к месту инъекции ватный шарик." },
         { "needle_pull",                    "Извлечь иглу." },
@@ -141,10 +142,10 @@ class Exam13 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && colliderTag == "lateral_subcutaneous_arm_vein_final_target")
+        if (tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && (colliderTag != "lateral_subcutaneous_arm_vein_final_target" || colliderTag != "lateral_subcutaneous_arm_vein"))
+        if (tool.CodeName == "syringe" && (colliderTag != "great_saphenous_vein_final_target" || colliderTag != "great_saphenous_vein"))
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет
@@ -152,19 +153,19 @@ class Exam13 : BaseExam
             return false;
         }
 
-        if (tool.CodeName == "gauze_balls" && colliderTag != "ulnar_fold")
+        if (tool.CodeName == "gauze_balls" && colliderTag != "foot")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
         }
 
-        if (tool.CodeName == "tourniquet" && colliderTag != "below_the_shoulder")
+        if (tool.CodeName == "tourniquet" && colliderTag != "thigh")
         {
             errorMessage = "Не туда наложен жгут";
             return false;
         }
 
-        if (tool.CodeName == "hand" && (colliderTag != "medial_saphenous_vein" || colliderTag != "lateral_subcutaneous_arm_vein"))
+        if (tool.CodeName == "hand" && colliderTag != "great_saphenous_vein")
         {
             errorMessage = "Пальпируется не то место";
             return false;
@@ -186,7 +187,7 @@ class Exam13 : BaseExam
         int returnedStep;
 
         if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "below_the_shoulder", "ulnar_fold", "medial_saphenous_vein", "lateral_subcutaneous_arm_vein", "lateral_subcutaneous_arm_vein_final_target"))
+            "thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", true))
             return returnedStep;
 
 

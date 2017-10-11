@@ -6,14 +6,16 @@ public static class BallHelper
 {
     public static bool TryWetBall(ref ToolItem tool, string liquid, string targetLiquid, out string errorMessage)
     {
-        List<string> liquidList = new List<string>
+        Dictionary<string, int> liquidDict = new Dictionary<string, int>
         {
-            "spirit_p70",
-            "spirit_p60",
-            "spirit_p80",
-            "iodine_p1",
-            "iodine_p3"
+            { "spirit_p70", 2},
+            { "spirit_p60", 2},
+            { "spirit_p80", 2},
+            { "iodine_p1", 3},
+            { "iodine_p3", 3}
         };
+
+        List<string> liquidList = new List<string>(liquidDict.Keys);
 
         errorMessage = "";
 
@@ -23,11 +25,14 @@ public static class BallHelper
             return false;
         }
 
+
+
         if (!liquidList.Contains(liquid))
             return false;
 
         tool.StateParams.Add("wet", "true");
         tool.StateParams["liquid"] = liquid;
+        tool.CurrentIcon = tool.IconList[liquidDict[liquid]];
 
         tool.Title = "Смоченные марлевые шарики";
 
@@ -46,6 +51,7 @@ public static class BallHelper
         {
             tool.StateParams["wet"] = "false";
             tool.StateParams.Remove("liquid");
+            tool.CurrentIcon = tool.IconList[1];
 
             tool.Title = "Стерильные марлевые шарики";
             return true;

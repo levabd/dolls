@@ -1,10 +1,25 @@
-﻿
+﻿using System.Collections.Generic;
+
 // ReSharper disable once CheckNamespace
 public static class TweezersHelper
 {
-    public static void GetBalls(ref ToolItem tool)
+    public static void GetBalls(ref ToolItem tool, string ballLiquid = "none")
     {
+        Dictionary<string, int> liquidDict = new Dictionary<string, int>
+        {
+            { "spirit_p70", 2},
+            { "spirit_p60", 2},
+            { "spirit_p80", 2},
+            { "iodine_p1", 3},
+            { "iodine_p3", 3},
+            { "spirit", 2},
+            { "iodine", 3},
+            { "none", 4}
+        };
+
         tool.StateParams["has_balls"] = "true";
+        tool.StateParams["balls_liquid"] = ballLiquid;
+        tool.CurrentIcon = tool.IconList[liquidDict[ballLiquid]];
 
         tool.Title = "Пинцет с ваткой";
     }
@@ -12,7 +27,7 @@ public static class TweezersHelper
     public static void RemoveBall(ref ToolItem tool)
     {
         tool.StateParams["has_balls"] = "false";
-
+        tool.CurrentIcon = tool.IconList[1];
         tool.Title = "Пинцет без ничего";
     }
 

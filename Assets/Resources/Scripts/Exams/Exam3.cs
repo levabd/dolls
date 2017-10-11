@@ -62,9 +62,9 @@ class Exam3 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
@@ -145,6 +145,9 @@ class Exam3 : BaseExam
             { "trachea", "Травма трахеи"},
             { "thyroid", "Травма щитовидной железы"},
             { "lungs", "Пневмоторакс"},
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
         };
 
         foreach (var syringeError in criticalSyringeErrors)
@@ -204,6 +207,7 @@ class Exam3 : BaseExam
 
         //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
+        if (errorMessage == "Отсутсвует игла") return null;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,

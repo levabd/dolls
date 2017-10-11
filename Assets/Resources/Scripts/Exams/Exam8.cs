@@ -75,9 +75,9 @@ class Exam8 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d4_d14_punction_needle","Взять иглу для пункции вены длинной 4 см с внутренним просветом канала 1,4-1,6 мм и срезом острия иглы под углом 40-45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
@@ -152,6 +152,22 @@ class Exam8 : BaseExam
     public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
+
+        TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
+        {
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
+        };
+
+        foreach (var syringeError in criticalSyringeErrors)
+        {
+            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
+            {
+                errorMessage = syringeError.Item2;
+                return false;
+            }
+        }
 
         if (tool.CodeName == "syringe" && (colliderTag != "external_jugular_vein_final_target" || colliderTag != "external_jugular_vein"))
         {

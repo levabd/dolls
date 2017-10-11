@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 public static class SyringeHelper
 {
-    public static bool TryGetNeedle(ref ToolItem tool, string needle, out string errorMessage)
+    public static bool TryGetNeedle(ref ToolItem tool, string needle, out string errorMessage, int spriteIndex)
     {
         errorMessage = "";
 
@@ -16,6 +16,7 @@ public static class SyringeHelper
         
         tool.StateParams.Add("has_needle", "true");
         tool.StateParams["needle"] = needle;
+        tool.CurrentIcon = tool.IconList[spriteIndex];
 
         tool.Title = "Шприц с иглой";
 
@@ -48,18 +49,20 @@ public static class SyringeHelper
 
     public static bool GetNeedleAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
     {
-        List<string> needleList = new List<string>
+        Dictionary<string, int> needleDict = new Dictionary<string, int>
         {
-            "anesthesia_needle",
-            "simple_needle",
-            "g22G_needle",
-            "wire_needle",
-            "a45_d4_punction_needle",
-            "a45_d10_punction_needle",
-            "a45_d7_punction_needle",
-            "a45_d8_punction_needle",
-            "a45_d4_d14_punction_needle"
+            { "anesthesia_needle", 3},
+            { "simple_needle", 2},
+            { "g22G_needle", 3},
+            { "wire_needle", 3},
+            { "a45_d4_punction_needle", 2},
+            { "a45_d10_punction_needle", 2},
+            { "a45_d7_punction_needle", 2},
+            { "a45_d8_punction_needle", 2},
+            { "a45_d4_d14_punction_needle", 2}
         };
+
+        List<string> needleList = new List<string>(needleDict.Keys);
 
         if (tool.CodeName != "syringe" || !needleList.Contains(actionCode))
             return false;
@@ -69,7 +72,7 @@ public static class SyringeHelper
             if (exam.LastTakenStep() != lastStep)
                 errorMessage = "Не та игла на текущем шаге";
             else
-                TryGetNeedle(ref tool, targetNeedle, out errorMessage);
+                TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
 
         errorMessage = "Не та игла";
@@ -78,6 +81,11 @@ public static class SyringeHelper
 
     public static bool HalfFillingNovocaine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage)
     {
+        if (tool.CodeName == "syringe" && (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"])))
+        {
+            errorMessage = "Отсутсвует игла";
+            return false;
+        }
         if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
             errorMessage = "Слишком много новокаина";
@@ -95,6 +103,11 @@ public static class SyringeHelper
 
     public static bool HalfFillingNaCl(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage)
     {
+        if (tool.CodeName == "syringe" && (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"])))
+        {
+            errorMessage = "Отсутсвует игла";
+            return false;
+        }
         if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
             errorMessage = "Не та жидкость";

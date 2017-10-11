@@ -75,10 +75,10 @@ class Exam11 : BaseExam
                     { "throw_needle",           "Выбросить иглу." },
                     { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
                     { "simple_needle",          "Взять иглу для забора крови" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_drug_solution",  "Наполнить лекарственным раствором" },
@@ -126,6 +126,22 @@ class Exam11 : BaseExam
     {
         errorMessage = "";
 
+        TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
+        {
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
+        };
+
+        foreach (var syringeError in criticalSyringeErrors)
+        {
+            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
+            {
+                errorMessage = syringeError.Item2;
+                return false;
+            }
+        }
+
         if (tool.CodeName == "syringe" && colliderTag == "medial_saphenous_vein_final_target")
             _needleInsideTarget = true;
 
@@ -140,6 +156,18 @@ class Exam11 : BaseExam
         if (tool.CodeName == "gauze_balls" && colliderTag != "ulnar_fold")
         {
             errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (tool.CodeName == "tourniquet" && colliderTag != "below_the_shoulder")
+        {
+            errorMessage = "Не туда наложен жгут";
+            return false;
+        }
+
+        if (tool.CodeName == "hand" && colliderTag != "medial_saphenous_vein")
+        {
+            errorMessage = "Пальпируется не то место";
             return false;
         }
 

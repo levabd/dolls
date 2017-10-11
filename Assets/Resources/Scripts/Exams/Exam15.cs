@@ -109,6 +109,22 @@ class Exam15 : BaseExam
     {
         errorMessage = "";
 
+        TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
+        {
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
+        };
+
+        foreach (var syringeError in criticalSyringeErrors)
+        {
+            if (tool.CodeName == "venflon" && colliderTag.Contains(syringeError.Item1))
+            {
+                errorMessage = syringeError.Item2;
+                return false;
+            }
+        }
+
         if (tool.CodeName == "venflon" && colliderTag == "lateral_subcutaneous_arm_vein_final_target")
             _needleInsideTarget = true;
 
@@ -123,6 +139,18 @@ class Exam15 : BaseExam
         if (tool.CodeName == "gauze_balls" && colliderTag != "ulnar_fold")
         {
             errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (tool.CodeName == "tourniquet" && colliderTag != "below_the_shoulder")
+        {
+            errorMessage = "Не туда наложен жгут";
+            return false;
+        }
+
+        if (tool.CodeName == "hand" && (colliderTag != "medial_saphenous_vein" || colliderTag != "lateral_subcutaneous_arm_vein"))
+        {
+            errorMessage = "Пальпируется не то место";
             return false;
         }
 

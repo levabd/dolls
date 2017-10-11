@@ -20,7 +20,6 @@ class Exam7 : BaseExam
         { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
         { "palpation",                      "Пальпируем сонную артерию." },
         { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        { "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         { "anesthesia",                     "Сделать местную анестезию." },
         { "puncture_needle",                "Взять иглу для пункции вены." },
         { "puncture_nacl",                  "Наполнить физраствором половину." },
@@ -77,9 +76,9 @@ class Exam7 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d8_punction_needle",   "Взять иглу для пункции вены длинной не менее 8 см с внутренним просветом канала 1,6-1,8 мм и срезом острия иглы под углом 40-45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
@@ -161,6 +160,9 @@ class Exam7 : BaseExam
             { "trachea", "Травма трахеи"},
             { "thyroid", "Травма щитовидной железы"},
             { "lungs", "Пневмоторакс"},
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
         };
 
         foreach (var syringeError in criticalSyringeErrors)
@@ -216,27 +218,23 @@ class Exam7 : BaseExam
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
         if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 9)) return 10;
 
-        //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
-        if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
-
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
             SyringeHelper.CheckAnestesiaNeedle(ref tool, out errorMessage);
-            if (!locatedColliderTag.Contains("internal_jugular3_vein"))
-                errorMessage = "Не то место анестезии";
-            return 12;
+            return 11;
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 12)) return 13;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 11)) return 12;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
-        if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 14;
+        if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 13;
+        if (errorMessage == "Отсутсвует игла") return null;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "internal_jugular3_vein_final_target", 30, 45)) return 15;
+            ref _needleRemovingMoment, "internal_jugular3_vein_final_target", 30, 45)) return 14;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -249,7 +247,7 @@ class Exam7 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 16;
+            return 15;
         }
 
         // Критическая ошибка
@@ -261,7 +259,7 @@ class Exam7 : BaseExam
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "catheter_d1", "standart_catheter_conductor", 17, out returnedStep)) return returnedStep;
+            "catheter_d1", "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
 
         return null;
     }

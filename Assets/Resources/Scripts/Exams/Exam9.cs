@@ -87,9 +87,9 @@ class Exam9 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии" },
+                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
+                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
+                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
@@ -168,7 +168,10 @@ class Exam9 : BaseExam
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
             { "femoral_artery", "Пункция бедренной артерии"},
-            { "femoral_nerve", "Травма бедренного нерва"}
+            { "femoral_nerve", "Травма бедренного нерва"},
+            { "nerves", "Повреждение нервных узлов"},
+            { "lymph", "Повреждение лимфатических узлов"},
+            { "bones", "Попадание в кость"},
         };
 
         foreach (var syringeError in criticalSyringeErrors)
@@ -189,6 +192,12 @@ class Exam9 : BaseExam
         if (tool.CodeName == "tweezers" && colliderTag != "inguinal_area")
         {
             errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (tool.CodeName == "hand" && colliderTag != "femoral_artery")
+        {
+            errorMessage = "Пальпируется не то место";
             return false;
         }
 
@@ -228,20 +237,12 @@ class Exam9 : BaseExam
             return 11;
         }
 
-        // { "palpation",                      "Пальпируем бедренную артерию." },
-        if (tool.CodeName == "hand" && actionCode == "palpation")
-        {
-            if (!locatedColliderTag.Contains("femoral_artery"))
-                errorMessage = "Пальпируется не то место";
-            return 12;
-        }
-
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 12)) return 13;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 11)) return 12;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 14;
+            ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 13;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -254,7 +255,7 @@ class Exam9 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 15;
+            return 14;
         }
 
         // Критическая ошибка
@@ -266,7 +267,7 @@ class Exam9 : BaseExam
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "catheter_d1", "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
+            "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;
     }
