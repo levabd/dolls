@@ -8,7 +8,7 @@ public class PositionPieceBody : MonoBehaviour {
 
 
     public GameObject cameraPosition;
-    public Texture2D cursorTexture;
+    //public Texture2D cursorTexture;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
     public bool step1 = false;
@@ -26,9 +26,10 @@ public class PositionPieceBody : MonoBehaviour {
 	
 
 	void Update () {
-        if (step1)
+        if (step1 && tool.cursorTexture != null)
         {
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
         }
         if (Input.GetMouseButtonDown(0) && step1 == true)
         {
