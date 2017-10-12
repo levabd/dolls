@@ -32,7 +32,7 @@ public static class BallHelper
 
         tool.StateParams.Add("wet", "true");
         tool.StateParams["liquid"] = liquid;
-        tool.CurrentIcon = tool.IconList[liquidDict[liquid]];
+        tool.Sprites[0] = tool.Sprites[liquidDict[liquid]];
 
         tool.Title = "Смоченные марлевые шарики";
 
@@ -51,7 +51,7 @@ public static class BallHelper
         {
             tool.StateParams["wet"] = "false";
             tool.StateParams.Remove("liquid");
-            tool.CurrentIcon = tool.IconList[1];
+            tool.Sprites[0] = tool.Sprites[1];
 
             tool.Title = "Стерильные марлевые шарики";
             return true;

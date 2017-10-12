@@ -113,7 +113,7 @@ public static class ExamHelpers
         {
             tool.Title = "Перчатки надеты";
             tool.StateParams["weared"] = "true";
-            tool.CurrentIcon = tool.IconList[2];
+            tool.Sprites[0] = tool.Sprites[2];
             returnedStep = !shave ? 1 : 2;
             return true;
         }

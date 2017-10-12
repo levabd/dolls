@@ -16,7 +16,7 @@ public static class SyringeHelper
         
         tool.StateParams.Add("has_needle", "true");
         tool.StateParams["needle"] = needle;
-        tool.CurrentIcon = tool.IconList[spriteIndex];
+        tool.Sprites[0] = tool.Sprites[spriteIndex];
 
         tool.Title = "Шприц с иглой";
 

@@ -19,7 +19,7 @@ public static class TweezersHelper
 
         tool.StateParams["has_balls"] = "true";
         tool.StateParams["balls_liquid"] = ballLiquid;
-        tool.CurrentIcon = tool.IconList[liquidDict[ballLiquid]];
+        tool.Sprites[0] = tool.Sprites[liquidDict[ballLiquid]];
 
         tool.Title = "Пинцет с ваткой";
     }
@@ -27,7 +27,7 @@ public static class TweezersHelper
     public static void RemoveBall(ref ToolItem tool)
     {
         tool.StateParams["has_balls"] = "false";
-        tool.CurrentIcon = tool.IconList[1];
+        tool.Sprites[0] = tool.Sprites[1];
         tool.Title = "Пинцет без ничего";
     }
 
