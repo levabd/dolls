@@ -30,7 +30,7 @@ public class InventoryItemDisplay : MonoBehaviour {
         }
         if (Sprite != null)
         {
-            Sprite.sprite = item.Sprite[0];
+            Sprite.sprite = item.Sprites[0];
         }
     }
 

@@ -33,7 +33,7 @@ public class ToolItemActionResponder : MonoBehaviour {
         //Debug.Log("This Error = " + errorMessage);
         //Update ToolItem Title & Icon
         GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
-        GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprite[0];
+        GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
 
 
         string examName = exam.Name;

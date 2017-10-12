@@ -56,7 +56,7 @@ public class ControlStatusDisplay : MonoBehaviour {
         examStatus.text = examName;
         itemStatus.text = item.Title;
         itemStatusSprite.gameObject.SetActive(true);
-        itemStatusSprite.sprite = item.Sprite[0];
+        itemStatusSprite.sprite = item.Sprites[0];
         ActionStatus.text = actionName;
         errorStatus.text = errorMessage;
         activeControl = false;
