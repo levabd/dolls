@@ -21,7 +21,7 @@ class Exam13 : BaseExam
         { "remove_tourniquet",              "Снимаем жгут." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "attach_balls",                   "Прикладываем к месту инъекции ватный шарик." },
-        { "needle_pull",                    "Извлечь иглу." },
+        { "needle_pull",                    "Извлечь шприц с иглой." },
         { "put_on_the_cap",                 "Надеть колпачек на иглу." },
         { "throw_needle",                   "Выбросить иглу." }
     };
@@ -68,7 +68,7 @@ class Exam13 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "needle_removing",        "Отсоеденить от иглы" },
-                    { "needle_pull",            "Извлекают иглу" },
+                    { "needle_pull",            "Извлечь шприц с иглой" },
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "put_on_the_cap",         "Надеть колпачек на иглу." },
                     { "throw_needle",           "Выбросить иглу." },

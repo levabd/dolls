@@ -1,30 +1,30 @@
 ﻿using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-class Exam18 : BaseExam
+class Exam20 : BaseExam
 {
     private bool _needleInsideTarget;
 
-    public override string Name => "Периферический венозный доступ №18 Внтуртивенная инъекция в вену стопы";
+    public override string Name => "Периферический венозный доступ №20 Постановка внутривенного катетера venflon в вену скальпа";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
         { "wear_gloves",                    "Надеть перчатки" },
-        { "puncture_needle",                "Взять иглу для забора крови" },
-        { "filling_drug_solution",          "Наполнить лекарственным раствором" },
         { "tourniquet",                     "Взять жгут и наложить" },
         { "palpation",                      "Пальпируем вену." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         { "throw_balls",                    "Выкинуть шарики." },
         { "stretch_the_skin",               "Натянуть кожу." },
+        { "pull_mandren",                   "Потягиваем мадрен." },
         { "remove_tourniquet",              "Снимаем жгут." },
-        { "administer_drug",                "Ввести препарат." },
-        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        { "attach_balls",                   "Прикладываем к месту инъекции ватный шарик." },
-        { "needle_pull",                    "Извлечь шприц с иглой." },
-        { "put_on_the_cap",                 "Надеть колпачек на иглу." },
-        { "throw_needle",                   "Выбросить иглу." }
+        { "clamp_the_vein",                 "Пережать вену." },
+        { "remove_mandren",                 "Вытаскиваем мадрен." },
+        { "filling_nacl_half",              "Наполнить 0,9% раствором натрия хлорида наполовину"},
+        { "nacl_to_cateter",                "Ввести физраствор в катетер" },
+        { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
+        { "get_plaster",                    "Взять пластырь" },
+        { "fixation_with_plaster",          "Фиксация пластырем." },
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
@@ -36,6 +36,7 @@ class Exam18 : BaseExam
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "tweezers",                       "Пинцет без ничего" },
         { "tourniquet",                     "Жгут" },
+        { "venflon",                        "Катетер Venflon"},
         { "patch",                          "Пластырь" }
     };
 
@@ -63,26 +64,15 @@ class Exam18 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "palpation",        "Пальпация" },
-                    { "stretch_the_skin", "Натянуть кожу" },
+                    { "stretch_the_skin", "Натянуть кожу и зафиксировать вену" },
+                    { "clamp",            "Зажать вену" },
+                    { "clamp_out",        "Отпустить вену" },
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "needle_removing",        "Отсоеденить от иглы" },
-                    { "needle_pull",            "Извлечь шприц с иглой" },
-                    { "anesthesia",             "Сделать местную анестезию" },
-                    { "put_on_the_cap",         "Надеть колпачек на иглу." },
-                    { "throw_needle",           "Выбросить иглу." },
-                    { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
-                    { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
-                    { "simple_needle",          "Взять иглу для забора крови" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
-                    { "filling_novocaine_full", "Наполнить 0,25% новокаина полностью" },
-                    { "filling_novocaine_half", "Наполнить 0,25% новокаина наполовину" }
+                    { "nacl_to_cateter",   "Ввести физраствор в катетер" },
+                    { "filling_nacl_half", "Наполнить 0,9% раствором натрия хлорида наполовину"}
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
@@ -97,12 +87,6 @@ class Exam18 : BaseExam
                     { "attach_balls", "Приложить шарик" },
                     { "top_down",     "Протереть сверху вниз" },
                 };
-            case "needle":
-                return new TupleList<string, string>
-                {
-                    { "finger_covering", "Прикрыть пальцем" },
-                    { "needle_removing", "Удалить иглу через проводник" }
-                };
             case "tweezers":
                 return new TupleList<string, string>
                 {
@@ -111,6 +95,14 @@ class Exam18 : BaseExam
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
                     { "right_left",     "Протереть справа налево" }
+                };
+            case "venflon":
+                return new TupleList<string, string>
+                {
+                    { "remove",                         "Удалить катетер" },
+                    { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
+                    { "remove_mandren",                 "Вытащить мадрен" },
+                    { "pull_mandren",                   "Потягивать мадрен" }
                 };
             case "patch":
                 return new TupleList<string, string>
@@ -135,17 +127,17 @@ class Exam18 : BaseExam
 
         foreach (var syringeError in criticalSyringeErrors)
         {
-            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
+            if (tool.CodeName == "venflon" && colliderTag.Contains(syringeError.Item1))
             {
                 errorMessage = syringeError.Item2;
                 return false;
             }
         }
 
-        if (tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
+        if (tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && (colliderTag != "great_saphenous_vein_final_target" || colliderTag != "great_saphenous_vein"))
+        if (tool.CodeName == "venflon" && (colliderTag != "posterior_auricular_vein_final_target" || colliderTag != "posterior_auricular_vein"))
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет
@@ -153,23 +145,25 @@ class Exam18 : BaseExam
             return false;
         }
 
-        if (tool.CodeName == "gauze_balls" && colliderTag != "foot")
+        if (tool.CodeName == "gauze_balls" && colliderTag != "temple")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
         }
 
-        if (tool.CodeName == "tourniquet" && colliderTag != "thigh")
+        if (tool.CodeName == "tourniquet" && colliderTag != "around_neck")
         {
             errorMessage = "Не туда наложен жгут";
             return false;
         }
 
-        if (tool.CodeName == "hand" && colliderTag != "great_saphenous_vein")
+        if (tool.CodeName == "hand" && colliderTag != "posterior_auricular_vein")
         {
             errorMessage = "Пальпируется не то место";
             return false;
         }
+
+        this.BloodInsidePavilion(ref tool, colliderTag, "posterior_auricular_vein_final_target");
 
         return true;
     }
@@ -181,15 +175,20 @@ class Exam18 : BaseExam
         // Безопасные операции
         if (this.BallClearAction(ref tool, actionCode)) return null;
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
-        if (this.PistonPullingAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", true))
+        if (this.VenflonInstallation(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+            "around_neck", "temple", "posterior_auricular_vein", "posterior_auricular_vein", "posterior_auricular_vein_final_target", true))
             return returnedStep;
 
+        // Критическая ошибка
+        if (tool.CodeName == "venflon" && actionCode == "remove")
+        {
+            errorMessage = "Катетер был извлечен. Катетеризация провалена";
+            return null;
+        }
 
         return null;
     }
