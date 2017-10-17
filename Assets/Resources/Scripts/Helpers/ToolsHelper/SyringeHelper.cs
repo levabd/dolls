@@ -14,7 +14,7 @@ public static class SyringeHelper
             return false;
         }
         
-        tool.StateParams.Add("has_needle", "true");
+        tool.StateParams["has_needle"] = "true";
         tool.StateParams["needle"] = needle;
         tool.Sprites[0] = tool.Sprites[spriteIndex];
 

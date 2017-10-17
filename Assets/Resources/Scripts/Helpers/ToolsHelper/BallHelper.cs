@@ -30,7 +30,7 @@ public static class BallHelper
         if (!liquidList.Contains(liquid))
             return false;
 
-        tool.StateParams.Add("wet", "true");
+        tool.StateParams["wet"] = "true";
         tool.StateParams["liquid"] = liquid;
         tool.Sprites[0] = tool.Sprites[liquidDict[liquid]];
 
