@@ -33,6 +33,7 @@ public class ChoiceExamController : MonoBehaviour {
 		} else 
 			if (exam.Name.Contains("№2")) {
 				Debug.Log ("Loading Scene #2");
+                //Application.LoadLevel($"Exam{counter}");
 		}
 		action = false;
 	}
