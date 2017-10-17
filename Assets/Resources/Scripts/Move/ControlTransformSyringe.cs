@@ -14,6 +14,7 @@ public class ControlTransformSyringe : MonoBehaviour {
     private int toolAngel = 0;
     public ToolItem toolItem;
     private int stepCounter = 0;
+    public bool EndNeedleInCollider = false;
     void Start () {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
@@ -31,7 +32,7 @@ public class ControlTransformSyringe : MonoBehaviour {
         {
             ReduceAngle();
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
         {
             TransformIn();
         }
