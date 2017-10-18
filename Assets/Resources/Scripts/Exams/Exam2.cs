@@ -37,6 +37,7 @@ class Exam2 : BaseExam
     {
         { "gloves",                         "Перчатки" },
         { "syringe",                        "Шприц без иглы" },
+        { "needle",                         "Игла(отдельно)" },
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "tweezers",                       "Пинцет без ничего" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
