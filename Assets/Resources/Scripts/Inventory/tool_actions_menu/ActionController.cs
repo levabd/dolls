@@ -7,6 +7,7 @@ public class ActionController : MonoBehaviour {
     public bool action = false;
     public string actionName = "";
     public ToolItem toolItem;
+	public PositionPieceBody PBD;
 	// Use this for initialization
 	void Start () {
 		
@@ -69,7 +70,12 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "top_down":
+				case "tweezers_balls":
+					Debug.Log ("start_positions_script");
+					PBD.tool = toolItem;
+					PBD.step1 = true;
+							break;
+						case "top_down":
                             Debug.Log("top_down Enter");
                             break;
                         case "right_left":

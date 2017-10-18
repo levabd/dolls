@@ -26,11 +26,11 @@ public class PositionPieceBody : MonoBehaviour {
 	
 
 	void Update () {
-        //if (step1 && tool.cursorTexture != null)
-        //{
-        //    //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-        //    Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
-        //}
+        if (step1 && tool.cursorTexture != null)
+        {
+            //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
+        }
         if (Input.GetMouseButtonDown(0) && step1 == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
