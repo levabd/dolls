@@ -26,17 +26,20 @@ public class PositionPieceBody : MonoBehaviour {
 	
 
 	void Update () {
-        if (step1 && tool.cursorTexture != null)
-        {
-            //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
-        }
+        //if (step1 && tool.cursorTexture != null)
+        //{
+        //    //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        //    Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
+        //}
         if (Input.GetMouseButtonDown(0) && step1 == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
+            
+            //print("куда-то нажал");
+            if (Physics.Raycast(ray, out hit, 1000))
             {
+                //print("получил луч");
                 CheckPosition = Check.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
@@ -61,8 +64,8 @@ public class PositionPieceBody : MonoBehaviour {
         else if (step2 == true)
         {
 
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, cameraPosition.transform.position, 1f);
-            Camera.main.transform.eulerAngles = Vector3.MoveTowards(Camera.main.transform.eulerAngles, cameraPosition.transform.eulerAngles, 1f);
+            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, cameraPosition.transform.position, 2f);
+            Camera.main.transform.eulerAngles = Vector3.MoveTowards(Camera.main.transform.eulerAngles, cameraPosition.transform.eulerAngles, 2f);
             if (Camera.main.transform.position == cameraPosition.transform.position && Camera.main.transform.eulerAngles == cameraPosition.transform.eulerAngles)
             {
                 step2 = false;
