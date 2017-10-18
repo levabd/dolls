@@ -10,6 +10,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     private MockExam Check;
     private bool CheckObject;
     public ToolItem tool;
+    public EndExamControlPanel examControl;
     //public GameObject MainToolObject;
     private string errorMessage;
 
@@ -23,10 +24,14 @@ public class StartNeedleTrigger : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        CheckObject = Check.Move(ref tool, col.gameObject.tag, out errorMessage);
-        if (CheckObject == false)
+        if (col.gameObject.name != "Skin")
         {
-            print(errorMessage);
+            CheckObject = Check.Move(ref tool, col.gameObject.tag, out errorMessage);
+            if (CheckObject == false)
+            {
+                //print(errorMessage);
+                examControl.EndExam(false, errorMessage);
+            }
         }
         
 
