@@ -117,7 +117,7 @@ class Exam9 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять стерильные шарики" },
+                    { "tweezers_balls", "Взять марлевые шарики" },
                     { "remove_balls",   "Сбросить стерильные шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
@@ -221,7 +221,7 @@ class Exam9 : BaseExam
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "inguinal_area", out returnedStep, ref _currentBallLiquid, true, true)) return returnedStep;
 
         // { "sterile_tissue",                    "Накрываем операционное поле стерильными салфетками." },
@@ -240,7 +240,7 @@ class Exam9 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 11)) return 12;
+        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 11)) return 12;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
@@ -268,7 +268,7 @@ class Exam9 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.CateterFinalise(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;

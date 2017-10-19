@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Diagnostics;
-
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
 {
-    public static bool CateterFinalise(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string catheter, string catheterConductor, int expectedFirstStep, out int returnedStep)
+    public static bool CateterFinalise(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string catheter, string catheterConductor, int expectedFirstStep, out int returnedStep)
     {
         //{ "wire_insertion",                 "Вставка проводника." },
         if (tool.CodeName == "standart_catheter_conductor" && actionCode == "push")
         {
-            if (exam.LastTakenStep() != expectedFirstStep - 1)
+            if (lastTakenStep != expectedFirstStep - 1)
                 errorMessage = "Некуда вставить проводник";
             returnedStep = expectedFirstStep;
             return true;
@@ -26,7 +23,7 @@ public static class ExamHelpers
         //{ "needle_removing",                "Удаление иглы." },
         if (tool.CodeName == "needle" && actionCode == "needle_removing")
         {
-            if (exam.LastTakenStep() != expectedFirstStep)
+            if (lastTakenStep != expectedFirstStep)
                 errorMessage = "Нельзя удалять иглу без проводника";
             returnedStep = expectedFirstStep + 1;
             return true;
@@ -34,7 +31,7 @@ public static class ExamHelpers
         //{ "catheter_insertion",             "Вставка катетера по проводнику." },
         if (tool.CodeName == catheter && actionCode == "push")
         {
-            if (exam.LastTakenStep() != expectedFirstStep + 1)
+            if (lastTakenStep != expectedFirstStep + 1)
                 errorMessage = "Нельзя вставить катетер без проводника";
             returnedStep = expectedFirstStep + 2;
             return true;
@@ -43,7 +40,7 @@ public static class ExamHelpers
         //{ "catheter_pushing",               "Углубление вращательными движениями." },
         if (tool.CodeName == catheter && actionCode == "rotation_insertion")
         {
-            if (exam.LastTakenStep() != expectedFirstStep + 2)
+            if (lastTakenStep != expectedFirstStep + 2)
                 errorMessage = "Некуда углублять катетер";
             returnedStep = expectedFirstStep + 3;
             return true;
@@ -58,14 +55,14 @@ public static class ExamHelpers
         //{ "wire_removing",                  "Извлечение проводника." },
         if (tool.CodeName == "standart_catheter_conductor" && actionCode == "pull")
         {
-            if (exam.LastTakenStep() != expectedFirstStep + 3)
+            if (lastTakenStep != expectedFirstStep + 3)
                 errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять проводник на этом шаге" : "Не тот проводник";
             returnedStep = expectedFirstStep + 4;
             return true;
         }
         if (tool.CodeName == "soft_catheter_conductor" && actionCode == "pull")
         {
-            if (exam.LastTakenStep() != expectedFirstStep + 3)
+            if (lastTakenStep != expectedFirstStep + 3)
                 errorMessage = tool.CodeName == catheterConductor ? "Нельзя удалять проводник на этом шаге" : "Не тот проводник";
             returnedStep = expectedFirstStep + 4;
             return true;
@@ -74,7 +71,7 @@ public static class ExamHelpers
         //{ "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
         if (tool.CodeName == catheter && actionCode == "liquid_transfusion_connection")
         {
-            if (exam.LastTakenStep() != expectedFirstStep + 4)
+            if (lastTakenStep != expectedFirstStep + 4)
                 errorMessage = "Сначала должен быть корректно установлен катетер";
             returnedStep = expectedFirstStep + 5;
             return true;
@@ -100,7 +97,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetySpiritIodine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
+    public static bool BiosafetySpiritIodine(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Побрить лобковую зону" },
         if (shave && tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -141,13 +138,10 @@ public static class ExamHelpers
         //{ "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
         if (tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
-            UnityEngine.Debug.Log(wearGown ? "wearGown - True" : "wearGown - False");
-            UnityEngine.Debug.Log(shave ? "shave - True" : "shave - False");
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            UnityEngine.Debug.Log(lastStep4Spirit.ToString());
             TweezersHelper.GetBalls(ref tool, currentBallLiquid);
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -162,7 +156,7 @@ public static class ExamHelpers
 
             int lastStep4Spirit = !wearGown ? 3 : 4;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 4 : 7;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 4 : 7;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -172,7 +166,7 @@ public static class ExamHelpers
             errorMessage = "Не так происходит дезинфекция";
             int lastStep4Spirit = !wearGown ? 3 : 4;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 4 : 7;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 4 : 7;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -192,7 +186,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetyInjections(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
+    public static bool BiosafetyInjections(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Побрить лобковую зону" },
         if (shave && tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -234,7 +228,7 @@ public static class ExamHelpers
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
             TweezersHelper.GetBalls(ref tool, currentBallLiquid);
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -249,7 +243,7 @@ public static class ExamHelpers
 
             int lastStep4Spirit = !wearGown ? 3 : 4;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 4 : 7;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 4 : 7;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -259,7 +253,7 @@ public static class ExamHelpers
             errorMessage = "Не так происходит дезинфекция";
             int lastStep4Spirit = !wearGown ? 3 : 4;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 4 : 7;
+            returnedStep = lastTakenStep == lastStep4Spirit ? 4 : 7;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             return true;
@@ -279,7 +273,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool FenceInjections(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
+    public static bool FenceInjections(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
         string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool injection = false)
     {
         // { "wear_gloves",                    "Надеть перчатки" },
@@ -327,7 +321,7 @@ public static class ExamHelpers
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
             BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
-            returnedStep = exam.LastTakenStep() == 4 ? 5 : 11;
+            returnedStep = lastTakenStep == 4 ? 5 : 11;
             returnedStep = injection ? returnedStep + 1 : returnedStep;
             currentBallLiquid = "spirit";
             return true;
@@ -372,7 +366,7 @@ public static class ExamHelpers
                 errorMessage = "Забор крови не из того места";
             else
             {
-                if (exam.LastTakenStep() != 8)
+                if (lastTakenStep != 8)
                     errorMessage = "Не была натянута кожа";
                 else if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(29, 31))
                     errorMessage = "Неправильный угол установки";
@@ -423,7 +417,7 @@ public static class ExamHelpers
         // { "needle_pull",                    "Извлечь иглу." },
         if (tool.CodeName == "syringe" && actionCode == "needle_pull")
         {
-            if (exam.LastTakenStep() != (injection ? 14 : 12))
+            if (lastTakenStep != (injection ? 14 : 12))
                 errorMessage = "Сепсис";
             // else
             //     Рука сгибается.
@@ -434,7 +428,7 @@ public static class ExamHelpers
         // { "put_on_the_cap",                 "Надеть колпачек на иглу." },
         if (tool.CodeName == "syringe" && actionCode == "put_on_the_cap")
         {
-            if (exam.LastTakenStep() != (injection ? 15 : 13))
+            if (lastTakenStep != (injection ? 15 : 13))
                 errorMessage = "Игла в теле или была давно извлечена. Сначала надо было извлечь и сразу надеть колпачек";
             returnedStep = injection ? 16 : 14;
             return true;
@@ -443,7 +437,7 @@ public static class ExamHelpers
         // { "throw_needle",                   "Выбросить иглу." }
         if (tool.CodeName == "syringe" && actionCode == "put_on_the_cap")
         {
-            if (exam.LastTakenStep() != (injection ? 16 : 14))
+            if (lastTakenStep != (injection ? 16 : 14))
                 errorMessage = "Это действие надо совершать сразу после надевания на иглу колпачка";
             returnedStep = injection ? 17 : 15;
             return true;
@@ -453,7 +447,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool VenflonInstallation(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
+    public static bool VenflonInstallation(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
         string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool head = false)
     {
         // { "wear_gloves",                    "Надеть перчатки" },
@@ -524,7 +518,7 @@ public static class ExamHelpers
                 errorMessage = "Не то место для катетеризации";
             else
             {
-                if (exam.LastTakenStep() != 8)
+                if (lastTakenStep != 8)
                     errorMessage = "Не была натянута кожа";
                 else if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(head ? 20 : 10, head ? 30 : 20))
                     errorMessage = "Неправильный угол установки";
@@ -556,7 +550,7 @@ public static class ExamHelpers
         // { "remove_mandren",                 "Вытаскиваем мадрен." },
         if (tool.CodeName == "venflon" && actionCode == "remove_mandren")
         {
-            if (exam.LastTakenStep() != 10)
+            if (lastTakenStep != 10)
                 errorMessage = "Не была пережата вена";
             returnedStep = 11;
             return true;
@@ -579,7 +573,7 @@ public static class ExamHelpers
         // { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
         if (tool.CodeName == "venflon" && actionCode == "liquid_transfusion_connection")
         {
-            if (exam.LastTakenStep() != (head ? 13 : 11))
+            if (lastTakenStep != (head ? 13 : 11))
                 errorMessage = "Сначала должен быть корректно установлен катетер";
             returnedStep = head ? 14 : 12;
             return true;

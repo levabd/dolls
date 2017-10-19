@@ -105,7 +105,7 @@ class Exam8 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять стерильные шарики" },
+                    { "tweezers_balls", "Взять марлевые шарики" },
                     { "remove_balls",   "Сбросить стерильные шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
@@ -201,7 +201,7 @@ class Exam8 : BaseExam
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_external_jugular_vein", out returnedStep, ref _currentBallLiquid, true)) return returnedStep;
 
         //{ "clamp_the_vein",                 "Cдавливаем наружную яремную вену." },
@@ -213,7 +213,7 @@ class Exam8 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 9)) return 10;
+        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 9)) return 10;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
@@ -241,7 +241,7 @@ class Exam8 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.CateterFinalise(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "catheter_d06", "standart_catheter_conductor", 13, out returnedStep)) return returnedStep;
 
         //{ "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }

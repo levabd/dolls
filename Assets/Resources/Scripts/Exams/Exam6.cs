@@ -93,7 +93,7 @@ class Exam6 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять стерильные шарики" },
+                    { "tweezers_balls", "Взять марлевые шарики" },
                     { "remove_balls",   "Сбросить стерильные шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
@@ -193,11 +193,11 @@ class Exam6 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_internal_jugular2_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 7)) return 8;
+        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "anesthesia_needle", 7)) return 8;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -207,7 +207,7 @@ class Exam6 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 9)) return 10;
+        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 9)) return 10;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
         if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 11;
@@ -239,7 +239,7 @@ class Exam6 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.CateterFinalise(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "catheter_d1", "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
 
         return null;

@@ -82,7 +82,7 @@ class Exam19 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять стерильные шарики" },
+                    { "tweezers_balls", "Взять марлевые шарики" },
                     { "remove_balls",   "Сбросить стерильные шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
@@ -171,7 +171,7 @@ class Exam19 : BaseExam
 
         int returnedStep;
 
-        if (this.VenflonInstallation(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+        if (this.VenflonInstallation(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
             "shin", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
             return returnedStep;
 

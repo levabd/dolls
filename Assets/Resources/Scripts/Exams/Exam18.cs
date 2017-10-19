@@ -107,7 +107,7 @@ class Exam18 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять стерильные шарики" },
+                    { "tweezers_balls", "Взять марлевые шарики" },
                     { "remove_balls",   "Сбросить стерильные шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
@@ -187,7 +187,7 @@ class Exam18 : BaseExam
 
         int returnedStep;
 
-        if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+        if (this.FenceInjections(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
             "thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid, true))
             return returnedStep;
 
