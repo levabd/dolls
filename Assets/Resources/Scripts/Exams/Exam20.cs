@@ -115,7 +115,7 @@ class Exam20 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -169,7 +169,7 @@ class Exam20 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -180,7 +180,7 @@ class Exam20 : BaseExam
 
         int returnedStep;
 
-        if (this.VenflonInstallation(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+        if (this.VenflonInstallation(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
             "around_neck", "temple", "posterior_auricular_vein", "posterior_auricular_vein", "posterior_auricular_vein_final_target", ref _currentBallLiquid, true))
             return returnedStep;
 

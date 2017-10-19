@@ -106,7 +106,7 @@ class Exam16 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -160,7 +160,7 @@ class Exam16 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -174,7 +174,7 @@ class Exam16 : BaseExam
         int returnedStep;
 
 
-		if (this.VenflonInstallation(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+		if (this.VenflonInstallation(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
 			"below_the_shoulder", "wrist_and_hand", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein_final_target", ref _currentBallLiquid))
 
             return returnedStep;

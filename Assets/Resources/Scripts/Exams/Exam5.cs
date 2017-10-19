@@ -145,7 +145,7 @@ class Exam5 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
@@ -198,7 +198,7 @@ class Exam5 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -211,7 +211,7 @@ class Exam5 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_internal_jugular_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем сонную артерию." },
@@ -223,7 +223,7 @@ class Exam5 : BaseExam
         }
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
+        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -233,7 +233,7 @@ class Exam5 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
+        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
         if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 12;
@@ -265,7 +265,7 @@ class Exam5 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.CateterFinalise(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;

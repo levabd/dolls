@@ -151,7 +151,7 @@ class Exam4 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -202,7 +202,7 @@ class Exam4 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -215,7 +215,7 @@ class Exam4 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_axillary_region", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем подмышечную артерию." },
@@ -235,7 +235,7 @@ class Exam4 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(LastTakenStep(), ref tool, actionCode, ref errorMessage, "a45_d4_punction_needle", 9)) return 10;
+        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "a45_d4_punction_needle", 9)) return 10;
 
         //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
@@ -275,7 +275,7 @@ class Exam4 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.CateterFinalise(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;

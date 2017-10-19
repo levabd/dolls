@@ -122,7 +122,7 @@ class Exam17 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -174,7 +174,7 @@ class Exam17 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -189,7 +189,7 @@ class Exam17 : BaseExam
         int returnedStep;
 
 
-		if (this.FenceInjections(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+		if (this.FenceInjections(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
 			"thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
 
             return returnedStep;
