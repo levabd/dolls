@@ -46,8 +46,10 @@ public class ActionController : MonoBehaviour {
 	{
 		//transformGO = TCSWC.Transform;
 		GameObject prefabAmination = Instantiate (prefabTool);
-		prefabAmination.transform.position = transformGO.transform.position;
-		prefabAmination.transform.rotation = transformGO.transform.rotation;
+		prefabAmination.transform.SetParent (transformGO.transform);
+		prefabAmination.transform.position = Vector3.zero;
+		//prefabAmination.transform.position = transformGO.transform.position;
+		//prefabAmination.transform.rotation = transformGO.transform.rotation;
 		Destroy (prefabAmination, destroyTime);
 	}
 
@@ -55,8 +57,10 @@ public class ActionController : MonoBehaviour {
 	{
 		//transformGO = TCSWC.Transform;
 		GameObject prefabAmination = Instantiate (prefabTool);
-		prefabAmination.transform.position = transformGO.transform.position;
-		prefabAmination.transform.rotation = transformGO.transform.rotation;
+		prefabAmination.transform.SetParent (transformGO.transform);
+		prefabAmination.transform.localPosition = new Vector3(0,0,0);
+		//prefabAmination.transform.position = transformGO.transform.position;
+		//prefabAmination.transform.rotation = transformGO.transform.rotation;
 	}
 
     public void ActionControl(bool action, ref ToolItem item, string actionName)
@@ -92,6 +96,10 @@ public class ActionController : MonoBehaviour {
                         case "filling_novocaine_half":
 					
 							if (debugMode) {Debug.Log ("start_syringe_positions_script");}
+
+							OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
+							PBD.tool = toolItem;
+							PBD.step1 = true;	
 					        
                             break;
                         default:
@@ -193,6 +201,7 @@ public class ActionController : MonoBehaviour {
                     {
                         case "push":
                             Debug.Log("push Enter");
+							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
                             break;
                         case "remove":
                             Debug.Log("remove Enter");
@@ -200,11 +209,16 @@ public class ActionController : MonoBehaviour {
                         case "liquid_transfusion_connection":
                             Debug.Log("liquid_transfusion_connection Enter");
                             break;
-                        case "rotation_insertion":
-                            Debug.Log("rotation_insertion Enter");
+				case "rotation_insertion":
+					Debug.Log ("rotation_insertion Enter");
+					Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
+							
                             break;
-                        case "direct_insertion":
-                            Debug.Log("direct_insertion Enter");
+				case "direct_insertion":
+					Debug.Log ("direct_insertion Enter");				
+					Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+					CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
                             break;
                         default:
                             break;
@@ -270,7 +284,9 @@ public class ActionController : MonoBehaviour {
 					Debug.Log("finger_covering start position");
 					break;
 				case "needle_removing":
-					Debug.Log("needle_removing start position");
+					Debug.Log ("needle_removing start position");
+					CreateFromPrefab (TCSWC.NeedleOutCreate, TCSWC.Transform, 6f);
+					TCSWC.NeedleOff.SetActive (false);
 					break;
 				}
 			}

@@ -162,6 +162,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1880643299054414, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
   m_IsPrefabParent: 0
@@ -415,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ctrlStat: {fileID: 1107126316}
   actionCtrl: {fileID: 1107126313}
+  examControl: {fileID: 0}
 --- !u!114 &401152580
 MonoBehaviour:
   m_ObjectHideFlags: 0
