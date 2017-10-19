@@ -4,6 +4,7 @@
 class Exam16 : BaseExam
 {
     private bool _needleInsideTarget;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №16 Постановка внутривенного катетера venflon в дорсальные запястные вены";
 

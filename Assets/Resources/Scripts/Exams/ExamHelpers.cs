@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
@@ -97,7 +100,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetySpiritIodine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, bool wearGown = false, bool shave = false)
+    public static bool BiosafetySpiritIodine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Побрить лобковую зону" },
         if (shave && tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -131,17 +134,19 @@ public static class ExamHelpers
             BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
+            currentBallLiquid = "spirit";
             return true;
         }
 
         //{ "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
         if (tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
+            UnityEngine.Debug.Log(wearGown ? "wearGown - True" : "wearGown - False");
+            UnityEngine.Debug.Log(shave ? "shave - True" : "shave - False");
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            string ballsLiquid = exam.LastTakenStep() == lastStep4Spirit ? "spirit" : "none";
-            if (exam.LastTakenStep() == lastStep4Spirit + 3) ballsLiquid = "iodine";
-            TweezersHelper.GetBalls(ref tool, ballsLiquid);
+            UnityEngine.Debug.Log(lastStep4Spirit.ToString());
+            TweezersHelper.GetBalls(ref tool, currentBallLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -179,6 +184,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(ref tool, actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
+            currentBallLiquid = "iodine";
             return true;
         }
 
@@ -186,7 +192,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetyInjections(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, bool wearGown = false, bool shave = false)
+    public static bool BiosafetyInjections(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Побрить лобковую зону" },
         if (shave && tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -218,6 +224,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
+            currentBallLiquid = "spirit";
             return true;
         }
 
@@ -226,9 +233,7 @@ public static class ExamHelpers
         {
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            string ballsLiquid = exam.LastTakenStep() == lastStep4Spirit ? "spirit" : "none";
-            if (exam.LastTakenStep() == lastStep4Spirit + 3) ballsLiquid = "iodine";
-            TweezersHelper.GetBalls(ref tool, ballsLiquid);
+            TweezersHelper.GetBalls(ref tool, currentBallLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -266,6 +271,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(ref tool, actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
+            currentBallLiquid = "iodine";
             return true;
         }
 
@@ -274,7 +280,7 @@ public static class ExamHelpers
     }
 
     public static bool FenceInjections(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
-        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, bool injection = false)
+        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool injection = false)
     {
         // { "wear_gloves",                    "Надеть перчатки" },
         if (tool.CodeName == "gloves" && actionCode == "wear")
@@ -323,6 +329,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
             returnedStep = exam.LastTakenStep() == 4 ? 5 : 11;
             returnedStep = injection ? returnedStep + 1 : returnedStep;
+            currentBallLiquid = "spirit";
             return true;
         }
 
@@ -447,7 +454,7 @@ public static class ExamHelpers
     }
 
     public static bool VenflonInstallation(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
-        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, bool head = false)
+        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool head = false)
     {
         // { "wear_gloves",                    "Надеть перчатки" },
         if (tool.CodeName == "gloves" && actionCode == "wear")
@@ -480,6 +487,7 @@ public static class ExamHelpers
         if (tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
             BallHelper.TryWetBall(ref tool, actionCode, "spirit_p70", out errorMessage);
+            currentBallLiquid = "spirit";
             returnedStep = 4;
             return true;
         }

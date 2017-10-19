@@ -45,13 +45,14 @@ public static class BallHelper
         return false;
     }
 
-    public static bool BallClearAction(this BaseExam exam, ref ToolItem tool, string actionCode)
+    public static bool BallClearAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string currentBallLiquid)
     {
         if (tool.CodeName == "gauze_balls" && actionCode == "clear")
         {
             tool.StateParams["wet"] = "false";
             tool.StateParams.Remove("liquid");
             tool.Sprites[0] = tool.Sprites[1];
+            currentBallLiquid = "none";
 
             tool.Title = "Стерильные марлевые шарики";
             return true;

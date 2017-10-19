@@ -4,6 +4,7 @@
 class Exam17 : BaseExam
 {
     private bool _needleInsideTarget;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
 

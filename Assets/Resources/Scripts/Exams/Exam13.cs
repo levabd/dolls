@@ -4,6 +4,7 @@
 class Exam13 : BaseExam
 {
     private bool _needleInsideTarget;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
 
@@ -178,7 +179,7 @@ class Exam13 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (this.PistonPullingAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
@@ -186,7 +187,7 @@ class Exam13 : BaseExam
         int returnedStep;
 
         if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "below_the_shoulder", "ulnar_fold", "medial_saphenous_vein", "lateral_subcutaneous_arm_vein", "lateral_subcutaneous_arm_vein_final_target"))
+            "below_the_shoulder", "ulnar_fold", "medial_saphenous_vein", "lateral_subcutaneous_arm_vein", "lateral_subcutaneous_arm_vein_final_target", ref _currentBallLiquid))
             return returnedStep;
 
 

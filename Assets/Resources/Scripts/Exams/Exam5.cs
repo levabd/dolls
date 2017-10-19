@@ -5,6 +5,7 @@ using System.Collections.Generic;
 class Exam5 : BaseExam
 {
     private DateTime _needleRemovingMoment;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №5 Внутренняя яремная вена (центральный доступ)";
 
@@ -202,7 +203,7 @@ class Exam5 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (this.PistonPullingAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
@@ -211,7 +212,7 @@ class Exam5 : BaseExam
 
         // Перчатки + Спирт + Йод
         if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "disinfection_internal_jugular_vein", out returnedStep)) return returnedStep;
+            "disinfection_internal_jugular_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем сонную артерию." },
         if (tool.CodeName == "hand" && actionCode == "palpation")

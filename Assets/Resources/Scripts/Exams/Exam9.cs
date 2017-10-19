@@ -5,6 +5,7 @@ using System.Collections.Generic;
 class Exam9 : BaseExam
 {
     private DateTime _needleRemovingMoment;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №9 Бедренная вена";
 
@@ -212,7 +213,7 @@ class Exam9 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (this.PistonPullingAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
@@ -221,7 +222,7 @@ class Exam9 : BaseExam
 
         // Перчатки + Халат + Спирт + Йод
         if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "inguinal_area", out returnedStep, true, true)) return returnedStep;
+            "inguinal_area", out returnedStep, ref _currentBallLiquid, true, true)) return returnedStep;
 
         // { "sterile_tissue",                    "Накрываем операционное поле стерильными салфетками." },
         if (tool.CodeName == "sterile_tissue" && actionCode == "put")

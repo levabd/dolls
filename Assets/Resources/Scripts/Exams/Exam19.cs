@@ -4,6 +4,7 @@
 class Exam19 : BaseExam
 {
     private bool _needleInsideTarget;
+    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №19 Постановка внутривенного катетера venflon в вену стопы";
 
@@ -164,14 +165,14 @@ class Exam19 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
         if (this.VenflonInstallation(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "shin", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target"))
+            "shin", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
             return returnedStep;
 
         // Критическая ошибка
