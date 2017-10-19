@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1885804140699008
 GameObject:
   m_ObjectHideFlags: 1
@@ -635,8 +635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transform: {fileID: 1129046065028096}
-  AnestesiaCreate: {fileID: 1249728430262586, guid: ab26812f68c8c79488bee5c47dca8692,
-    type: 2}
   SyringeEloneOff: {fileID: 1885804140699008}
   ConductorInANeedleCreate: {fileID: 1658376660325134, guid: f5a7a848128fed74495662fc9ef974a9,
     type: 2}
@@ -653,7 +651,7 @@ MonoBehaviour:
     type: 2}
   CatcheterRotateToConductor: {fileID: 1535771002828798, guid: 69a277ba6ba00274cb80c6497956c4a1,
     type: 2}
-  CatheterCreate: {fileID: 1867482175252036, guid: f9384011d47ed7643b33be7f1678e1be,
+  CatheterCreate: {fileID: 1763210308767362, guid: f9384011d47ed7643b33be7f1678e1be,
     type: 2}
   ConductorOutCreate: {fileID: 1155003801912202, guid: 4e0516e9de6307c40a259e834fa08957,
     type: 2}

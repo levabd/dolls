@@ -158,14 +158,6 @@ Prefab:
       propertyPath: examControl
       value: 
       objectReference: {fileID: 1166830729}
-    - target: {fileID: 1880643299054414, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1885804140699008, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
   m_IsPrefabParent: 0
@@ -280,6 +272,8 @@ MonoBehaviour:
   SyringeInScene: {fileID: 623446358}
   AnestesiaCreate: {fileID: 1249728430262586, guid: ab26812f68c8c79488bee5c47dca8692,
     type: 2}
+  PushCreate: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
+  PushOn: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
 --- !u!1 &245088688
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +739,8 @@ MonoBehaviour:
   tool: {fileID: 0}
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 0}
+  actionController: {fileID: 1107126313}
+  TCS: {fileID: 204335818}
 --- !u!114 &657950642 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114842605285667416, guid: 60830b1fc32f87449bb81965e6b3eb4d,

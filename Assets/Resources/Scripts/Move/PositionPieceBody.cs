@@ -55,10 +55,9 @@ public class PositionPieceBody : MonoBehaviour {
                     {
                         Syringe.SetActive(true);
                     }
-                    if (tool.name == "push")
+                    if (tool.name == "patch")
                     {
-                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 6f);
-                        actionController.CreateToolFromPrefab(TCS.PushOn, hit.transform.gameObject);
+                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 2000f);
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {
