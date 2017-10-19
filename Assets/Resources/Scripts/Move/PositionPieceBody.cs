@@ -18,6 +18,9 @@ public class PositionPieceBody : MonoBehaviour {
     public ToolItem tool;
     private string errorMessage;
     public EndExamControlPanel examControl;
+    public GameObject Syringe;
+    public ActionController actionController;
+    public ToolControllerSkin TCS;
     
 
     void Start () {
@@ -48,6 +51,14 @@ public class PositionPieceBody : MonoBehaviour {
                 
                 if (CheckPosition)
                 {
+                    if (tool.name == "syringe")
+                    {
+                        Syringe.SetActive(true);
+                    }
+                    if (tool.name == "patch")
+                    {
+                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 2000f);
+                    }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {
                         step2 = true;

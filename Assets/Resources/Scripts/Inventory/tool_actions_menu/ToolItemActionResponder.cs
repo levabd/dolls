@@ -7,6 +7,7 @@ using System;
 public class ToolItemActionResponder : MonoBehaviour {
     public ControlStatusDisplay ctrlStat;
     public ActionController actionCtrl;
+	public EndExamControlPanel examControl;
     // Use this for initialization
     void Start()
     {
