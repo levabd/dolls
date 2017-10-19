@@ -19,6 +19,8 @@ public class PositionPieceBody : MonoBehaviour {
     private string errorMessage;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
+    public ActionController actionController;
+    public ToolControllerSkin TCS;
     
 
     void Start () {
@@ -52,6 +54,11 @@ public class PositionPieceBody : MonoBehaviour {
                     if (tool.name == "syringe")
                     {
                         Syringe.SetActive(true);
+                    }
+                    if (tool.name == "push")
+                    {
+                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 6f);
+                        actionController.CreateToolFromPrefab(TCS.PushOn, hit.transform.gameObject);
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {
