@@ -78,8 +78,9 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "needle_removing":
-                            Debug.Log("needle_removing Enter");
+						case "needle_removing":
+							Debug.Log ("needle_removing Enter");
+							TCSWC.SyringeEloneOff.SetActive (false);
                             break;
                         case "anesthesia":
                             Debug.Log("start animation anesthesia");

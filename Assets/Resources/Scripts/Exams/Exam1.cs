@@ -44,8 +44,7 @@ class Exam1 : BaseExam
         { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
         { "catheter_d1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
         { "catheter_d06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
-        { "patch",                          "Пластырь" },
-		{ "needle",                    		"Игла" }
+        { "patch",                          "Пластырь" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
