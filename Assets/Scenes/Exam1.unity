@@ -158,6 +158,10 @@ Prefab:
       propertyPath: examControl
       value: 
       objectReference: {fileID: 1166830729}
+    - target: {fileID: 1885804140699008, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
   m_IsPrefabParent: 0
@@ -256,6 +260,88 @@ Transform:
   m_Father: {fileID: 351149009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 14.7, y: 90, z: 0}
+--- !u!1 &245088688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 245088692}
+  - component: {fileID: 245088691}
+  - component: {fileID: 245088690}
+  - component: {fileID: 245088689}
+  m_Layer: 0
+  m_Name: ActionPositionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!23 &245088689
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245088688}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &245088690
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245088688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &245088691
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245088688}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &245088692
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245088688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.655196, y: 2.655197, z: 2.655197}
+  m_Children: []
+  m_Father: {fileID: 571763211}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &351149008
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +638,8 @@ Transform:
   m_LocalRotation: {x: 0.40629995, y: 0.14072973, z: 0.18490651, w: 0.8836997}
   m_LocalPosition: {x: -22.463642, y: 23.892475, z: 6.9374084}
   m_LocalScale: {x: 5.708096, y: 0.44967595, z: 6.1826096}
-  m_Children: []
+  m_Children:
+  - {fileID: 245088692}
   m_Father: {fileID: 351149009}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 41.763, y: 32.337, z: 36.259003}
@@ -600,6 +687,12 @@ MonoBehaviour:
   step1: 0
   tool: {fileID: 0}
   examControl: {fileID: 1166830729}
+--- !u!114 &657950642 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114842605285667416, guid: 60830b1fc32f87449bb81965e6b3eb4d,
+    type: 2}
+  m_PrefabInternal: {fileID: 198826580}
+  m_Script: {fileID: 11500000, guid: 82d4ed9ea4a8d1749844e9a19ff3716b, type: 3}
 --- !u!224 &658222284 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224655567296630888, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
@@ -1216,10 +1309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ce65258825b3245bb72e2b0d5510ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 1
   action: 0
   actionName: 
   toolItem: {fileID: 0}
   PBD: {fileID: 628913628}
+  TCSWC: {fileID: 657950642}
+  ActionPositionPoint: {fileID: 245088688}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2422,6 +2518,10 @@ Prefab:
       value: 0.18914911
       objectReference: {fileID: 0}
     - target: {fileID: 1168331267500182, guid: 9a62ae76d958be84f84288d0e2776ddb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167559065841442, guid: 9a62ae76d958be84f84288d0e2776ddb, type: 2}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

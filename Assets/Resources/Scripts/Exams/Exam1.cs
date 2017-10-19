@@ -42,9 +42,10 @@ class Exam1 : BaseExam
         { "tweezers",                       "Пинцет без ничего" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
         { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
-        { "catheter_d1",                    "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
-        { "catheter_d06",                   "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
-        { "patch",                          "Пластырь" }
+        { "catheter_d1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
+        { "catheter_d06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
+        { "patch",                          "Пластырь" },
+		{ "needle",                    		"Игла" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)

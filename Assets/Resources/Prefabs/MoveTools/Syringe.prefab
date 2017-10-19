@@ -634,19 +634,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d4ed9ea4a8d1749844e9a19ff3716b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transform: {fileID: 0}
-  SyringeEloneOff: {fileID: 0}
-  ConductorInANeedleCreate: {fileID: 0}
-  ConductorCreate: {fileID: 0}
-  NeedleOff: {fileID: 0}
-  NeedleOutCreate: {fileID: 0}
-  CatheterInConductorCreate: {fileID: 0}
-  CatcheterToConductorCreate: {fileID: 0}
-  CatcheterRotateToConductor: {fileID: 0}
-  CatheterCreate: {fileID: 0}
-  ConductorOff: {fileID: 0}
-  ConductorOutCreate: {fileID: 0}
-  CatheterOutCreate: {fileID: 0}
+  Transform: {fileID: 1129046065028096}
+  AnestesiaCreate: {fileID: 1249728430262586, guid: ab26812f68c8c79488bee5c47dca8692,
+    type: 2}
+  SyringeEloneOff: {fileID: 1885804140699008}
+  ConductorInANeedleCreate: {fileID: 1342189378249610, guid: f5a7a848128fed74495662fc9ef974a9,
+    type: 2}
+  ConductorCreate: {fileID: 1685904061132572, guid: e607caf1f8ade514eace3f6e711dec45,
+    type: 2}
+  NeedleOff: {fileID: 1880643299054414}
+  NeedleOutCreate: {fileID: 1876144208581292, guid: 3984f4f7b0866dc49b32d98ec6b24fe9,
+    type: 2}
+  CatheterInConductorCreate: {fileID: 1942870880647506, guid: 0fc7d8f50ca1b8b428a12d17e4affd4b,
+    type: 2}
+  CatcheterToConductorCreate: {fileID: 1306687478885578, guid: d08cb06d44f312448b165c598d1a785c,
+    type: 2}
+  CatcheterRotateToConductor: {fileID: 1535771002828798, guid: 69a277ba6ba00274cb80c6497956c4a1,
+    type: 2}
+  CatheterCreate: {fileID: 1867482175252036, guid: f9384011d47ed7643b33be7f1678e1be,
+    type: 2}
+  ConductorOutCreate: {fileID: 1155003801912202, guid: 4e0516e9de6307c40a259e834fa08957,
+    type: 2}
+  CatheterOutCreate: {fileID: 1871816506453100, guid: 9e61b7a9ec0958d4496bf71712950ed4,
+    type: 2}
 --- !u!136 &136131212841554738
 CapsuleCollider:
   m_ObjectHideFlags: 1
