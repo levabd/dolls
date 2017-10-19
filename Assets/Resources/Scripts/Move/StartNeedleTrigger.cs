@@ -13,6 +13,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     public EndExamControlPanel examControl;
     //public GameObject MainToolObject;
     private string errorMessage;
+    public ToolItemActionResponder TIAR;
 
     void Start () {
         Check = new MockExam();
@@ -27,6 +28,7 @@ public class StartNeedleTrigger : MonoBehaviour {
         if (col.gameObject.name != "Skin")
         {
             CheckObject = Check.Move(ref tool, col.gameObject.tag, out errorMessage);
+            TIAR.colliderHit = col.gameObject;
             if (CheckObject == false)
             {
                 //print(errorMessage);
