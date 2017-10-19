@@ -1560,6 +1560,48 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.75051296, y: 0.15954815, z: -0.04326798}
     m_Extent: {x: 0.1386948, y: 0.04985855, z: 0.10246122}
   m_DirtyAABB: 0
+--- !u!1001 &558283371
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138805144438766, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e607caf1f8ade514eace3f6e711dec45, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &560558670
 GameObject:
   m_ObjectHideFlags: 0
