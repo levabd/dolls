@@ -10,6 +10,7 @@ public class ActionController : MonoBehaviour {
     public ToolItem toolItem;
 	public PositionPieceBody PBD;
 	public ToolControllerSyringeWithConductor TCSWC;
+	public ToolControllerSkin TCS;
 	public GameObject ActionPositionPoint;
 	// Use this for initialization
 	void Start () {
@@ -47,9 +48,10 @@ public class ActionController : MonoBehaviour {
 		//transformGO = TCSWC.Transform;
 		GameObject prefabAmination = Instantiate (prefabTool);
 		prefabAmination.transform.SetParent (transformGO.transform);
-		prefabAmination.transform.position = Vector3.zero;
+		prefabAmination.transform.localPosition = new Vector3(0,0,0);
+		//prefabAmination.transform.position = Vector3.zero;
 		//prefabAmination.transform.position = transformGO.transform.position;
-		//prefabAmination.transform.rotation = transformGO.transform.rotation;
+		prefabAmination.transform.rotation = transformGO.transform.rotation;
 		Destroy (prefabAmination, destroyTime);
 	}
 
@@ -60,7 +62,7 @@ public class ActionController : MonoBehaviour {
 		prefabAmination.transform.SetParent (transformGO.transform);
 		prefabAmination.transform.localPosition = new Vector3(0,0,0);
 		//prefabAmination.transform.position = transformGO.transform.position;
-		//prefabAmination.transform.rotation = transformGO.transform.rotation;
+		prefabAmination.transform.rotation = transformGO.transform.rotation;
 	}
 
     public void ActionControl(bool action, ref ToolItem item, string actionName)
@@ -88,10 +90,10 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "anesthesia":
                             Debug.Log("start animation anesthesia");
-							CreateFromPrefab (TCSWC.AnestesiaCreate, TCSWC.Transform, 6f);
+					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
                             break;
                         case "piston_pulling":
-                            Debug.Log("piston_pulling Enter");
+                            //Debug.Log("piston_pulling Enter");
                             break;
                         case "filling_novocaine_half":
 					
@@ -176,12 +178,17 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "push":
-                            Debug.Log("push Enter");
+				case "push":
+					Debug.Log ("push Enter");
 					CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+					CreateToolFromPrefab (TCSWC.ConductorCreate,TCSWC.Transform);
+
                             break;
-                        case "pull":
-                            Debug.Log("pull Enter");
+						case "pull":
+							Debug.Log ("pull Enter");
+					Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
+							CreateFromPrefab (TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+							
                             break;
                         default:
                             break;
@@ -204,21 +211,26 @@ public class ActionController : MonoBehaviour {
 							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
                             break;
                         case "remove":
-                            Debug.Log("remove Enter");
+							Debug.Log("remove Enter");
+							Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
+							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.Transform, 5f);
                             break;
                         case "liquid_transfusion_connection":
                             Debug.Log("liquid_transfusion_connection Enter");
+							CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
                             break;
-				case "rotation_insertion":
-					Debug.Log ("rotation_insertion Enter");
-					Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+						case "rotation_insertion":
+							Debug.Log ("rotation_insertion Enter");
+							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
 							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
 							
                             break;
-				case "direct_insertion":
-					Debug.Log ("direct_insertion Enter");				
-					Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
-					CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
+						case "direct_insertion":
+							Debug.Log ("direct_insertion Enter");				
+							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
                             break;
                         default:
                             break;
@@ -238,19 +250,29 @@ public class ActionController : MonoBehaviour {
                     {
                         case "push":
                             Debug.Log("push Enter");
+							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
                             break;
                         case "remove":
                             Debug.Log("remove Enter");
+							Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
+							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.Transform, 5f);
                             break;
                         case "liquid_transfusion_connection":
                             Debug.Log("liquid_transfusion_connection Enter");
+							CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
                             break;
                         case "rotation_insertion":
                             Debug.Log("rotation_insertion Enter");
+							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
                             break;
                         case "direct_insertion":
-                            Debug.Log("direct_insertion Enter");
-                            break;
+							Debug.Log ("direct_insertion Enter");				
+							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
+							break;
                     }
                 }
                 else
@@ -266,6 +288,9 @@ public class ActionController : MonoBehaviour {
                     {
                         case "get":
 						Debug.Log("Start patch position");
+						PBD.tool = toolItem;
+						PBD.step1 = true;
+						
                             break;
                     }
                 }
