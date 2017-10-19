@@ -132,10 +132,12 @@ public class ActionController : MonoBehaviour {
 						case "top_down":
                             Debug.Log("top_down Enter");
 					OffActionPosition (ActionPositionPoint);
+					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
                             break;
                         case "right_left":
                             Debug.Log("right_left Enter");
 					OffActionPosition (ActionPositionPoint);
+					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
                             break;
                         default:
                             break;

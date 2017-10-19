@@ -179,15 +179,19 @@ class Exam17 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
+
+		if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
+
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (this.PistonPullingAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.FenceInjections(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
+
+		if (this.FenceInjections(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+			"thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
+
             return returnedStep;
 
 

@@ -5,9 +5,13 @@ using UnityEngine.UI;
 using System;
 
 public class ToolItemActionResponder : MonoBehaviour {
-    public ControlStatusDisplay ctrlStat;
+	public bool debugMode = false;
+
+	public ControlStatusDisplay ctrlStat;
     public ActionController actionCtrl;
 	public EndExamControlPanel examControl;
+	private bool CheckAction;
+	public GameObject colliderHit = null;
     // Use this for initialization
     void Start()
     {
@@ -26,24 +30,34 @@ public class ToolItemActionResponder : MonoBehaviour {
     {
         //Debug.Log("This ToolAction = " + actionName);
         //Debug.Log("This ToolItem = " + toolItem.name);
-
+		bool activeControl = true;
+		actionCtrl.ActionControl(activeControl, ref toolItem, actionName);
         Exam1 exam = new Exam1();
         string errorMessage = "";
-        exam.Action(ref toolItem, actionName, out errorMessage);
+		if (colliderHit == null) {
+			CheckAction = exam.Action (ref toolItem, actionName, out errorMessage);
+		} else {
+			CheckAction = exam.Action(ref toolItem, actionName, out errorMessage, colliderHit.tag);
+		}
+
+		if (!CheckAction) 
+		{
+			examControl.EndExam (false, errorMessage);
+		} 
+		GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
+		GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
+
+		string examName = exam.Name;
+
+
+		ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
+		if (debugMode) {Debug.Log (exam.LastTakenStep().ToString());}
+		if (debugMode) {Debug.Log (actionName);}
+
 
         //Debug.Log("This Error = " + errorMessage);
         //Update ToolItem Title & Icon
-        GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
-        GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
-
-
-        string examName = exam.Name;
-        bool activeControl = true;
-        ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
-
-        actionCtrl.ActionControl(activeControl, ref toolItem, actionName);
-
-
+        
         //Debug.Log(mainText);
 
         //Check ToolItem.StateParams

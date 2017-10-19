@@ -13,7 +13,7 @@ public class PositionPieceBody : MonoBehaviour {
     private Vector2 hotSpot = Vector2.zero;
     public bool step1 = false;
     private bool step2 = false;
-    private MockExam Check;
+    private Exam1 Check;
     private bool CheckPosition;
     public ToolItem tool;
     private string errorMessage;
@@ -21,10 +21,11 @@ public class PositionPieceBody : MonoBehaviour {
     public GameObject Syringe;
     public ActionController actionController;
     public ToolControllerSkin TCS;
+	public ToolItemActionResponder TIAR;
     
 
     void Start () {
-        Check = new MockExam();
+        Check = new Exam1();
     }
 	
 
@@ -51,6 +52,7 @@ public class PositionPieceBody : MonoBehaviour {
                 
                 if (CheckPosition)
                 {
+					TIAR.colliderHit = hit.transform.gameObject;
                     if (tool.name == "syringe")
                     {
                         Syringe.SetActive(true);

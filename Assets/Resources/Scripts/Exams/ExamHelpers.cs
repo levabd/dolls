@@ -285,7 +285,7 @@ public static class ExamHelpers
         }
 
         // { "puncture_needle",                "Взять иглу для забора крови" },
-        if (exam.GetNeedleAction(ref tool, actionCode, ref errorMessage, "simple_needle", 1))
+		if (exam.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "simple_needle", 1))
         {
             returnedStep = 2;
             return true;

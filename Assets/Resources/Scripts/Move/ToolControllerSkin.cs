@@ -7,6 +7,7 @@ public class ToolControllerSkin : MonoBehaviour {
 	public GameObject SkinTransform;
 	public GameObject SyringeInScene;
 	public GameObject AnestesiaCreate;
+	public GameObject DesinfectionCreate;
     public GameObject PushCreate; // A
     public GameObject PushOn;
 	// Use this for initialization

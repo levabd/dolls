@@ -165,14 +165,18 @@ class Exam16 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
+
+		if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
+
         if (this.RemoveBallsAction(ref tool, actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.VenflonInstallation(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "below_the_shoulder", "wrist_and_hand", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein_final_target", ref _currentBallLiquid))
+
+		if (this.VenflonInstallation(LastTakenStep(), ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+			"below_the_shoulder", "wrist_and_hand", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein", "dorsal_metacarpal_vein_final_target", ref _currentBallLiquid))
+
             return returnedStep;
 
         // Критическая ошибка
