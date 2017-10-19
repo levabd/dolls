@@ -18,6 +18,7 @@ public class PositionPieceBody : MonoBehaviour {
     public ToolItem tool;
     private string errorMessage;
     public EndExamControlPanel examControl;
+    public GameObject Syringe;
     
 
     void Start () {
@@ -48,6 +49,10 @@ public class PositionPieceBody : MonoBehaviour {
                 
                 if (CheckPosition)
                 {
+                    if (tool.name == "syringe")
+                    {
+                        Syringe.SetActive(true);
+                    }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {
                         step2 = true;
