@@ -12,7 +12,7 @@ class Exam8 : BaseExam
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_gloves",                    "Надеть перчатки" },
+        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         { "wear_gown",                      "Надеть халат" },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
@@ -20,6 +20,7 @@ class Exam8 : BaseExam
         { "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
         { "tweezers_iodine_balls",          "Взять смоченные марлевые шарики" },
         { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
+        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
         { "clamp_the_vein",                 "Cдавливаем наружную яремную вену." },
         { "puncture_needle",                "Взять иглу для пункции вены." },
         { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
@@ -57,7 +58,8 @@ class Exam8 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear", "Надеть"}
+                    { "wear_examination", "Надеть смотровые перчатки"},
+                    { "wear_sterile", "Сменить перчатки на стерильные"}
                 };
             case "gown":
                 return new TupleList<string, string>
@@ -200,15 +202,15 @@ class Exam8 : BaseExam
         {
             if (!locatedColliderTag.Contains("external_jugular_vein"))
                 errorMessage = "Сдавлена не та вена(место)";
-            return 9;
+            return 10;
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 9)) return 10;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 10)) return 11;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "external_jugular_vein_final_target", 10, 15)) return 11;
+            ref _needleRemovingMoment, "external_jugular_vein_final_target", 10, 15)) return 12;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -221,7 +223,7 @@ class Exam8 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 12;
+            return 13;
         }
 
         // Критическая ошибка
@@ -232,14 +234,14 @@ class Exam8 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 13, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
 
         //{ "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }
         if (tool.CodeName == "hand" && actionCode == "clamp_out")
         {
             if (!locatedColliderTag.Contains("external_jugular_vein"))
                 errorMessage = "Сдавлена не та вена(место)";
-            return 20;
+            return 21;
         }
 
         return null;

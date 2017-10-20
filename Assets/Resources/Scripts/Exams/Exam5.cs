@@ -12,13 +12,14 @@ class Exam5 : BaseExam
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_gloves",                    "Надеть перчатки" },
+        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
         { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
         { "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
         { "tweezers_iodine_balls",          "Взять смоченные марлевые шарики" },
         { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
+        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
         { "palpation",                      "Пальпируем сонную артерию." },
         { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
         { "anesthesia",                     "Сделать местную анестезию." },
@@ -57,7 +58,8 @@ class Exam5 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear", "Надеть"}
+                    { "wear_examination", "Надеть смотровые перчатки"},
+                    { "wear_sterile", "Сменить перчатки на стерильные"}
                 };
             case "hand":
                 return new TupleList<string, string>
@@ -219,29 +221,29 @@ class Exam5 : BaseExam
         {
             if (!locatedColliderTag.Contains("carotid_artery"))
                 errorMessage = "Пальпируется не то место";
-            return 8;
+            return 9;
         }
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 9)) return 10;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
             SyringeHelper.CheckAnestesiaNeedle(ref tool, out errorMessage);
-            return 10;
+            return 11;
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 11)) return 12;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
-        if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 12;
+        if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 13;
         if (errorMessage == "Отсутсвует игла") return null;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "internal_jugular_vein_final_target", 30, 40)) return 13;
+            ref _needleRemovingMoment, "internal_jugular_vein_final_target", 30, 40)) return 14;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -254,7 +256,7 @@ class Exam5 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 14;
+            return 15;
         }
 
         // Критическая ошибка
@@ -265,7 +267,7 @@ class Exam5 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
 
         return null;
     }

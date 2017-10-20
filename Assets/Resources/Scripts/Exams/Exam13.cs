@@ -11,13 +11,14 @@ class Exam13 : BaseExam
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_gloves",                    "Надеть перчатки" },
+        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         { "puncture_needle",                "Взять иглу для забора крови" },
         { "tourniquet",                     "Взять жгут и наложить" },
         { "palpation",                      "Пальпируем вену." },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         { "throw_balls",                    "Выкинуть шарики." },
+        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
         { "stretch_the_skin",               "Натянуть кожу." },
         { "take_the_blood_ml10",              "Набрать 10мл. крови." },
         { "remove_tourniquet",              "Снимаем жгут." },
@@ -47,7 +48,8 @@ class Exam13 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear", "Надеть"}
+                    { "wear_examination", "Надеть смотровые перчатки"},
+                    { "wear_sterile", "Сменить перчатки на стерильные"}
                 };
             case "gown":
                 return new TupleList<string, string>

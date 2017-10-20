@@ -13,7 +13,7 @@ class Exam9 : BaseExam
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
         { "shave_pubis",                    "Побрить лобковую зону" },
-        { "wear_gloves",                    "Надеть перчатки" },
+        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         { "wear_gown",                      "Надеть халат" },
         { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         { "tweezers_spirit_balls",          "Взять смоченные марлевые шарики" },
@@ -22,6 +22,7 @@ class Exam9 : BaseExam
         { "tweezers_iodine_balls",          "Взять смоченные марлевые шарики" },
         { "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
         { "sterile_tissue",                 "Накрываем операционное поле стерильными салфетками." },
+        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
         { "palpation",                      "Пальпируем бедренную артерию." },
         { "puncture_needle",                "Взять иглу для пункции вены." },
         { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
@@ -70,7 +71,8 @@ class Exam9 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear", "Надеть"}
+                    { "wear_examination", "Надеть смотровые перчатки"},
+                    { "wear_sterile", "Сменить перчатки на стерильные"}
                 };
             case "gown":
                 return new TupleList<string, string>
@@ -219,7 +221,7 @@ class Exam9 : BaseExam
         if (tool.CodeName == "sterile_tissue" && actionCode == "put")
         {
             tool.StateParams["putted"] = "true";
-            return 10;
+            return 11;
         }
 
         // { "palpation",                      "Пальпируем бедренную артерию." },
@@ -227,15 +229,15 @@ class Exam9 : BaseExam
         {
             if (!locatedColliderTag.Contains("femoral_artery"))
                 errorMessage = "Пальпируется не то место";
-            return 11;
+            return 12;
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 11)) return 12;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 12)) return 13;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 13;
+            ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 14;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -248,7 +250,7 @@ class Exam9 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 14;
+            return 15;
         }
 
         // Критическая ошибка
@@ -259,7 +261,7 @@ class Exam9 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
 
         return null;
     }

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4675278349407094}
   - component: {fileID: 114112971880769502}
+  - component: {fileID: 212282498540361366}
   m_Layer: 0
   m_Name: gloves
   m_TagString: Untagged
@@ -54,8 +55,51 @@ MonoBehaviour:
   Sprites:
   - {fileID: 21300000, guid: 44872956ef7bda748baa10d2fd1e05e9, type: 3}
   - {fileID: 21300000, guid: 44872956ef7bda748baa10d2fd1e05e9, type: 3}
-  - {fileID: 21300000, guid: 4395e07eb56c0554aa9497b3a66b3b3f, type: 3}
+  - {fileID: 21300000, guid: 1be43766fe250b54c8fece733463cc73, type: 3}
+  - {fileID: 21300000, guid: 85af875a841e55a43b735e61525529c4, type: 3}
   Prefab: Prefabs/Tools/gloves
   cursorTexture: {fileID: 0}
   CodeName: gloves
   Title: "\u041F\u0435\u0440\u0447\u0430\u0442\u043A\u0438"
+--- !u!212 &212282498540361366
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722906141078562}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
