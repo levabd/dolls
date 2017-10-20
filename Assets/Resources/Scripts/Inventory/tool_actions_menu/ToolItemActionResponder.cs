@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 public class ToolItemActionResponder : MonoBehaviour {
-	public bool debugMode = false;
+	public bool debugMode = true;
 
 	public ControlStatusDisplay ctrlStat;
     public ActionController actionCtrl;
@@ -32,13 +32,8 @@ public class ToolItemActionResponder : MonoBehaviour {
         //Debug.Log("This ToolItem = " + toolItem.name);
 		bool activeControl = true;
 		actionCtrl.ActionControl(activeControl, ref toolItem, actionName);
-        Exam1 exam = new Exam1();
         string errorMessage = "";
-		if (colliderHit == null) {
-			CheckAction = exam.Action (ref toolItem, actionName, out errorMessage);
-		} else {
-			CheckAction = exam.Action(ref toolItem, actionName, out errorMessage, colliderHit.tag);
-		}
+        CheckAction = CurrentExam.Instance.Exam.Action(ref toolItem, actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
 
 		if (!CheckAction) 
 		{
@@ -47,11 +42,9 @@ public class ToolItemActionResponder : MonoBehaviour {
 		GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
 		GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
 
-		string examName = exam.Name;
-
+		string examName = CurrentExam.Instance.Exam.Name;
 
 		ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
-		if (debugMode) {Debug.Log (exam.LastTakenStep().ToString());}
 		if (debugMode) {Debug.Log (actionName);}
 
 

@@ -31,7 +31,7 @@ public abstract class BaseExam: IExamInterface
     public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         string currentErrorMessage;
-        bool result = CheckMove(LastTakenStep(), ref tool, colliderTag, out currentErrorMessage);
+        bool result = CheckMove(ref tool, colliderTag, out currentErrorMessage);
         errorMessage = currentErrorMessage;
         if (!result)
         {
@@ -43,7 +43,8 @@ public abstract class BaseExam: IExamInterface
     public bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         string currentErrorMessage;
-        int? stepNumber = CheckAction(LastTakenStep(), ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
+        UnityEngine.Debug.Log("lastTakenStep inside Base class" + LastTakenStep());
+        int? stepNumber = CheckAction(ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
         errorMessage = currentErrorMessage;
         if ((stepNumber == null) && (!String.IsNullOrEmpty(errorMessage)))
         {
@@ -76,14 +77,16 @@ public abstract class BaseExam: IExamInterface
     }
     public abstract string Name { get; }
 
+    public abstract string LoadName { get; }
+
     public abstract TupleList<string, string> CorrectSteps { get; }
 
     public abstract TupleList<string, string> ToolActions(ToolItem tool);
 
     public abstract Dictionary<string, string> InventoryTool { get; }
 
-    public abstract bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage);
+    public abstract bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage);
 
-    public abstract int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
+    public abstract int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
 }
 

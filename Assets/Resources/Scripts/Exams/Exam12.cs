@@ -7,6 +7,7 @@ class Exam12 : BaseExam
     private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №12 Постановка внутривенного катетера venflon в вену локтевого сгиба";
+    public override string LoadName => "Exam12";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
@@ -83,7 +84,7 @@ class Exam12 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "tweezers_balls", "Взять марлевые шарики" },
-                    { "remove_balls",   "Сбросить стерильные шарики" },
+                    { "remove_balls",   "Сбросить марлевые шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
                     { "right_left",     "Протереть справа налево" }
@@ -106,7 +107,7 @@ class Exam12 : BaseExam
         }
     }
 
-    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -160,7 +161,7 @@ class Exam12 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -171,7 +172,7 @@ class Exam12 : BaseExam
 
         int returnedStep;
 
-        if (this.VenflonInstallation(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+        if (this.VenflonInstallation(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
             "below_the_shoulder", "ulnar_fold", "medial_saphenous_vein", "medial_saphenous_vein", "medial_saphenous_vein_final_target", ref _currentBallLiquid))
             return returnedStep;
 

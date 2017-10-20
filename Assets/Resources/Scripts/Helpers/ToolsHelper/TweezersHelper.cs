@@ -21,7 +21,7 @@ public static class TweezersHelper
         tool.StateParams["balls_liquid"] = ballLiquid;
         tool.Sprites[0] = tool.Sprites[liquidDict[ballLiquid]];
 
-        tool.Title = "Пинцет с ваткой";
+        tool.Title = "Пинцет с шариками";
     }
 
     public static void RemoveBall(ref ToolItem tool)

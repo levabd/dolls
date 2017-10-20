@@ -4,7 +4,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public class ItemCreator : MonoBehaviour {
     public List<string> Items = new List<string>();
-    public  Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
+    public  Dictionary<string, string> InventoryTools = CurrentExam.Instance.Exam.InventoryTool;
 
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local

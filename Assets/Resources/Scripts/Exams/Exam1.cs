@@ -8,6 +8,7 @@ class Exam1 : BaseExam
     private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №1 Подключичная подключичный доступ";
+    public override string LoadName => "Exam1";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
@@ -43,8 +44,7 @@ class Exam1 : BaseExam
         { "tweezers",                       "Пинцет без ничего" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
         { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
-        { "catheter_d1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
-        { "catheter_d06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
+        { "catheter",                       "Катетер с канюлей и заглушкой" },
         { "patch",                          "Пластырь" }
     };
 
@@ -92,7 +92,7 @@ class Exam1 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "tweezers_balls", "Взять марлевые шарики" },
-                    { "remove_balls",   "Сбросить стерильные шарики" },
+                    { "remove_balls",   "Сбросить марлевые шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
                     { "right_left",     "Протереть справа налево" }
@@ -109,16 +109,7 @@ class Exam1 : BaseExam
                     { "push", "Вставить проводник" },
                     { "pull", "Удалить проводник" }
                 };
-            case "catheter_d1":
-                return new TupleList<string, string>
-                {
-                    { "push",                           "Вставить катетер по проводнику" },
-                    { "remove",                         "Удалить катетер" },
-                    { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "rotation_insertion",             "Углублять вращательными движениями" },
-                    { "direct_insertion",               "Углублять прямыми движениями" }
-                };
-            case "catheter_d06":
+            case "catheter":
                 return new TupleList<string, string>
                 {
                     { "push",                           "Вставить катетер по проводнику" },
@@ -137,7 +128,7 @@ class Exam1 : BaseExam
         }
     }
 
-    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -179,7 +170,7 @@ class Exam1 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -192,11 +183,11 @@ class Exam1 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_subclavian_target", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "anesthesia_needle", 7)) return 8;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 7)) return 8;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -206,7 +197,7 @@ class Exam1 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 9)) return 10;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d10_punction_needle", 9)) return 10;
 
         //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         if (this.HalfFillingNovocaine(ref tool, actionCode, ref errorMessage)) return 11;
@@ -231,15 +222,14 @@ class Exam1 : BaseExam
         }
 
         // Критическая ошибка
-        if (tool.CodeName == "catheter_d1" && actionCode == "remove")
+        if (tool.CodeName == "catheter" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "catheter_d1", "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
 
         return null;
     }

@@ -13,7 +13,6 @@ public class PositionPieceBody : MonoBehaviour {
     private Vector2 hotSpot = Vector2.zero;
     public bool step1 = false;
     private bool step2 = false;
-    private Exam1 Check;
     private bool CheckPosition;
     public ToolItem tool;
     private string errorMessage;
@@ -25,7 +24,6 @@ public class PositionPieceBody : MonoBehaviour {
     
 
     void Start () {
-        Check = new Exam1();
     }
 	
 
@@ -44,7 +42,7 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //print("получил луч");
-                CheckPosition = Check.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
+                CheckPosition = CurrentExam.Instance.Exam.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);

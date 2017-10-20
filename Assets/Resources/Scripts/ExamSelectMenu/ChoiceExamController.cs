@@ -27,14 +27,11 @@ public class ChoiceExamController : MonoBehaviour {
 
 	private void CheckAction()
 	{
-		if (exam.Name.Contains("№1")) {
-			Debug.Log ("Loading Scene #1");
-			//Application.LoadLevel (1);
-		} else 
-			if (exam.Name.Contains("№2")) {
-				Debug.Log ("Loading Scene #2");
-                //Application.LoadLevel($"Exam{counter}");
-		}
+	    Debug.Log("Loading Scene " + exam.Name);
+	    CurrentExam.Instance.Exam = exam;
+#pragma warning disable 618
+        Application.LoadLevel(exam.LoadName);
+#pragma warning restore 618
 		action = false;
 	}
 }

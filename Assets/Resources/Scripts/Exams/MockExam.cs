@@ -4,6 +4,7 @@
 class MockExam : BaseExam
 {
     public override string Name => "Тестовый сценарий";
+    public override string LoadName => "1";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string> { { "testStep", "Тестовый шаг" } };
 

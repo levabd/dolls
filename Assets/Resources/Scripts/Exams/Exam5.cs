@@ -8,6 +8,7 @@ class Exam5 : BaseExam
     private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №5 Внутренняя яремная вена (центральный доступ)";
+    public override string LoadName => "Exam5";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
@@ -45,8 +46,7 @@ class Exam5 : BaseExam
         { "hand",                           "Кисть для пальпации" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
         { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
-        { "catheter_d1",                     "Катетер с канюлей и заглушкой диаметром 0,8 – 1 мм" },
-        { "catheter_d06",                    "Катетер с канюлей и заглушкой диаметром 0,6 – 0.8 мм" },
+        { "catheter",                       "Катетер с канюлей и заглушкой" },
         { "patch",                          "Пластырь" }
     };
 
@@ -100,7 +100,7 @@ class Exam5 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "tweezers_balls", "Взять марлевые шарики" },
-                    { "remove_balls",   "Сбросить стерильные шарики" },
+                    { "remove_balls",   "Сбросить марлевые шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
                     { "right_left",     "Протереть справа налево" }
@@ -117,7 +117,7 @@ class Exam5 : BaseExam
                     { "push", "Вставить проводник" },
                     { "pull", "Удалить проводник" }
                 };
-            case "catheter_d1":
+            case "catheter":
                 return new TupleList<string, string>
                 {
                     { "push",                           "Вставить катетер по проводнику" },
@@ -145,7 +145,7 @@ class Exam5 : BaseExam
         }
     }
 
-    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
@@ -198,7 +198,7 @@ class Exam5 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -211,7 +211,7 @@ class Exam5 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
+        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
             "disinfection_internal_jugular_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем сонную артерию." },
@@ -223,7 +223,7 @@ class Exam5 : BaseExam
         }
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -233,7 +233,7 @@ class Exam5 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(lastTakenStep, ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
+        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d8_punction_needle", 10)) return 11;
 
         //{ "puncture_novocaine",             "Наполнить физраствором на половину." },
         if (this.HalfFillingNaCl(ref tool, actionCode, ref errorMessage)) return 12;
@@ -258,15 +258,14 @@ class Exam5 : BaseExam
         }
 
         // Критическая ошибка
-        if (tool.CodeName == "catheter_d1" && actionCode == "remove")
+        if (tool.CodeName == "catheter" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "catheter_d1", "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
         return null;
     }

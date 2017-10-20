@@ -47,7 +47,7 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool GetNeedleAction(this BaseExam exam, int lastTakenStep, ref ToolItem tool, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
+    public static bool GetNeedleAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
     {
         Dictionary<string, int> needleDict = new Dictionary<string, int>
         {
@@ -69,7 +69,7 @@ public static class SyringeHelper
 
         if (actionCode == targetNeedle)
         {
-            if (lastTakenStep != lastStep)
+            if (exam.LastTakenStep() != lastStep)
                 errorMessage = "Не та игла на текущем шаге";
             else
                 TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);

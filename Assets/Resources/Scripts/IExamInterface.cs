@@ -9,6 +9,11 @@ interface IExamInterface
     string Name { get; }
 
     /// <summary>
+    /// Exam load name
+    /// </summary>
+    string LoadName { get; }
+
+    /// <summary>
     /// Correct ordered list of steps. Defining during exam creation
     /// </summary>
     TupleList<string, string> CorrectSteps { get; }

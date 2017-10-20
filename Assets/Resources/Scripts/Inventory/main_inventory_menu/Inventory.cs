@@ -6,12 +6,15 @@ public class Inventory : MonoBehaviour {
     public List<ToolItem> Items = new List<ToolItem>();
     public Transform TargetTransform;
     public InventoryDisplay InventoryDisplayPrefab;
-    public Dictionary<string, string> InventoryTools = new Exam1().InventoryTool;
+    public Dictionary<string, string> InventoryTools;
+    // Use in production 
+    // public Dictionary<string, string> InventoryTools = CurrentExam.Instance.Exam.InventoryTool;
 
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local
     void Start () {
-
+        CurrentExam.Instance.Exam = new Exam1(); // Delete in production
+        InventoryTools = CurrentExam.Instance.Exam.InventoryTool; // Delete in production
         AddItemsFromExamToList();
         InventoryDisplay inventory = Instantiate(InventoryDisplayPrefab);
         inventory.transform.SetParent(TargetTransform, false);
@@ -24,7 +27,7 @@ public class Inventory : MonoBehaviour {
        
     }
 
-        void AddItemsFromExamToList()
+    void AddItemsFromExamToList()
     {
         foreach (KeyValuePair<string, string> examTool in InventoryTools)
         {

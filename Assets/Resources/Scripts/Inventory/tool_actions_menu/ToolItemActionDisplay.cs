@@ -46,7 +46,7 @@ public class ToolItemActionDisplay : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Nobody was listening to" + actionName);
+            Debug.Log("Nobody was listening to " + actionName);
         }
     }
 }

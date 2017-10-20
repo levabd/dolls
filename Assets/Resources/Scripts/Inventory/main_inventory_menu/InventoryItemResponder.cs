@@ -23,9 +23,8 @@ public class InventoryItemResponder : MonoBehaviour {
         actionMenu.item = item;
         actionMenu.isCreate = true;
 
-        Exam1 exam = new Exam1();
         string errorMessage = "";
-        string examName = exam.Name;
+        string examName = CurrentExam.Instance.Exam.Name;
         string actionName = "";
         bool activeControl = true;
         ctrlStat.ControlStatus(activeControl, examName, ref item, actionName, errorMessage);

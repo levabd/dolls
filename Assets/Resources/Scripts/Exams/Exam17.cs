@@ -7,6 +7,7 @@ class Exam17 : BaseExam
     private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
+    public override string LoadName => "Exam17";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
@@ -107,7 +108,7 @@ class Exam17 : BaseExam
                 return new TupleList<string, string>
                 {
                     { "tweezers_balls", "Взять марлевые шарики" },
-                    { "remove_balls",   "Сбросить стерильные шарики" },
+                    { "remove_balls",   "Сбросить марлевые шарики" },
                     { "null",           "---" },
                     { "top_down",       "Протереть сверху вниз" },
                     { "right_left",     "Протереть справа налево" }
@@ -122,7 +123,7 @@ class Exam17 : BaseExam
         }
     }
 
-    public override bool CheckMove(int lastTakenStep, ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -174,7 +175,7 @@ class Exam17 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(int lastTakenStep, ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
@@ -189,7 +190,7 @@ class Exam17 : BaseExam
         int returnedStep;
 
 
-		if (this.FenceInjections(lastTakenStep, ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
+		if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
 			"thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
 
             return returnedStep;

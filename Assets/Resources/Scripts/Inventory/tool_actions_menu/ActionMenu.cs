@@ -26,7 +26,7 @@ public  class ActionMenu : MonoBehaviour {
 
     public void CreateActionMenu(ToolItem item)
     {
-        actions = new Exam1().ToolActions(item);
+        actions = CurrentExam.Instance.Exam.ToolActions(item);
         //Debug.Log(actions);
 
         if (toolActDPrefab != null)
