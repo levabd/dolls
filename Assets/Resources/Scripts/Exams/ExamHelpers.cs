@@ -108,7 +108,7 @@ public static class ExamHelpers
         }
 
         // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_examination_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
             tool.Title = "Смотровые перчатки надеты";
             tool.StateParams["weared_examination"] = "true";
@@ -184,7 +184,7 @@ public static class ExamHelpers
         }
 
         // { "wear_sterile_gloves",        "Сменить перчатки на стерильные" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_sterile_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_sterile")
         {
             tool.Title = "Стерильные перчатки надеты";
             tool.StateParams["weared_sterile"] = "true";
@@ -204,7 +204,7 @@ public static class ExamHelpers
         string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool injection = false)
     {
         // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_examination_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
             tool.Title = "Смотровые перчатки надеты";
             tool.StateParams["weared_examination"] = "true";
@@ -274,7 +274,7 @@ public static class ExamHelpers
         }
 
         // { "wear_sterile_gloves",        "Сменить перчатки на стерильные" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_sterile_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_sterile")
         {
             tool.Title = "Стерильные перчатки надеты";
             tool.StateParams["weared_examination"] = "false";
@@ -392,7 +392,7 @@ public static class ExamHelpers
         string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool head = false)
     {
         // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_examination_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
             tool.Title = "Смотровые перчатки надеты";
             tool.StateParams["weared_examination"] = "true";
@@ -447,7 +447,7 @@ public static class ExamHelpers
         }
 
         // { "wear_sterile_gloves",        "Сменить перчатки на стерильные" },
-        if (tool.CodeName == "gloves" && actionCode == "wear_sterile_gloves")
+        if (tool.CodeName == "gloves" && actionCode == "wear_sterile")
         {
             tool.Title = "Стерильные перчатки надеты";
             tool.StateParams["weared_sterile"] = "true";
