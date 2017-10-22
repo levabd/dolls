@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ActionController : MonoBehaviour {
 	public bool debugMode = false;
+	public bool debugModeForAnimation = false;
     public bool action = false;
     public string actionName = "";
     public ToolItem toolItem;
@@ -32,7 +33,6 @@ public class ActionController : MonoBehaviour {
 		position.tag = tag;
 
 		if (debugMode) {Debug.Log ("Position Activate: " + " position.name" + position.name + " position.tag " + tag);}
-
 	}
 
 	public void OffActionPosition (GameObject position)
@@ -85,12 +85,12 @@ public class ActionController : MonoBehaviour {
                     switch (actionName)
                     {
 						case "needle_removing":
-							Debug.Log ("needle_removing Enter");
+							if (debugModeForAnimation) {Debug.Log ("needle_removing Enter");}
 							TCSWC.SyringeEloneOff.SetActive (false);
                             break;
                         case "anesthesia":
                             Debug.Log("start animation anesthesia");
-					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
+							CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
                             break;
                         case "piston_pulling":
                             //Debug.Log("piston_pulling Enter");
@@ -99,7 +99,7 @@ public class ActionController : MonoBehaviour {
 					
 							if (debugMode) {Debug.Log ("start_syringe_positions_script");}
 
-							OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
+							OnActionPosition (ActionPositionPoint, "subclavian_vein_target");
 							PBD.tool = toolItem;
 							PBD.step1 = true;	
 					        
@@ -132,12 +132,12 @@ public class ActionController : MonoBehaviour {
 						case "top_down":
                             Debug.Log("top_down Enter");
 					OffActionPosition (ActionPositionPoint);
-					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
+					CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
                             break;
                         case "right_left":
                             Debug.Log("right_left Enter");
 					OffActionPosition (ActionPositionPoint);
-					CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
+					CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
                             break;
                         default:
                             break;
@@ -156,12 +156,14 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-				case "push":
-					Debug.Log ("push Enter");
-					CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+						case "push":
+							Debug.Log ("push Enter");
+							CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
                             break;
                         case "pull":
                             Debug.Log("pull Enter");
+							Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
+							CreateFromPrefab (TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
                             break;
                         default:
                             break;
@@ -180,15 +182,15 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-				case "push":
-					Debug.Log ("push Enter");
-					CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
-					CreateToolFromPrefab (TCSWC.ConductorCreate,TCSWC.Transform);
+						case "push":
+							Debug.Log ("push Enter");
+							CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+							CreateToolFromPrefab (TCSWC.ConductorCreate,TCSWC.Transform);
 
                             break;
 						case "pull":
 							Debug.Log ("pull Enter");
-					Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
+							Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
 							CreateFromPrefab (TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
 							
                             break;
