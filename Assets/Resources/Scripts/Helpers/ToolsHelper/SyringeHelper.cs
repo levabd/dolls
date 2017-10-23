@@ -74,8 +74,9 @@ public static class SyringeHelper
             else
                 TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
+        else
+            errorMessage = "Не та игла";
 
-        errorMessage = "Не та игла";
         return true;
     }
 
