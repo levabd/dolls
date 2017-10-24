@@ -138,17 +138,25 @@ public static class SyringeHelper
             tool.StateParams.Remove("piston_pulling");
             tool.StateParams["has_needle"] = "false";
             tool.StateParams.Remove("needle");
+            tool.Sprites[0] = tool.Sprites[1];
             tool.Title = "Шприц без иглы";
 
-            if (locatedColliderTag == targetLocatedColliderTag)
+            if (!String.IsNullOrEmpty(targetLocatedColliderTag))
             {
-                if (maxAngle < 180)
-                    if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
-                        errorMessage = "Неправильный угол установки";
+                if (locatedColliderTag == targetLocatedColliderTag)
+                {
+                    if (maxAngle < 180)
+                        if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
+                            errorMessage = "Неправильный угол установки";
 
-                if (!tool.StateParams.ContainsKey("blood_inside") || !Convert.ToBoolean(tool.StateParams["blood_inside"]))
-                    errorMessage = "Во время углубления не был потянут поршень на себя";
+                    if (!tool.StateParams.ContainsKey("blood_inside") || !Convert.ToBoolean(tool.StateParams["blood_inside"]))
+                        errorMessage = "Во время углубления не был потянут поршень на себя";
+                }
+                else
+                    errorMessage = "Неуорректное место укола";
             }
+            else
+                return false;
                 
             return true;
         }
