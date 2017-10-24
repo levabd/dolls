@@ -42,7 +42,8 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //print("получил луч");
-                CheckPosition = CurrentExam.Instance.Exam.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
+                
+               CheckPosition = CurrentExam.Instance.Exam.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);

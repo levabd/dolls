@@ -35,11 +35,14 @@ public class Inventory : MonoBehaviour {
             //Debug.Log("Create new ToolItem from Prefabs/Tools/" + examTool.Key);
 
             GameObject tool = (GameObject)Instantiate(Resources.Load("Prefabs/Tools/" + examTool.Key));
-            tool.name = string.Format(examTool.Key);
+            tool.name = examTool.Key.ToString();
+                //string.Format(examTool.Key);
+            
 
            // Debug.Log(tool.name);
 
             ToolItem it = tool.GetComponent<ToolItem>();
+            it.Title = examTool.Value;
             Items.Add(it);
         }
     }

@@ -45,14 +45,15 @@ public abstract class BaseExam: IExamInterface
         string currentErrorMessage;
         int? stepNumber = CheckAction(ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
         errorMessage = currentErrorMessage;
-        if ((stepNumber == null) && (!String.IsNullOrEmpty(errorMessage)))
+        if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
             // TODO: Save false result to DB
             return false;
         }
 
         bool stepResult = String.IsNullOrEmpty(errorMessage);
-        TakeStep(stepNumber ?? 0, stepResult, errorMessage);
+        if (stepNumber != null)
+            TakeStep((int)stepNumber, stepResult, errorMessage);
 
         return true;
     }

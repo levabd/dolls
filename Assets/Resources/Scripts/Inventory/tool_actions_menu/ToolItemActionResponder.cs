@@ -45,15 +45,19 @@ public class ToolItemActionResponder : MonoBehaviour {
 		GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
 
 		string examName = CurrentExam.Instance.Exam.Name;
-        string logActionText = CurrentExam.Instance.Exam.TakenSteps.Last().Item3;
-
-
+        string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
         ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
-        logController.LogActionCreate(activeControl, logActionText);
+        bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
 
-        if (debugMode) {Debug.Log (actionName);}
-        if (debugMode) { Debug.Log(logActionText); }
+        logActionText = toolItem.CodeName + " " + actionName + " " + logActionText;
 
+        logController.LogActionCreate(activeControl, logActionTextColor, logActionText);
+
+       // if (debugMode) {Debug.Log (actionName);}
+
+      //  if (debugMode) { Debug.Log("Item3= " + logActionText); }
+        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+        
 
         //Debug.Log("This Error = " + errorMessage);
         //Update ToolItem Title & Icon

@@ -64,13 +64,17 @@ public static class SyringeHelper
 
         List<string> needleList = new List<string>(needleDict.Keys);
 
+        errorMessage = "";
+        
+
         if (tool.CodeName != "syringe" || !needleList.Contains(actionCode))
             return false;
 
         if (actionCode == targetNeedle)
         {
+            
             if (exam.LastTakenStep() != lastStep)
-                errorMessage = "Не та игла на текущем шаге";
+                errorMessage = "Не та игла на текущем шаге";                
             else
                 TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }

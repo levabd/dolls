@@ -101,6 +101,7 @@ public class ActionController : MonoBehaviour {
 
 							OnActionPosition (ActionPositionPoint, "subclavian_vein_target");
 							PBD.tool = toolItem;
+
 							PBD.step1 = true;	
 					        
                             break;
@@ -205,7 +206,7 @@ public class ActionController : MonoBehaviour {
                 
                 break;
 
-            case "catheter_d1":
+            case "catheter":
                 if (actionName != "")
                 {
                     switch (actionName)
@@ -246,44 +247,7 @@ public class ActionController : MonoBehaviour {
                 }
                 
                 break;
-
-            case "catheter_d06":
-                if (actionName != "")
-                {
-                    switch (actionName)
-                    {
-                        case "push":
-                            Debug.Log("push Enter");
-							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
-                            break;
-                        case "remove":
-                            Debug.Log("remove Enter");
-							Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
-							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.Transform, 5f);
-                            break;
-                        case "liquid_transfusion_connection":
-                            Debug.Log("liquid_transfusion_connection Enter");
-							CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
-                            break;
-                        case "rotation_insertion":
-                            Debug.Log("rotation_insertion Enter");
-							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
-                            break;
-                        case "direct_insertion":
-							Debug.Log ("direct_insertion Enter");				
-							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
-							break;
-                    }
-                }
-                else
-                {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
-                }                
-                break;
+           
 
             case "patch":
                 if (actionName != "")
