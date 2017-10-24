@@ -27,7 +27,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     {
         if (col.gameObject.name != "Skin")
         {
-            CheckObject = Check.Move(ref tool, col.gameObject.tag, out errorMessage);
+            CheckObject = CurrentExam.Instance.Exam.Move(ref tool, col.gameObject.tag, out errorMessage);
             TIAR.colliderHit = col.gameObject;
             if (CheckObject == false)
             {
