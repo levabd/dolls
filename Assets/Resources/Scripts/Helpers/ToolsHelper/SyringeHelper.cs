@@ -153,10 +153,8 @@ public static class SyringeHelper
                         errorMessage = "Во время углубления не был потянут поршень на себя";
                 }
                 else
-                    errorMessage = "Неуорректное место укола";
+                    return false;
             }
-            else
-                return false;
                 
             return true;
         }
