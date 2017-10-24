@@ -43,7 +43,6 @@ public abstract class BaseExam: IExamInterface
     public bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         string currentErrorMessage;
-        UnityEngine.Debug.Log("lastTakenStep inside Base class" + LastTakenStep());
         int? stepNumber = CheckAction(ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
         errorMessage = currentErrorMessage;
         if ((stepNumber == null) && (!String.IsNullOrEmpty(errorMessage)))
