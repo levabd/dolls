@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class ToolItemActionResponder : MonoBehaviour {
 	public bool debugMode = true;
 
 	public ControlStatusDisplay ctrlStat;
     public ActionController actionCtrl;
+    public MainLogController logController;
 	public EndExamControlPanel examControl;
 	private bool CheckAction;
 	public GameObject colliderHit = null;
@@ -43,14 +45,19 @@ public class ToolItemActionResponder : MonoBehaviour {
 		GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
 
 		string examName = CurrentExam.Instance.Exam.Name;
+        string logActionText = CurrentExam.Instance.Exam.TakenSteps.Last().Item3;
 
-		ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
-		if (debugMode) {Debug.Log (actionName);}
+
+        ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
+        logController.LogActionCreate(activeControl, logActionText);
+
+        if (debugMode) {Debug.Log (actionName);}
+        if (debugMode) { Debug.Log(logActionText); }
 
 
         //Debug.Log("This Error = " + errorMessage);
         //Update ToolItem Title & Icon
-        
+
         //Debug.Log(mainText);
 
         //Check ToolItem.StateParams

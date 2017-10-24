@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222840704589666438}
   - component: {fileID: 114889567086036800}
   - component: {fileID: 114512439808720820}
+  - component: {fileID: 114640534583295752}
   m_Layer: 5
   m_Name: ActionLogText
   m_TagString: Untagged
@@ -48,6 +49,17 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &114640534583295752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652207894592136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd539b73c45c1944a91fbe45ab489c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114889567086036800
 MonoBehaviour:
   m_ObjectHideFlags: 1
