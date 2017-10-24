@@ -75,7 +75,12 @@ public static class SyringeHelper
                 TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
         else
-            errorMessage = "Не та игла";
+        {
+            if (exam.LastTakenStep() == lastStep)
+                errorMessage = "Не та игла";
+            else
+                return false;
+        }
 
         return true;
     }
