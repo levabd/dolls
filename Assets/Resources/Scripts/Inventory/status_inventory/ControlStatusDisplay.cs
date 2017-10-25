@@ -14,7 +14,6 @@ public class ControlStatusDisplay : MonoBehaviour {
     [Header("Error Display Panel")]
     public Text errorStatus;
 
-
     public bool activeControl = false;
 
     private string examName;
@@ -39,24 +38,20 @@ public class ControlStatusDisplay : MonoBehaviour {
             ControlStatusUpdate();
         }    
 	}
-    public void ControlStatus(bool activeControl, string examName, ref ToolItem item, string actionName, string errorMessage)
+    public void ControlStatus(bool activeControl, string examName,  string actionName, string errorMessage)
     {
-        this.examName = examName;
-        this.item = item; 
+        this.examName = examName;       
         this.actionName = actionName;
         this.errorMessage = errorMessage;
         this.activeControl = activeControl;
-        //Debug.Log(this.examName);
-        //Debug.Log(this.item);
-        //Debug.Log(this.errorMessage);
     }
 
     void ControlStatusUpdate()
     {
         examStatus.text = examName;
-        itemStatus.text = item.Title;
+        itemStatus.text = CurrentTool.Instance.Tool.Title;
         itemStatusSprite.gameObject.SetActive(true);
-        itemStatusSprite.sprite = item.Sprites[0];
+        itemStatusSprite.sprite = CurrentTool.Instance.Tool.Sprites[0];
         ActionStatus.text = actionName;
         errorStatus.text = errorMessage;
         activeControl = false;

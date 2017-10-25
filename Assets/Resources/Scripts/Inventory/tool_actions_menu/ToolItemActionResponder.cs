@@ -28,28 +28,32 @@ public class ToolItemActionResponder : MonoBehaviour {
         ToolItemActionDisplay.OnAction -= HandleonClick;
     }
 
-    void HandleonClick(string actionName,ref ToolItem toolItem)
+    void HandleonClick(string actionName)
     {
-        //Debug.Log("This ToolAction = " + actionName);
-        //Debug.Log("This ToolItem = " + toolItem.name);
-		bool activeControl = true;
-		actionCtrl.ActionControl(activeControl, ref toolItem, actionName);
-        string errorMessage = "";
-        CheckAction = CurrentExam.Instance.Exam.Action(ref toolItem, actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
+      
 
+		bool activeControl = true;
+		actionCtrl.ActionControl(activeControl, actionName);
+
+        string errorMessage = "";
+        CheckAction = CurrentExam.Instance.Exam.Action(ref CurrentTool.Instance.Tool, actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
+       
 		if (!CheckAction) 
 		{
-			examControl.EndExam (false, errorMessage);
+            examControl.EndExam (false, errorMessage);
 		} 
-		GameObject.Find(toolItem.name + "_item").GetComponentInChildren<Text>().text = toolItem.Title;
-		GameObject.Find(toolItem.name + "_item/Image").GetComponentInChildren<Image>().sprite = toolItem.Sprites[0];
+
+		GameObject.Find(CurrentTool.Instance.Tool.name + "_item").GetComponentInChildren<Text>().text = CurrentTool.Instance.Tool.Title;
+		GameObject.Find(CurrentTool.Instance.Tool.name + "_item/Image").GetComponentInChildren<Image>().sprite = CurrentTool.Instance.Tool.Sprites[0];
 
 		string examName = CurrentExam.Instance.Exam.Name;
         string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
-        ctrlStat.ControlStatus(activeControl, examName, ref toolItem, actionName, errorMessage);
+        
+        ctrlStat.ControlStatus(activeControl, examName, actionName, errorMessage);
+
         bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
 
-        logActionText = toolItem.CodeName + " " + actionName + " " + logActionText;
+        logActionText = CurrentTool.Instance.Tool.CodeName + " " + actionName + " " + logActionText;
 
         logController.LogActionCreate(activeControl, logActionTextColor, logActionText);
 

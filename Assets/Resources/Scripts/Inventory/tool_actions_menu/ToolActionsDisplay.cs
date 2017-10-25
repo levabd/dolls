@@ -18,7 +18,7 @@ public class ToolActionsDisplay : MonoBehaviour {
 
     }
 
-    public void Prime(TupleList<string, string> actions, ToolItem item)
+    public void Prime(TupleList<string, string> actions)
     {
         foreach (var action in actions)
         {
@@ -31,7 +31,7 @@ public class ToolActionsDisplay : MonoBehaviour {
             {
                 ToolItemActionDisplay display = Instantiate(toolItemActionDisplayPrefab);
                 display.transform.SetParent(targetTransform, false);
-                display.Prime(action, item);
+                display.Prime(action);
             }
             
         }

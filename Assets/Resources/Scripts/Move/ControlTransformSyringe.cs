@@ -12,7 +12,6 @@ public class ControlTransformSyringe : MonoBehaviour {
     private GameObject SyringeModel;
     public Text ToolAngels;
     private int toolAngel = 0;
-    public ToolItem toolItem;
     private int stepCounter = 0;
     public bool EndNeedleInCollider = false;
     void Start () {
@@ -26,12 +25,12 @@ public class ControlTransformSyringe : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != 80)
         {
             IncreaseAngle();
-            print($"{toolItem.StateParams["entry_age"]}");
+            print($"{CurrentTool.Instance.Tool.StateParams["entry_age"]}");
         }
         if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != -10)
         {
             ReduceAngle();
-            print($"{toolItem.StateParams["entry_age"]}");
+            print($"{CurrentTool.Instance.Tool.StateParams["entry_age"]}");
         }
         if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
         {
@@ -47,14 +46,14 @@ public class ControlTransformSyringe : MonoBehaviour {
     {
         Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
         toolAngel += 10;
-        toolItem.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
+        CurrentTool.Instance.Tool.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
 
     }
     public void ReduceAngle()
     {
         Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
         toolAngel -= 10;
-        toolItem.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
+        CurrentTool.Instance.Tool.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
 
     }
     public void TransformIn()

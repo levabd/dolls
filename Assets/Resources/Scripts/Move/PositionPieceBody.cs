@@ -14,7 +14,6 @@ public class PositionPieceBody : MonoBehaviour {
     public bool step1 = false;
     private bool step2 = false;
     private bool CheckPosition;
-    public ToolItem tool;
     private string errorMessage;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
@@ -28,10 +27,10 @@ public class PositionPieceBody : MonoBehaviour {
 	
 
 	void Update () {
-        if (step1 && tool.cursorTexture != null)
+        if (step1 && CurrentTool.Instance.Tool.cursorTexture != null)
         {
             //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            Cursor.SetCursor(tool.cursorTexture, hotSpot, cursorMode);
+            Cursor.SetCursor(CurrentTool.Instance.Tool.cursorTexture, hotSpot, cursorMode);
         }
         if (Input.GetMouseButtonDown(0) && step1 == true)
         {
@@ -42,8 +41,9 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //print("получил луч");
+                GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
                 
-               CheckPosition = CurrentExam.Instance.Exam.Move(ref tool, hit.transform.gameObject.tag, out errorMessage);
+                CheckPosition = CurrentExam.Instance.Exam.Move(ref CurrentTool.Instance.Tool, hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);
@@ -52,11 +52,12 @@ public class PositionPieceBody : MonoBehaviour {
                 if (CheckPosition)
                 {
 					TIAR.colliderHit = hit.transform.gameObject;
-                    if (tool.name == "syringe")
+                    if (CurrentTool.Instance.Tool.name == "syringe")
                     {
                         Syringe.SetActive(true);
+                        
                     }
-                    if (tool.name == "patch")
+                    if (CurrentTool.Instance.Tool.name == "patch")
                     {
                         actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 2000f);
                     }

@@ -8,7 +8,6 @@ public class ActionController : MonoBehaviour {
 	public bool debugModeForAnimation = false;
     public bool action = false;
     public string actionName = "";
-    public ToolItem toolItem;
 	public PositionPieceBody PBD;
 	public ToolControllerSyringeWithConductor TCSWC;
 	public ToolControllerSkin TCS;
@@ -65,9 +64,9 @@ public class ActionController : MonoBehaviour {
 		prefabAmination.transform.rotation = transformGO.transform.rotation;
 	}
 
-    public void ActionControl(bool action, ref ToolItem item, string actionName)
+    public void ActionControl(bool action, string actionName)
     {
-        toolItem = item;
+        
         this.actionName = actionName;
         this.action = action;
     }
@@ -75,7 +74,7 @@ public class ActionController : MonoBehaviour {
     private void CheckAction()
     {
 
-        switch (toolItem.CodeName)
+        switch (CurrentTool.Instance.Tool.CodeName)
         {
            
             case "syringe":
@@ -107,9 +106,8 @@ public class ActionController : MonoBehaviour {
 
                             TCSWC.SyringeEloneOff.SetActive(true);
 
-                            OnActionPosition (ActionPositionPoint, "subclavian_vein_target");
-
-							PBD.tool = toolItem;
+                            OnActionPosition (ActionPositionPoint, "subclavian_vein_target");     
+                            
 							PBD.step1 = true;	
 					        
                             break;
@@ -135,7 +133,6 @@ public class ActionController : MonoBehaviour {
 					        if (debugMode) {Debug.Log ("Запуск позиционирования пинцета");}
 
 					        OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
-					        PBD.tool = toolItem;
 					        PBD.step1 = true;
                             
 					        break;
@@ -296,9 +293,7 @@ public class ActionController : MonoBehaviour {
                     {
                         case "get":
 
-				            if (debugMode) {Debug.Log ("Запуск позиционирования пластыря");}
-
-						    PBD.tool = toolItem;
+				            if (debugMode) {Debug.Log ("Запуск позиционирования пластыря");}						    
 						    PBD.step1 = true;
 						
                             break;
@@ -318,6 +313,7 @@ public class ActionController : MonoBehaviour {
 				        case "finger_covering":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации прикрытия иглы пальцем"); }
+                            ActionPositionPoint.SetActive(false);
 
                             break;
 				        case "needle_removing":

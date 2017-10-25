@@ -7,7 +7,6 @@ public class ToolControllerSyringeWithConductor : MonoBehaviour {
 
     [Header("Текущее состояние обьекта")]
     public GameObject Transform;
-
     public GameObject SyringeEloneOff;
     public GameObject ConductorInANeedleCreate;//A
     public GameObject ConductorCreate;

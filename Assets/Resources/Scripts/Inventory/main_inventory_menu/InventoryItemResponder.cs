@@ -19,15 +19,16 @@ public class InventoryItemResponder : MonoBehaviour {
 
     void HandleonClick(ToolItem item)
     {
-        //Debug.Log("You clicked on " + item.CodeName);
-        actionMenu.item = item;
-        actionMenu.isCreate = true;
+                
+        CurrentTool.Instance.Tool = item;
 
+        actionMenu.isCreate = true;
+        
         string errorMessage = "";
         string examName = CurrentExam.Instance.Exam.Name;
         string actionName = "";
         bool activeControl = true;
-        ctrlStat.ControlStatus(activeControl, examName, ref item, actionName, errorMessage);
+        ctrlStat.ControlStatus(activeControl, examName, actionName, errorMessage);
     }
 
     // Update is called once per frame

@@ -31,19 +31,11 @@ public class Inventory : MonoBehaviour {
     {
         foreach (KeyValuePair<string, string> examTool in InventoryTools)
         {
-            // Debug.Log("Key = {0}, Value = {1}"+ examTool.Key + examTool.Value);
-            //Debug.Log("Create new ToolItem from Prefabs/Tools/" + examTool.Key);
-
             GameObject tool = (GameObject)Instantiate(Resources.Load("Prefabs/Tools/" + examTool.Key));
             tool.name = examTool.Key.ToString();
-                //string.Format(examTool.Key);
-            
-
-           // Debug.Log(tool.name);
-
-            ToolItem it = tool.GetComponent<ToolItem>();
-            it.Title = examTool.Value;
-            Items.Add(it);
+            ToolItem item = tool.GetComponent<ToolItem>();
+            item.Title = examTool.Value;
+            Items.Add(item);
         }
     }
 

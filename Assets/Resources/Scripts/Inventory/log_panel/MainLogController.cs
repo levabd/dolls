@@ -47,7 +47,7 @@ public class MainLogController : MonoBehaviour {
             mainLogItem.color = new Color(255, 0, 0);
         }
 
-        GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+       // GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         // int cCount = mainLogDisplay.transform.childCount;
         // int width = 932;
         // int height = ;

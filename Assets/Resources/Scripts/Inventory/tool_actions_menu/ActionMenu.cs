@@ -6,7 +6,6 @@ public  class ActionMenu : MonoBehaviour {
     public TupleList<string, string> actions;
     public Transform mainTargetTransform;
     public ToolActionsDisplay toolActDPrefab;
-    public ToolItem item;
     public bool isCreate = false;
     // Use this for initialization
     void Start()
@@ -19,7 +18,7 @@ public  class ActionMenu : MonoBehaviour {
     {
         if (isCreate)
         {
-            CreateActionMenu(item);
+            CreateActionMenu(CurrentTool.Instance.Tool);
         }
         
     }
@@ -27,14 +26,15 @@ public  class ActionMenu : MonoBehaviour {
     public void CreateActionMenu(ToolItem item)
     {
         actions = CurrentExam.Instance.Exam.ToolActions(item);
-        //Debug.Log(actions);
 
         if (toolActDPrefab != null)
         {
             Destroy(GameObject.Find("ActionsDisplay(Clone)"));
+
             ToolActionsDisplay actionMenu = Instantiate(toolActDPrefab) as ToolActionsDisplay;
             actionMenu.transform.SetParent(mainTargetTransform, false);
-            actionMenu.Prime(actions, item);
+            actionMenu.Prime(actions);
+
             isCreate = false;
         }
     }

@@ -7,16 +7,14 @@ public class StartNeedleTrigger : MonoBehaviour {
 
 
 
-    private MockExam Check;
     private bool CheckObject;
-    public ToolItem tool;
     public EndExamControlPanel examControl;
     //public GameObject MainToolObject;
     private string errorMessage;
     public ToolItemActionResponder TIAR;
 
     void Start () {
-        Check = new MockExam();
+       
         //tool = MainToolObject.GetComponent<ToolItem>();
     }
 
@@ -24,20 +22,15 @@ public class StartNeedleTrigger : MonoBehaviour {
 		
 	}
     void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.name != "Skin" || col.gameObject.tag != "subclavian_vein_target")
+    {        
+        CheckObject = CurrentExam.Instance.Exam.Move(ref CurrentTool.Instance.Tool, col.gameObject.tag, out errorMessage);
+        TIAR.colliderHit = col.gameObject;
+        if (CheckObject == false)
         {
-            CheckObject = CurrentExam.Instance.Exam.Move(ref tool, col.gameObject.tag, out errorMessage);
-            TIAR.colliderHit = col.gameObject;
-            if (CheckObject == false)
-            {
-                //print(errorMessage);
-                examControl.EndExam(false, errorMessage);
-            }
-        }
-        
+            examControl.EndExam(false, errorMessage);
+        }        
 
-        print("куда-то вошла игла " + col.gameObject.tag);
+         print("куда-то вошла игла " + col.gameObject.tag);
     }
     //void OnTriggerExit(Collider col)
     //{
