@@ -156,7 +156,7 @@ class Exam6 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "internal_jugular2_vein_final_target" || colliderTag != "internal_jugular2_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "internal_jugular2_vein_final_target" && colliderTag != "internal_jugular2_vein")
         {
             errorMessage = "Пункция не в том месте";
             return false;

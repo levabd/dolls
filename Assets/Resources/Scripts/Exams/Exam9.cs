@@ -178,7 +178,7 @@ class Exam9 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "femoral_vien_final_target" || colliderTag != "femoral_vien_target"))
+        if (tool.CodeName == "syringe" && colliderTag != "femoral_vien_final_target" && colliderTag != "femoral_vien_target")
         {
             errorMessage = "Пункция не в том месте";
             return false;

@@ -149,7 +149,7 @@ class Exam14 : BaseExam
         if (tool.CodeName == "syringe" && colliderTag == "lateral_subcutaneous_arm_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && (colliderTag != "lateral_subcutaneous_arm_vein_final_target" || colliderTag != "lateral_subcutaneous_arm_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "lateral_subcutaneous_arm_vein_final_target" && colliderTag != "lateral_subcutaneous_arm_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

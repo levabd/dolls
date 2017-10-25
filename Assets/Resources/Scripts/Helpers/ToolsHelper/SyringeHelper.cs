@@ -152,8 +152,12 @@ public static class SyringeHelper
                     if (maxAngle < 180)
                         if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
                             errorMessage = "Неправильный угол установки";
-
-                    if (!tool.StateParams.ContainsKey("blood_inside") || !Convert.ToBoolean(tool.StateParams["blood_inside"]))
+                    if (tool.StateParams.ContainsKey("blood_inside"))
+                    {
+                        if (!Convert.ToBoolean(tool.StateParams["blood_inside"]))
+                            errorMessage = "Во время углубления не был потянут поршень на себя";
+                    }
+                    else
                         errorMessage = "Во время углубления не был потянут поршень на себя";
                 }
                 else

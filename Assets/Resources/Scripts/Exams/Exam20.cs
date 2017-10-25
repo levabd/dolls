@@ -141,7 +141,7 @@ class Exam20 : BaseExam
         if (tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "venflon" && (colliderTag != "posterior_auricular_vein_final_target" || colliderTag != "posterior_auricular_vein"))
+        if (tool.CodeName == "venflon" && colliderTag != "posterior_auricular_vein_final_target" && colliderTag != "posterior_auricular_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

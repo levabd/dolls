@@ -154,7 +154,7 @@ class Exam3 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "subclavian_vein_final_target" || colliderTag != "subclavian_vein_target"))
+        if (tool.CodeName == "syringe" && colliderTag != "subclavian_vein_final_target" && colliderTag != "subclavian_vein_target")
         {
             errorMessage = "Пункция не в том месте";
             return false;

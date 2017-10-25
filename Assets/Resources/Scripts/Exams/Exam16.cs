@@ -132,7 +132,7 @@ class Exam16 : BaseExam
         if (tool.CodeName == "venflon" && colliderTag == "dorsal_metacarpal_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "venflon" && (colliderTag != "dorsal_metacarpal_vein_final_target" || colliderTag != "dorsal_metacarpal_vein"))
+        if (tool.CodeName == "venflon" && colliderTag != "dorsal_metacarpal_vein_final_target" && colliderTag != "dorsal_metacarpal_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

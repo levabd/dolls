@@ -169,7 +169,7 @@ class Exam7 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "internal_jugular3_vein_final_target" || colliderTag != "internal_jugular3_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "internal_jugular3_vein_final_target" && colliderTag != "internal_jugular3_vein")
         {
             errorMessage = "Пункция не в том месте";
             return false;

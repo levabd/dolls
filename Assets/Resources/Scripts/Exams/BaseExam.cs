@@ -31,6 +31,12 @@ public abstract class BaseExam: IExamInterface
     public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)
     {
         string currentErrorMessage;
+        if (colliderTag == "Untagged" && String.IsNullOrWhiteSpace(colliderTag))
+        {
+            errorMessage = "";
+            return true;
+        }
+
         bool result = CheckMove(ref tool, colliderTag, out currentErrorMessage);
         errorMessage = currentErrorMessage;
         if (!result)

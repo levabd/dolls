@@ -166,7 +166,7 @@ class Exam4 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "axillary_vien" || colliderTag != "axillary_vien_final_target"))
+        if (tool.CodeName == "syringe" && colliderTag != "axillary_vien" && colliderTag != "axillary_vien_final_target")
         {
             errorMessage = "Пункция не в том месте";
             return false;

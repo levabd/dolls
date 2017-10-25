@@ -149,7 +149,7 @@ class Exam11 : BaseExam
         if (tool.CodeName == "syringe" && colliderTag == "medial_saphenous_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && (colliderTag != "medial_saphenous_vein_final_target" || colliderTag != "medial_saphenous_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "medial_saphenous_vein_final_target" && colliderTag != "medial_saphenous_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

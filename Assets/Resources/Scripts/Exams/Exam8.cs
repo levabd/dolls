@@ -164,7 +164,7 @@ class Exam8 : BaseExam
             }
         }
 
-        if (tool.CodeName == "syringe" && (colliderTag != "external_jugular_vein_final_target" || colliderTag != "external_jugular_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "external_jugular_vein_final_target" && colliderTag != "external_jugular_vein")
         {
             errorMessage = "Пункция не в том месте";
             return false;

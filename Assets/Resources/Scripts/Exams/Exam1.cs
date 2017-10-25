@@ -157,8 +157,7 @@ class Exam1 : BaseExam
 
         if (tool.CodeName == "syringe" && colliderTag != "subclavian_vein_final_target" && colliderTag != "subclavian_vein_target")
         {
-          errorMessage = "Пункция не в том месте";
-
+            errorMessage = "Пункция не в том месте";
             return false;
         }
 

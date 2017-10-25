@@ -132,7 +132,7 @@ class Exam19 : BaseExam
         if (tool.CodeName == "venflon" && colliderTag == "great_saphenous_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "venflon" && (colliderTag != "great_saphenous_vein_final_target" || colliderTag != "great_saphenous_vein"))
+        if (tool.CodeName == "venflon" && colliderTag != "great_saphenous_vein_final_target" && colliderTag != "great_saphenous_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

@@ -132,7 +132,7 @@ class Exam15 : BaseExam
         if (tool.CodeName == "venflon" && colliderTag == "lateral_subcutaneous_arm_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "venflon" && (colliderTag != "lateral_subcutaneous_arm_vein_final_target" || colliderTag != "lateral_subcutaneous_arm_vein"))
+        if (tool.CodeName == "venflon" && colliderTag != "lateral_subcutaneous_arm_vein_final_target" && colliderTag != "lateral_subcutaneous_arm_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет

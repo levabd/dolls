@@ -148,7 +148,7 @@ class Exam21 : BaseExam
         if (tool.CodeName == "syringe" && colliderTag == "midline_ulnar_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && (colliderTag != "midline_ulnar_vein_final_target" || colliderTag != "midline_ulnar_vein"))
+        if (tool.CodeName == "syringe" && colliderTag != "midline_ulnar_vein_final_target" && colliderTag != "midline_ulnar_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет
