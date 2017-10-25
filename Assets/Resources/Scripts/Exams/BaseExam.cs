@@ -28,10 +28,10 @@ public abstract class BaseExam: IExamInterface
         _takenSteps.Add(step);
     }
 
-    public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)
-    {
+    public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)    {
+
         string currentErrorMessage;
-        if (colliderTag == "Untagged" && String.IsNullOrWhiteSpace(colliderTag))
+        if (colliderTag == "Untagged" || String.IsNullOrWhiteSpace(colliderTag))
         {
             errorMessage = "";
             return true;

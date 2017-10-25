@@ -25,7 +25,7 @@ public class StartNeedleTrigger : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name != "Skin")
+        if (col.gameObject.name != "Skin" || col.gameObject.tag != "subclavian_vein_target")
         {
             CheckObject = CurrentExam.Instance.Exam.Move(ref tool, col.gameObject.tag, out errorMessage);
             TIAR.colliderHit = col.gameObject;
@@ -37,7 +37,7 @@ public class StartNeedleTrigger : MonoBehaviour {
         }
         
 
-        print("куда-то вошла игла");
+        print("куда-то вошла игла " + col.gameObject.tag);
     }
     //void OnTriggerExit(Collider col)
     //{

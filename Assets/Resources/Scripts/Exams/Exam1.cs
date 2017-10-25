@@ -215,7 +215,7 @@ class Exam1 : BaseExam
         //{ "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
         if (tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 3)
+            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 5)
             {
                 errorMessage = "Воздушная эмболия";
                 return null;

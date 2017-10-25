@@ -46,13 +46,15 @@ public class MainLogController : MonoBehaviour {
         {
             mainLogItem.color = new Color(255, 0, 0);
         }
+
+        GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         // int cCount = mainLogDisplay.transform.childCount;
         // int width = 932;
         // int height = ;
-        float pTop = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.top;
-        float pBottom = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.bottom;
-        float pSpacing = mainLogDisplay.GetComponent<VerticalLayoutGroup>().spacing;
-        
+        //float pTop = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.top;
+        //float pBottom = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.bottom;
+        //float pSpacing = mainLogDisplay.GetComponent<VerticalLayoutGroup>().spacing;
+
         //mainLogDisplay.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
     }
 }

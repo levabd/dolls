@@ -17,7 +17,11 @@ public class EndNeedleTrigger : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        controlTool.EndNeedleInCollider = true;
+        if (col.gameObject.name != "ActionPositionPoint")
+        {
+            controlTool.EndNeedleInCollider = true;
+        }
+       
     }
     void OnTriggerExit(Collider col)
     {

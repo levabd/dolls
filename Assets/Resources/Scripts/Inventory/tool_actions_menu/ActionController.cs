@@ -85,23 +85,31 @@ public class ActionController : MonoBehaviour {
                     switch (actionName)
                     {
 						case "needle_removing":
-							if (debugModeForAnimation) {Debug.Log ("needle_removing Enter");}
+
+							if (debugModeForAnimation) {Debug.Log ("Шприц отсоединен от иглы");}
+
 							TCSWC.SyringeEloneOff.SetActive (false);
+
                             break;
                         case "anesthesia":
-                            Debug.Log("start animation anesthesia");
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации анестезии"); }                            
+
 							CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
+
                             break;
                         case "piston_pulling":
                             //Debug.Log("piston_pulling Enter");
                             break;
                         case "filling_novocaine_half":
 					
-							if (debugMode) {Debug.Log ("start_syringe_positions_script");}
+							if (debugMode) {Debug.Log ("Запуск позиционирования шприца");}
 
-							OnActionPosition (ActionPositionPoint, "subclavian_vein_target");
+                            TCSWC.SyringeEloneOff.SetActive(true);
+
+                            OnActionPosition (ActionPositionPoint, "subclavian_vein_target");
+
 							PBD.tool = toolItem;
-
 							PBD.step1 = true;	
 					        
                             break;
@@ -122,25 +130,32 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-				case "tweezers_balls":
+				        case "tweezers_balls":
 					
-					if (debugMode) {Debug.Log ("start_tweezers_positions_script");}
+					        if (debugMode) {Debug.Log ("Запуск позиционирования пинцета");}
 
-					OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
-					PBD.tool = toolItem;
-					PBD.step1 = true;	
-							break;
-						case "top_down":
-                            Debug.Log("top_down Enter");
-					OffActionPosition (ActionPositionPoint);
-					CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+					        OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
+					        PBD.tool = toolItem;
+					        PBD.step1 = true;
+                            
+					        break;
+				        case "top_down":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
+
+					        OffActionPosition (ActionPositionPoint);
+					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+
                             break;
                         case "right_left":
-                            Debug.Log("right_left Enter");
-					OffActionPosition (ActionPositionPoint);
-					CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(слева-направо)"); }
+
+					        OffActionPosition (ActionPositionPoint);
+					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+
                             break;
-                        default:
+                         default:
                             break;
                     }
                 }
@@ -157,14 +172,21 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-						case "push":
-							Debug.Log ("push Enter");
-							CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+                        case "push":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
+
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.Transform);
+
                             break;
                         case "pull":
-                            Debug.Log("pull Enter");
-							Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
-							CreateFromPrefab (TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
+
+                            Destroy(GameObject.Find("Transform/Conductor(Clone)"));
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+
                             break;
                         default:
                             break;
@@ -183,17 +205,21 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-						case "push":
-							Debug.Log ("push Enter");
-							CreateFromPrefab (TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
-							CreateToolFromPrefab (TCSWC.ConductorCreate,TCSWC.Transform);
+                        case "push":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
+
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
+                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.Transform);
 
                             break;
-						case "pull":
-							Debug.Log ("pull Enter");
-							Destroy (GameObject.Find ("Transform/Conductor(Clone)"));
-							CreateFromPrefab (TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
-							
+                        case "pull":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
+
+                            Destroy(GameObject.Find("Transform/Conductor(Clone)"));
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+
                             break;
                         default:
                             break;
@@ -202,8 +228,8 @@ public class ActionController : MonoBehaviour {
                 else
                 {
                     Debug.Log("Action Name error " + toolItem.CodeName);
-                }   
-                
+                }
+
                 break;
 
             case "catheter":
@@ -212,30 +238,44 @@ public class ActionController : MonoBehaviour {
                     switch (actionName)
                     {
                         case "push":
-                            Debug.Log("push Enter");
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка катетера по проводнику"); }
+
 							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
+
                             break;
                         case "remove":
-							Debug.Log("remove Enter");
-							Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление катетера"); }
+
+                            Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
 							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.Transform, 5f);
+
                             break;
                         case "liquid_transfusion_connection":
-                            Debug.Log("liquid_transfusion_connection Enter");
-							CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации подключение катетера к системе переливания жидкостей"); }
+
+                            CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
+
                             break;
 						case "rotation_insertion":
-							Debug.Log ("rotation_insertion Enter");
-							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику вращательными движениями"); }
+
+                            Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
 							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
 							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
 							
                             break;
 						case "direct_insertion":
-							Debug.Log ("direct_insertion Enter");				
-							Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику прямым движением"); }
+
+                            Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
 							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
 							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
+
                             break;
                         default:
                             break;
@@ -255,9 +295,11 @@ public class ActionController : MonoBehaviour {
                     switch (actionName)
                     {
                         case "get":
-						Debug.Log("Start patch position");
-						PBD.tool = toolItem;
-						PBD.step1 = true;
+
+				            if (debugMode) {Debug.Log ("Запуск позиционирования пластыря");}
+
+						    PBD.tool = toolItem;
+						    PBD.step1 = true;
 						
                             break;
                     }
@@ -268,29 +310,34 @@ public class ActionController : MonoBehaviour {
                 }               
                 break;
 
-		case "needle":
-			if (actionName != "")
-			{
-				switch (actionName)
-				{
-				case "finger_covering":
-					Debug.Log("finger_covering start position");
-					break;
-				case "needle_removing":
-					Debug.Log ("needle_removing start position");
-					CreateFromPrefab (TCSWC.NeedleOutCreate, TCSWC.Transform, 6f);
-					TCSWC.NeedleOff.SetActive (false);
-					break;
-				}
-			}
-			else
-			{
-				Debug.Log("Action Name error " + toolItem.CodeName);
-			}               
-			break;
+		    case "needle":
+			    if (actionName != "")
+			    {
+				    switch (actionName)
+				    {
+				        case "finger_covering":
 
-            default:
-                break;
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации прикрытия иглы пальцем"); }
+
+                            break;
+				        case "needle_removing":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление иглы"); }
+
+                            CreateFromPrefab (TCSWC.NeedleOutCreate, TCSWC.Transform, 6f);
+					        TCSWC.NeedleOff.SetActive (false);
+
+					        break;
+				    }
+			    }
+			    else
+			    {
+				    Debug.Log("Action Name error " + toolItem.CodeName);
+			    }               
+			    break;
+
+                default:
+                    break;
         }
         action = false;
 
