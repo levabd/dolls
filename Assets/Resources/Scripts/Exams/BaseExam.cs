@@ -28,7 +28,9 @@ public abstract class BaseExam: IExamInterface
         _takenSteps.Add(step);
     }
 
-    public bool Move(ref ToolItem tool, string colliderTag, out string errorMessage)    {
+    public bool Move(string colliderTag, out string errorMessage)
+    {
+        errorMessage = "";
 
         string currentErrorMessage;
         if (colliderTag == "Untagged" || String.IsNullOrWhiteSpace(colliderTag))
@@ -37,7 +39,7 @@ public abstract class BaseExam: IExamInterface
             return true;
         }
 
-        bool result = CheckMove(ref tool, colliderTag, out currentErrorMessage);
+        bool result = CheckMove(colliderTag, out currentErrorMessage);
         errorMessage = currentErrorMessage;
         if (!result)
         {
@@ -46,10 +48,12 @@ public abstract class BaseExam: IExamInterface
         return result;
     }
 
-    public bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public bool Action(string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
+        errorMessage = "";
+
         string currentErrorMessage;
-        int? stepNumber = CheckAction(ref tool, actionCode, out currentErrorMessage, locatedColliderTag);
+        int? stepNumber = CheckAction(actionCode, out currentErrorMessage, locatedColliderTag);
         errorMessage = currentErrorMessage;
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
@@ -91,8 +95,8 @@ public abstract class BaseExam: IExamInterface
 
     public abstract Dictionary<string, string> InventoryTool { get; }
 
-    public abstract bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage);
+    public abstract bool CheckMove(string colliderTag, out string errorMessage);
 
-    public abstract int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
+    public abstract int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "");
 }
 

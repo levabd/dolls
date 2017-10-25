@@ -126,7 +126,7 @@ class Exam18 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -139,17 +139,17 @@ class Exam18 : BaseExam
 
         foreach (var syringeError in criticalSyringeErrors)
         {
-            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
+            if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
             {
                 errorMessage = syringeError.Item2;
                 return false;
             }
         }
 
-        if (tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "syringe" && colliderTag != "great_saphenous_vein_final_target" && colliderTag != "great_saphenous_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "great_saphenous_vein_final_target" && colliderTag != "great_saphenous_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет
@@ -157,19 +157,19 @@ class Exam18 : BaseExam
             return false;
         }
 
-        if (tool.CodeName == "gauze_balls" && colliderTag != "foot")
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && colliderTag != "foot")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
         }
 
-        if (tool.CodeName == "tourniquet" && colliderTag != "thigh")
+        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "thigh")
         {
             errorMessage = "Не туда наложен жгут";
             return false;
         }
 
-        if (tool.CodeName == "hand" && colliderTag != "great_saphenous_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "great_saphenous_vein")
         {
             errorMessage = "Пальпируется не то место";
             return false;
@@ -178,20 +178,20 @@ class Exam18 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
-        if (this.RemoveBallsAction(ref tool, actionCode)) return null;
-        if (this.PistonPullingAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.RemoveBallsAction(actionCode)) return null;
+        if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.FenceInjections(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "thigh", "foot", "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid, true))
+        if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "thigh", "foot", 
+            "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid, true))
             return returnedStep;
 
 

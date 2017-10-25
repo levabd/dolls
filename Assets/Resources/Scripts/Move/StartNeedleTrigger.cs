@@ -23,7 +23,7 @@ public class StartNeedleTrigger : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {        
-        CheckObject = CurrentExam.Instance.Exam.Move(ref CurrentTool.Instance.Tool, col.gameObject.tag, out errorMessage);
+        CheckObject = CurrentExam.Instance.Exam.Move(col.gameObject.tag, out errorMessage);
         TIAR.colliderHit = col.gameObject;
         if (CheckObject == false)
         {

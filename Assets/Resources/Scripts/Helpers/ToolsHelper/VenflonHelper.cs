@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-
-// ReSharper disable once CheckNamespace
+﻿// ReSharper disable once CheckNamespace
 public static class VenflonHelper
 {
 
-    public static bool BloodInsidePavilion(this BaseExam exam, ref ToolItem tool, string colliderTag, string targetColliderTag)
+    public static bool BloodInsidePavilion(this BaseExam exam, string colliderTag, string targetColliderTag)
     {
-        if (tool.CodeName == "venflon" && colliderTag.Contains(targetColliderTag))
+        if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag.Contains(targetColliderTag))
         {
-            tool.StateParams["blood_inside"] = "true";
+            CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
             // Запустить анимацию крови
 
             return true;

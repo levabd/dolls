@@ -4,50 +4,50 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 public static class SyringeHelper
 {
-    public static bool TryGetNeedle(ref ToolItem tool, string needle, out string errorMessage, int spriteIndex)
+    public static bool TryGetNeedle(string needle, out string errorMessage, int spriteIndex)
     {
         errorMessage = "";
 
-        if (tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(tool.StateParams["has_needle"]))
+        if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
             errorMessage = "Уже есть другая игла";
             return false;
         }
         
-        tool.StateParams["has_needle"] = "true";
-        tool.StateParams["needle"] = needle;
-        tool.Sprites[0] = tool.Sprites[spriteIndex];
+        CurrentTool.Instance.Tool.StateParams["has_needle"] = "true";
+        CurrentTool.Instance.Tool.StateParams["needle"] = needle;
+        CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[spriteIndex];
 
-        tool.Title = "Шприц с иглой";
+        CurrentTool.Instance.Tool.Title = "Шприц с иглой";
 
         return true;
     }
 
-    public static bool CheckAnestesiaNeedle(ref ToolItem tool, out string errorMessage)
+    public static bool CheckAnestesiaNeedle(out string errorMessage)
     {
-        if (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"]))
+        if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
             errorMessage = "Отсутсвует игла";
             return false;
         }
 
-        errorMessage = tool.StateParams.ContainsKey("needle") && tool.StateParams["needle"] == "anesthesia_needle" ? "" : "Несоответствующая игла";
+        errorMessage = CurrentTool.Instance.Tool.StateParams.ContainsKey("needle") && CurrentTool.Instance.Tool.StateParams["needle"] == "anesthesia_needle" ? "" : "Несоответствующая игла";
 
         return String.IsNullOrEmpty(errorMessage);
     }
 
-    public static bool PistonPullingAction(this BaseExam exam, ref ToolItem tool, string actionCode)
+    public static bool PistonPullingAction(this BaseExam exam, string actionCode)
     {
-        if (tool.CodeName == "syringe" && actionCode == "piston_pulling")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "piston_pulling")
         {
-            tool.StateParams["piston_pulling"] = "true";
+            CurrentTool.Instance.Tool.StateParams["piston_pulling"] = "true";
             return true;
         }
 
         return false;
     }
 
-    public static bool GetNeedleAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
+    public static bool GetNeedleAction(this BaseExam exam, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
     {
         Dictionary<string, int> needleDict = new Dictionary<string, int>
         {
@@ -62,12 +62,9 @@ public static class SyringeHelper
             { "a45_d4_d14_punction_needle", 2}
         };
 
-        List<string> needleList = new List<string>(needleDict.Keys);
+        List<string> needleList = new List<string>(needleDict.Keys);     
 
-        errorMessage = "";
-        
-
-        if (tool.CodeName != "syringe" || !needleList.Contains(actionCode))
+        if (CurrentTool.Instance.Tool.CodeName != "syringe" || !needleList.Contains(actionCode))
             return false;
 
         if (actionCode == targetNeedle)
@@ -76,7 +73,7 @@ public static class SyringeHelper
             if (exam.LastTakenStep() != lastStep)
                 errorMessage = "Не та игла на текущем шаге";                
             else
-                TryGetNeedle(ref tool, targetNeedle, out errorMessage, needleDict[targetNeedle]);
+                TryGetNeedle(targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
         else
         {
@@ -86,46 +83,47 @@ public static class SyringeHelper
                 return false;
         }
 
+        errorMessage = "";
         return true;
     }
 
-    public static bool HalfFillingNovocaine(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage)
+    public static bool HalfFillingNovocaine(this BaseExam exam, string actionCode, ref string errorMessage)
     {
-        if (tool.CodeName == "syringe" && (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"])))
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
         {
             errorMessage = "Отсутсвует игла";
             return false;
         }
-        if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
             errorMessage = "Слишком много новокаина";
             return true;
         }
-        if (tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
         {
             errorMessage = "Не та жидкость";
             return true;
         }
-        if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
             return true;
         return false;
     }
 
-    public static bool HalfFillingNaCl(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage)
+    public static bool HalfFillingNaCl(this BaseExam exam, string actionCode, ref string errorMessage)
     {
-        if (tool.CodeName == "syringe" && (!tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(tool.StateParams["has_needle"])))
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
         {
             errorMessage = "Отсутсвует игла";
             return false;
         }
-        if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
             errorMessage = "Не та жидкость";
             return true;
         }
-        if (tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
             return true;
-        if (tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
         {
             errorMessage = "Не та жидкость";
             return true;
@@ -133,28 +131,28 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool NeedleRemovingAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string errorMessage, string locatedColliderTag, ref DateTime needleRemovingMoment, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
+    public static bool NeedleRemovingAction(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, ref DateTime needleRemovingMoment, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
     {
-        if (tool.CodeName == "syringe" && actionCode == "needle_removing")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")
         {
             needleRemovingMoment = DateTime.Now;
 
-            tool.StateParams.Remove("piston_pulling");
-            tool.StateParams["has_needle"] = "false";
-            tool.StateParams.Remove("needle");
-            tool.Sprites[0] = tool.Sprites[1];
-            tool.Title = "Шприц без иглы";
+            CurrentTool.Instance.Tool.StateParams.Remove("piston_pulling");
+            CurrentTool.Instance.Tool.StateParams["has_needle"] = "false";
+            CurrentTool.Instance.Tool.StateParams.Remove("needle");
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
+            CurrentTool.Instance.Tool.Title = "Шприц без иглы";
 
             if (!String.IsNullOrEmpty(targetLocatedColliderTag))
             {
                 if (locatedColliderTag == targetLocatedColliderTag)
                 {
                     if (maxAngle < 180)
-                        if (!tool.StateParams.ContainsKey("entry_angle") || !float.Parse(tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
+                        if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
                             errorMessage = "Неправильный угол установки";
-                    if (tool.StateParams.ContainsKey("blood_inside"))
+                    if (CurrentTool.Instance.Tool.StateParams.ContainsKey("blood_inside"))
                     {
-                        if (!Convert.ToBoolean(tool.StateParams["blood_inside"]))
+                        if (!Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["blood_inside"]))
                             errorMessage = "Во время углубления не был потянут поршень на себя";
                     }
                     else
@@ -170,16 +168,16 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool BloodInsideMove(this BaseExam exam, ref ToolItem tool, string colliderTag, string targetColliderTag)
+    public static bool BloodInsideMove(this BaseExam exam, string colliderTag, string targetColliderTag)
     {
-        if (tool.CodeName == "syringe" && colliderTag.Contains(targetColliderTag))
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag.Contains(targetColliderTag))
         {
             bool pistonPulling = false;
-            if (tool.StateParams.ContainsKey("piston_pulling"))
-                pistonPulling = Convert.ToBoolean(tool.StateParams["piston_pulling"]);
+            if (CurrentTool.Instance.Tool.StateParams.ContainsKey("piston_pulling"))
+                pistonPulling = Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
 
             if (pistonPulling)
-                tool.StateParams["blood_inside"] = "true";
+                CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
                 // Запустить анимацию крови
 
             return true;

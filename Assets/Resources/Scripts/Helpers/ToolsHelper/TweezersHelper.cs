@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 public static class TweezersHelper
 {
-    public static void GetBalls(ref ToolItem tool, string ballLiquid = "none")
+    public static void GetBalls(string ballLiquid = "none")
     {
         Dictionary<string, int> liquidDict = new Dictionary<string, int>
         {
@@ -17,25 +17,25 @@ public static class TweezersHelper
             { "none", 4}
         };
 
-        tool.StateParams["has_balls"] = "true";
-        tool.StateParams["balls_liquid"] = ballLiquid;
-        tool.Sprites[0] = tool.Sprites[liquidDict[ballLiquid]];
+        CurrentTool.Instance.Tool.StateParams["has_balls"] = "true";
+        CurrentTool.Instance.Tool.StateParams["balls_liquid"] = ballLiquid;
+        CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[liquidDict[ballLiquid]];
 
-        tool.Title = "Пинцет с шариками";
+        CurrentTool.Instance.Tool.Title = "Пинцет с шариками";
     }
 
-    public static void RemoveBall(ref ToolItem tool)
+    public static void RemoveBall()
     {
-        tool.StateParams["has_balls"] = "false";
-        tool.Sprites[0] = tool.Sprites[1];
-        tool.Title = "Пинцет без ничего";
+        CurrentTool.Instance.Tool.StateParams["has_balls"] = "false";
+        CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
+        CurrentTool.Instance.Tool.Title = "Пинцет без ничего";
     }
 
-    public static bool RemoveBallsAction(this BaseExam exam, ref ToolItem tool, string actionCode)
+    public static bool RemoveBallsAction(this BaseExam exam, string actionCode)
     {
-        if (tool.CodeName == "tweezers" && actionCode == "remove_balls")
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "remove_balls")
         {
-            RemoveBall(ref tool);
+            RemoveBall();
             return true;
         }
 

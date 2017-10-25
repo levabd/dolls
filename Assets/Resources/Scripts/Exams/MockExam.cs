@@ -15,13 +15,13 @@ class MockExam : BaseExam
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string> { { "default_tool", "Любой инструмент" } };
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage)
     {
         errorMessage = "";
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
         return 1;

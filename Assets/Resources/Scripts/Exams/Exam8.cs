@@ -144,7 +144,7 @@ class Exam8 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -157,48 +157,47 @@ class Exam8 : BaseExam
 
         foreach (var syringeError in criticalSyringeErrors)
         {
-            if (tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
+            if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag.Contains(syringeError.Item1))
             {
                 errorMessage = syringeError.Item2;
                 return false;
             }
         }
 
-        if (tool.CodeName == "syringe" && colliderTag != "external_jugular_vein_final_target" && colliderTag != "external_jugular_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "external_jugular_vein_final_target" && colliderTag != "external_jugular_vein")
         {
             errorMessage = "Пункция не в том месте";
             return false;
         }
 
-        if (tool.CodeName == "tweezers" && colliderTag != "disinfection_external_jugular_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_external_jugular_vein")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
         }
 
-        this.BloodInsideMove(ref tool, colliderTag, "external_jugular_vein_final_target");
+        this.BloodInsideMove(colliderTag, "external_jugular_vein_final_target");
 
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
-        if (this.RemoveBallsAction(ref tool, actionCode)) return null;
-        if (this.PistonPullingAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.RemoveBallsAction(actionCode)) return null;
+        if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            "disinfection_external_jugular_vein", out returnedStep, ref _currentBallLiquid, true)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_external_jugular_vein", out returnedStep, ref _currentBallLiquid, true)) return returnedStep;
 
         //{ "clamp_the_vein",                 "Cдавливаем наружную яремную вену." },
-        if (tool.CodeName == "hand" && actionCode == "clamp")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")
         {
             if (!locatedColliderTag.Contains("external_jugular_vein"))
                 errorMessage = "Сдавлена не та вена(место)";
@@ -206,19 +205,18 @@ class Exam8 : BaseExam
         }
 
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
-        if (this.GetNeedleAction(ref tool, actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 10)) return 11;
+        if (this.GetNeedleAction(actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 10)) return 11;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
-        if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "external_jugular_vein_final_target", 10, 15)) return 12;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment, "external_jugular_vein_final_target", 10, 15)) return 12;
 
         // Отсоединяем в любом другом месте
-        if (this.NeedleRemovingAction(ref tool, actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
 
         //{ "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
-        if (tool.CodeName == "needle" && actionCode == "finger_covering")
+        if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 3)
+            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 5)
             {
                 errorMessage = "Воздушная эмболия";
                 return null;
@@ -227,17 +225,17 @@ class Exam8 : BaseExam
         }
 
         // Критическая ошибка
-        if (tool.CodeName == "catheter" && actionCode == "remove")
+        if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(ref tool, actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 14, out returnedStep)) return returnedStep;
 
         //{ "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }
-        if (tool.CodeName == "hand" && actionCode == "clamp_out")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp_out")
         {
             if (!locatedColliderTag.Contains("external_jugular_vein"))
                 errorMessage = "Сдавлена не та вена(место)";

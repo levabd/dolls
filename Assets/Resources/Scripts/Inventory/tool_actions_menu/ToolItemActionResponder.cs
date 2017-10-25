@@ -36,7 +36,7 @@ public class ToolItemActionResponder : MonoBehaviour {
 		actionCtrl.ActionControl(activeControl, actionName);
 
         string errorMessage = "";
-        CheckAction = CurrentExam.Instance.Exam.Action(ref CurrentTool.Instance.Tool, actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
+        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
        
 		if (!CheckAction) 
 		{

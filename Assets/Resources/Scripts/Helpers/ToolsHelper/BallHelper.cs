@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 public static class BallHelper
 {
-    public static bool TryWetBall(ref ToolItem tool, string liquid, string targetLiquid, out string errorMessage)
+    public static bool TryWetBall(string liquid, string targetLiquid, out string errorMessage)
     {
         Dictionary<string, int> liquidDict = new Dictionary<string, int>
         {
@@ -19,7 +19,7 @@ public static class BallHelper
 
         errorMessage = "";
 
-        if (tool.StateParams.ContainsKey("wet") && Convert.ToBoolean(tool.StateParams["wet"]))
+        if (CurrentTool.Instance.Tool.StateParams.ContainsKey("wet") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["wet"]))
         {
             errorMessage = "Марлевые шарики уже мокрые";
             return false;
@@ -30,11 +30,11 @@ public static class BallHelper
         if (!liquidList.Contains(liquid))
             return false;
 
-        tool.StateParams["wet"] = "true";
-        tool.StateParams["liquid"] = liquid;
-        tool.Sprites[0] = tool.Sprites[liquidDict[liquid]];
+        CurrentTool.Instance.Tool.StateParams["wet"] = "true";
+        CurrentTool.Instance.Tool.StateParams["liquid"] = liquid;
+        CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[liquidDict[liquid]];
 
-        tool.Title = "Смоченные марлевые шарики";
+        CurrentTool.Instance.Tool.Title = "Смоченные марлевые шарики";
 
         if (liquid != targetLiquid)
         {
@@ -45,16 +45,16 @@ public static class BallHelper
         return false;
     }
 
-    public static bool BallClearAction(this BaseExam exam, ref ToolItem tool, string actionCode, ref string currentBallLiquid)
+    public static bool BallClearAction(this BaseExam exam, string actionCode, ref string currentBallLiquid)
     {
-        if (tool.CodeName == "gauze_balls" && actionCode == "clear")
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "clear")
         {
-            tool.StateParams["wet"] = "false";
-            tool.StateParams.Remove("liquid");
-            tool.Sprites[0] = tool.Sprites[1];
+            CurrentTool.Instance.Tool.StateParams["wet"] = "false";
+            CurrentTool.Instance.Tool.StateParams.Remove("liquid");
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
             currentBallLiquid = "none";
 
-            tool.Title = "Стерильные марлевые шарики";
+            CurrentTool.Instance.Tool.Title = "Стерильные марлевые шарики";
             return true;
         }
 

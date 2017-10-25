@@ -118,7 +118,7 @@ class Exam20 : BaseExam
         }
     }
 
-    public override bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage)
     {
         errorMessage = "";
 
@@ -131,17 +131,17 @@ class Exam20 : BaseExam
 
         foreach (var syringeError in criticalSyringeErrors)
         {
-            if (tool.CodeName == "venflon" && colliderTag.Contains(syringeError.Item1))
+            if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag.Contains(syringeError.Item1))
             {
                 errorMessage = syringeError.Item2;
                 return false;
             }
         }
 
-        if (tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
+        if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
             _needleInsideTarget = true;
 
-        if (tool.CodeName == "venflon" && colliderTag != "posterior_auricular_vein_final_target" && colliderTag != "posterior_auricular_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag != "posterior_auricular_vein_final_target" && colliderTag != "posterior_auricular_vein")
         {
             errorMessage = "Пункция не в том месте";
             if (_needleInsideTarget) // Прошли вену навылет
@@ -149,46 +149,46 @@ class Exam20 : BaseExam
             return false;
         }
 
-        if (tool.CodeName == "gauze_balls" && colliderTag != "temple")
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && colliderTag != "temple")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
         }
 
-        if (tool.CodeName == "tourniquet" && colliderTag != "around_neck")
+        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "around_neck")
         {
             errorMessage = "Не туда наложен жгут";
             return false;
         }
 
-        if (tool.CodeName == "hand" && colliderTag != "posterior_auricular_vein")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "posterior_auricular_vein")
         {
             errorMessage = "Пальпируется не то место";
             return false;
         }
 
-        this.BloodInsidePavilion(ref tool, colliderTag, "posterior_auricular_vein_final_target");
+        this.BloodInsidePavilion(colliderTag, "posterior_auricular_vein_final_target");
 
         return true;
     }
 
-    public override int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
     {
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(ref tool, actionCode, ref _currentBallLiquid)) return null;
-        if (this.RemoveBallsAction(ref tool, actionCode)) return null;
+        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.RemoveBallsAction(actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.VenflonInstallation(ref tool, actionCode, ref errorMessage, locatedColliderTag, out returnedStep,
-            "around_neck", "temple", "posterior_auricular_vein", "posterior_auricular_vein", "posterior_auricular_vein_final_target", ref _currentBallLiquid, true))
+        if (this.VenflonInstallation(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "around_neck", "temple", 
+            "posterior_auricular_vein", "posterior_auricular_vein", "posterior_auricular_vein_final_target", ref _currentBallLiquid, true))
             return returnedStep;
 
         // Критическая ошибка
-        if (tool.CodeName == "venflon" && actionCode == "remove")
+        if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "remove")
         {
             errorMessage = "Катетер был извлечен. Катетеризация провалена";
             return null;

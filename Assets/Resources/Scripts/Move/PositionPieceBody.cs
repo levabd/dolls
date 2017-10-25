@@ -43,7 +43,7 @@ public class PositionPieceBody : MonoBehaviour {
                 //print("получил луч");
                 GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
                 
-                CheckPosition = CurrentExam.Instance.Exam.Move(ref CurrentTool.Instance.Tool, hit.transform.gameObject.tag, out errorMessage);
+                CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);

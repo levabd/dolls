@@ -38,40 +38,36 @@ interface IExamInterface
     /// <summary>
     /// Collider intersection checking
     /// </summary>
-    /// <param name="tool">Current medical tool</param>
     /// <param name="colliderTag">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <returns>True if moving is valid. Othervise False with errorMessage</returns>
-    bool CheckMove(ref ToolItem tool, string colliderTag, out string errorMessage);
+    bool CheckMove(string colliderTag, out string errorMessage);
 
     /// <summary>
     /// Collider intersection checking
     /// </summary>
-    /// <param name="tool">Current medical tool</param>
     /// <param name="colliderTag">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <returns>True if moving is valid. Othervise False with errorMessage</returns>
-    bool Move(ref ToolItem tool, string colliderTag, out string errorMessage);
+    bool Move(string colliderTag, out string errorMessage);
 
     /// <summary>
     /// Action step checking
     /// </summary>
-    /// <param name="tool">Current medical tool</param>
     /// <param name="actionCode">Tool action codename</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int? CheckAction(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
+    int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "");
 
     /// <summary>
     /// Action step checking
     /// </summary>
-    /// <param name="tool">Current medical tool</param>
     /// <param name="actionCode">Tool action codename</param>
     /// <param name="errorMessage">Displayed error message</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    bool Action(ref ToolItem tool, string actionCode, out string errorMessage, string locatedColliderTag = "");
+    bool Action(string actionCode, out string errorMessage, string locatedColliderTag = "");
 
     /// <summary>
     /// Final steps check
