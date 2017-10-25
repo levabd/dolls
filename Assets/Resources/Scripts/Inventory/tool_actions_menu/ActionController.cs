@@ -117,7 +117,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
                
                 break;
@@ -158,7 +158,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
                 
                 break;
@@ -191,7 +191,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
                
                 break;
@@ -224,7 +224,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
 
                 break;
@@ -280,7 +280,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
                 
                 break;
@@ -301,7 +301,7 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("Action Name error " + toolItem.CodeName);
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }               
                 break;
 
@@ -328,7 +328,7 @@ public class ActionController : MonoBehaviour {
 			    }
 			    else
 			    {
-				    Debug.Log("Action Name error " + toolItem.CodeName);
+				    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
 			    }               
 			    break;
 
