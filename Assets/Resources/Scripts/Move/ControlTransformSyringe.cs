@@ -7,17 +7,16 @@ public class ControlTransformSyringe : MonoBehaviour {
 
     // Use this for initialization
 
-
     private GameObject Syringe;
     private GameObject SyringeModel;
     public Text ToolAngels;
     private int toolAngel = 0;
     private int stepCounter = 0;
     public bool EndNeedleInCollider = false;
+
     void Start () {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
-
 	}
 	
 	// Update is called once per frame
@@ -25,12 +24,12 @@ public class ControlTransformSyringe : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != 80)
         {
             IncreaseAngle();
-            print($"{CurrentTool.Instance.Tool.StateParams["entry_age"]}");
+            print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
         }
         if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != -10)
         {
             ReduceAngle();
-            print($"{CurrentTool.Instance.Tool.StateParams["entry_age"]}");
+            print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
         }
         if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
         {
@@ -46,14 +45,14 @@ public class ControlTransformSyringe : MonoBehaviour {
     {
         Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
         toolAngel += 10;
-        CurrentTool.Instance.Tool.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
+        CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
 
     }
     public void ReduceAngle()
     {
         Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
         toolAngel -= 10;
-        CurrentTool.Instance.Tool.StateParams["entry_age"] = System.Convert.ToString(toolAngel);
+        CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
 
     }
     public void TransformIn()
