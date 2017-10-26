@@ -61,6 +61,7 @@ public static class SyringeHelper
             { "a45_d8_punction_needle", 2},
             { "a45_d4_d14_punction_needle", 2}
         };
+        errorMessage = "";
 
         List<string> needleList = new List<string>(needleDict.Keys);     
 
@@ -83,7 +84,6 @@ public static class SyringeHelper
                 return false;
         }
 
-        errorMessage = "";
         return true;
     }
 

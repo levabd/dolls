@@ -10,28 +10,25 @@ public class EndExamControlPanel : MonoBehaviour {
     private bool PassedExam;
     private bool ActiveEndPanel = false;
 
-
     public Transform TargetTransform;
     public Transform PassedBackgroundPanel;
     public Transform NotPassedBackgroundPanel;
-        public Transform BlueEndPanel;
-        public Transform RedEndPanel;
-            public Transform HeadPanel;
-                public Text HeadPanelText;
-            public Transform ErrorMessagePanel;
-                public Text ErrorMessagePanelText;
-            public Transform ButtonPanel;
-
-
-
+    public Transform BlueEndPanel;
+    public Transform RedEndPanel;
+    public Transform HeadPanel;
+    public Text HeadPanelText;
+    public Transform ErrorMessagePanel;
+    public Text ErrorMessagePanelText;
+    public Transform ButtonPanel;
 
 
     void Start () {
+        errorMessage = "";
+        ErrorMessagePanelText.text = "";
         //ActiveEndPanel = true;
         //PassedExam = false;
         //errorMessage = "fgfgfgfgfg";
 	}
-	
 
 	void Update () {
 
@@ -50,6 +47,7 @@ public class EndExamControlPanel : MonoBehaviour {
         }
 
 	}
+
     void ActivePassedPanel()
     {
         Transform panel = Instantiate(PassedBackgroundPanel);
@@ -66,8 +64,11 @@ public class EndExamControlPanel : MonoBehaviour {
 
         
     }
+
     void ActiveNotPassedPanel()
     {
+        Debug.Log($"ActiveNotPassedPanel {errorMessage}");
+        ErrorMessagePanelText.text = errorMessage;
         Transform panel = Instantiate(NotPassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
         
@@ -78,18 +79,20 @@ public class EndExamControlPanel : MonoBehaviour {
         HeadPanelText.text = "Экзамен не пройден";
         Transform ErrorMessageInMiniPanel = Instantiate(ErrorMessagePanel);
         ErrorMessageInMiniPanel.transform.SetParent(miniPanel, false);
-        ErrorMessagePanelText.text = errorMessage;
         Transform ButtonInMiniPanel = Instantiate(ButtonPanel);
         ButtonInMiniPanel.transform.SetParent(miniPanel, false);
         
     }
+
     public void GoToExaminingMenuScene()
     {
         Application.LoadLevel("Examining_menu_scene");
     }
+
     public void EndExam(bool PassedExam, string errorMessage = "")
     {
         this.errorMessage = errorMessage;
+        Debug.Log($" EndExam{errorMessage}");
         this.PassedExam = PassedExam;
         ActiveEndPanel = true;
     }
