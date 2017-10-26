@@ -181,7 +181,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
-                            Destroy(GameObject.Find("Transform/Conductor(Clone)"));
+                            Destroy(GameObject.Find("TransformCatheter/Conductor(Clone)"));
                             CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
 
                             break;
@@ -214,7 +214,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
-                            Destroy(GameObject.Find("Transform/Conductor(Clone)"));
+                            Destroy(GameObject.Find("TransformCatheter/Conductor(Clone)"));
                             CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
 
                             break;
