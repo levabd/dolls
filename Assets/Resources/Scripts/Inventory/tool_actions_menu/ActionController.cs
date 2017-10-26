@@ -173,8 +173,8 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
 
-                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
-                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.Transform);
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 6f);
+                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "pull":
@@ -182,7 +182,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
                             Destroy(GameObject.Find("Transform/Conductor(Clone)"));
-                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
 
                             break;
                         default:
@@ -206,8 +206,8 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
 
-                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.Transform, 6f);
-                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.Transform);
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 6f);
+                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "pull":
@@ -215,7 +215,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
                             Destroy(GameObject.Find("Transform/Conductor(Clone)"));
-                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.Transform, 6f);
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
 
                             break;
                         default:
