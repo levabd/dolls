@@ -36,7 +36,7 @@ public class MainLogController : MonoBehaviour {
         mainLogItem.transform.SetParent(mainLogDisplay.transform, false);
         Debug.Log(actionLog);
         mainLogItem.text = actionLog;
-        activeControl = false;
+        
 
         if (trueColor)
         {
@@ -46,8 +46,12 @@ public class MainLogController : MonoBehaviour {
         {
             mainLogItem.color = new Color(255, 0, 0);
         }
+        Canvas.ForceUpdateCanvases();
+        GameObject.Find("Scroll View").GetComponent<ScrollRect>().verticalScrollbar.value = 0f;
+        Canvas.ForceUpdateCanvases();
 
-       // GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+        activeControl = false;
+        // GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         // int cCount = mainLogDisplay.transform.childCount;
         // int width = 932;
         // int height = ;

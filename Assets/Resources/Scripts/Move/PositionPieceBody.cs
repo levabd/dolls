@@ -41,7 +41,10 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //print("получил луч");
-                GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
+                if (GameObject.Find("Skin/ActionPositionPoint"))
+                {
+                    GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
+                }               
                 
                 CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
