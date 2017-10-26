@@ -238,40 +238,40 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка катетера по проводнику"); }
 
-							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.Transform);
+							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "remove":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление катетера"); }
 
-                            Destroy (GameObject.Find ("Transform/Catheter(Clone)"));
-							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.Transform, 5f);
+                            Destroy (GameObject.Find ("TransformCatheter/Catheter(Clone)"));
+							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.CatheterTransform, 5f);
 
                             break;
                         case "liquid_transfusion_connection":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации подключение катетера к системе переливания жидкостей"); }
 
-                            CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.Transform, 1500f);
+                            CreateFromPrefab (TCSWC.CatheterTransfusion, TCSWC.CatheterTransform, 1500f);
 
                             break;
 						case "rotation_insertion":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику вращательными движениями"); }
 
-                            Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.Transform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
+                            Destroy (GameObject.Find ("TransformCatheter/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.CatheterTransform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
 							
                             break;
 						case "direct_insertion":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику прямым движением"); }
 
-                            Destroy (GameObject.Find ("Transform/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.Transform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.Transform);
+                            Destroy (GameObject.Find ("TransformCatheter/CatcheterInConductor(Clone)"));
+							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.CatheterTransform, 6f);
+							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
 
                             break;
                         default:
