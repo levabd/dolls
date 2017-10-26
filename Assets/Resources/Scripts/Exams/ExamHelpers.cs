@@ -129,7 +129,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref CurrentTool.Instance.Tool, actionCode, "spirit_p70", out errorMessage);
+            BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             currentBallLiquid = "spirit";
@@ -141,7 +141,7 @@ public static class ExamHelpers
         {
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            TweezersHelper.GetBalls(ref CurrentTool.Instance.Tool, currentBallLiquid);
+            TweezersHelper.GetBalls(currentBallLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -176,7 +176,7 @@ public static class ExamHelpers
         //{ "iodine_balls",                   "Промокнуть марлевые шарики 1% раствором йодоната" },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("iodine"))
         {
-            BallHelper.TryWetBall(ref CurrentTool.Instance.Tool, actionCode, "iodine_p1", out errorMessage);
+            BallHelper.TryWetBall(actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
             currentBallLiquid = "iodine";
@@ -215,7 +215,7 @@ public static class ExamHelpers
         }
 
         // { "puncture_needle",                "Взять иглу для забора крови" },
-		if (exam.GetNeedleAction(ref CurrentTool.Instance.Tool, actionCode, ref errorMessage, "simple_needle", 1))
+		if (exam.GetNeedleAction(actionCode, ref errorMessage, "simple_needle", 1))
         {
             returnedStep = 2;
             return true;
@@ -250,7 +250,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref CurrentTool.Instance.Tool, actionCode, "spirit_p70", out errorMessage);
+            BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             returnedStep = exam.LastTakenStep() == 4 ? 5 : 12;
             returnedStep = injection ? returnedStep + 1 : returnedStep;
             currentBallLiquid = "spirit";
@@ -424,7 +424,7 @@ public static class ExamHelpers
         //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
-            BallHelper.TryWetBall(ref CurrentTool.Instance.Tool, actionCode, "spirit_p70", out errorMessage);
+            BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             currentBallLiquid = "spirit";
             returnedStep = 4;
             return true;
