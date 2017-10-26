@@ -63,6 +63,10 @@ public class PositionPieceBody : MonoBehaviour {
                     if (CurrentTool.Instance.Tool.name == "patch")
                     {
                         actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 2000f);
+                        if (GameObject.Find("HandWithPatch(Clone)"))
+                        {
+                            GameObject.Find("HandWithPatch(Clone)").transform.localEulerAngles = new Vector3(43, 0, 0);
+                        }
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {
