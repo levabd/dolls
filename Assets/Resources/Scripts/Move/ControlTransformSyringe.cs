@@ -21,12 +21,12 @@ public class ControlTransformSyringe : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != 80)
+        if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != 80)
         {
             IncreaseAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
         }
-        if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != -10)
+        if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != -10)
         {
             ReduceAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
@@ -43,14 +43,14 @@ public class ControlTransformSyringe : MonoBehaviour {
     }
     public void IncreaseAngle()
     {
-        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
+        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
         toolAngel += 10;
         CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
 
     }
     public void ReduceAngle()
     {
-        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
+        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
         toolAngel -= 10;
         CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
 
