@@ -73,7 +73,7 @@ public abstract class BaseExam: IExamInterface
         if (_takenSteps.Count != CorrectSteps.Count)
             return false;
         
-        int currentStepNumber = 0;
+        int currentStepNumber = 1;
         foreach (var step in _takenSteps)
         {
             if (step.Item1 != currentStepNumber)

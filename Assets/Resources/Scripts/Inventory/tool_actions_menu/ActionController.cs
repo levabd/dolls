@@ -99,6 +99,8 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "piston_pulling":
                             //Debug.Log("piston_pulling Enter");
+                           // TCSWC.SyringeEloneOff.transform.GetChild(0).gameObject.
+
                             break;
                         case "filling_novocaine_half":
 					
