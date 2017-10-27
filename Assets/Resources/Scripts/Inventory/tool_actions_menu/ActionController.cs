@@ -12,6 +12,7 @@ public class ActionController : MonoBehaviour {
 	public ToolControllerSyringeWithConductor TCSWC;
 	public ToolControllerSkin TCS;
 	public GameObject ActionPositionPoint;
+    public Material syringe_mat;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,7 +24,15 @@ public class ActionController : MonoBehaviour {
         {
             CheckAction();
         }
-      
+        
+    }
+
+
+    public void BloodAnimation()
+    {        
+            Material[] mats = TCSWC.SyringeEloneOff.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+            mats[0] = syringe_mat;
+            TCSWC.SyringeEloneOff.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;  
     }
 
 	public void OnActionPosition(GameObject position, string tag)
@@ -98,9 +107,8 @@ public class ActionController : MonoBehaviour {
 
                             break;
                         case "piston_pulling":
-                            //Debug.Log("piston_pulling Enter");
-                           // TCSWC.SyringeEloneOff.transform.GetChild(0).gameObject.
-
+                            //Debug.Log("piston_pulling Enter");   
+                            BloodAnimation();
                             break;
                         case "filling_novocaine_half":
 					
