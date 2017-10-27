@@ -53,11 +53,11 @@ public class EndExamControlPanel : MonoBehaviour {
         Transform panel = Instantiate(PassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
         
+        HeadPanelText.text = "Экзамен пройден"; 
         Transform miniPanel = Instantiate(BlueEndPanel);
         miniPanel.transform.SetParent(panel, false);
         Transform HeadInMiniPanel = Instantiate(HeadPanel);
         HeadInMiniPanel.transform.SetParent(miniPanel, false);
-        HeadPanelText.text = "Экзамен пройден"; 
         Transform ButtonInMiniPanel = Instantiate(ButtonPanel);
         ButtonInMiniPanel.transform.SetParent(miniPanel, false);
         

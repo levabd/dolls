@@ -172,12 +172,14 @@ public static class SyringeHelper
     {
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag.Contains(targetColliderTag))
         {
+            ActionController actionController = new ActionController();
             bool pistonPulling = false;
             if (CurrentTool.Instance.Tool.StateParams.ContainsKey("piston_pulling"))
                 pistonPulling = Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
 
             if (pistonPulling)
                 CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
+                actionController.BloodAnimation();
                 // Запустить анимацию крови
 
             return true;
