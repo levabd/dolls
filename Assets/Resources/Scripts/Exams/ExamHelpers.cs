@@ -3,6 +3,45 @@
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
 {
+    public static bool GenericMoveHelper(this BaseExam exam, string colliderTag, string finalColliderTag, ref string errorMessage)
+    {
+
+        if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon")
+            && colliderTag != finalColliderTag && colliderTag != "vien_target")
+        {
+            errorMessage = "Пункция не в том месте";
+            if (exam.NeedleInsideTarget) // Прошли вену навылет
+                errorMessage = "Прошли вену навылет. Гематома";
+            return false;
+        }
+
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && colliderTag != "disinfection_target")
+        {
+            errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_target")
+        {
+            errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "tourniquet_target")
+        {
+            errorMessage = "Не туда наложен жгут";
+            return false;
+        }
+
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target")
+        {
+            errorMessage = "Пальпируется не то место";
+            return false;
+        }
+
+        return true;
+    }
+
     public static bool CateterFinalise(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, string catheterConductor, int expectedFirstStep, out int returnedStep)
     {
         //{ "wire_insertion",                 "Вставка проводника." },
@@ -97,7 +136,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetySpiritIodine(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, string targetLocatedColliderTag, out int returnedStep, ref string currentBallLiquid, bool wearGown = false, bool shave = false)
+    public static bool BiosafetySpiritIodine(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Побрить лобковую зону" },
         if (shave && CurrentTool.Instance.Tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -132,7 +171,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             returnedStep = !wearGown ? 2 : 3;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
-            currentBallLiquid = "spirit";
+            exam.CurrentBallLiquid = "spirit";
             return true;
         }
 
@@ -141,7 +180,7 @@ public static class ExamHelpers
         {
             int lastStep4Spirit = !wearGown ? 2 : 3;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
-            TweezersHelper.GetBalls(currentBallLiquid);
+            TweezersHelper.GetBalls(exam.CurrentBallLiquid);
             returnedStep = exam.LastTakenStep() == lastStep4Spirit ? 3 : 6;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
@@ -152,7 +191,7 @@ public static class ExamHelpers
         //{ "iodine_disinfection",            "Дезинфекция йодом. Протереть сверху вниз." },
         if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "top_down")
         {
-            if (locatedColliderTag != targetLocatedColliderTag)
+            if (locatedColliderTag != "disinfection_target")
                 errorMessage = "Дезинфекцию надо делать не тут";
 
             int lastStep4Spirit = !wearGown ? 3 : 4;
@@ -179,7 +218,7 @@ public static class ExamHelpers
             BallHelper.TryWetBall(actionCode, "iodine_p1", out errorMessage);
             returnedStep = !wearGown ? 5 : 6;
             returnedStep = !shave ? returnedStep : returnedStep + 1;
-            currentBallLiquid = "iodine";
+            exam.CurrentBallLiquid = "iodine";
             return true;
         }
 
@@ -200,8 +239,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool FenceInjections(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
-        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool injection = false)
+    public static bool FenceInjections(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, bool injection = false)
     {
         // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
@@ -231,7 +269,7 @@ public static class ExamHelpers
         // { "tourniquet",                     "Взять жгут и наложить" },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
-            if (!locatedColliderTag.Contains(tourniquetCollider))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             // Вена увеличивается.
             returnedStep = injection ? 4 : 3;
@@ -241,7 +279,7 @@ public static class ExamHelpers
         // { "palpation",                      "Пальпируем вену." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains(palpationCollider))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             returnedStep = injection ? 5 : 4;
             return true;
@@ -253,14 +291,14 @@ public static class ExamHelpers
             BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             returnedStep = exam.LastTakenStep() == 4 ? 5 : 12;
             returnedStep = injection ? returnedStep + 1 : returnedStep;
-            currentBallLiquid = "spirit";
+            exam.CurrentBallLiquid = "spirit";
             return true;
         }
 
         // { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
         {
-            if (locatedColliderTag != disinfectionCollider)
+            if (locatedColliderTag != "disinfection_target")
                 errorMessage = "Дезинфекцию надо делать не тут";
             returnedStep = injection ? 7 : 6;
             return true;
@@ -287,7 +325,7 @@ public static class ExamHelpers
         // { "stretch_the_skin",               "Натянуть кожу." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "stretch_the_skin")
         {
-            if (!locatedColliderTag.Contains(stretchCollider))
+            if (!locatedColliderTag.Contains("stretch_target"))
                 errorMessage = "Натянуто не то место";
             returnedStep = injection ? 10 : 9;
             return true;
@@ -322,7 +360,7 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains(tourniquetCollider))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             // Вена руки уменьшается.
             returnedStep = 11;
@@ -349,7 +387,7 @@ public static class ExamHelpers
         // { "attach_balls",                  "Прикладываем к месту инъекции ватный шарик." },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "attach_balls")
         {
-            if (locatedColliderTag != disinfectionCollider)
+            if (locatedColliderTag != "disinfection_target")
                 errorMessage = "Дезинфекцию надо делать не тут";
             returnedStep = injection ? 14 : 13;
             return true;
@@ -388,8 +426,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool VenflonInstallation(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep,
-        string tourniquetCollider, string disinfectionCollider, string palpationCollider, string stretchCollider, string finalTarget, ref string currentBallLiquid, bool head = false)
+    public static bool VenflonInstallation(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, bool head = false)
     {
         // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
@@ -405,7 +442,7 @@ public static class ExamHelpers
         // { "tourniquet",                     "Взять жгут и наложить" },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
-            if (!locatedColliderTag.Contains(tourniquetCollider))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             // Вена увеличивается.
             returnedStep = 2;
@@ -415,7 +452,7 @@ public static class ExamHelpers
         // { "palpation",                      "Пальпируем вену." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains(palpationCollider))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             returnedStep = 3;
             return true;
@@ -425,7 +462,7 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
         {
             BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
-            currentBallLiquid = "spirit";
+            exam.CurrentBallLiquid = "spirit";
             returnedStep = 4;
             return true;
         }
@@ -433,7 +470,7 @@ public static class ExamHelpers
         // { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
         {
-            if (locatedColliderTag != disinfectionCollider)
+            if (locatedColliderTag != "disinfection_target")
                 errorMessage = "Дезинфекцию надо делать не тут";
             returnedStep = 5;
             return true;
@@ -460,7 +497,7 @@ public static class ExamHelpers
         // { "stretch_the_skin",               "Натянуть кожу." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "stretch_the_skin")
         {
-            if (!locatedColliderTag.Contains(stretchCollider))
+            if (!locatedColliderTag.Contains("stretch_target"))
                 errorMessage = "Натянуто не то место";
             returnedStep = 8;
             return true;
@@ -487,7 +524,7 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains(tourniquetCollider))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             returnedStep = 10;
             return true;

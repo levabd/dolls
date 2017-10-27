@@ -3,9 +3,6 @@
 // ReSharper disable once CheckNamespace
 class Exam17 : BaseExam
 {
-    private bool _needleInsideTarget;
-    private string _currentBallLiquid = "none";
-
     public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
     public override string LoadName => "Exam17";
 
@@ -146,33 +143,10 @@ class Exam17 : BaseExam
         }
 
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
-            _needleInsideTarget = true;
+            NeedleInsideTarget = true;
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "great_saphenous_vein_final_target" && colliderTag != "great_saphenous_vein")
-        {
-            errorMessage = "Пункция не в том месте";
-            if (_needleInsideTarget) // Прошли вену навылет
-                errorMessage = "Гематома";
+        if (!this.GenericMoveHelper(colliderTag, "great_saphenous_vein_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && colliderTag != "foot")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "thigh")
-        {
-            errorMessage = "Не туда наложен жгут";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "great_saphenous_vein")
-        {
-            errorMessage = "Пальпируется не то место";
-            return false;
-        }
 
         return true;
     }
@@ -183,7 +157,7 @@ class Exam17 : BaseExam
 
         // Безопасные операции
 
-		if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+		if (this.BallClearAction(actionCode)) return null;
 
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
@@ -192,8 +166,7 @@ class Exam17 : BaseExam
         int returnedStep;
 
 
-		if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "thigh", "foot", 
-            "great_saphenous_vein", "great_saphenous_vein", "great_saphenous_vein_final_target", ref _currentBallLiquid))
+		if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "great_saphenous_vein_final_target"))
 
             return returnedStep;
 

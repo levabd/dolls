@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam5 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №5 Внутренняя яремная вена (центральный доступ)";
     public override string LoadName => "Exam5";
@@ -170,29 +169,8 @@ class Exam5 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "internal_jugular_vein_final_target" && colliderTag != "internal_jugular_vein")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "internal_jugular_vein_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_internal_jugular_vein")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "carotid_artery")
-        {
-            errorMessage = "Не туда наложен жгут";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "carotid_artery")
-        {
-            errorMessage = "Пальпируется не то место";
-            return false;
-        }
 
         this.BloodInsideMove(colliderTag, "internal_jugular_vein_final_target");
 
@@ -204,7 +182,7 @@ class Exam5 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -212,12 +190,12 @@ class Exam5 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_internal_jugular_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем сонную артерию." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains("carotid_artery"))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             return 9;
         }

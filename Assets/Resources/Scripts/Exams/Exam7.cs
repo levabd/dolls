@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam7 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №7 Внутренняя яремная вена (передний доступ)";
     public override string LoadName => "Exam7";
@@ -169,19 +168,10 @@ class Exam7 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "internal_jugular3_vein_final_target" && colliderTag != "internal_jugular3_vein")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "internal_jugular_vein_final_target", ref errorMessage))
             return false;
-        }
 
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_internal_jugular3_vein")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
-
-        this.BloodInsideMove(colliderTag, "internal_jugular3_vein_final_target");
+        this.BloodInsideMove(colliderTag, "internal_jugular_vein_final_target");
 
         return true;
     }
@@ -191,7 +181,7 @@ class Exam7 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -199,12 +189,12 @@ class Exam7 : BaseExam
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_internal_jugular3_vein", out returnedStep, ref _currentBallLiquid, true)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, true)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем сонную артерию." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains("carotid_artery"))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             return 10;
         }

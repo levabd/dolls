@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam8 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №8 Наружная яремная вена";
     public override string LoadName => "Exam8";
@@ -164,17 +163,8 @@ class Exam8 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "external_jugular_vein_final_target" && colliderTag != "external_jugular_vein")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "external_jugular_vein_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_external_jugular_vein")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
 
         this.BloodInsideMove(colliderTag, "external_jugular_vein_final_target");
 
@@ -186,7 +176,7 @@ class Exam8 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -194,7 +184,7 @@ class Exam8 : BaseExam
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_external_jugular_vein", out returnedStep, ref _currentBallLiquid, true)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, true)) return returnedStep;
 
         //{ "clamp_the_vein",                 "Cдавливаем наружную яремную вену." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")

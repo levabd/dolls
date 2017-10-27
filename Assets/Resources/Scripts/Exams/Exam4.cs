@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam4 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №4 Подмышенчая вена";
     public override string LoadName => "Exam4";
@@ -166,29 +165,8 @@ class Exam4 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "axillary_vien" && colliderTag != "axillary_vien_final_target")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "axillary_vien_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "axillary_artery")
-        {
-            errorMessage = "Не туда наложен жгут";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "axillary_artery")
-        {
-            errorMessage = "Пальпируется не то место";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_axillary_region")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
 
         this.BloodInsideMove(colliderTag, "axillary_vien_final_target");
 
@@ -200,7 +178,7 @@ class Exam4 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -208,12 +186,12 @@ class Exam4 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_axillary_region", out returnedStep, ref _currentBallLiquid)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep)) return returnedStep;
 
         //{ "palpation",                      "Пальпируем подмышечную артерию." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains("axillary_artery"))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             return 9;
         }
@@ -221,7 +199,7 @@ class Exam4 : BaseExam
         //{ "tourniquet",                     "Взять жгут и наложить на артерию." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
-            if (!locatedColliderTag.Contains("axillary_artery"))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             return 10;
         }
@@ -236,7 +214,7 @@ class Exam4 : BaseExam
         //{ "tourniquet",                     "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains("axillary_artery"))
+            if (!locatedColliderTag.Contains("tourniquet_target"))
                 errorMessage = "Не туда наложен жгут";
             return 13;
         }

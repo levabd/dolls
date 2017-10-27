@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam9 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №9 Бедренная вена";
     public override string LoadName => "Exam9";
@@ -178,23 +177,8 @@ class Exam9 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "femoral_vien_final_target" && colliderTag != "femoral_vien_target")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "femoral_vien_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "inguinal_area")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "femoral_artery")
-        {
-            errorMessage = "Пальпируется не то место";
-            return false;
-        }
 
         this.BloodInsideMove(colliderTag, "femoral_vien_final_target");
 
@@ -206,7 +190,7 @@ class Exam9 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -214,7 +198,7 @@ class Exam9 : BaseExam
         int returnedStep;
 
         // Перчатки + Халат + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "inguinal_area", out returnedStep, ref _currentBallLiquid, true, true)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, true, true)) return returnedStep;
 
         // { "sterile_tissue",                    "Накрываем операционное поле стерильными салфетками." },
         if (CurrentTool.Instance.Tool.CodeName == "sterile_tissue" && actionCode == "put")

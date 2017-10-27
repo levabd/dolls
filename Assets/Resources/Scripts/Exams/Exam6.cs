@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam6 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №6 Внутренняя яремная вена (задний доступ)";
     public override string LoadName => "Exam6";
@@ -156,17 +155,8 @@ class Exam6 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "internal_jugular2_vein_final_target" && colliderTag != "internal_jugular2_vein")
-        {
-            errorMessage = "Пункция не в том месте";
+        if (!this.GenericMoveHelper(colliderTag, "internal_jugular2_vein_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_internal_jugular2_vein")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
 
         this.BloodInsideMove(colliderTag, "internal_jugular2_vein_final_target");
 
@@ -178,7 +168,7 @@ class Exam6 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
         if (actionCode == "null") return null;
@@ -186,7 +176,7 @@ class Exam6 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт + Йод
-        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, "disinfection_internal_jugular2_vein", out returnedStep, ref _currentBallLiquid)) return returnedStep;
+        if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag, out returnedStep)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
         if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;

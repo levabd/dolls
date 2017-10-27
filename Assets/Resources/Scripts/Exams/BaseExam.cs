@@ -9,6 +9,9 @@ public abstract class BaseExam: IExamInterface
 
     public TupleList<int, bool, string> TakenSteps => _takenSteps;
 
+    public string CurrentBallLiquid = "none";
+    public bool NeedleInsideTarget;
+
     public int LastTakenStep()
     {
         int lastStep = 0;

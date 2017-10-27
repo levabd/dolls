@@ -3,8 +3,6 @@
 // ReSharper disable once CheckNamespace
 class Exam20 : BaseExam
 {
-    private bool _needleInsideTarget;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Периферический венозный доступ №20 Постановка внутривенного катетера venflon в вену скальпа";
     public override string LoadName => "Exam20";
@@ -139,33 +137,10 @@ class Exam20 : BaseExam
         }
 
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
-            _needleInsideTarget = true;
+            NeedleInsideTarget = true;
 
-        if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag != "posterior_auricular_vein_final_target" && colliderTag != "posterior_auricular_vein")
-        {
-            errorMessage = "Пункция не в том месте";
-            if (_needleInsideTarget) // Прошли вену навылет
-                errorMessage = "Гематома";
+        if (!this.GenericMoveHelper(colliderTag, "posterior_auricular_vein_final_target", ref errorMessage))
             return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && colliderTag != "temple")
-        {
-            errorMessage = "Дезинфекция не в том месте";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && colliderTag != "around_neck")
-        {
-            errorMessage = "Не туда наложен жгут";
-            return false;
-        }
-
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "posterior_auricular_vein")
-        {
-            errorMessage = "Пальпируется не то место";
-            return false;
-        }
 
         this.BloodInsidePavilion(colliderTag, "posterior_auricular_vein_final_target");
 
@@ -177,14 +152,13 @@ class Exam20 : BaseExam
         errorMessage = "";
 
         // Безопасные операции
-        if (this.BallClearAction(actionCode, ref _currentBallLiquid)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
 
-        if (this.VenflonInstallation(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "around_neck", "temple", 
-            "posterior_auricular_vein", "posterior_auricular_vein", "posterior_auricular_vein_final_target", ref _currentBallLiquid, true))
+        if (this.VenflonInstallation(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "posterior_auricular_vein_final_target", true))
             return returnedStep;
 
         // Критическая ошибка
