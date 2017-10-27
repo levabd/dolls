@@ -26,7 +26,7 @@ public class EndExamControlPanel : MonoBehaviour {
         errorMessage = "";
         ErrorMessagePanelText.text = "";
         //ActiveEndPanel = true;
-        //PassedExam = false;
+        //PassedExam = true;
         //errorMessage = "fgfgfgfgfg";
 	}
 
@@ -52,17 +52,18 @@ public class EndExamControlPanel : MonoBehaviour {
     {
         Transform panel = Instantiate(PassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
-        
+
+        ErrorMessagePanelText.text = errorMessage;
         HeadPanelText.text = "Экзамен пройден"; 
         Transform miniPanel = Instantiate(BlueEndPanel);
         miniPanel.transform.SetParent(panel, false);
         Transform HeadInMiniPanel = Instantiate(HeadPanel);
         HeadInMiniPanel.transform.SetParent(miniPanel, false);
+        Transform ErrorMessageInMiniPanel = Instantiate(ErrorMessagePanel);
+        ErrorMessageInMiniPanel.transform.SetParent(miniPanel, false);
         Transform ButtonInMiniPanel = Instantiate(ButtonPanel);
         ButtonInMiniPanel.transform.SetParent(miniPanel, false);
-        
 
-        
     }
 
     void ActiveNotPassedPanel()
@@ -72,16 +73,15 @@ public class EndExamControlPanel : MonoBehaviour {
         Transform panel = Instantiate(NotPassedBackgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
         
+        HeadPanelText.text = "Экзамен не пройден";
         Transform miniPanel = Instantiate(RedEndPanel);
         miniPanel.transform.SetParent(panel, false);
         Transform HeadInMiniPanel = Instantiate(HeadPanel);
         HeadInMiniPanel.transform.SetParent(miniPanel, false);
-        HeadPanelText.text = "Экзамен не пройден";
         Transform ErrorMessageInMiniPanel = Instantiate(ErrorMessagePanel);
         ErrorMessageInMiniPanel.transform.SetParent(miniPanel, false);
         Transform ButtonInMiniPanel = Instantiate(ButtonPanel);
-        ButtonInMiniPanel.transform.SetParent(miniPanel, false);
-        
+        ButtonInMiniPanel.transform.SetParent(miniPanel, false);   
     }
 
     public void GoToExaminingMenuScene()
