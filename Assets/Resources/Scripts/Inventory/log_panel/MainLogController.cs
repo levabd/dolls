@@ -34,10 +34,8 @@ public class MainLogController : MonoBehaviour {
         
         Text mainLogItem = Instantiate(mainLogItemPrefab);
         mainLogItem.transform.SetParent(mainLogDisplay.transform, false);
-        Debug.Log(actionLog);
         mainLogItem.text = actionLog;
         
-
         if (trueColor)
         {
             mainLogItem.color = new Color(0, 255, 0); 

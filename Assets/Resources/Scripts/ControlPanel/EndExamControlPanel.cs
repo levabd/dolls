@@ -92,7 +92,7 @@ public class EndExamControlPanel : MonoBehaviour {
     public void EndExam(bool PassedExam, string errorMessage = "")
     {
         this.errorMessage = errorMessage;
-        Debug.Log($" EndExam{errorMessage}");
+        //Debug.Log($" EndExam{errorMessage}");
         this.PassedExam = PassedExam;
         ActiveEndPanel = true;
     }

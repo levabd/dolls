@@ -68,6 +68,7 @@ public class PositionPieceBody : MonoBehaviour {
                             GameObject.Find("HandWithPatch(Clone)").transform.localEulerAngles = new Vector3(43, 0, 0);
                         }
                         CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
+                        TIAR.CreateLogEntry();
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
                     {

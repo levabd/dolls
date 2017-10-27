@@ -26,7 +26,16 @@ public class ActionController : MonoBehaviour {
         
     }
 
-    	public void OnActionPosition(GameObject position, string tag)
+    IEnumerator CreateToolFromPrefab(GameObject prefabTool, GameObject transformGO, float waitTime)
+    {        
+        yield return new WaitForSeconds(waitTime);
+        GameObject prefabAmination = Instantiate(prefabTool);
+        prefabAmination.transform.SetParent(transformGO.transform);
+        prefabAmination.transform.localPosition = new Vector3(0, 0, 0);
+        prefabAmination.transform.rotation = transformGO.transform.rotation;
+    }
+
+    public void OnActionPosition(GameObject position, string tag)
 	{
 		position.SetActive (true);
 		position.tag = tag;
@@ -54,15 +63,15 @@ public class ActionController : MonoBehaviour {
 		Destroy (prefabAmination, destroyTime);
 	}
 
-	public void CreateToolFromPrefab(GameObject prefabTool, GameObject transformGO)
-	{
-		//transformGO = TCSWC.Transform;
-		GameObject prefabAmination = Instantiate (prefabTool);
-		prefabAmination.transform.SetParent (transformGO.transform);
-		prefabAmination.transform.localPosition = new Vector3(0,0,0);
-		//prefabAmination.transform.position = transformGO.transform.position;
-		prefabAmination.transform.rotation = transformGO.transform.rotation;
-	}
+	//public void CreateToolFromPrefab(GameObject prefabTool, GameObject transformGO)
+	//{
+	//	//transformGO = TCSWC.Transform;
+	//	GameObject prefabAmination = Instantiate (prefabTool);
+	//	prefabAmination.transform.SetParent (transformGO.transform);
+	//	prefabAmination.transform.localPosition = new Vector3(0,0,0);
+	//	//prefabAmination.transform.position = transformGO.transform.position;
+	//	prefabAmination.transform.rotation = transformGO.transform.rotation;
+	//}
 
     public void ActionControl(bool action, string actionName)
     {
@@ -94,7 +103,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации анестезии"); }                            
 
-							CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 6f);
+							CreateFromPrefab (TCS.AnestesiaCreate, TCS.SkinTransform, 5f);
 
                             break;
                         case "piston_pulling":
@@ -141,7 +150,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
 
 					        OffActionPosition (ActionPositionPoint);
-					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 4.5f);
 
                             break;
                         case "right_left":
@@ -149,7 +158,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(слева-направо)"); }
 
 					        OffActionPosition (ActionPositionPoint);
-					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 3f);
+					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, 4.5f);
 
                             break;
                          default:
@@ -173,8 +182,9 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
 
-                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 6f);
-                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 5f);
+                            StartCoroutine(CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform, 0.1f));
+                            //CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "pull":
@@ -182,7 +192,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
                             Destroy(GameObject.Find("TransformCatheter/Conductor(Clone)"));
-                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 2.5f);
 
                             break;
                         default:
@@ -206,8 +216,9 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка проводника"); }
 
-                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 6f);
-                            CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
+                            CreateFromPrefab(TCSWC.ConductorInANeedleCreate, TCSWC.CatheterTransform, 5f);
+                            StartCoroutine(CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform, 0.1f));
+                            //CreateToolFromPrefab(TCSWC.ConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "pull":
@@ -215,7 +226,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление проводника"); }
 
                             Destroy(GameObject.Find("TransformCatheter/Conductor(Clone)"));
-                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 6f);
+                            CreateFromPrefab(TCSWC.ConductorOutCreate, TCSWC.CatheterTransform, 2.5f);
 
                             break;
                         default:
@@ -238,7 +249,8 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации вставка катетера по проводнику"); }
 
-							CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.CatheterTransform);
+                            StartCoroutine(CreateToolFromPrefab(TCSWC.CatheterInConductorCreate, TCSWC.CatheterTransform, 0.1f));
+                            //CreateToolFromPrefab (TCSWC.CatheterInConductorCreate, TCSWC.CatheterTransform);
 
                             break;
                         case "remove":
@@ -246,7 +258,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление катетера"); }
 
                             Destroy (GameObject.Find ("TransformCatheter/Catheter(Clone)"));
-							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.CatheterTransform, 5f);
+							CreateFromPrefab (TCSWC.CatheterOutCreate, TCSWC.CatheterTransform, 3f);
 
                             break;
                         case "liquid_transfusion_connection":
@@ -261,17 +273,19 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику вращательными движениями"); }
 
                             Destroy (GameObject.Find ("TransformCatheter/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.CatheterTransform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
-							
+							CreateFromPrefab (TCSWC.CatcheterRotateToConductor, TCSWC.CatheterTransform, 4f);
+                            StartCoroutine(CreateToolFromPrefab(TCSWC.CatheterCreate, TCSWC.CatheterTransform, 3f));
+                            //CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
+
                             break;
 						case "direct_insertion":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации углубление катетера по проводнику прямым движением"); }
 
                             Destroy (GameObject.Find ("TransformCatheter/CatcheterInConductor(Clone)"));
-							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.CatheterTransform, 6f);
-							CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
+							CreateFromPrefab (TCSWC.CatcheterToConductorCreate, TCSWC.CatheterTransform, 4f);
+                            StartCoroutine(CreateToolFromPrefab(TCSWC.CatheterCreate, TCSWC.CatheterTransform, 3f));
+                            //CreateToolFromPrefab (TCSWC.CatheterCreate, TCSWC.CatheterTransform);
 
                             break;
                         default:
@@ -320,7 +334,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации удаление иглы"); }
 
-                            CreateFromPrefab (TCSWC.NeedleOutCreate, TCSWC.Transform, 6f);
+                            CreateFromPrefab (TCSWC.NeedleOutCreate, TCSWC.Transform, 3f);
 					        TCSWC.NeedleOff.SetActive (false);
 
 					        break;

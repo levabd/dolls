@@ -8,26 +8,19 @@ public class ControlStatusDisplay : MonoBehaviour {
     public Text examStatus;
     [Header("ToolItem Status Panel")]
     public Text itemStatus;
-    public Image itemStatusSprite;    
-    [Header("ToolAction Status Panel")]
-    public Text ActionStatus;
-    [Header("Error Display Panel")]
-    public Text errorStatus;
+    public Image itemStatusSprite;
+    [Header("Needle Panel")]
+    public GameObject NeedlePanel;
+    [Header("Syringe Hint Panel")]
+    public GameObject HintPanel;
 
     public bool activeControl = false;
 
-    private string examName;
-    private ToolItem item;
-    private string actionName;
-    private string errorMessage;
-
     // Use this for initialization
     void Start () {
-        examStatus.text = "";
+        examStatus.text = CurrentExam.Instance.Exam.Name;
         itemStatus.text = "";
         itemStatusSprite.sprite = null;
-        ActionStatus.text = "";
-        errorStatus.text = "";
     }
 	
 	// Update is called once per frame
@@ -37,23 +30,19 @@ public class ControlStatusDisplay : MonoBehaviour {
         {
             ControlStatusUpdate();
         }    
-	}
-    public void ControlStatus(bool activeControl, string examName,  string actionName, string errorMessage)
-    {
-        this.examName = examName;       
-        this.actionName = actionName;
-        this.errorMessage = errorMessage;
-        this.activeControl = activeControl;
-    }
+	}   
 
     void ControlStatusUpdate()
-    {
-        examStatus.text = examName;
+    {        
         itemStatus.text = CurrentTool.Instance.Tool.Title;
         itemStatusSprite.gameObject.SetActive(true);
         itemStatusSprite.sprite = CurrentTool.Instance.Tool.Sprites[0];
-        ActionStatus.text = actionName;
-        errorStatus.text = errorMessage;
+        if (CurrentTool.Instance.Tool.name != "needle")
+        {
+            GameObject.Find(CurrentTool.Instance.Tool.name + "_item").GetComponentInChildren<Text>().text = CurrentTool.Instance.Tool.Title;
+            GameObject.Find(CurrentTool.Instance.Tool.name + "_item/Image").GetComponentInChildren<Image>().sprite = CurrentTool.Instance.Tool.Sprites[0];
+        }
+            
         activeControl = false;
     }
 }
