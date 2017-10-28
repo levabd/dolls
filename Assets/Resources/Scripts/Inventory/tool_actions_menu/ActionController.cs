@@ -28,25 +28,31 @@ public class ActionController : MonoBehaviour {
     }
 
     IEnumerator CreateToolFromPrefab(GameObject prefabTool, GameObject transformGO, Vector3 prefabRotation, float waitTime)
-    {        
-        yield return new WaitForSeconds(waitTime);
-        GameObject prefabAmination = Instantiate(prefabTool);
-        prefabAmination.name = prefabTool.name;
-        prefabAmination.transform.SetParent(transformGO.transform);
-        prefabAmination.transform.localPosition = new Vector3(0,0,0);
-        prefabAmination.transform.rotation = transformGO.transform.rotation;
-        prefabAmination.transform.localEulerAngles = prefabRotation;
+    {
+        if (!GameObject.Find("TransformSkin/" + prefabTool.name))
+        {
+            yield return new WaitForSeconds(waitTime);
+            GameObject prefabAmination = Instantiate(prefabTool);
+            prefabAmination.name = prefabTool.name;
+            prefabAmination.transform.SetParent(transformGO.transform);
+            prefabAmination.transform.localPosition = new Vector3(0,0,0);
+            prefabAmination.transform.rotation = transformGO.transform.rotation;
+            prefabAmination.transform.localEulerAngles = prefabRotation;
+        }
     }
 
     public void CreateFromPrefab(GameObject prefabTool, GameObject transformGO, Vector3 prefabRotation, float destroyTime)
     {
-        GameObject prefabAmination = Instantiate(prefabTool);
-        prefabAmination.name = prefabTool.name;
-        prefabAmination.transform.SetParent(transformGO.transform);
-        prefabAmination.transform.localPosition = new Vector3(0, 0, 0);
-        prefabAmination.transform.rotation = transformGO.transform.rotation;
-        prefabAmination.transform.localEulerAngles = prefabRotation;
-        Destroy(prefabAmination, destroyTime);
+        if (!GameObject.Find("TransformSkin/" + prefabTool.name))
+        {
+            GameObject prefabAmination = Instantiate(prefabTool);
+            prefabAmination.name = prefabTool.name;
+            prefabAmination.transform.SetParent(transformGO.transform);
+            prefabAmination.transform.localPosition = new Vector3(0, 0, 0);
+            prefabAmination.transform.rotation = transformGO.transform.rotation;
+            prefabAmination.transform.localEulerAngles = prefabRotation;
+            Destroy(prefabAmination, destroyTime);
+        }
     }
 
     public void OnActionPosition(GameObject position, string tag)

@@ -346,7 +346,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1598037016704622
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -371,6 +371,21 @@ GameObject:
   - component: {fileID: 4852860895480270}
   m_Layer: 0
   m_Name: finger_middle.03.R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1679557330870318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4122307631606294}
+  m_Layer: 0
+  m_Name: DesinfectionModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +575,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1998785728935036
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -659,6 +674,21 @@ Transform:
   m_Father: {fileID: 4038461021834404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4122307631606294
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679557330870318}
+  m_LocalRotation: {x: 0, y: 0.60876137, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: -0.37, y: 0, z: 0.121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4827969384914444}
+  - {fileID: 4447041900897236}
+  m_Father: {fileID: 4748740126032854}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 75, z: 0}
 --- !u!4 &4201378578969432
 Transform:
   m_ObjectHideFlags: 1
@@ -735,11 +765,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598037016704622}
   m_LocalRotation: {x: -0.053840514, y: -0.9413784, z: -0.28908658, w: 0.16533886}
-  m_LocalPosition: {x: -2.56, y: 1.87, z: 2.61}
-  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_LocalPosition: {x: -1.11, y: -5.93, z: -3.36}
+  m_LocalScale: {x: 60.000072, y: 60, z: 60.00006}
   m_Children:
   - {fileID: 4973447528521100}
-  m_Father: {fileID: 4748740126032854}
+  m_Father: {fileID: 4122307631606294}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -34.2, y: -160.2, z: 0.4}
 --- !u!4 &4453087395895096
@@ -900,15 +930,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708794023608992}
-  m_LocalRotation: {x: 0.13151513, y: 0.12653325, z: 0.12653325, w: 0.97502947}
-  m_LocalPosition: {x: -0.72, y: -4.95, z: -4.92}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4827969384914444}
-  - {fileID: 4447041900897236}
+  - {fileID: 4122307631606294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 12.97, y: 16.7, z: 16.7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4765571946562266
 Transform:
   m_ObjectHideFlags: 1
@@ -944,12 +973,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998785728935036}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4125855, y: 0.4130086, z: 0.003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9625855, y: -7.386991, z: -5.967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4082077460095716}
-  m_Father: {fileID: 4748740126032854}
+  m_Father: {fileID: 4122307631606294}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4830810034056118
@@ -1056,7 +1085,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313371844722098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.116, z: 0.0077}
+  m_LocalPosition: {x: 0.0022, y: 0.1183, z: 0.002}
   m_LocalScale: {x: 0.016998686, y: 0.016998686, z: 0.016998686}
   m_Children: []
   m_Father: {fileID: 4447041900897236}
