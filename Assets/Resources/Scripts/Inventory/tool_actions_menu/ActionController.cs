@@ -112,7 +112,7 @@ public class ActionController : MonoBehaviour {
 
                             TCSWC.SyringeEloneOff.SetActive(true);
 
-                            OnActionPosition (ActionPositionPoint, "subclavian_vein_target");     
+                            OnActionPosition (ActionPositionPoint, "vein_target");     
                             
 							PBD.step1 = true;	
 					        
@@ -138,7 +138,7 @@ public class ActionController : MonoBehaviour {
 					
 					        if (debugMode) {Debug.Log ("Запуск позиционирования пинцета");}
 
-					        OnActionPosition (ActionPositionPoint, "disinfection_subclavian_target");
+					        OnActionPosition (ActionPositionPoint, "disinfection_target");
 					        PBD.step1 = true;
                             
 					        break;
