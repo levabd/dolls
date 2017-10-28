@@ -62,11 +62,8 @@ public class PositionPieceBody : MonoBehaviour {
                     }
                     if (CurrentTool.Instance.Tool.name == "patch")
                     {
-                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, 2000f);
-                        if (GameObject.Find("HandWithPatch(Clone)"))
-                        {
-                            GameObject.Find("HandWithPatch(Clone)").transform.localEulerAngles = new Vector3(43, 0, 0);
-                        }
+                        actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
+                       
                         CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
                         TIAR.CreateLogEntry();
                     }
