@@ -852,6 +852,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 351149009}
+  - component: {fileID: 351149010}
   m_Layer: 0
   m_Name: Positions
   m_TagString: Untagged
@@ -875,6 +876,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351149010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 351149008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3164655b1e603c84cb4932f42362c549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTools:
+    CatcheterInConductor: {x: 0, y: 0, z: 0}
+    Catheter: {x: 0, y: 0, z: 0}
+    CatheterVenflon: {x: 0, y: 0, z: 0}
+    Conductor: {x: 0, y: 0, z: 0}
+    Needle: {x: 0, y: 0, z: 0}
+    NeedleElone: {x: 0, y: 0, z: 0}
+    Syringe: {x: 0, y: 0, z: 0}
+    Syringe_anestesia: {x: 0, y: 0, z: 0}
+  animationTool:
+    AnastesiaV2: {x: 0, y: 0, z: 0}
+    CatcheterOut: {x: 0, y: 0, z: 0}
+    CatcheterRotateToConductor: {x: 0, y: 0, z: 0}
+    CatcheterToConductor: {x: 0, y: 0, z: 0}
+    CatheterTransfunsion: {x: 0, y: 0, z: 0}
+    ClampVeins: {x: 0, y: 0, z: 0}
+    ConductorInANeedle: {x: 0, y: 0, z: 0}
+    ConductorOut: {x: 0, y: 0, z: 0}
+    Desinfection: {x: 0, y: 0, z: 0}
+    GauzeBallsEnclose: {x: 0, y: 0, z: 0}
+    GauzeBallsRubUpDown: {x: 0, y: 0, z: 0}
+    HandWithPatch: {x: 0, y: 0, z: 0}
+    NapkinPut: {x: 0, y: 0, z: 0}
+    NeedleOut: {x: 0, y: 0, z: 0}
+    Paplation: {x: 0, y: 0, z: 0}
+    ReleaseTheVein: {x: 0, y: 0, z: 0}
+    Shave: {x: 0, y: 0, z: 0}
+    StretchTheSkin: {x: 0, y: 0, z: 0}
+    StretchTheSkinLeft: {x: 0, y: 0, z: 0}
 --- !u!1 &401152577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,6 +2144,7 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 657950642}
   TCS: {fileID: 204335818}
+  PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
 --- !u!114 &1107126314
 MonoBehaviour:
