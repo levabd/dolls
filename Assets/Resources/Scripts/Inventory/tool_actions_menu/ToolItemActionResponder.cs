@@ -60,10 +60,13 @@ public class ToolItemActionResponder : MonoBehaviour {
 
     public void CreateLogEntry()
     {
+        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLoglogCtrl.mainLogDisplay.transform.childCount)
+        {
+            return;
+        }
         string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
 
         bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
-
         if (errorMessage != "")
         {
             logActionText = logActionText + "/" + errorMessage;

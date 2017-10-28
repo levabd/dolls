@@ -5,10 +5,11 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
     public List<ToolItem> Items = new List<ToolItem>();
     public Transform TargetTransform;
-    public InventoryDisplay InventoryDisplayPrefab;
-    public Dictionary<string, string> InventoryTools;
+    public InventoryDisplay InventoryDisplayPrefab; 
+    public Dictionary<string, string> InventoryTools; // Delete in production
+
     // Use in production 
-    // public Dictionary<string, string> InventoryTools = CurrentExam.Instance.Exam.InventoryTool;
+     //public Dictionary<string, string> InventoryTools = CurrentExam.Instance.Exam.InventoryTool;
 
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local

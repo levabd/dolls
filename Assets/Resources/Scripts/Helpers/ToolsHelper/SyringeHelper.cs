@@ -177,7 +177,7 @@ public static class SyringeHelper
             bool pistonPulling = false;
             if (CurrentTool.Instance.Tool.StateParams.ContainsKey("piston_pulling"))
                 pistonPulling = Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
-            
+            Debug.Log(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
             if (pistonPulling)
                 CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
             // Запустить анимацию крови

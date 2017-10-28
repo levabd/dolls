@@ -40,7 +40,6 @@ class Exam2 : BaseExam
     {
         { "gloves",                         "Перчатки" },
         { "syringe",                        "Шприц без иглы" },
-        { "needle",                         "Игла(отдельно)" },
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "tweezers",                       "Пинцет без ничего" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
@@ -154,13 +153,13 @@ class Exam2 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "subclavian2_vein_final_target" && colliderTag != "subclavian2_vein_target")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag != "subclavian_vein_final_target" && colliderTag != "subclavian_vein_target")
         {
             errorMessage = "Пункция не в том месте";
             return false;
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_subclavian2_target")
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_subclavian_target")
         {
             errorMessage = "Дезинфекция не в том месте";
             return false;
@@ -185,7 +184,7 @@ class Exam2 : BaseExam
 
         // Перчатки + Спирт + Йод
         if (this.BiosafetySpiritIodine(actionCode, ref errorMessage, locatedColliderTag,
-            "disinfection_subclavian2_target", out returnedStep, ref _currentBallLiquid)) return returnedStep;
+            "disinfection_subclavian_target", out returnedStep, ref _currentBallLiquid)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
         if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 8)) return 9;
