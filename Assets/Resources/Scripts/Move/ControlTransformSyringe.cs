@@ -10,17 +10,24 @@ public class ControlTransformSyringe : MonoBehaviour {
     private GameObject Syringe;
     private GameObject SyringeModel;
     public Text ToolAngels;
+    [Header("Поворот в градусах")]
+    public int stateParamRotate;
+    [Header("Условная еденица поворота в Unity")]
+    public float unitRotate;
+    [Header("Ось координат поворота инструмента (x, y, z)")]
+    public string coordinateAxis;
     private int toolAngel = 0;
     private int stepCounter = 0;
     public bool EndNeedleInCollider = false;
 
-    void Start () {
+    void Start ()
+    {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != 80)
         {
             IncreaseAngle();
@@ -41,29 +48,60 @@ public class ControlTransformSyringe : MonoBehaviour {
         }
 
     }
+
     public void IncreaseAngle()
     {
-        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
-        toolAngel += 10;
+        switch (coordinateAxis)
+        {
+            case "x":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x + unitRotate, Syringe.transform.localEulerAngles.y, Syringe.transform.localEulerAngles.z);
+                break;
+            case "y":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + unitRotate, Syringe.transform.localEulerAngles.z);
+                break;
+            case "z":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y, Syringe.transform.localEulerAngles.z + unitRotate);
+                break;
+            default:
+                break;
+        }
+        //Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y + 5f, Syringe.transform.localEulerAngles.z);
+        toolAngel += stateParamRotate;
         CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
-
     }
+
     public void ReduceAngle()
     {
-        Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
-        toolAngel -= 10;
+        switch (coordinateAxis)
+        {
+            case "x":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x - unitRotate, Syringe.transform.localEulerAngles.y, Syringe.transform.localEulerAngles.z);
+                break;
+            case "y":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - unitRotate, Syringe.transform.localEulerAngles.z);
+                break;
+            case "z":
+                Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y, Syringe.transform.localEulerAngles.z - unitRotate);
+                break;
+            default:
+                break;
+        }
+        //Syringe.transform.localEulerAngles = new Vector3(Syringe.transform.localEulerAngles.x, Syringe.transform.localEulerAngles.y - 5f, Syringe.transform.localEulerAngles.z);
+        toolAngel -= stateParamRotate;
         CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
 
     }
+
     public void TransformIn()
     {
         SyringeModel.transform.localPosition = new Vector3(SyringeModel.transform.localPosition.x, SyringeModel.transform.localPosition.y, SyringeModel.transform.localPosition.z + 0.005f);
         stepCounter++;
-
     }
+
     public void TransformOut()
     {
         SyringeModel.transform.localPosition = new Vector3(SyringeModel.transform.localPosition.x, SyringeModel.transform.localPosition.y, SyringeModel.transform.localPosition.z - 0.005f);
         stepCounter--;
     }
+
 }
