@@ -8,12 +8,14 @@ using System.Linq;
 public class ToolItemActionResponder : MonoBehaviour {
 	public bool debugMode = true;
 
-	public ControlStatusDisplay ctrlStat;
-    public ActionController actionCtrl;
-    public MainLogController logController;
+	public ControlStatusDisplay CtrlStat;
+    public ActionController ActionCtrl;
+    public MainLogController MainLoglogCtrl;
 	public EndExamControlPanel examControl;
-	private bool CheckAction;
 	public GameObject colliderHit = null;
+    private string errorMessage = "";
+    private bool CheckAction;
+    private bool activeControl = true;
     // Use this for initialization
     void Start()
     {
@@ -28,54 +30,46 @@ public class ToolItemActionResponder : MonoBehaviour {
         ToolItemActionDisplay.OnAction -= HandleonClick;
     }
 
-    void HandleonClick(string actionName)
+    public void HandleonClick(string actionName)
     {
-      
-
-		bool activeControl = true;
-		actionCtrl.ActionControl(activeControl, actionName);
-
-        string errorMessage = "";
+        CtrlStat.activeControl = true;
+        ActionCtrl.ActionControl(activeControl, actionName);
+        
         CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
        
 		if (!CheckAction) 
 		{
             examControl.EndExam (false, errorMessage);
-		} 
+		}
 
-		GameObject.Find(CurrentTool.Instance.Tool.name + "_item").GetComponentInChildren<Text>().text = CurrentTool.Instance.Tool.Title;
-		GameObject.Find(CurrentTool.Instance.Tool.name + "_item/Image").GetComponentInChildren<Image>().sprite = CurrentTool.Instance.Tool.Sprites[0];
+        if (CurrentExam.Instance.Exam.TakenSteps.Last().Item1 == 12)
+        {
+            CtrlStat.HintPanel.SetActive(true);
+        }
 
-		string examName = CurrentExam.Instance.Exam.Name;
+        if (CurrentExam.Instance.Exam.TakenSteps.Last().Item1 == 13)
+        {
+            CtrlStat.NeedlePanel.SetActive(true);
+            CtrlStat.HintPanel.SetActive(false);
+        }        
+
+        CreateLogEntry();
+
+        //if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+    }
+
+    public void CreateLogEntry()
+    {
         string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
-        
-        ctrlStat.ControlStatus(activeControl, examName, actionName, errorMessage);
 
         bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
 
-        logActionText = CurrentTool.Instance.Tool.CodeName + " " + actionName + " " + logActionText;
+        if (errorMessage != "")
+        {
+            logActionText = logActionText + "/" + errorMessage;
+        }
 
-        logController.LogActionCreate(activeControl, logActionTextColor, logActionText);
-
-       // if (debugMode) {Debug.Log (actionName);}
-
-      //  if (debugMode) { Debug.Log("Item3= " + logActionText); }
-        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
-        
-
-        //Debug.Log("This Error = " + errorMessage);
-        //Update ToolItem Title & Icon
-
-        //Debug.Log(mainText);
-
-        //Check ToolItem.StateParams
-        //Dictionary<string, string> stateParams =  toolItem.StateParams;
-        //foreach (KeyValuePair<string, string> stateParam in stateParams)
-        //{
-        //    Debug.Log( stateParam.Key +" " + stateParam.Value);
-
-        //}
-
+        MainLoglogCtrl.LogActionCreate(activeControl, logActionTextColor, logActionText);
     }
 
     // Update is called once per frame

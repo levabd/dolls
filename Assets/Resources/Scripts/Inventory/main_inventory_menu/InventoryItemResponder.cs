@@ -24,11 +24,9 @@ public class InventoryItemResponder : MonoBehaviour {
 
         actionMenu.isCreate = true;
         
-        string errorMessage = "";
         string examName = CurrentExam.Instance.Exam.Name;
-        string actionName = "";
-        bool activeControl = true;
-        ctrlStat.ControlStatus(activeControl, examName, actionName, errorMessage);
+
+        ctrlStat.activeControl = true;
     }
 
     // Update is called once per frame

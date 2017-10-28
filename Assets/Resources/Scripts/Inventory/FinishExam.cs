@@ -17,11 +17,11 @@ public class FinishExam : MonoBehaviour {
 
     public void FinishExamClick()
     {
-        foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
-        {
-            Debug.Log(item.Item1);
-            Debug.Log(item.Item2);
-        }
+        //foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
+        //{
+        //    Debug.Log(item.Item1);
+        //    Debug.Log(item.Item2);
+        //}
 
         Finished = CurrentExam.Instance.Exam.Finish();
         if (Finished == true)
