@@ -144,7 +144,7 @@ class Exam11 : BaseExam
         }
 
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "medial_saphenous_vein_final_target")
-            _needleInsideTarget = true;
+            NeedleInsideTarget = true;
 
         if (!this.GenericMoveHelper(colliderTag, "medial_saphenous_vein_final_target", ref errorMessage))
             return false;
