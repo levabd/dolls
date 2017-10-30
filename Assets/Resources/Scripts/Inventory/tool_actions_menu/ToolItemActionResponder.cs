@@ -55,7 +55,7 @@ public class ToolItemActionResponder : MonoBehaviour {
 
         CreateLogEntry();
 
-        //if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
     }
 
     public void CreateLogEntry()

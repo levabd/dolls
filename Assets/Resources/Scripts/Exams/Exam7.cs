@@ -217,7 +217,7 @@ class Exam7 : BaseExam
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag,
-            ref _needleRemovingMoment, "internal_jugular3_vein_final_target", 30, 45)) return 15;
+            ref _needleRemovingMoment, "internal_jugular_vein_final_target", 30, 45)) return 15;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;

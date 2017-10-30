@@ -26,10 +26,10 @@ public class PositionPieceBody : MonoBehaviour {
     }
 	
 
-	void Update () {
+	void Update ()
+    {
         if (step1 && CurrentTool.Instance.Tool.cursorTexture != null)
         {
-            //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
             Cursor.SetCursor(CurrentTool.Instance.Tool.cursorTexture, hotSpot, cursorMode);
         }
         if (Input.GetMouseButtonDown(0) && step1 == true)
@@ -37,16 +37,12 @@ public class PositionPieceBody : MonoBehaviour {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             
-            //print("куда-то нажал");
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                //Debug.Log(hit.transform.gameObject.tag);
-                //Debug.Log(CurrentTool.Instance.Tool.CodeName);
-                //print("получил луч");
+                Debug.Log(hit.transform.gameObject.tag);
+                Debug.Log(CurrentTool.Instance.Tool.CodeName);
 
                 CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
-                //CheckPosition = false;
-                //errorMessage = "fdfdf";
                 Cursor.SetCursor(null, hotSpot, cursorMode);
 
                 
@@ -54,16 +50,11 @@ public class PositionPieceBody : MonoBehaviour {
                 {
 					TIAR.colliderHit = hit.transform.gameObject;
                     if (CurrentTool.Instance.Tool.name == "syringe")
-                    {
-
-                        //if (GameObject.Find("Skin/ActionPositionPoint"))
-                        //{
-                        //    GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
-                        //}            
+                    {           
                         actionController.OffActionPosition(actionController.VeinPositionPoint);
+
                         Syringe.SetActive(true);
                         TCS.SkinCollider.SetActive(true);
-                        
                     }
                     if (CurrentTool.Instance.Tool.name == "patch")
                     {
@@ -71,6 +62,10 @@ public class PositionPieceBody : MonoBehaviour {
                        
                         CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
                         TIAR.CreateLogEntry();
+                        foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
+                        {
+                            Debug.Log( $"{System.Convert.ToString(item.Item1)} + {item.Item2} + {System.Convert.ToString(item.Item3)}");
+                        }
                     }
                     if (CurrentTool.Instance.Tool.name == "hand")
                     {
