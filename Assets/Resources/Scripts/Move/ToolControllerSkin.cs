@@ -10,6 +10,7 @@ public class ToolControllerSkin : MonoBehaviour {
 	public GameObject DesinfectionCreate;
     public GameObject PushCreate; // A
     public GameObject PushOn;
+    public GameObject SkinCollider;
 	// Use this for initialization
 	void Start () {
 		

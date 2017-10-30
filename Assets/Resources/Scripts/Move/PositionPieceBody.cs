@@ -58,6 +58,7 @@ public class PositionPieceBody : MonoBehaviour {
                     if (CurrentTool.Instance.Tool.name == "syringe")
                     {
                         Syringe.SetActive(true);
+                        TCS.SkinCollider.SetActive(true);
                         
                     }
                     if (CurrentTool.Instance.Tool.name == "patch")
