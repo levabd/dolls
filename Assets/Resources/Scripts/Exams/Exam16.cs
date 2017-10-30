@@ -55,15 +55,16 @@ class Exam16 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
+                    { "get",    "Взять жгут" },
                     { "lay",    "Наложить жгут" },
                     { "remove", "Снять жгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "palpation",        "Пальпация" },
-                    { "stretch_the_skin", "Натянуть кожу" },
-                    { "clamp",            "Зажать вену" },
+                    { "get",              "Пальпация" },// "palpation"
+                    { "get",              "Натянуть кожу" }, // "stretch_the_skin"
+                    { "get",              "Зажать вену" }, //clamp
                     { "clamp_out",        "Отпустить вену" },
                 };
             case "gauze_balls":
@@ -91,6 +92,7 @@ class Exam16 : BaseExam
             case "venflon":
                 return new TupleList<string, string>
                 {
+                    { "get",                            "Взять" },
                     { "remove",                         "Удалить катетер" },
                     { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
                     { "remove_mandren",                 "Вытащить мадрен" },

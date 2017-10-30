@@ -57,14 +57,15 @@ class Exam14 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
+                    { "get",    "Взять жгут" },
                     { "lay",    "Наложить жгут" },
                     { "remove", "Снять жгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "palpation",        "Пальпация" },
-                    { "stretch_the_skin", "Натянуть кожу" },
+                    { "get",              "Пальпация" },// "palpation"
+                    { "get",              "Натянуть кожу" }, // "stretch_the_skin"
                 };
             case "syringe":
                 return new TupleList<string, string>
