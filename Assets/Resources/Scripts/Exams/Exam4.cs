@@ -64,13 +64,14 @@ class Exam4 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
+                    { "get",    "Взять жгут" },
                     { "lay",    "Наложить жгут" },
                     { "remove", "Снять жгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "palpation", "Пальпация" },
+                    { "get", "Пальпация" },// "palpation"
                 };
             case "syringe":
                 return new TupleList<string, string>

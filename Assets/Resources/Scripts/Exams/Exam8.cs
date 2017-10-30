@@ -68,7 +68,7 @@ class Exam8 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "clamp",     "Зажать вену" },
+                    { "get",            "Зажать вену" }, //clamp
                     { "clamp_out", "Отпустить вену" },
                 };
             case "syringe":

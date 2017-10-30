@@ -5,7 +5,6 @@ using System.Collections.Generic;
 class Exam3 : BaseExam
 {
     private DateTime _needleRemovingMoment;
-    private string _currentBallLiquid = "none";
 
     public override string Name => "Центральный венозный доступ №3 Подключичная подключичный доступ у детей";
     public override string LoadName => "Exam3";
