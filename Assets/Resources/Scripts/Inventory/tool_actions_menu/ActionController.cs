@@ -13,6 +13,8 @@ public class ActionController : MonoBehaviour {
 	public ToolControllerSkin TCS;
     public PrefabTransformController PrefabTransformCtrl;
     public GameObject ActionPositionPoint;
+    public GameObject VienPositionPoint;
+
     // Use this for initialization
     void Start () {
 		
@@ -112,7 +114,7 @@ public class ActionController : MonoBehaviour {
 
                             TCSWC.SyringeEloneOff.SetActive(true);
 
-                            OnActionPosition (ActionPositionPoint, "vein_target");     
+                            OnActionPosition (VienPositionPoint, "vein_target");     
                             
 							PBD.step1 = true;	
 					        
@@ -320,6 +322,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации прикрытия иглы пальцем"); }
                             ActionPositionPoint.SetActive(false);
+                            VienPositionPoint.SetActive(false);
 
                             break;
 				        case "needle_removing":
