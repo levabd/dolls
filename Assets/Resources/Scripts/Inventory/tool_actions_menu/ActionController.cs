@@ -119,6 +119,17 @@ public class ActionController : MonoBehaviour {
 							PBD.step1 = true;	
 					        
                             break;
+                        case "filling_nacl_half":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования шприца"); }
+
+                            TCSWC.SyringeEloneOff.SetActive(true);
+
+                            OnActionPosition(VienPositionPoint, "vein_target");
+
+                            PBD.step1 = true;
+
+                            break;                            
                         default:
                             break;
                     }
@@ -341,7 +352,26 @@ public class ActionController : MonoBehaviour {
 			    }               
 			    break;
 
-                default:
+            case "hand":
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "palpation":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
+                            OnActionPosition(ActionPositionPoint, "palpation_target");
+                            PBD.step1 = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+                break;
+
+            default:
                     break;
         }
         action = false;
