@@ -41,10 +41,6 @@ public class PositionPieceBody : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //print("получил луч");
-                if (GameObject.Find("Skin/ActionPositionPoint"))
-                {
-                    GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
-                }               
                 
                 CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
@@ -57,6 +53,10 @@ public class PositionPieceBody : MonoBehaviour {
 					TIAR.colliderHit = hit.transform.gameObject;
                     if (CurrentTool.Instance.Tool.name == "syringe")
                     {
+                        //if (GameObject.Find("Skin/ActionPositionPoint"))
+                        //{
+                        //    GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
+                        //}               
                         Syringe.SetActive(true);
                         TCS.SkinCollider.SetActive(true);
                         
@@ -66,6 +66,13 @@ public class PositionPieceBody : MonoBehaviour {
                         actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
                        
                         CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
+                        TIAR.CreateLogEntry();
+                    }
+                    if (CurrentTool.Instance.Tool.name == "hand")
+                    {
+                        actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
+
+                        CurrentExam.Instance.Exam.Action("palpation", out errorMessage, hit.transform.gameObject.tag);
                         TIAR.CreateLogEntry();
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)

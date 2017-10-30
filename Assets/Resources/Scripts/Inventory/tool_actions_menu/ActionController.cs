@@ -114,7 +114,8 @@ public class ActionController : MonoBehaviour {
 
                             TCSWC.SyringeEloneOff.SetActive(true);
 
-                            OnActionPosition (VienPositionPoint, "vein_target");     
+                            OffActionPosition(ActionPositionPoint);
+                            OnActionPosition (VienPositionPoint, "vein_target"); 
                             
 							PBD.step1 = true;	
 					        
@@ -125,6 +126,7 @@ public class ActionController : MonoBehaviour {
 
                             TCSWC.SyringeEloneOff.SetActive(true);
 
+                            OffActionPosition(ActionPositionPoint);
                             OnActionPosition(VienPositionPoint, "vein_target");
 
                             PBD.step1 = true;
@@ -357,7 +359,7 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "palpation":
+                        case "get":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
                             OnActionPosition(ActionPositionPoint, "palpation_target");
