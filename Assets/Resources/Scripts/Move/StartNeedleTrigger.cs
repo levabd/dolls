@@ -30,7 +30,7 @@ public class StartNeedleTrigger : MonoBehaviour {
             examControl.EndExam(false, errorMessage);
         }        
 
-         //print("куда-то вошла игла " + col.gameObject.tag);
+         print("куда-то вошла игла " + col.gameObject.tag);
     }
     //void OnTriggerExit(Collider col)
     //{

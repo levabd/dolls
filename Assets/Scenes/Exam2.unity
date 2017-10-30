@@ -562,7 +562,9 @@ MonoBehaviour:
     type: 2}
   PushCreate: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
   PushOn: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
-  SkinCollider: {fileID: 0}
+  SkinCollider: {fileID: 1809804613}
+  PalpationCreate: {fileID: 1403568807416796, guid: d3e0782d82f6ca94bb8c307858ab9384,
+    type: 2}
 --- !u!1 &245088688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,7 +2127,7 @@ MonoBehaviour:
   TCS: {fileID: 204335818}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
-  VienPositionPoint: {fileID: 1942087821}
+  VeinPositionPoint: {fileID: 1942087821}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0

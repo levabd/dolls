@@ -40,8 +40,10 @@ public class PositionPieceBody : MonoBehaviour {
             //print("куда-то нажал");
             if (Physics.Raycast(ray, out hit, 1000))
             {
+                //Debug.Log(hit.transform.gameObject.tag);
+                //Debug.Log(CurrentTool.Instance.Tool.CodeName);
                 //print("получил луч");
-                
+
                 CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
                 //CheckPosition = false;
                 //errorMessage = "fdfdf";
@@ -53,10 +55,12 @@ public class PositionPieceBody : MonoBehaviour {
 					TIAR.colliderHit = hit.transform.gameObject;
                     if (CurrentTool.Instance.Tool.name == "syringe")
                     {
+
                         //if (GameObject.Find("Skin/ActionPositionPoint"))
                         //{
                         //    GameObject.Find("Skin/ActionPositionPoint").SetActive(false);
-                        //}               
+                        //}            
+                        actionController.OffActionPosition(actionController.VeinPositionPoint);
                         Syringe.SetActive(true);
                         TCS.SkinCollider.SetActive(true);
                         

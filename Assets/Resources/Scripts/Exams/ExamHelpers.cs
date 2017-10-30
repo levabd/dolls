@@ -7,7 +7,7 @@ public static class ExamHelpers
     {
 
         if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon")
-            && colliderTag != finalColliderTag && colliderTag != "vien_target")
+            && colliderTag != finalColliderTag && colliderTag != "vein_target")
         {
             errorMessage = "Пункция не в том месте";
             if (exam.NeedleInsideTarget) // Прошли вену навылет
