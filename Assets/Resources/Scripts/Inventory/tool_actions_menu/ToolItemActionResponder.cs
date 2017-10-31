@@ -36,7 +36,8 @@ public class ToolItemActionResponder : MonoBehaviour {
         ActionCtrl.ActionControl(activeControl, actionName);
         
         CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
-       
+        
+
 		if (!CheckAction) 
 		{
             examControl.EndExam (false, errorMessage);
@@ -70,6 +71,10 @@ public class ToolItemActionResponder : MonoBehaviour {
         if (errorMessage != "")
         {
             logActionText = logActionText + "/" + errorMessage;
+        }
+        if (CurrentTool.Instance.Tool.StateParams["entry_angle"] != "")
+        {
+            logActionText = "Угол наклона шприца = " + CurrentTool.Instance.Tool.StateParams["entry_angle"];
         }
 
         MainLoglogCtrl.LogActionCreate(activeControl, logActionTextColor, logActionText);

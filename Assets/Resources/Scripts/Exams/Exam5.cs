@@ -62,7 +62,7 @@ class Exam5 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get", "Пальпация" },// "palpation"
+                    { "get_palpation", "Пальпация" },// "palpation"
                 };
             case "syringe":
                 return new TupleList<string, string>

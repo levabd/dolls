@@ -359,7 +359,19 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "get":
+                        case "get_palpation":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
+                            OnActionPosition(ActionPositionPoint, "palpation_target");
+                            PBD.step1 = true;
+                            break;
+                        case "get_clamp":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
+                            OnActionPosition(ActionPositionPoint, "palpation_target");
+                            PBD.step1 = true;
+                            break;
+                        case "get_stretch_the_skin":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
                             OnActionPosition(ActionPositionPoint, "palpation_target");

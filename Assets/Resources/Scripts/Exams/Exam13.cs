@@ -63,8 +63,8 @@ class Exam13 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get",              "Пальпация" },// "palpation"
-                    { "get",              "Натянуть кожу" }, // "stretch_the_skin"
+                    { "get_palpation",              "Пальпация" },// "palpation"
+                    { "get_stretch_the_skin",              "Натянуть кожу" }, // "stretch_the_skin"
                 };
             case "syringe":
                 return new TupleList<string, string>

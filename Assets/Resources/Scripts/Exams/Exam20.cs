@@ -66,9 +66,9 @@ class Exam20 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get", "Пальпация" },// "palpation"
-                    { "get", "Натянуть кожу и зафиксировать вену" }, // "stretch_the_skin"
-                    { "get",            "Зажать вену" }, //clamp
+                    { "get_palpation", "Пальпация" },// "palpation"
+                    { "get_stretch_the_skin", "Натянуть кожу и зафиксировать вену" }, // "stretch_the_skin"
+                    { "get_clamp",            "Зажать вену" }, //clamp
                     { "clamp_out",        "Отпустить вену" },
                 };
             case "syringe":

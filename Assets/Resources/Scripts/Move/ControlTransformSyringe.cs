@@ -19,6 +19,7 @@ public class ControlTransformSyringe : MonoBehaviour {
     private int toolAngel = 0;
     private int stepCounter = 0;
     public bool EndNeedleInCollider = false;
+    public ToolItemActionResponder TIAR;
 
     void Start ()
     {
@@ -32,11 +33,13 @@ public class ControlTransformSyringe : MonoBehaviour {
         {
             IncreaseAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
+            TIAR.CreateLogEntry();
         }
         if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != -10)
         {
             ReduceAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
+            TIAR.CreateLogEntry();
         }
         if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
         {
