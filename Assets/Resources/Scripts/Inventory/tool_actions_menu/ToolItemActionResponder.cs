@@ -72,10 +72,10 @@ public class ToolItemActionResponder : MonoBehaviour {
         {
             logActionText = logActionText + "/" + errorMessage;
         }
-        if (CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") && CurrentTool.Instance.Tool.StateParams["entry_angle"] != "")
-        {
-            logActionText = "Угол наклона шприца = " + CurrentTool.Instance.Tool.StateParams["entry_angle"];
-        }
+        //if (CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") && CurrentTool.Instance.Tool.StateParams["entry_angle"] != "")
+        //{
+        //    logActionText = "Угол наклона шприца = " + CurrentTool.Instance.Tool.StateParams["entry_angle"];
+        //}
 
         MainLoglogCtrl.LogActionCreate(activeControl, logActionTextColor, logActionText);
     }
