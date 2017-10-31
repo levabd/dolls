@@ -375,13 +375,13 @@ public class ActionController : MonoBehaviour {
                         case "get_clamp":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
-                            OnActionPosition(ActionPositionPoint, "palpation_target");
+                            OnActionPosition(ActionPositionPoint, "clamp_target");
                             PBD.step1 = true;
                             break;
                         case "get_stretch_the_skin":
 
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
-                            OnActionPosition(ActionPositionPoint, "palpation_target");
+                            OnActionPosition(ActionPositionPoint, "stretch_target");
                             PBD.step1 = true;
                             break;
                         case "clamp_out":
