@@ -13,6 +13,7 @@ public class ControlStatusDisplay : MonoBehaviour {
     public GameObject NeedlePanel;
     [Header("Syringe Hint Panel")]
     public GameObject HintPanel;
+    public Text entryAngle;
 
     public bool activeControl = false;
 
