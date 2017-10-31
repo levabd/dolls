@@ -33,13 +33,19 @@ public class ControlTransformSyringe : MonoBehaviour {
         {
             IncreaseAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
-            TIAR.CreateLogEntry();
+            if (TIAR.CtrlStat.HintPanel)
+            {
+                TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+            }
         }
         if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != -10)
         {
             ReduceAngle();
             print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
-            TIAR.CreateLogEntry();
+            if (TIAR.CtrlStat.HintPanel)
+            {
+                TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+            }
         }
         if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
         {
