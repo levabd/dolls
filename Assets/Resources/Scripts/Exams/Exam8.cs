@@ -40,7 +40,6 @@ class Exam8 : BaseExam
         { "gloves",                         "Перчатки" },
         { "gown",                           "Халат" },
         { "syringe",                        "Шприц без иглы" },
-        { "needle",                         "Игла(отдельно)" },
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "tweezers",                       "Пинцет без ничего" },
         { "hand",                           "Кисть для пальпации" },
@@ -189,7 +188,7 @@ class Exam8 : BaseExam
         //{ "clamp_the_vein",                 "Cдавливаем наружную яремную вену." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")
         {
-            if (!locatedColliderTag.Contains("external_jugular_vein"))
+            if (!locatedColliderTag.Contains("clamp_target"))
                 errorMessage = "Сдавлена не та вена(место)";
             return 10;
         }
@@ -227,7 +226,7 @@ class Exam8 : BaseExam
         //{ "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp_out")
         {
-            if (!locatedColliderTag.Contains("external_jugular_vein"))
+            if (!locatedColliderTag.Contains("clamp_target"))
                 errorMessage = "Сдавлена не та вена(место)";
             return 21;
         }

@@ -533,7 +533,7 @@ public static class ExamHelpers
         // { "clamp_the_vein",                 "Пережать вену." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")
         {
-            if (!locatedColliderTag.Contains("external_jugular_vein"))
+            if (!locatedColliderTag.Contains("clamp_target"))
                 errorMessage = "Сдавлена не та вена(место)";
             returnedStep = 11;
             return true;
