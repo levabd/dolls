@@ -96,7 +96,10 @@ public class ActionController : MonoBehaviour {
 							if (debugModeForAnimation) {Debug.Log ("Шприц отсоединен от иглы");}
 
 							TCSWC.SyringeEloneOff.SetActive (false);
-                            PBD.TIAR.CtrlStat.NeedlePanel.SetActive(true);
+                            if (CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle"))
+                            {
+                                PBD.TIAR.CtrlStat.NeedlePanel.SetActive(true);
+                            }                            
                             PBD.TIAR.CtrlStat.HintPanel.SetActive(false);
 
                             break;
