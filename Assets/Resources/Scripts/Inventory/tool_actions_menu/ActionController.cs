@@ -384,6 +384,9 @@ public class ActionController : MonoBehaviour {
                             OnActionPosition(ActionPositionPoint, "palpation_target");
                             PBD.step1 = true;
                             break;
+                        case "clamp_out":
+                            Destroy(GameObject.Find("TransformSkin/ClampVeins"));
+                            break;
                     }
                 }
                 else

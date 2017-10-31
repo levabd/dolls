@@ -81,7 +81,7 @@ public class PositionPieceBody : MonoBehaviour {
                                         TIAR.CreateLogEntry();
                                         break;
                                     case "get_clamp":
-                                        actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
+                                        actionController.CreateFromPrefab(TCS.ClampVeinCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.ClampVeins, 2000f);
                                         CurrentExam.Instance.Exam.Action("clamp", out errorMessage, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;

@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour {
     // Use this for initialization
     // ReSharper disable once UnusedMember.Local
     void Start () {
-        //CurrentExam.Instance.Exam = new Exam6(); // Delete in production
+        //CurrentExam.Instance.Exam = new Exam8(); // Delete in production
         //InventoryTools = CurrentExam.Instance.Exam.InventoryTool; // Delete in production
         AddItemsFromExamToList();
         InventoryDisplay inventory = Instantiate(InventoryDisplayPrefab);

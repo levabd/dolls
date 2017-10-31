@@ -12,6 +12,7 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject PushOn;
     public GameObject SkinCollider;
     public GameObject PalpationCreate;
+    public GameObject ClampVeinCreate;
 	// Use this for initialization
 	void Start () {
 		
