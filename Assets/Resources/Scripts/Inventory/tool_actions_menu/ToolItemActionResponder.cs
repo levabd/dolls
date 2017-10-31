@@ -41,18 +41,7 @@ public class ToolItemActionResponder : MonoBehaviour {
 		if (!CheckAction) 
 		{
             examControl.EndExam (false, errorMessage);
-		}
-
-        //if (CurrentExam.Instance.Exam.TakenSteps.Last().Item1 == 9)
-        //{
-        //    CtrlStat.HintPanel.SetActive(true);
-        //}
-
-        //if (CurrentExam.Instance.Exam.TakenSteps.Last().Item1 == 13)
-        //{
-        //    CtrlStat.NeedlePanel.SetActive(true);
-        //    CtrlStat.HintPanel.SetActive(false);
-        //}        
+		}      
 
         CreateLogEntry();
 
