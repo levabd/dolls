@@ -40,7 +40,6 @@ class Exam4 : BaseExam
     {
         { "gloves",                         "Перчатки" },
         { "syringe",                        "Шприц без иглы" },
-        { "needle",                         "Игла(отдельно)" },
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "tweezers",                       "Пинцет без ничего" },
         { "tourniquet",                     "Жгут" },
