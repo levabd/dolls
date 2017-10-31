@@ -96,6 +96,8 @@ public class ActionController : MonoBehaviour {
 							if (debugModeForAnimation) {Debug.Log ("Шприц отсоединен от иглы");}
 
 							TCSWC.SyringeEloneOff.SetActive (false);
+                            PBD.TIAR.CtrlStat.NeedlePanel.SetActive(true);
+                            PBD.TIAR.CtrlStat.HintPanel.SetActive(false);
 
                             break;
                         case "anesthesia":
@@ -115,9 +117,10 @@ public class ActionController : MonoBehaviour {
                             TCSWC.SyringeEloneOff.SetActive(true);
 
                             OffActionPosition(ActionPositionPoint);
-                            OnActionPosition (VeinPositionPoint, "vein_target"); 
-                            
-							PBD.step1 = true;	
+                            OnActionPosition (VeinPositionPoint, "vein_target");
+
+                            PBD.TIAR.CtrlStat.HintPanel.SetActive(true);
+                            PBD.step1 = true;	
 					        
                             break;
                         case "filling_nacl_half":
@@ -129,6 +132,7 @@ public class ActionController : MonoBehaviour {
                             OffActionPosition(ActionPositionPoint);
                             OnActionPosition(VeinPositionPoint, "vein_target");
 
+                            PBD.TIAR.CtrlStat.HintPanel.SetActive(true);
                             PBD.step1 = true;
 
                             break;                            
