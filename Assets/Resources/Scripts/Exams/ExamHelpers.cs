@@ -33,9 +33,9 @@ public static class ExamHelpers
             return false;
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target" && colliderTag != "clamp_target")
         {
-            errorMessage = "Пальпируется не то место";
+            errorMessage = "Пальпируется и зажимается не то место";
             return false;
         }
 
@@ -161,6 +161,7 @@ public static class ExamHelpers
         if (wearGown && CurrentTool.Instance.Tool.CodeName == "gown" && actionCode == "wear")
         {
             CurrentTool.Instance.Tool.StateParams["weared"] = "true";
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[2];
             returnedStep = !shave ? 2 : 3;
             return true;
         }
