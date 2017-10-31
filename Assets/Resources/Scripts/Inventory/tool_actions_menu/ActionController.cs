@@ -386,6 +386,10 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "clamp_out":
                             Destroy(GameObject.Find("TransformSkin/ClampVeins"));
+                            foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
+                            {
+                                Debug.Log($"{System.Convert.ToString(item.Item1)} + {item.Item2} + {System.Convert.ToString(item.Item3)}");
+                            }
                             break;
                     }
                 }

@@ -226,9 +226,7 @@ class Exam8 : BaseExam
         //{ "clamp_out_the_vein",             "Отпускаем наружную яремную вену." }
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp_out")
         {
-            if (!locatedColliderTag.Contains("clamp_target"))
-                errorMessage = "Сдавлена не та вена(место)";
-            return 21;
+            return 22;
         }
 
         return null;

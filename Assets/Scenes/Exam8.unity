@@ -186,16 +186,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4679862107809342, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679862107809342, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.0426
+      value: -0.074
       objectReference: {fileID: 0}
     - target: {fileID: 4679862107809342, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114220414347393502, guid: 60830b1fc32f87449bb81965e6b3eb4d,
+        type: 2}
+      propertyPath: TIAR
+      value: 
+      objectReference: {fileID: 401152579}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
   m_IsPrefabParent: 0
@@ -676,7 +681,7 @@ MonoBehaviour:
     Desinfection: {x: 0, y: 0, z: 0}
     GauzeBallsEnclose: {x: 0, y: 0, z: 0}
     GauzeBallsRubUpDown: {x: 0, y: 0, z: 0}
-    HandWithPatch: {x: 80, y: -20, z: 0}
+    HandWithPatch: {x: 84, y: -20, z: 0}
     NapkinPut: {x: 0, y: 0, z: 0}
     NeedleOut: {x: 0, y: 0, z: 0}
     Paplation: {x: 0, y: 0, z: 0}
