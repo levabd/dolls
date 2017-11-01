@@ -308,6 +308,7 @@ public static class ExamHelpers
         // { "throw_balls",                    "Выкинуть шарики." },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "throw_balls")
         {
+            BallHelper.ClearBall(exam);
             returnedStep = injection ? 8 : 7;
             return true;
         }
@@ -361,7 +362,6 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            
             // Вена руки уменьшается.
             returnedStep = 11;
             return true;
@@ -479,6 +479,7 @@ public static class ExamHelpers
         // { "throw_balls",                    "Выкинуть шарики." },
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "throw_balls")
         {
+            BallHelper.ClearBall(exam);
             returnedStep = 6;
             return true;
         }

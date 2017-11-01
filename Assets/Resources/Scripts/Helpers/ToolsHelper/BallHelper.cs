@@ -25,8 +25,6 @@ public static class BallHelper
             return false;
         }
 
-
-
         if (!liquidList.Contains(liquid))
             return false;
 
@@ -49,15 +47,20 @@ public static class BallHelper
     {
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "clear")
         {
-            CurrentTool.Instance.Tool.StateParams["wet"] = "false";
-            CurrentTool.Instance.Tool.StateParams.Remove("liquid");
-            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
-            exam.CurrentBallLiquid = "none";
-
-            CurrentTool.Instance.Tool.Title = "Стерильные марлевые шарики";
+            ClearBall(exam);
             return true;
         }
 
         return false;
+    }
+
+    public static void ClearBall(BaseExam exam)
+    {
+        CurrentTool.Instance.Tool.StateParams["wet"] = "false";
+        CurrentTool.Instance.Tool.StateParams.Remove("liquid");
+        CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
+        exam.CurrentBallLiquid = "none";
+
+        CurrentTool.Instance.Tool.Title = "Стерильные марлевые шарики";
     }
 }

@@ -168,6 +168,7 @@ class Exam2 : BaseExam
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
+        if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;

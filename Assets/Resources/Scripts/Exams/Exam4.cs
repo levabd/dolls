@@ -181,6 +181,7 @@ class Exam4 : BaseExam
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
+        if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;
@@ -212,10 +213,7 @@ class Exam4 : BaseExam
         if (errorMessage == "Отсутсвует игла") return null;
 
         //{ "tourniquet",                     "Снимаем жгут." },
-        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
-        {
-            return 13;
-        }
+        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove") return 13;
 
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment, "axillary_vien_final_target", 28, 32)) return 14;

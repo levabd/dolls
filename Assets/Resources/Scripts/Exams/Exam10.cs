@@ -69,18 +69,18 @@ class Exam10 : BaseExam
             case "syringe":
                 return new TupleList<string, string>
                 {
+                    { "get",                    "Взять шприц с иглой" },
                     { "needle_removing",        "Отсоеденить от иглы" },
                     { "needle_pull",            "Извлечь шприц с иглой" },
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "put_on_the_cap",         "Надеть колпачек на иглу." },
                     { "throw_needle",           "Выбросить иглу." },
-                    { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
+                    { "take_the_blood_ml10",    "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
                     { "null",                   "---" },
-                    { "get",      "Взять шприц с иглой" },
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
                     { "simple_needle",          "Взять иглу для забора крови" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
+                    { "a45_d10_punction_needle","Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
+                    { "a45_d7_punction_needle", "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_novocaine_half", "Наполнить 0,25% новокаина наполовину" }
                 };
             case "gauze_balls":
@@ -94,8 +94,8 @@ class Exam10 : BaseExam
                     { "null",         "---" },
                     { "clear",      "Взять новый шарик (очистить)" },
                     { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "get_balls", "Приложить шарик" },
-                    { "get_top_down",     "Протереть сверху вниз" },
+                    { "get_balls",         "Приложить шарик" }, // "attach_balls"
+                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -159,6 +159,7 @@ class Exam10 : BaseExam
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
+        if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
         if (actionCode == "null") return null;
 
         int returnedStep;

@@ -146,7 +146,7 @@ class Exam16 : BaseExam
         // Безопасные операции
 
 		if (this.BallClearAction(actionCode)) return null;
-
+        if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (actionCode == "null") return null;
 

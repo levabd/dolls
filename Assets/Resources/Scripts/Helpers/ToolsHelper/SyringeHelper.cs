@@ -4,7 +4,7 @@ using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public static class SyringeHelper
-{
+{ 
     public static bool TryGetNeedle(string needle, out string errorMessage, int spriteIndex)
     {
         errorMessage = "";
@@ -42,6 +42,21 @@ public static class SyringeHelper
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "piston_pulling")
         {
             CurrentTool.Instance.Tool.StateParams["piston_pulling"] = "true";
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool GetSyringeAction(this BaseExam exam, string actionCode, ref string errorMessage)
+    {
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "get")
+        {
+
+            if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") ||
+                !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
+                errorMessage = "Отсутсвует игла для шприца";                
+
             return true;
         }
 
