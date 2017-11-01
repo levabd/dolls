@@ -414,7 +414,7 @@ public static class ExamHelpers
         }
 
         // { "throw_needle",                   "Выбросить иглу." }
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "put_on_the_cap")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "throw_needle")
         {
             if (exam.LastTakenStep() != (injection ? 16 : 15))
                 errorMessage = "Это действие надо совершать сразу после надевания на иглу колпачка";

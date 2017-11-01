@@ -153,10 +153,20 @@ public class ActionController : MonoBehaviour {
 
                             break;
                         case "take_the_blood_ml10":
-                            if (debugMode) { Debug.Log("Запуск позиционирования набирания крови"); }
+                            if (debugMode) { Debug.Log("Запуск анимации набирания крови"); }
+
+                            Material mat_blood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
+                            Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+                            mats[0] = mat_blood;
+                            GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
 
                             Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
 
+                            break;
+                        case "needle_pull":
+                            if (debugMode) { Debug.Log("Запуск анимации извлечения шприца"); }
+
+                            PBD.Syringe.SetActive(false);
                             break;
                         default:
                             break;
@@ -469,7 +479,15 @@ public class ActionController : MonoBehaviour {
                             PBD.step1 = true;
 
                             break;
-                        
+                        case "get_top_down":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию протирания ваткой"); }
+
+                            OnActionPosition(ActionPositionPoint, "disinfection_target");
+                            PBD.step1 = true;
+
+                            break;
+
                         default:
                             break;
                     }

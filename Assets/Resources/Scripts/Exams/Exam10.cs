@@ -95,7 +95,7 @@ class Exam10 : BaseExam
                     { "clear",      "Взять новый шарик (очистить)" },
                     { "throw_balls",  "Выкинуть шарики в мусорник" },
                     { "get_balls", "Приложить шарик" },
-                    { "top_down",     "Протереть сверху вниз" },
+                    { "get_top_down",     "Протереть сверху вниз" },
                 };
             case "needle":
                 return new TupleList<string, string>

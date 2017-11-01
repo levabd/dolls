@@ -59,11 +59,29 @@ public class PositionPieceBody : MonoBehaviour {
                             break;
 
                         case "gauze_balls":
-                            actionController.OffActionPosition(actionController.ActionPositionPoint);
+                            if (actionController.actionName != "")
+                            {
+                                switch (actionController.actionName)
+                                {
+                                    case "get_balls":
+                                        
+                                        actionController.OffActionPosition(actionController.ActionPositionPoint);
 
-                            actionController.CreateFromPrefab(TCS.GauzeBallsEncloseCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsEnclose, 2000f);
-                            CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, hit.transform.gameObject.tag);
-                            TIAR.CreateLogEntry();
+                                        actionController.CreateFromPrefab(TCS.GauzeBallsEncloseCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsEnclose, 2000f);
+                                        CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, hit.transform.gameObject.tag);
+                                        TIAR.CreateLogEntry();
+                                        break;
+                                    case "get_top_down":
+                                        actionController.CreateFromPrefab(TCS.GauzeBallsRubUpDownCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsRubUpDown, 5f);
+                                        CurrentExam.Instance.Exam.Action("top_down", out errorMessage, hit.transform.gameObject.tag);
+                                        TIAR.CreateLogEntry();
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                            }
                             break;
 
                         case "patch":
