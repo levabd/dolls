@@ -126,6 +126,19 @@ public class ActionController : MonoBehaviour {
                             PBD.step1 = true;	
 					        
                             break;
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования шприца"); }
+
+                            TCSWC.SyringeEloneOff.SetActive(true);
+
+                            OffActionPosition(ActionPositionPoint);
+                            OnActionPosition(VeinPositionPoint, "vein_target");
+
+                            PBD.TIAR.CtrlStat.HintPanel.SetActive(true);
+                            PBD.step1 = true;
+
+                            break;
                         case "filling_nacl_half":
 
                             if (debugMode) { Debug.Log("Запуск позиционирования шприца"); }
@@ -374,13 +387,13 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "get_clamp":
 
-                            if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации зажать вену"); }
                             OnActionPosition(ActionPositionPoint, "clamp_target");
                             PBD.step1 = true;
                             break;
                         case "get_stretch_the_skin":
 
-                            if (debugModeForAnimation) { Debug.Log("Запуск анимации пальпации"); }
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации натягивания кожи"); }
                             OnActionPosition(ActionPositionPoint, "stretch_target");
                             PBD.step1 = true;
                             break;
@@ -418,13 +431,39 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
 
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 2000f);
+                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.TourniquetTransform, PrefabTransformCtrl.animationTool.Desinfection, 2000f);
 
                             break;
                         case "remove":
-                            Destroy(GameObject.Find("TransformSkin/Desinfection"));
+                            Destroy(GameObject.Find("TransformTourniquet/Desinfection"));
 
                             break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+
+            case "gauze_balls":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "get_balls":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования ватки"); }
+
+                            OnActionPosition(ActionPositionPoint, "disinfection_target");
+                            PBD.step1 = true;
+
+                            break;
+                        
                         default:
                             break;
                     }

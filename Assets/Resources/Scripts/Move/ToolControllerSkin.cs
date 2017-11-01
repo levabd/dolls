@@ -5,7 +5,8 @@ using UnityEngine;
 public class ToolControllerSkin : MonoBehaviour {
 
 	public GameObject SkinTransform;
-	public GameObject SyringeInScene;
+    public GameObject TourniquetTransform;
+    public GameObject SyringeInScene;
 	public GameObject AnestesiaCreate;
 	public GameObject DesinfectionCreate;
     public GameObject PushCreate; // A
@@ -13,8 +14,9 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject SkinCollider;
     public GameObject PalpationCreate;
     public GameObject ClampVeinCreate;
-	// Use this for initialization
-	void Start () {
+    public GameObject StretchTheSkinLeftCreate;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

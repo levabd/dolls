@@ -58,6 +58,14 @@ public class PositionPieceBody : MonoBehaviour {
                             TCS.SkinCollider.SetActive(true);
                             break;
 
+                        case "gauze_balls":
+                            actionController.OffActionPosition(actionController.ActionPositionPoint);
+
+                            actionController.CreateFromPrefab(TCS.PushCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
+                            CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, hit.transform.gameObject.tag);
+                            TIAR.CreateLogEntry();
+                            break;
+
                         case "patch":
                             actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
 

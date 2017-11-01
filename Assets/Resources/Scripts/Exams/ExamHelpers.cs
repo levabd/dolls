@@ -33,7 +33,7 @@ public static class ExamHelpers
             return false;
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target" && colliderTag != "clamp_target")
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target" && colliderTag != "clamp_target" && colliderTag != "stretch_target")
         {
             errorMessage = "Пальпируется и зажимается не то место";
             return false;
@@ -346,7 +346,7 @@ public static class ExamHelpers
                 errorMessage = "Забор крови не из того места";
             else
             {
-                if (exam.LastTakenStep() != 8)
+                if (exam.LastTakenStep() != 9)
                     errorMessage = "Не была натянута кожа";
                 else if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(29, 31))
                     errorMessage = "Неправильный угол установки";
