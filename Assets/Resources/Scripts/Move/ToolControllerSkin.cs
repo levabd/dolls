@@ -15,6 +15,7 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject PalpationCreate;
     public GameObject ClampVeinCreate;
     public GameObject StretchTheSkinLeftCreate;
+    public GameObject GauzeBallsEncloseCreate;
     // Use this for initialization
     void Start () {
 		

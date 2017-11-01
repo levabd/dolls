@@ -151,7 +151,13 @@ public class ActionController : MonoBehaviour {
                             PBD.TIAR.CtrlStat.HintPanel.SetActive(true);
                             PBD.step1 = true;
 
-                            break;                            
+                            break;
+                        case "take_the_blood_ml10":
+                            if (debugMode) { Debug.Log("Запуск позиционирования набирания крови"); }
+
+                            Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
+
+                            break;
                         default:
                             break;
                     }

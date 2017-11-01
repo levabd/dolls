@@ -61,7 +61,7 @@ public class PositionPieceBody : MonoBehaviour {
                         case "gauze_balls":
                             actionController.OffActionPosition(actionController.ActionPositionPoint);
 
-                            actionController.CreateFromPrefab(TCS.PushCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
+                            actionController.CreateFromPrefab(TCS.GauzeBallsEncloseCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsEnclose, 2000f);
                             CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, hit.transform.gameObject.tag);
                             TIAR.CreateLogEntry();
                             break;
@@ -94,7 +94,7 @@ public class PositionPieceBody : MonoBehaviour {
                                         TIAR.CreateLogEntry();
                                         break;
                                     case "get_stretch_the_skin":
-                                        actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
+                                        actionController.CreateFromPrefab(TCS.StretchTheSkinLeftCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.StretchTheSkinLeft, 2000f);
                                         CurrentExam.Instance.Exam.Action("stretch_the_skin", out errorMessage, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
