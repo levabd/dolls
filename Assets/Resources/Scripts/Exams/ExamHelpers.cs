@@ -361,8 +361,7 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains("tourniquet_target"))
-                errorMessage = "Не туда наложен жгут";
+            
             // Вена руки уменьшается.
             returnedStep = 11;
             return true;

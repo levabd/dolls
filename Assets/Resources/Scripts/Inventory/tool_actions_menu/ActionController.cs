@@ -386,10 +386,10 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "clamp_out":
                             Destroy(GameObject.Find("TransformSkin/ClampVeins"));
-                            foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
-                            {
-                                Debug.Log($"{System.Convert.ToString(item.Item1)} + {item.Item2} + {System.Convert.ToString(item.Item3)}");
-                            }
+                            //foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
+                            //{
+                            //    Debug.Log($"{System.Convert.ToString(item.Item1)} + {item.Item2} + {System.Convert.ToString(item.Item3)}");
+                            //}
                             break;
                     }
                 }
@@ -397,6 +397,43 @@ public class ActionController : MonoBehaviour {
                 {
                     Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                 }
+                break;
+
+            case "tourniquet":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования жгута"); }
+
+                            OnActionPosition(ActionPositionPoint, "tourniquet_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "lay":
+
+                            if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
+
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 2000f);
+
+                            break;
+                        case "remove":
+                            Destroy(GameObject.Find("TransformSkin/Desinfection"));
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
                 break;
 
             default:

@@ -214,8 +214,6 @@ class Exam4 : BaseExam
         //{ "tourniquet",                     "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains("tourniquet_target"))
-                errorMessage = "Не туда наложен жгут";
             return 13;
         }
 
