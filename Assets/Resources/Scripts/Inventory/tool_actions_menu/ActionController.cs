@@ -439,14 +439,15 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "lay":
 
-                            if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
+                            if (debugMode) { Debug.Log("Запуск жгута"); }
 
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.TourniquetTransform, PrefabTransformCtrl.animationTool.Desinfection, 2000f);
+                            TCS.TourniquetTransform.SetActive(true);
 
                             break;
                         case "remove":
-                            Destroy(GameObject.Find("TransformTourniquet/Desinfection"));
+                            if (debugMode) { Debug.Log("Выключить жгут"); }
+                            TCS.TourniquetTransform.SetActive(false);
 
                             break;
                         default:

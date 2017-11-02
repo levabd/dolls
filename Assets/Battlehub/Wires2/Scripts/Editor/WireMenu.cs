@@ -50,6 +50,7 @@ namespace Battlehub.Wire2
                 return;
             }
             Undo.RegisterCreatedObjectUndo(wire, "Battlehub.Wire Create");
+
             
 
             wire.AddComponent<Wire>();
