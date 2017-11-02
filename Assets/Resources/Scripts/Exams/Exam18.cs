@@ -77,6 +77,7 @@ class Exam18 : BaseExam
                     { "anesthesia",             "Сделать местную анестезию" },
                     { "put_on_the_cap",         "Надеть колпачек на иглу." },
                     { "throw_needle",           "Выбросить иглу." },
+                    { "piston_pulling",         "Потягивание поршня на себя" },
                     { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
                     { "null",                   "---" },
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
@@ -151,6 +152,8 @@ class Exam18 : BaseExam
 
         if (!this.GenericMoveHelper(colliderTag, "great_saphenous_vein_final_target", ref errorMessage))
             return false;
+
+        this.BloodInsideMove(colliderTag, "great_saphenous_vein_final_target");
 
         return true;
     }

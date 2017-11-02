@@ -447,7 +447,10 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "remove":
                             if (debugMode) { Debug.Log("Выключить жгут"); }
+
+                            Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
                             TCS.TourniquetTransform.SetActive(false);
+
 
                             break;
                         default:

@@ -70,18 +70,16 @@ class Exam11 : BaseExam
             case "syringe":
                 return new TupleList<string, string>
                 {
+                    { "get",                    "Взять шприц с иглой" },
                     { "needle_removing",        "Отсоеденить от иглы" },
                     { "needle_pull",            "Извлечь шприц с иглой" },
-                    { "anesthesia",             "Сделать местную анестезию" },
                     { "put_on_the_cap",         "Надеть колпачек на иглу." },
                     { "throw_needle",           "Выбросить иглу." },
+                    { "piston_pulling",         "Потягивание поршня на себя" },
                     { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
                     { "null",                   "---" },
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
                     { "simple_needle",          "Взять иглу для забора крови" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
                     { "filling_drug_solution",  "Наполнить лекарственным раствором" },
                     { "administer_drug",        "Ввести препарат" }
@@ -96,8 +94,8 @@ class Exam11 : BaseExam
                     { "iodine_p3",     "Промокнуть в 3% раствором йодоната" },
                     { "null",         "---" },
                     { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "attach_balls", "Приложить шарик" },
-                    { "top_down",     "Протереть сверху вниз" },
+                    { "get_balls", "Приложить шарик" }, // "attach_balls"
+                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -149,6 +147,8 @@ class Exam11 : BaseExam
 
         if (!this.GenericMoveHelper(colliderTag, "medial_saphenous_vein_final_target", ref errorMessage))
             return false;
+
+        this.BloodInsideMove(colliderTag, "medial_saphenous_vein_final_target");
 
         return true;
     }

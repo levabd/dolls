@@ -194,12 +194,14 @@ public static class SyringeHelper
                 pistonPulling = Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
             Debug.Log(CurrentTool.Instance.Tool.StateParams["piston_pulling"]);
             if (pistonPulling)
+            {
                 CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
-            // Запустить анимацию крови
+                // Запустить анимацию крови
                 Material mat_blood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
                 Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
                 mats[0] = mat_blood;
                 GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
+            }
             return true;
         }
 
