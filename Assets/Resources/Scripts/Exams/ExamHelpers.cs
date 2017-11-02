@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
@@ -354,6 +355,10 @@ public static class ExamHelpers
                 else
                     CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
                 // Запустить анимацию крови
+                    Material mat_blood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
+                    Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+                    mats[0] = mat_blood;
+                    GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
             }
             returnedStep = 10;
             return true;
@@ -379,6 +384,10 @@ public static class ExamHelpers
                 else
                     CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
                 // Запустить анимацию крови
+                    Material mat_blood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
+                    Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+                    mats[0] = mat_blood;
+                    GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
             }
             returnedStep = 12;
             return true;
