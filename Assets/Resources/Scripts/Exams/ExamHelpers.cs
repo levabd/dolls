@@ -357,9 +357,9 @@ public static class ExamHelpers
                 {
                     CurrentTool.Instance.Tool.StateParams["blood_inside"] = "true";
                     // Запустить анимацию крови
-                    Material mat_blood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
+                    Material matBlood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_blood", typeof(Material)) as Material;
                     Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
-                    mats[0] = mat_blood;
+                    mats[0] = matBlood;
                     GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
                 }
             }
