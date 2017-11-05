@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
@@ -8,32 +9,76 @@ namespace DB.Models
     public static class CurrentUser
     {
         public static string Name;
+        public static int Id;
+        public static int Role;
     }
 
     public class User: BaseModel
     {
-        private int _id;
-
-        public int Timestamp { get; }
+        public int? Id { get; }
+        public int Timestamp { get; private set; }
         public string Login { get; }
-        public string PasswordHash { get; }
+        public string PasswordHash { get; private set; }
         public string Name { get; set; }
         public int Role { get; set; }
+
+        private void GeneratePwdAndTime(string password)
+        {
+            Timestamp = (Int32)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            PasswordHash = CryptoHelper.GetPasswordHash(password.Trim(), Login, Timestamp);
+        }
 
         public User(string login, string password, string name, int role)
         {
             string loginCandidate = login.Trim();
-            if (SelectAll("SELECT count(id) FROM Users WHERE login = '" + loginCandidate + "'").Count > 0)
-                throw new ArgumentException("Login must be unique", nameof(login));
 
+            if (String.IsNullOrWhiteSpace(loginCandidate))
+                throw new ArgumentException("Логін не може бути порожнім");
+            if (SelectFirst("SELECT id FROM Users WHERE login = '" + loginCandidate + "'").Count > 0)
+                throw new ArgumentException("Такий логін вже використовується");
+
+            Id = null;
             Login = loginCandidate;
-            Timestamp = (Int32)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            PasswordHash = CryptoHelper.GetPasswordHash(password.Trim(), Login, Timestamp);
+            GeneratePwdAndTime(password);
             Name = name.Trim();
             Role = role;
         }
 
-        public User(string login)
+        public static User FindByLogin(string login)
+        {
+            return new User(login);
+        }
+
+        public static User FindById(int? id)
+        {
+            return new User(id ?? 0);           
+        }
+
+        public static List<User> FindAll()
+        {
+            List<List<object>> rawUsers = SelectAll("SELECT id, login, password, timestamp, name, role FROM Users");
+            List<User> users = new List<User>();
+
+            foreach (var rawUser in rawUsers)
+            {
+                User user = new User((int)rawUser[0], (string)rawUser[1], (string)rawUser[2], (int)rawUser[3], (string)rawUser[4], (int)rawUser[5]);
+                users.Add(user);
+            }
+
+            return users;
+        }
+
+        private User(int id, string login, string password, int timestamp, string name, int role)
+        {
+            Id = id;
+            Login = login;
+            Timestamp = timestamp;
+            PasswordHash = password;
+            Name = name;
+            Role = role;
+        }
+
+        private User(string login)
         {
             string loginCandidate = login.Trim();
 
@@ -43,11 +88,35 @@ namespace DB.Models
                 throw new ArgumentException("Can't find user with required login", nameof(login));
 
             Login = loginCandidate;
-            _id = (int)currentUser[0];
+            Id = (int)currentUser[0];
             PasswordHash = (string)currentUser[1];
             Timestamp = (int)currentUser[2];
             Name = (string)currentUser[3];
             Role = (int)currentUser[4];
+        }
+
+        private User(int? id)
+        {
+            if (id == null)
+                throw new ArgumentException("Id must have a value", nameof(id));
+
+            var currentUser = SelectFirst("SELECT login, password, timestamp, name, role FROM Users WHERE id = '" + id + "'");
+            //if (currentUser == null || currentUser.Count == 0)
+            if (currentUser.Count == 0)
+                throw new ArgumentException("Can't find user with required id", nameof(id));
+
+            Login = (string)currentUser[0];
+            Id = id;
+            PasswordHash = (string)currentUser[1];
+            Timestamp = (int)currentUser[2];
+            Name = (string)currentUser[3];
+            Role = (int)currentUser[4];
+        }
+
+        public void Delete()
+        {
+            if (Id != null)
+                Execute("DELETE FROM Users WHERE id = '" + Id + "'");
         }
 
         public bool CheckPassword(string password)
@@ -61,6 +130,22 @@ namespace DB.Models
             if (0 == comparer.Compare(password, PasswordHash)) return true;
 
             return false;
+        }
+
+        public void Save()
+        {
+            if (Id == null) // Create
+                Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim() + "', '" + Role + "')");
+            else // Update
+                Execute("UPDATE Users SET name = '" + Name.Trim() + "', role = '" + Role + "' WHERE id = '" + Id + "'");
+        }
+
+        public void ChangePassword(string password)
+        {
+            if (Id == null)
+                throw new ConstraintException("id is null. We can't UPDATE DB Record while password changing.");
+            GeneratePwdAndTime(password);
+            Execute("UPDATE Users SET password = '" + PasswordHash + "' WHERE id = '" + Id + "'");
         }
     }
 }

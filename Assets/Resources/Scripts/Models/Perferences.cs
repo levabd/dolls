@@ -33,7 +33,7 @@ namespace DB.Models
                     string passwordCandidate = value.Trim();
                     try
                     {
-                        User currentUser = new User(_currentLogin);
+                        User currentUser = User.FindByLogin(_currentLogin);
                         _currentPasswordHash = CryptoHelper.GetPasswordHash(passwordCandidate, CurrentLogin.Trim(), currentUser.Timestamp);
                     }
                     catch (ArgumentException ex)

@@ -43,7 +43,7 @@ namespace DB.Models
             }
         }
 
-        protected List<List<object>> SelectAll(string query)
+        protected static List<List<object>> SelectAll(string query)
         {
             try
             {

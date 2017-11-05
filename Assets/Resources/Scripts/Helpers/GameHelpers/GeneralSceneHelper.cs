@@ -1,4 +1,7 @@
-﻿// ReSharper disable once CheckNamespace
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+// ReSharper disable once CheckNamespace
 public static class GeneralSceneHelper
 {
     public static void QuitGame()
@@ -11,6 +14,12 @@ public static class GeneralSceneHelper
 #else
         Application.Quit();
 #endif
+    }
+
+    public static void ShowMessage(string message, GameObject dialog, Text dialogText)
+    {
+        dialogText.text = message;
+        dialog.SetActive(true);
     }
 
 }

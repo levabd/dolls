@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -40,7 +39,7 @@ public class AuthView : MonoBehaviour {
     // Initialisation
     // ReSharper disable once UnusedMember.Local
     void Start()
-    { 
+    {
         // Event listeners
         Button btn = CloseButton.GetComponent<Button>();
         btn.onClick.AddListener(CloseApp);
@@ -73,15 +72,14 @@ public class AuthView : MonoBehaviour {
     {
         try
         {
-            User currentUser = new User(LoginInput.text);
+            User currentUser = User.FindByLogin(LoginInput.text);
             if (!currentUser.CheckPassword(PasswordInput.text))
-            {
-                Dialog.SetActive(true);
-                DialogText.text = "Хибний пароль";
-            }
+                GeneralSceneHelper.ShowMessage("Хибний пароль", Dialog, DialogText);
             else
             {
                 CurrentUser.Name = currentUser.Name;
+                CurrentUser.Id = currentUser.Id ?? 0;
+                CurrentUser.Role = currentUser.Role;
                 TrySaveLogin();
                 switch (currentUser.Role)
                 {
@@ -95,10 +93,7 @@ public class AuthView : MonoBehaviour {
         catch (ArgumentException ex)
         {
             if (ex.ParamName == "login")
-            {
-                Dialog.SetActive(true);
-                DialogText.text = "Такий логін не було знайдено";
-            }
+                GeneralSceneHelper.ShowMessage("Такий логін не було знайдено", Dialog, DialogText);
         }
     }
 }
