@@ -350,7 +350,9 @@ public class ActionController : MonoBehaviour {
                     {
                         case "get":
 
-				            if (debugMode) {Debug.Log ("Запуск позиционирования пластыря");}						    
+                            ActionPositionPoint.SetActive(false);
+                            VeinPositionPoint.SetActive(false);
+                            if (debugMode) {Debug.Log ("Запуск позиционирования пластыря");}						    
 						    PBD.step1 = true;
 						
                             break;
@@ -560,6 +562,29 @@ public class ActionController : MonoBehaviour {
 
                             break;
                         case "shave_pubis":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.ShaveCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Shave, 4.5f);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "sterile_tissue":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "put":
 
                             if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
                             OffActionPosition(ActionPositionPoint);

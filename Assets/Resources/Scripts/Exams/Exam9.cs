@@ -38,15 +38,15 @@ class Exam9 : BaseExam
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        { "razor",                          "Бритва"},
+        { "razor",                          "Бритва"},        
         { "gloves",                         "Перчатки" },
         { "gown",                           "Халат" },
         { "gauze_balls",                    "Стерильные марлевые шарики" },
         { "sterile_tissue",                 "Стерильные салфетки" },
         { "tweezers",                       "Пинцет без ничего" },
         { "hand",                           "Кисть для пальпации" },
+        { "syringe",                        "Шприц без иглы" },
         { "standart_catheter_conductor",    "Стандартный гибкий проводник к катетеру" },
-        { "soft_catheter_conductor",        "Мягкий гибкий проводник к катетеру" },
         { "catheter",                       "Катетер с канюлей и заглушкой" },
         { "patch",                          "Пластырь" }
     };

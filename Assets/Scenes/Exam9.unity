@@ -5938,7 +5938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &245088689
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8994,7 +8994,7 @@ MonoBehaviour:
     ClampVeins: {x: 0, y: 0, z: 0}
     ConductorInANeedle: {x: 0, y: 0, z: 0}
     ConductorOut: {x: 0, y: 0, z: 0}
-    Desinfection: {x: 0, y: 0, z: 0}
+    Desinfection: {x: 180, y: 0, z: 0}
     GauzeBallsEnclose: {x: 0, y: 0, z: 90}
     GauzeBallsRubUpDown: {x: 0, y: 0, z: 90}
     HandWithPatch: {x: 56, y: -28, z: 17}
@@ -9005,6 +9005,8 @@ MonoBehaviour:
     Shave: {x: -273, y: -85, z: 0}
     StretchTheSkin: {x: 0, y: 0, z: 90}
     StretchTheSkinLeft: {x: 0, y: 0, z: 90}
+    VenflonTransfusion: {x: 0, y: 0, z: 0}
+    VenflonGetMandren: {x: 0, y: 0, z: 0}
 --- !u!1 &351449369
 GameObject:
   m_ObjectHideFlags: 0
@@ -10822,7 +10824,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410299479}
-  m_LocalRotation: {x: -0.6747252, y: 0.7347224, z: -0.04491607, w: -0.053960238}
+  m_LocalRotation: {x: -0.6747252, y: 0.7347224, z: -0.04491607, w: -0.053960234}
   m_LocalPosition: {x: -0.21241103, y: 0.96654904, z: -0.18582688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17011,6 +17013,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 447378731}
+  Venflon: {fileID: 0}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 695985190}
   TIAR: {fileID: 401152579}
@@ -28687,6 +28690,7 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 447378732}
   TCS: {fileID: 695985190}
+  TCV: {fileID: 0}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
@@ -43287,7 +43291,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

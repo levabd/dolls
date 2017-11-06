@@ -233,7 +233,7 @@ public static class ExamHelpers
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[3];
             returnedStep = 8;
             returnedStep = !wearGown ? returnedStep : returnedStep + 1;
-            returnedStep = !shave ? returnedStep : returnedStep + 1;
+            returnedStep = !shave ? returnedStep : returnedStep + 2;
             return true;
         }
 
