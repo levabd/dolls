@@ -547,7 +547,7 @@ public static class ExamHelpers
         // { "remove_mandren",                 "Вытаскиваем мадрен." },
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "remove_mandren")
         {
-            if (exam.LastTakenStep() != 10)
+            if (exam.LastTakenStep() != 11)
                 errorMessage = "Не была пережата вена";
             returnedStep = 12;
             return true;
