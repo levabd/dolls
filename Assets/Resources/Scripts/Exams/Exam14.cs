@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 class Exam14 : BaseExam
 { 
-    public override string Name => "Периферический венозный доступ №11 Внтуртивенная инъекция в вену локтевого сгиба";
+    public override string Name => "Периферический венозный доступ №14 Внтуртивенная инъекция в вену локтевого сгиба";
     public override string LoadName => "Exam14";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
@@ -94,7 +94,7 @@ class Exam14 : BaseExam
                     { "iodine_p3",     "Промокнуть в 3% раствором йодоната" },
                     { "null",         "---" },
                     { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "attach_balls", "Приложить шарик" },
+                    { "get_balls", "Приложить шарик" }, // "attach_balls"
                     { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
                 };
             case "needle":

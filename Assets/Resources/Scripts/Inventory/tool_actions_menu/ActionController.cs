@@ -165,6 +165,7 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "administer_drug":
                             if (debugMode) { Debug.Log("Запуск анимации ввода препарата"); }
+
                             break;
                         default:
                             break;
@@ -451,7 +452,7 @@ public class ActionController : MonoBehaviour {
                         case "remove":
                             if (debugMode) { Debug.Log("Выключить жгут"); }
 
-                            //Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
+                            Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
                             TCS.TourniquetTransform.SetActive(false);
 
 
