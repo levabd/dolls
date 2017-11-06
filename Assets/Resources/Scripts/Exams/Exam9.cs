@@ -24,6 +24,7 @@ class Exam9 : BaseExam
         { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
         { "palpation",                      "Пальпируем бедренную артерию." },
         { "puncture_needle",                "Взять иглу для пункции вены." },
+        { "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
         { "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
         { "cover_cannula",                  "Быстро прикрываем канюлю пальнцем." },
         { "wire_insertion",                 "Вставка проводника." },
@@ -204,7 +205,7 @@ class Exam9 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "sterile_tissue" && actionCode == "put")
         {
             CurrentTool.Instance.Tool.StateParams["putted"] = "true";
-            return 11;
+            return 10;
         }
 
         // { "palpation",                      "Пальпируем бедренную артерию." },
@@ -218,8 +219,12 @@ class Exam9 : BaseExam
         //{ "puncture_needle",                "Взять иглу для пункции вены." },
         if (this.GetNeedleAction(actionCode, ref errorMessage, "a45_d10_punction_needle", 12)) return 13;
 
+        //{ "puncture_novocaine",             "Наполнить 0,25% новокаина на половину." },
+        if (this.HalfFillingNovocaine(actionCode, ref errorMessage)) return 14;
+        if (errorMessage == "Отсутсвует игла") return null;
+
         //{ "disconnect_syringe",             "Отсоеденяем шприц от иглы." },
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 14;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment, "femoral_vien_final_target", 30, 45)) return 15;
 
         // Отсоединяем в любом другом месте
         if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
@@ -232,7 +237,7 @@ class Exam9 : BaseExam
                 errorMessage = "Воздушная эмболия";
                 return null;
             }
-            return 15;
+            return 16;
         }
 
         // Критическая ошибка
@@ -243,7 +248,7 @@ class Exam9 : BaseExam
         }
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
-        if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
+        if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 17, out returnedStep)) return returnedStep;
 
         return null;
     }

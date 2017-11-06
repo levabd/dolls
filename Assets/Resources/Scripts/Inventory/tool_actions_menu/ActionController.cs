@@ -588,7 +588,8 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.ShaveCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Shave, 4.5f);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
                             break;
 
                         default:

@@ -20,6 +20,8 @@ public class MoveTools
     public Vector3 Syringe;
     [Header("Шприц для анестезии")]
     public Vector3 Syringe_anestesia;
+    [Header("Стерильные салфетки")]
+    public Vector3 SterileTissue;
 }
 [System.Serializable]
 public class AnimationTool
