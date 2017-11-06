@@ -58,6 +58,7 @@ class Exam9 : BaseExam
             case "razor":
                 return new TupleList<string, string>
                 {
+                    { "get_razor", "Взять бритву"},
                     { "shave_pubis", "Побрить лобковую зону"}
                 };
             case "sterile_tissue":
@@ -209,7 +210,7 @@ class Exam9 : BaseExam
         // { "palpation",                      "Пальпируем бедренную артерию." },
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
-            if (!locatedColliderTag.Contains("femoral_artery"))
+            if (!locatedColliderTag.Contains("palpation_target"))
                 errorMessage = "Пальпируется не то место";
             return 12;
         }

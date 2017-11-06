@@ -17,6 +17,7 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject StretchTheSkinLeftCreate;
     public GameObject GauzeBallsEncloseCreate;
     public GameObject GauzeBallsRubUpDownCreate;
+    public GameObject ShaveCreate;
     // Use this for initialization
     void Start () {
 		

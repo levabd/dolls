@@ -501,6 +501,37 @@ public class ActionController : MonoBehaviour {
                 }
 
                 break;
+            case "razor":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "get_razor":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования бритвы"); }
+
+                            OnActionPosition(ActionPositionPoint, "disinfection_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "shave_pubis":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.ShaveCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 4.5f);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
 
             default:
                     break;
