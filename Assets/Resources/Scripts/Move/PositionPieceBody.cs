@@ -17,6 +17,7 @@ public class PositionPieceBody : MonoBehaviour {
     private string errorMessage;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
+    public GameObject Venflon;
     public ActionController actionController;
     public ToolControllerSkin TCS;
 	public ToolItemActionResponder TIAR;
@@ -55,6 +56,12 @@ public class PositionPieceBody : MonoBehaviour {
                             actionController.OffActionPosition(actionController.VeinPositionPoint);
 
                             Syringe.SetActive(true);
+                            TCS.SkinCollider.SetActive(true);
+                            break;
+                        case "venflon":
+                            actionController.OffActionPosition(actionController.VeinPositionPoint);
+
+                            Venflon.SetActive(true);
                             TCS.SkinCollider.SetActive(true);
                             break;
 

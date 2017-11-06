@@ -11,6 +11,7 @@ public class ActionController : MonoBehaviour {
 	public PositionPieceBody PBD;
 	public ToolControllerSyringeWithConductor TCSWC;
 	public ToolControllerSkin TCS;
+    public ToolControllerVenflon TCV;
     public PrefabTransformController PrefabTransformCtrl;
     public GameObject ActionPositionPoint;
     public GameObject VeinPositionPoint;
@@ -498,6 +499,49 @@ public class ActionController : MonoBehaviour {
                 else
                 {
                     Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "venflon":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования венфлона"); }
+
+                            OffActionPosition(ActionPositionPoint);
+                            OnActionPosition(VeinPositionPoint, "vein_target");
+
+                            PBD.TIAR.CtrlStat.HintPanel.SetActive(true);
+                            PBD.step1 = true;
+
+                            break;
+                        case "liquid_transfusion_connection":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию соеденения с сист. пер. жидкостей"); }
+
+                            CreateFromPrefab(TCV.VenflonTransfusionCreate, TCV.Transform, PrefabTransformCtrl.animationTool.VenflonTransfusion, 2000f);
+
+                            break;
+                        case "remove_mandren":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию вытаскивания мадрена"); }
+
+                            TCV.VenflonMainOff.SetActive(false);
+                            CreateFromPrefab(TCV.VenflonGetMandrenCreate, TCV.Transform, PrefabTransformCtrl.animationTool.VenflonGetMandren, 2000f);
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+
                 }
 
                 break;

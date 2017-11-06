@@ -62,6 +62,10 @@ public class AnimationTool
     public Vector3 StretchTheSkin;
     [Header("StretchTheSkinLeft Rotation")]
     public Vector3 StretchTheSkinLeft;
+    [Header("Венфлон соеденить с сист. переливания жидкостей")]
+    public Vector3 VenflonTransfusion;
+    [Header("Венфлон Вытащить мадрен")]
+    public Vector3 VenflonGetMandren;
 
 }
 
