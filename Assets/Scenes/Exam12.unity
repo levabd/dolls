@@ -6713,7 +6713,8 @@ MonoBehaviour:
   SkinCollider: {fileID: 550944821}
   PalpationCreate: {fileID: 1403568807416796, guid: d3e0782d82f6ca94bb8c307858ab9384,
     type: 2}
-  ClampVeinCreate: {fileID: 0}
+  ClampVeinCreate: {fileID: 1024548112249296, guid: 0b7ffc57e58eab54ebff64998b0c0e48,
+    type: 2}
   StretchTheSkinLeftCreate: {fileID: 1065632824995744, guid: 2137af22f33fde346a372138e261bef2,
     type: 2}
   GauzeBallsEncloseCreate: {fileID: 1771214189724388, guid: 601ad4f0bbe1b4449b59c2eb02414005,
@@ -10792,12 +10793,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10817,12 +10818,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10842,12 +10843,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -11240,7 +11241,7 @@ MonoBehaviour:
     CatcheterRotateToConductor: {x: 0, y: 0, z: 0}
     CatcheterToConductor: {x: 0, y: 0, z: 0}
     CatheterTransfunsion: {x: 0, y: 0, z: 0}
-    ClampVeins: {x: 0, y: 0, z: 0}
+    ClampVeins: {x: 0, y: 0, z: 90}
     ConductorInANeedle: {x: 0, y: 0, z: 0}
     ConductorOut: {x: 0, y: 0, z: 0}
     Desinfection: {x: 0, y: 0, z: 0}
@@ -32447,7 +32448,7 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 0}
   TCS: {fileID: 204335818}
-  TCV: {fileID: 0}
+  TCV: {fileID: 1931117616}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
@@ -49259,7 +49260,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1642895247}
-  m_LocalRotation: {x: 0.32806486, y: -0.59886485, z: -0.35040948, w: 0.641052}
+  m_LocalRotation: {x: 0.32806483, y: -0.5988648, z: -0.35040945, w: 0.64105195}
   m_LocalPosition: {x: 0.010193919, y: 1.0540903, z: -0.89626014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -51118,7 +51119,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
@@ -58578,6 +58579,57 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114423878019119866, guid: 118439f778b45044c8c70c3c7ca3ed09,
+        type: 2}
+      propertyPath: TIAR
+      value: 
+      objectReference: {fileID: 401152579}
+    - target: {fileID: 114423878019119866, guid: 118439f778b45044c8c70c3c7ca3ed09,
+        type: 2}
+      propertyPath: examControl
+      value: 
+      objectReference: {fileID: 1166830729}
+    - target: {fileID: 114843632000522878, guid: 118439f778b45044c8c70c3c7ca3ed09,
+        type: 2}
+      propertyPath: TIAR
+      value: 
+      objectReference: {fileID: 401152579}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
   m_IsPrefabParent: 0
@@ -58586,6 +58638,33 @@ GameObject:
   m_PrefabParentObject: {fileID: 1294018797539372, guid: 118439f778b45044c8c70c3c7ca3ed09,
     type: 2}
   m_PrefabInternal: {fileID: 1931117612}
+--- !u!1 &1931117614 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1329430815002872, guid: 118439f778b45044c8c70c3c7ca3ed09,
+    type: 2}
+  m_PrefabInternal: {fileID: 1931117612}
+--- !u!1 &1931117615 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1111629229755378, guid: 118439f778b45044c8c70c3c7ca3ed09,
+    type: 2}
+  m_PrefabInternal: {fileID: 1931117612}
+--- !u!114 &1931117616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1931117613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021031f27e77af842a225fa02a44dc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Transform: {fileID: 1931117614}
+  VenflonMainOff: {fileID: 1931117615}
+  VenflonGetMandrenCreate: {fileID: 1838476973678242, guid: 0e98a3ffca9caba47a8e04f59a970b9e,
+    type: 2}
+  VenflonTransfusionCreate: {fileID: 1092826022394316, guid: 18f93710ba5deb14489b248f53ef8438,
+    type: 2}
 --- !u!1 &1932263943
 GameObject:
   m_ObjectHideFlags: 0
@@ -63158,7 +63237,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2080291035}
-  m_LocalRotation: {x: 0.4641903, y: 0.026900334, z: 0.7982285, w: -0.38292965}
+  m_LocalRotation: {x: 0.46419024, y: 0.02690033, z: 0.7982284, w: -0.3829296}
   m_LocalPosition: {x: -0.19909997, y: 0.11400001, z: 0.06139996}
   m_LocalScale: {x: 0.012953831, y: 0.011528606, z: 0.0108047025}
   m_Children: []

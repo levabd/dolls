@@ -530,8 +530,7 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Снимаем жгут." },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            if (!locatedColliderTag.Contains("tourniquet_target"))
-                errorMessage = "Не туда наложен жгут";
+            
             returnedStep = 10;
             return true;
         }
