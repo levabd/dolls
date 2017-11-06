@@ -588,7 +588,7 @@ public static class ExamHelpers
         {
             if (!locatedColliderTag.Contains("catheter"))
                 errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
-            returnedStep = head ? 16 : 14;
+            returnedStep = head ? 16 : 15;
             return true;
         }
 
