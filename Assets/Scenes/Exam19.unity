@@ -9293,7 +9293,8 @@ MonoBehaviour:
   SkinCollider: {fileID: 550944821}
   PalpationCreate: {fileID: 1403568807416796, guid: d3e0782d82f6ca94bb8c307858ab9384,
     type: 2}
-  ClampVeinCreate: {fileID: 0}
+  ClampVeinCreate: {fileID: 1024548112249296, guid: 0b7ffc57e58eab54ebff64998b0c0e48,
+    type: 2}
   StretchTheSkinLeftCreate: {fileID: 1065632824995744, guid: 2137af22f33fde346a372138e261bef2,
     type: 2}
   GauzeBallsEncloseCreate: {fileID: 1771214189724388, guid: 601ad4f0bbe1b4449b59c2eb02414005,
@@ -16068,12 +16069,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -16093,12 +16094,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -16118,12 +16119,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -17050,7 +17051,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350784734}
   m_LocalRotation: {x: -0.07095852, y: -0.054280467, z: -0.8540138, w: 0.5125222}
-  m_LocalPosition: {x: -31.4, y: 5.02, z: -144.87}
+  m_LocalPosition: {x: -32.78, y: 5.4, z: -144.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1952263672}
@@ -17161,13 +17162,13 @@ MonoBehaviour:
     CatcheterRotateToConductor: {x: 0, y: 0, z: 0}
     CatcheterToConductor: {x: 0, y: 0, z: 0}
     CatheterTransfunsion: {x: 0, y: 0, z: 0}
-    ClampVeins: {x: 0, y: 0, z: 0}
+    ClampVeins: {x: 0, y: 0, z: 90}
     ConductorInANeedle: {x: 0, y: 0, z: 0}
     ConductorOut: {x: 0, y: 0, z: 0}
     Desinfection: {x: 0, y: 0, z: 0}
     GauzeBallsEnclose: {x: 0, y: 0, z: 90}
     GauzeBallsRubUpDown: {x: 0, y: 0, z: 90}
-    HandWithPatch: {x: 56, y: -28, z: 17}
+    HandWithPatch: {x: 80, y: 46, z: 140}
     NapkinPut: {x: 0, y: 0, z: 0}
     NeedleOut: {x: 0, y: 0, z: 0}
     Paplation: {x: 0, y: 0, z: 90}
@@ -31554,13 +31555,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 628913626}
-  m_LocalRotation: {x: -0.4088718, y: 0.40914315, z: -0.21240161, w: -0.7875985}
-  m_LocalPosition: {x: 1.5092583, y: 10.964668, z: -121.82486}
+  m_LocalRotation: {x: -0.34466526, y: 0.46452135, z: -0.32526058, w: -0.74808514}
+  m_LocalPosition: {x: 7.9, y: 11.6, z: -126.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1546087402}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 54.871002, y: -54.902004, z: 16.813002}
 --- !u!114 &628913628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31576,7 +31577,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 623446358}
-  Venflon: {fileID: 0}
+  Venflon: {fileID: 2143568125}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 204335818}
   TIAR: {fileID: 401152579}
@@ -99071,13 +99072,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2096941539}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 10.5, y: 79, z: -57.9}
+  m_LocalRotation: {x: -0.22896361, y: -0.6690112, z: 0.6690108, w: -0.22896361}
+  m_LocalPosition: {x: 28.5, y: 79, z: -62.5}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 1546087402}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 217.786}
 --- !u!1 &2098569720
 GameObject:
   m_ObjectHideFlags: 0
@@ -101433,12 +101434,12 @@ Prefab:
         type: 2}
       propertyPath: TIAR
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 401152579}
     - target: {fileID: 114423878019119866, guid: 118439f778b45044c8c70c3c7ca3ed09,
         type: 2}
       propertyPath: examControl
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1166830729}
     - target: {fileID: 114843632000522878, guid: 118439f778b45044c8c70c3c7ca3ed09,
         type: 2}
       propertyPath: TIAR
@@ -101470,15 +101471,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4337644713430564, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4566197054871326, guid: 118439f778b45044c8c70c3c7ca3ed09, type: 2}
       propertyPath: m_LocalScale.x
@@ -101540,9 +101541,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Transform: {fileID: 2143568123}
   VenflonMainOff: {fileID: 2143568124}
-  VenflonGetMandrenCreate: {fileID: 1838476973678242, guid: 0e98a3ffca9caba47a8e04f59a970b9e,
+  VenflonGetMandrenCreate: {fileID: 1838476973678242, guid: 9ac56e98dcc0fa34caaa08d008c09215,
     type: 2}
-  VenflonTransfusionCreate: {fileID: 1092826022394316, guid: 18f93710ba5deb14489b248f53ef8438,
+  VenflonTransfusionCreate: {fileID: 1092826022394316, guid: ddd72132adf0e11428e3c46845bf5072,
     type: 2}
 --- !u!1 &2144608570
 GameObject:
