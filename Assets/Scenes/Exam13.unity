@@ -15570,6 +15570,9 @@ MonoBehaviour:
     type: 2}
   GauzeBallsRubUpDownCreate: {fileID: 1539830380161056, guid: c2042fdb1338c7a429b9e2900fa1978d,
     type: 2}
+  ShaveCreate: {fileID: 0}
+  NapkinPutCreate: {fileID: 0}
+  SterileTissueCreate: {fileID: 0}
 --- !u!1 &204749463
 GameObject:
   m_ObjectHideFlags: 0
@@ -20476,6 +20479,7 @@ MonoBehaviour:
     NeedleElone: {x: 0, y: 0, z: 0}
     Syringe: {x: 0, y: 0, z: 0}
     Syringe_anestesia: {x: 0, y: 0, z: 0}
+    SterileTissue: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 0, y: 0, z: 0}
@@ -20496,6 +20500,8 @@ MonoBehaviour:
     Shave: {x: 0, y: 0, z: 0}
     StretchTheSkin: {x: 0, y: 0, z: 90}
     StretchTheSkinLeft: {x: 0, y: 0, z: 90}
+    VenflonTransfusion: {x: 0, y: 0, z: 0}
+    VenflonGetMandren: {x: 0, y: 0, z: 0}
 --- !u!1 &351393065
 GameObject:
   m_ObjectHideFlags: 0
@@ -26219,7 +26225,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 527414930}
-  m_LocalRotation: {x: 0.32806486, y: -0.59886485, z: -0.35040948, w: 0.641052}
+  m_LocalRotation: {x: 0.32806483, y: -0.5988648, z: -0.35040945, w: 0.64105195}
   m_LocalPosition: {x: 0.010193919, y: 1.0540903, z: -0.89626014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -27411,6 +27417,7 @@ Transform:
   - {fileID: 245088692}
   - {fileID: 1335663088}
   - {fileID: 550944822}
+  - {fileID: 1484107594}
   m_Father: {fileID: 351149009}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -13.998001, y: 7.977, z: -32.478}
@@ -29281,6 +29288,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 623446358}
+  Venflon: {fileID: 0}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 204335818}
   TIAR: {fileID: 401152579}
@@ -44054,9 +44062,11 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 657950642}
   TCS: {fileID: 204335818}
+  TCV: {fileID: 0}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
+  TourniquetPositionPoint: {fileID: 1484107593}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54699,7 +54709,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1452431098}
-  m_LocalRotation: {x: 0.4641903, y: 0.026900334, z: 0.7982285, w: -0.38292965}
+  m_LocalRotation: {x: 0.46419024, y: 0.02690033, z: 0.7982284, w: -0.3829296}
   m_LocalPosition: {x: -0.19909997, y: 0.11400001, z: 0.06139996}
   m_LocalScale: {x: 0.012953831, y: 0.011528606, z: 0.0108047025}
   m_Children: []
@@ -55650,6 +55660,49 @@ Transform:
   m_Father: {fileID: 1603211035}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1484107593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1129046065028096, guid: 60830b1fc32f87449bb81965e6b3eb4d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1484107594}
+  - component: {fileID: 1484107595}
+  m_Layer: 0
+  m_Name: TourniquetCollider
+  m_TagString: tourniquet_target
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1484107594
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4679862107809342, guid: 60830b1fc32f87449bb81965e6b3eb4d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1484107593}
+  m_LocalRotation: {x: 0.04585095, y: 0.026183723, z: -0.6425072, w: 0.7644584}
+  m_LocalPosition: {x: 0.10866262, y: 9.118847, z: 2.6859303}
+  m_LocalScale: {x: 42.622696, y: 5.186909, z: 2.6251786}
+  m_Children: []
+  m_Father: {fileID: 571763211}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -9.523001, y: 3.8120003, z: -111.72001}
+--- !u!135 &1484107595
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1484107593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1485501869
 GameObject:
   m_ObjectHideFlags: 0
@@ -62208,7 +62261,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
