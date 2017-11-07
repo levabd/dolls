@@ -20,7 +20,7 @@ namespace DB.Models
         public Step(int examId, string name, string error, int orderNumber, int orderedAt, bool passed = false)
         {
             if (String.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Step name cannot be null", nameof(name));
+                throw new ArgumentException("Step name cannot be empty", nameof(name));
 
             _examId = examId;
             Name = name.Trim();

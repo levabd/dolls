@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace DB.Models
@@ -32,7 +33,7 @@ namespace DB.Models
         public Exam(int userId, string name, string error, bool passed = false)
         {
             if (String.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Exam name cannot be null", nameof(name));
+                throw new ArgumentException("Exam name cannot be empty", nameof(name));
 
             _userId = userId;
             Name = name.Trim();
@@ -44,7 +45,7 @@ namespace DB.Models
         public Exam(User user, string name, string error, bool passed = false)
         {
             if (String.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Exam name cannot be null", nameof(name));
+                throw new ArgumentException("Exam name cannot be empty", nameof(name));
             if (user?.Id == null)
                 throw new ArgumentException("User and user_id cannot be null", nameof(user));
 
@@ -163,6 +164,8 @@ namespace DB.Models
                 i = dbcmd.ExecuteScalar();
                 dbcmd.Dispose();
                 DbPerference.Instance.Dbconn().Close();
+
+                Debug.Log(i);
 
                 Id = (int) i;
 

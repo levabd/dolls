@@ -14,13 +14,6 @@ public abstract class BaseExam: IExamInterface
     public bool NeedleInsideTarget;
 
     private Exam _examModel;
-    private int _examModelId;
-
-    protected BaseExam()
-    {
-        _examModel = new Exam(CurrentUser.User, "", "");
-        _examModelId = _examModel.Save();
-    }
 
     public int LastTakenStep()
     {
@@ -34,6 +27,12 @@ public abstract class BaseExam: IExamInterface
     private void TakeStep(int stepNumber, bool result, string errorMessage)
     {
         Tuple<int, bool, string> step = new Tuple<int, bool, string>(stepNumber, result, errorMessage);
+
+        if (_examModel == null)
+        {
+            _examModel = new Exam(CurrentUser.User, Name, "");
+            _examModel.Save();
+        }
 
         new Step(_examModel, CorrectSteps[stepNumber - 1].Item2, errorMessage, stepNumber, _takenSteps.Count + 1, result).Save();
 
@@ -55,9 +54,11 @@ public abstract class BaseExam: IExamInterface
         errorMessage = currentErrorMessage;
         if (!result)
         {
+            if (_examModel == null)
+                _examModel = new Exam(CurrentUser.User, Name, "");
+
             _examModel.Passed = false;
             _examModel.Error = errorMessage;
-            _examModel.Name = Name;
             _examModel.Save();
         }
         return result;
@@ -72,9 +73,11 @@ public abstract class BaseExam: IExamInterface
         errorMessage = currentErrorMessage;
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
+            if (_examModel == null)
+                _examModel = new Exam(CurrentUser.User, Name, "");
+
             _examModel.Passed = false;
             _examModel.Error = errorMessage;
-            _examModel.Name = Name;
             _examModel.Save();
             return false;
         }
@@ -88,7 +91,9 @@ public abstract class BaseExam: IExamInterface
 
     public bool Finish()
     {
-        _examModel.Name = Name;
+        if (_examModel == null)
+            _examModel = new Exam(CurrentUser.User, Name, "");
+
         _examModel.Passed = false;
 
         if (_takenSteps.Count != CorrectSteps.Count)
