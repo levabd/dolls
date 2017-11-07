@@ -28,9 +28,12 @@ public class StartNeedleTrigger : MonoBehaviour {
         if (CheckObject == false)
         {
             examControl.EndExam(false, errorMessage);
+        }
+        if (col.gameObject.tag.Contains("vein"))
+        {
+            TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Ила вошла в вену");
         }        
-
-         print("куда-то вошла игла " + col.gameObject.tag);
+        print("куда-то вошла игла " + col.gameObject.tag);
     }
     //void OnTriggerExit(Collider col)
     //{
