@@ -15,6 +15,7 @@ public class ActionController : MonoBehaviour {
     public PrefabTransformController PrefabTransformCtrl;
     public GameObject ActionPositionPoint;
     public GameObject VeinPositionPoint;
+    public GameObject TourniquetPositionPoint;
 
     // Use this for initialization
     void Start () {
@@ -440,7 +441,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск позиционирования жгута"); }
 
-                            OnActionPosition(ActionPositionPoint, "tourniquet_target");
+                            OnActionPosition(TourniquetPositionPoint, "tourniquet_target");
                             PBD.step1 = true;
 
                             break;
@@ -448,7 +449,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск жгута"); }
 
-                            OffActionPosition(ActionPositionPoint);
+                            OffActionPosition(TourniquetPositionPoint);
                             TCS.TourniquetTransform.SetActive(true);
 
                             break;
