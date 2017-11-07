@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DB.Models;
 
 // ReSharper disable once CheckNamespace
 public abstract class BaseExam: IExamInterface
@@ -11,6 +12,15 @@ public abstract class BaseExam: IExamInterface
 
     public string CurrentBallLiquid = "none";
     public bool NeedleInsideTarget;
+
+    private Exam _examModel;
+    private int _examModelId;
+
+    protected BaseExam()
+    {
+        _examModel = new Exam(CurrentUser.User, "", "");
+        _examModelId = _examModel.Save();
+    }
 
     public int LastTakenStep()
     {
@@ -25,8 +35,7 @@ public abstract class BaseExam: IExamInterface
     {
         Tuple<int, bool, string> step = new Tuple<int, bool, string>(stepNumber, result, errorMessage);
 
-        // TODO: Save Taken Step to DB
-        // Step Name = CorrectSteps[stepNumber - 1].Item2
+        new Step(_examModel, CorrectSteps[stepNumber - 1].Item2, errorMessage, stepNumber, _takenSteps.Count + 1, result).Save();
 
         _takenSteps.Add(step);
     }
@@ -46,7 +55,10 @@ public abstract class BaseExam: IExamInterface
         errorMessage = currentErrorMessage;
         if (!result)
         {
-            // TODO: Save false result to DB
+            _examModel.Passed = false;
+            _examModel.Error = errorMessage;
+            _examModel.Name = Name;
+            _examModel.Save();
         }
         return result;
     }
@@ -60,7 +72,10 @@ public abstract class BaseExam: IExamInterface
         errorMessage = currentErrorMessage;
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
-            // TODO: Save false result to DB
+            _examModel.Passed = false;
+            _examModel.Error = errorMessage;
+            _examModel.Name = Name;
+            _examModel.Save();
             return false;
         }
 
@@ -73,18 +88,37 @@ public abstract class BaseExam: IExamInterface
 
     public bool Finish()
     {
+        _examModel.Name = Name;
+        _examModel.Passed = false;
+
         if (_takenSteps.Count != CorrectSteps.Count)
+        {
+            _examModel.Error = "Було проведено недостатньо кроків.";
+            _examModel.Save();
             return false;
+        }
         
         int currentStepNumber = 1;
         foreach (var step in _takenSteps)
         {
             if (step.Item1 != currentStepNumber)
+            {
+                _examModel.Error = "Хибний порядок дій.";
+                _examModel.Save();
                 return false;
+            }
             if (!step.Item2)
+            {
+                _examModel.Error = "Пропущено кроки.";
+                _examModel.Save();
                 return false;
+            }
             currentStepNumber++;
         }
+
+        _examModel.Passed = true;
+        _examModel.Error = "";
+        _examModel.Save();
 
         return true;
     }

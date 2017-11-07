@@ -70,9 +70,9 @@ public class AdminView : MonoBehaviour {
             d.elements.Add(user.Login);
             switch (user.Role)
             {
-                case 0: d.elements.Add("Адміністратор"); break;
-                case 1: d.elements.Add("Перевіряючий"); break;
-                case 2: d.elements.Add("Користувач"); break;
+                case User.UserRoles.Admin: d.elements.Add("Адміністратор"); break;
+                case User.UserRoles.Manager: d.elements.Add("Перевіряючий"); break;
+                case User.UserRoles.User: d.elements.Add("Користувач"); break;
                 default: d.elements.Add("Користувач"); break;
             }
 
@@ -131,7 +131,7 @@ public class AdminView : MonoBehaviour {
         btn = ApplyDeleteUserButton.GetComponent<Button>();
         btn.onClick.AddListener(DeleteUser);
 
-        Name.text = CurrentUser.Name;
+        Name.text = CurrentUser.User.Name;
 
         // Initialize Table
         _dataTable = DataTable.GetComponent<Table>();
@@ -206,7 +206,7 @@ public class AdminView : MonoBehaviour {
                 case 4:
                 {
                     EditUserNameInputField.text = _users[_currentTableIndex].Name;
-                    EditUserRoleDropdown.value = _users[_currentTableIndex].Role;
+                    EditUserRoleDropdown.value = (int)_users[_currentTableIndex].Role;
                     EditUserAccountPanel.SetActive(true);
                     break;
                 }
@@ -257,7 +257,7 @@ public class AdminView : MonoBehaviour {
         try
         {
             User currentUser = User.FindById(_users[_currentTableIndex].Id);
-            currentUser.Role = EditUserRoleDropdown.value;
+            currentUser.Role = (User.UserRoles)EditUserRoleDropdown.value;
             currentUser.Name = EditUserNameInputField.text;
             currentUser.Save();
 

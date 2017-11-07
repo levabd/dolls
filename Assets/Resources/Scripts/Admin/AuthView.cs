@@ -77,15 +77,13 @@ public class AuthView : MonoBehaviour {
                 GeneralSceneHelper.ShowMessage("Хибний пароль", Dialog, DialogText);
             else
             {
-                CurrentUser.Name = currentUser.Name;
-                CurrentUser.Id = currentUser.Id ?? 0;
-                CurrentUser.Role = currentUser.Role;
+                CurrentUser.User = currentUser;
                 TrySaveLogin();
                 switch (currentUser.Role)
                 {
-                    case 0: SceneManager.LoadScene("Administrator_menu_scene"); break;
-                    case 1: SceneManager.LoadScene("ExamManager_scene"); break;
-                    case 2: SceneManager.LoadScene("Examining_menu_scene"); break;
+                    case User.UserRoles.Admin: SceneManager.LoadScene("Administrator_menu_scene"); break;
+                    case User.UserRoles.Manager: SceneManager.LoadScene("ExamManager_scene"); break;
+                    case User.UserRoles.User: SceneManager.LoadScene("Examining_menu_scene"); break;
                     default: SceneManager.LoadScene("Examining_menu_scene"); break;
                 }
             }

@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace DB.Models
 {
     public static class CurrentUser
     {
-        public static string Name;
-        public static int Id;
-        public static int Role;
+        public static User User = User.FindById(1);
     }
 
     public class User: BaseModel
     {
+        public enum UserRoles
+        {
+            Admin = 0,
+            Manager = 1,
+            User = 2
+        }
+
         public int? Id { get; }
         public int Timestamp { get; private set; }
         public string Login { get; }
         public string PasswordHash { get; private set; }
         public string Name { get; set; }
-        public int Role { get; set; }
+        public UserRoles Role { get; set; }
 
         private void GeneratePwdAndTime(string password)
         {
@@ -41,7 +45,7 @@ namespace DB.Models
             Login = loginCandidate;
             GeneratePwdAndTime(password);
             Name = name.Trim();
-            Role = role;
+            Role = (UserRoles) role;
         }
 
         public static User FindByLogin(string login)
@@ -51,12 +55,26 @@ namespace DB.Models
 
         public static User FindById(int? id)
         {
-            return new User(id ?? 0);           
+            return new User(id);           
         }
 
         public static List<User> FindAll()
         {
             List<List<object>> rawUsers = SelectAll("SELECT id, login, password, timestamp, name, role FROM Users");
+            List<User> users = new List<User>();
+
+            foreach (var rawUser in rawUsers)
+            {
+                User user = new User((int)rawUser[0], (string)rawUser[1], (string)rawUser[2], (int)rawUser[3], (string)rawUser[4], (int)rawUser[5]);
+                users.Add(user);
+            }
+
+            return users;
+        }
+
+        public static List<User> FindAllByName(string name)
+        {
+            List<List<object>> rawUsers = SelectAll("SELECT id, login, password, timestamp, name, role FROM Users WHERE name LIKE '%" + name + "%'");
             List<User> users = new List<User>();
 
             foreach (var rawUser in rawUsers)
@@ -75,7 +93,14 @@ namespace DB.Models
             Timestamp = timestamp;
             PasswordHash = password;
             Name = name;
-            Role = role;
+            Role = (UserRoles)role;
+            /*switch (role)
+            {
+                case 0: Role = UserRoles.Admin; break;
+                case 1: Role = UserRoles.Manager; break;
+                case 2: Role = UserRoles.User; break;
+                default: Role = UserRoles.User; break;
+            }*/
         }
 
         private User(string login)
@@ -92,7 +117,7 @@ namespace DB.Models
             PasswordHash = (string)currentUser[1];
             Timestamp = (int)currentUser[2];
             Name = (string)currentUser[3];
-            Role = (int)currentUser[4];
+            Role = (UserRoles)(int)currentUser[4];
         }
 
         private User(int? id)
@@ -110,7 +135,7 @@ namespace DB.Models
             PasswordHash = (string)currentUser[1];
             Timestamp = (int)currentUser[2];
             Name = (string)currentUser[3];
-            Role = (int)currentUser[4];
+            Role = (UserRoles)(int)currentUser[4];
         }
 
         public void Delete()
@@ -137,7 +162,7 @@ namespace DB.Models
             if (Id == null) // Create
                 Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim() + "', '" + Role + "')");
             else // Update
-                Execute("UPDATE Users SET name = '" + Name.Trim() + "', role = '" + Role + "' WHERE id = '" + Id + "'");
+                Execute("UPDATE Users SET name = '" + Name.Trim() + "', role = '" + (int)Role + "' WHERE id = '" + Id + "'");
         }
 
         public void ChangePassword(string password)

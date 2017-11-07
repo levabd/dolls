@@ -899,7 +899,8 @@ namespace SLS.Widgets.Table {
     }
 
     public void SetLayoutHorizontal() {
-      if(this.bodyRect == null || !this.isRunning)
+      // BUGGED
+      if (this.bodyRect == null || !this.isRunning || this.control == null)
         return;
       this.control.SetLayoutHorizontal();
     }
