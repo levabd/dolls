@@ -2046,6 +2046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkinTransform: {fileID: 350784734}
+  TourniquetTransform: {fileID: 0}
   SyringeInScene: {fileID: 623446358}
   AnestesiaCreate: {fileID: 1673228566407836, guid: 3aa8a8e4b17768b40b30d24bce03d079,
     type: 2}
@@ -2056,6 +2057,12 @@ MonoBehaviour:
   SkinCollider: {fileID: 0}
   PalpationCreate: {fileID: 0}
   ClampVeinCreate: {fileID: 0}
+  StretchTheSkinLeftCreate: {fileID: 0}
+  GauzeBallsEncloseCreate: {fileID: 0}
+  GauzeBallsRubUpDownCreate: {fileID: 0}
+  ShaveCreate: {fileID: 0}
+  NapkinPutCreate: {fileID: 0}
+  SterileTissueCreate: {fileID: 0}
 --- !u!1 &245088688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,6 +4370,7 @@ MonoBehaviour:
     NeedleElone: {x: 0, y: 0, z: 0}
     Syringe: {x: 0, y: 0, z: 0}
     Syringe_anestesia: {x: 0, y: 0, z: 0}
+    SterileTissue: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 90, y: 0, z: 0}
@@ -4383,6 +4391,8 @@ MonoBehaviour:
     Shave: {x: 0, y: 0, z: 0}
     StretchTheSkin: {x: 0, y: 0, z: 0}
     StretchTheSkinLeft: {x: 0, y: 0, z: 0}
+    VenflonTransfusion: {x: 0, y: 0, z: 0}
+    VenflonGetMandren: {x: 0, y: 0, z: 0}
 --- !u!1 &353239070
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,6 +6254,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 623446358}
+  Venflon: {fileID: 0}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 204335818}
   TIAR: {fileID: 401152579}
@@ -8131,6 +8142,10 @@ Prefab:
     - target: {fileID: 101266, guid: 2b8fb505657b76e43b121c2cf9e266c4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101900, guid: 2b8fb505657b76e43b121c2cf9e266c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b8fb505657b76e43b121c2cf9e266c4, type: 3}
@@ -10478,6 +10493,7 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 657950642}
   TCS: {fileID: 204335818}
+  TCV: {fileID: 0}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 0}
@@ -10675,6 +10691,64 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119441389}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1128982038
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 401900, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1a4427c34ebc8704db4a4bc748a0ae05, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &1131529221
 GameObject:
   m_ObjectHideFlags: 0
