@@ -156,9 +156,12 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "take_the_blood_ml10":
                             if (debugMode) { Debug.Log("Запуск анимации набирания крови"); }
-
+                            Material matBlood = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_bloodfull", typeof(Material)) as Material;
+                            Material[] mats = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+                            mats[0] = matBlood;
+                            GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats;
                             Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
-
+                            
                             break;
                         case "needle_pull":
                             if (debugMode) { Debug.Log("Запуск анимации извлечения шприца"); }
@@ -167,7 +170,10 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "administer_drug":
                             if (debugMode) { Debug.Log("Запуск анимации ввода препарата"); }
-
+                            Material matBlood2 = Resources.Load("Prefabs/Medicine_and_Health/Models/Materials/Syringe_df_empty", typeof(Material)) as Material;
+                            Material[] mats2 = GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials;
+                            mats2[0] = matBlood2;
+                            GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats2;
                             break;
                         default:
                             break;
