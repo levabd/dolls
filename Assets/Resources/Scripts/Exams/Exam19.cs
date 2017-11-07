@@ -77,8 +77,8 @@ class Exam19 : BaseExam
                     { "iodine_p3",     "Промокнуть в 3% раствором йодоната" },
                     { "null",         "---" },
                     { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "attach_balls", "Приложить шарик" },
-                    { "top_down",     "Протереть сверху вниз" },
+                    { "get_balls",         "Приложить шарик" }, // "attach_balls"
+                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
                 };
             case "tweezers":
                 return new TupleList<string, string>
