@@ -152,29 +152,27 @@ namespace DB.Models
         {
             if (Id == null) // Create
             {
-                Execute("INSERT INTO Exams (user_id, name, error_message, passed, passed_at) VALUES ('" + _userId +
-                        "', '" + Name + "', '" + Error + "', '" + (Passed ? "1" : "0") + "', '" + _passedAtTimestamp +
-                        "')");
                 DbPerference.Instance.Dbconn().Open();
                 IDbCommand dbcmd = DbPerference.Instance.Dbconn().CreateCommand();
+                dbcmd.CommandText = "INSERT INTO Exams (user_id, name, error_message, passed, passed_at) VALUES ('" +
+                                    _userId +
+                                    "', '" + Name + "', '" + Error + "', '" + (Passed ? "1" : "0") + "', '" +
+                                    _passedAtTimestamp +
+                                    "')";
+                dbcmd.ExecuteNonQuery();
                 dbcmd.CommandText = "SELECT last_insert_rowid()";
                 object i = dbcmd.ExecuteScalar();
-
                 dbcmd.CommandText = "SELECT id FROM Exams WHERE rowid=" + i;
-                i = dbcmd.ExecuteScalar();
+                Id = Int32.Parse(dbcmd.ExecuteScalar().ToString());
                 dbcmd.Dispose();
                 DbPerference.Instance.Dbconn().Close();
-
-                Debug.Log(i);
-
-                Id = (int) i;
-
-                return (int) i;
             }
-
-            Execute("UPDATE Exams SET user_id = '" + _userId + ", name = '" + Name.Trim() + ", error_message = '" + 
-                Error.Trim() + ", passed = '" + (Passed ? "1" : "0") + ", passed_at = '" + 
-                _passedAtTimestamp + "' WHERE id = '" + Id + "'");
+            else
+            {
+                Execute("UPDATE Exams SET user_id = '" + _userId + ", name = '" + Name.Trim() + ", error_message = '" +
+                        Error.Trim() + ", passed = '" + (Passed ? "1" : "0") + ", passed_at = '" +
+                        _passedAtTimestamp + "' WHERE id = '" + Id + "'");
+            }
 
             return Id ?? 0;
         }
