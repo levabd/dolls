@@ -6860,6 +6860,9 @@ MonoBehaviour:
     type: 2}
   GauzeBallsRubUpDownCreate: {fileID: 1539830380161056, guid: c2042fdb1338c7a429b9e2900fa1978d,
     type: 2}
+  ShaveCreate: {fileID: 0}
+  NapkinPutCreate: {fileID: 0}
+  SterileTissueCreate: {fileID: 0}
 --- !u!43 &206095087
 Mesh:
   m_ObjectHideFlags: 0
@@ -10931,12 +10934,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10956,12 +10959,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10981,12 +10984,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -11373,6 +11376,7 @@ MonoBehaviour:
     NeedleElone: {x: 0, y: 0, z: 0}
     Syringe: {x: 0, y: 0, z: 0}
     Syringe_anestesia: {x: 0, y: 0, z: 0}
+    SterileTissue: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 0, y: 0, z: 0}
@@ -11393,6 +11397,8 @@ MonoBehaviour:
     Shave: {x: 0, y: 0, z: 0}
     StretchTheSkin: {x: 0, y: 0, z: 90}
     StretchTheSkinLeft: {x: 0, y: 0, z: 90}
+    VenflonTransfusion: {x: 0, y: 0, z: 0}
+    VenflonGetMandren: {x: 0, y: 0, z: 0}
 --- !u!1 &354768076
 GameObject:
   m_ObjectHideFlags: 0
@@ -19553,6 +19559,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 623446358}
+  Venflon: {fileID: 0}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 204335818}
   TIAR: {fileID: 401152579}
@@ -32594,6 +32601,7 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 657950642}
   TCS: {fileID: 204335818}
+  TCV: {fileID: 0}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
@@ -49467,7 +49475,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1642895247}
-  m_LocalRotation: {x: 0.32806483, y: -0.5988648, z: -0.35040945, w: 0.64105195}
+  m_LocalRotation: {x: 0.32806486, y: -0.59886485, z: -0.35040948, w: 0.641052}
   m_LocalPosition: {x: 0.010193919, y: 1.0540903, z: -0.89626014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -63373,7 +63381,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2080291035}
-  m_LocalRotation: {x: 0.46419024, y: 0.02690033, z: 0.7982284, w: -0.3829296}
+  m_LocalRotation: {x: 0.4641903, y: 0.026900334, z: 0.7982285, w: -0.38292965}
   m_LocalPosition: {x: -0.19909997, y: 0.11400001, z: 0.06139996}
   m_LocalScale: {x: 0.012953831, y: 0.011528606, z: 0.0108047025}
   m_Children: []

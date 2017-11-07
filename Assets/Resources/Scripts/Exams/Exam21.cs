@@ -141,10 +141,10 @@ class Exam21 : BaseExam
             }
         }
 
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "midline_ulnar_vein_final_target")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "medial_saphenous_vein_final_target")
             NeedleInsideTarget = true;
 
-        if (!this.GenericMoveHelper(colliderTag, "midline_ulnar_vein_final_target", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "medial_saphenous_vein_final_target", ref errorMessage))
             return false;
 
         return true;
@@ -163,7 +163,7 @@ class Exam21 : BaseExam
 
         int returnedStep;
 
-        if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "midline_ulnar_vein_final_target"))
+        if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "medial_saphenous_vein_final_target"))
             return returnedStep;
 
 
