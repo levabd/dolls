@@ -172,6 +172,9 @@ public class ActionController : MonoBehaviour {
                             mats2[0] = matBlood2;
                             GameObject.Find("SyringeElone").transform.GetChild(0).gameObject.GetComponent<Renderer>().materials = mats2;
                             break;
+                        case "nacl_to_cateter":
+                            CreateFromPrefab(TCV.NaclToVenflonCreate, TCV.Transform, PrefabTransformCtrl.animationTool.NaclToVenflon, 4f);
+                            break;
                         default:
                             break;
                     }

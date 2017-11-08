@@ -11,6 +11,7 @@ public class ToolControllerVenflon : MonoBehaviour {
     public GameObject VenflonMainOff;
     public GameObject VenflonGetMandrenCreate;
     public GameObject VenflonTransfusionCreate;
+    public GameObject NaclToVenflonCreate;
 
     // Use this for initialization
     void Start () {

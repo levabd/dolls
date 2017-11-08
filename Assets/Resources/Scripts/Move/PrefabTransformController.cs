@@ -68,6 +68,8 @@ public class AnimationTool
     public Vector3 VenflonTransfusion;
     [Header("Венфлон Вытащить мадрен")]
     public Vector3 VenflonGetMandren;
+    [Header("Венфлон ввести раствор")]
+    public Vector3 NaclToVenflon;
 
 }
 
