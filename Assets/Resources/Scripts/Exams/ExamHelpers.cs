@@ -7,7 +7,9 @@ public static class ExamHelpers
     public static bool GenericMoveHelper(this BaseExam exam, string colliderTag, string finalColliderTag, ref string errorMessage)
     {
 
-        if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon")
+        if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon" || 
+            CurrentTool.Instance.Tool.CodeName == "big" || CurrentTool.Instance.Tool.CodeName == "cannule" || 
+            CurrentTool.Instance.Tool.CodeName == "trocar")
             && colliderTag != finalColliderTag && colliderTag != "vein_target")
         {
             errorMessage = "Пункция не в том месте";
@@ -25,6 +27,12 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "tweezers" && colliderTag != "disinfection_target")
         {
             errorMessage = "Дезинфекция не в том месте";
+            return false;
+        }
+
+        if (CurrentTool.Instance.Tool.CodeName == "scalpel" && colliderTag != "scalpel_target")
+        {
+            errorMessage = "Надрез не в том месте";
             return false;
         }
 
@@ -130,6 +138,59 @@ public static class ExamHelpers
             if (!locatedColliderTag.Contains("catheter"))
                 errorMessage = "Не то место установки. Сначала должен быть корректно установлен катетер";
             returnedStep = expectedFirstStep + 7;
+            return true;
+        }
+
+        returnedStep = 0;
+        return false;
+    }
+
+    public static bool BiosafetySpirit(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep)
+    {
+        // { "wear_examination_gloves",        "Надеть смотровые перчатки" },
+        if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
+        {
+            CurrentTool.Instance.Tool.Title = "Смотровые перчатки надеты";
+            CurrentTool.Instance.Tool.StateParams["weared_examination"] = "true";
+            CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "false";
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[2];
+            returnedStep = 1;
+            return true;
+        }
+
+        //{ "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode.Contains("spirit"))
+        {
+            BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
+            returnedStep = 2;
+            exam.CurrentBallLiquid = "spirit";
+            return true;
+        }
+
+        // { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
+        {
+            if (locatedColliderTag != "disinfection_target")
+                errorMessage = "Дезинфекцию надо делать не тут";
+
+            returnedStep = 3;
+            return true;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "right_left")
+        {
+            errorMessage = "Не так происходит дезинфекция";
+            returnedStep = 3;
+            return true;
+        }
+
+        // { "wear_sterile_gloves",        "Сменить перчатки на стерильные" },
+        if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_sterile")
+        {
+            CurrentTool.Instance.Tool.Title = "Стерильные перчатки надеты";
+            CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "true";
+            CurrentTool.Instance.Tool.StateParams["weared_examination"] = "false";
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[3];
+            returnedStep = 4;
             return true;
         }
 
