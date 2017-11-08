@@ -15,6 +15,13 @@ public abstract class BaseExam: IExamInterface
 
     private Exam _examModel;
 
+    private void SaveModel(string errorMessage)
+    {
+        _examModel.Error = errorMessage;
+        _examModel.Save();
+        CurrentAdminExam.Exam = _examModel;
+    }
+
     public int LastTakenStep()
     {
         int lastStep = 0;
@@ -58,8 +65,7 @@ public abstract class BaseExam: IExamInterface
                 _examModel = new Exam(CurrentUser.User, Name, "");
 
             _examModel.Passed = false;
-            _examModel.Error = errorMessage;
-            _examModel.Save();
+            SaveModel(errorMessage);
         }
         return result;
     }
@@ -77,8 +83,7 @@ public abstract class BaseExam: IExamInterface
                 _examModel = new Exam(CurrentUser.User, Name, "");
 
             _examModel.Passed = false;
-            _examModel.Error = errorMessage;
-            _examModel.Save();
+            SaveModel(errorMessage);
             return false;
         }
 
@@ -98,8 +103,7 @@ public abstract class BaseExam: IExamInterface
 
         if (_takenSteps.Count != CorrectSteps.Count)
         {
-            _examModel.Error = "Було проведено недостатньо кроків.";
-            _examModel.Save();
+            SaveModel("Було проведено недостатньо кроків.");
             return false;
         }
         
@@ -108,22 +112,19 @@ public abstract class BaseExam: IExamInterface
         {
             if (step.Item1 != currentStepNumber)
             {
-                _examModel.Error = "Хибний порядок дій.";
-                _examModel.Save();
+                SaveModel("Хибний порядок дій.");
                 return false;
             }
             if (!step.Item2)
             {
-                _examModel.Error = "Пропущено кроки.";
-                _examModel.Save();
+                SaveModel("Пропущено кроки.");
                 return false;
             }
             currentStepNumber++;
         }
 
         _examModel.Passed = true;
-        _examModel.Error = "";
-        _examModel.Save();
+        SaveModel("");
 
         return true;
     }
