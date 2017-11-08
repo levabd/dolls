@@ -196,6 +196,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114220414347393502, guid: 60830b1fc32f87449bb81965e6b3eb4d,
+        type: 2}
+      propertyPath: TIAR
+      value: 
+      objectReference: {fileID: 401152579}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60830b1fc32f87449bb81965e6b3eb4d, type: 2}
   m_IsPrefabParent: 0
@@ -307,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkinTransform: {fileID: 350784734}
+  TourniquetTransform: {fileID: 0}
   SyringeInScene: {fileID: 623446358}
   AnestesiaCreate: {fileID: 1673228566407836, guid: 3aa8a8e4b17768b40b30d24bce03d079,
     type: 2}
@@ -318,6 +324,12 @@ MonoBehaviour:
   PalpationCreate: {fileID: 1403568807416796, guid: d3e0782d82f6ca94bb8c307858ab9384,
     type: 2}
   ClampVeinCreate: {fileID: 0}
+  StretchTheSkinLeftCreate: {fileID: 0}
+  GauzeBallsEncloseCreate: {fileID: 0}
+  GauzeBallsRubUpDownCreate: {fileID: 0}
+  ShaveCreate: {fileID: 0}
+  NapkinPutCreate: {fileID: 0}
+  SterileTissueCreate: {fileID: 0}
 --- !u!1 &245088688
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,12 +532,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -545,12 +557,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -570,12 +582,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -663,6 +675,7 @@ MonoBehaviour:
     NeedleElone: {x: 0, y: 0, z: 0}
     Syringe: {x: 0, y: 0, z: 0}
     Syringe_anestesia: {x: 0, y: 0, z: 0}
+    SterileTissue: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 0, y: 0, z: 0}
@@ -683,6 +696,8 @@ MonoBehaviour:
     Shave: {x: 0, y: 0, z: 0}
     StretchTheSkin: {x: 0, y: 0, z: 0}
     StretchTheSkinLeft: {x: 0, y: 0, z: 0}
+    VenflonTransfusion: {x: 0, y: 0, z: 0}
+    VenflonGetMandren: {x: 0, y: 0, z: 0}
 --- !u!1 &401152577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1326,7 @@ MonoBehaviour:
   step1: 0
   examControl: {fileID: 1166830729}
   Syringe: {fileID: 623446358}
+  Venflon: {fileID: 0}
   actionController: {fileID: 1107126313}
   TCS: {fileID: 204335818}
   TIAR: {fileID: 401152579}
@@ -1898,9 +1914,11 @@ MonoBehaviour:
   PBD: {fileID: 628913628}
   TCSWC: {fileID: 657950642}
   TCS: {fileID: 204335818}
+  TCV: {fileID: 0}
   PrefabTransformCtrl: {fileID: 351149010}
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
+  TourniquetPositionPoint: {fileID: 0}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,7 +3020,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

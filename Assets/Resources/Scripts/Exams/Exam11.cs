@@ -77,12 +77,12 @@ class Exam11 : BaseExam
                     { "throw_needle",           "Выбросить иглу." },
                     { "piston_pulling",         "Потягивание поршня на себя" },
                     { "take_the_blood_ml10",      "Забор крови оттягивая поршень шприца, набирая 10мл крови" },
+                    { "administer_drug",        "Ввести препарат" },
                     { "null",                   "---" },
                     { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
                     { "simple_needle",          "Взять иглу для забора крови" },
                     { "a45_d7_punction_needle",   "Взять иглу для пункции вены длинной  4-7 см с внутренним просветом канала 1,0-1,5 мм и срезом острия иглы под углом 40-45°" },
-                    { "filling_drug_solution",  "Наполнить лекарственным раствором" },
-                    { "administer_drug",        "Ввести препарат" }
+                    { "filling_drug_solution",  "Наполнить лекарственным раствором" }
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
