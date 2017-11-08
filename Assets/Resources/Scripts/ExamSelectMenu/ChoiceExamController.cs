@@ -5,8 +5,9 @@ using UnityEngine;
 public class ChoiceExamController : MonoBehaviour {
 	public bool action = false;
 	public BaseExam exam;
-	// Use this for initialization
-	void Start () {
+    SceneListCheck sceneListCheck;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -27,11 +28,19 @@ public class ChoiceExamController : MonoBehaviour {
 
 	private void CheckAction()
 	{
-	    Debug.Log("Loading Scene " + exam.Name);
-	    CurrentExam.Instance.Exam = exam;
+        SceneListCheck sceneListCheck = new SceneListCheck();
+        if (sceneListCheck.Has(exam.LoadName))
+        {
+            Debug.Log("Loading Scene " + exam.Name);
+            CurrentExam.Instance.Exam = exam;
 #pragma warning disable 618
-        Application.LoadLevel(exam.LoadName);
+            Application.LoadLevel(exam.LoadName);
 #pragma warning restore 618
+        }
+        else
+        {
+            Debug.Log("Scene " + exam.Name + " not found");
+        }    
 		action = false;
 	}
 }
