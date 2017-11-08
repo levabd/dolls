@@ -12,6 +12,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     //public GameObject MainToolObject;
     private string errorMessage;
     public ToolItemActionResponder TIAR;
+    private bool vein;
 
     void Start () {
        
@@ -29,10 +30,14 @@ public class StartNeedleTrigger : MonoBehaviour {
         {
             examControl.EndExam(false, errorMessage);
         }
-        if (col.gameObject.tag.Contains("vein"))
+        if (!vein)
         {
-            TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Игла вошла в вену");
-        }        
+            if (col.gameObject.tag.Contains("vein"))
+            {
+                TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Игла вошла в вену");
+                vein = true;
+            }        
+        }
         print("куда-то вошла игла " + col.gameObject.tag);
     }
     //void OnTriggerExit(Collider col)

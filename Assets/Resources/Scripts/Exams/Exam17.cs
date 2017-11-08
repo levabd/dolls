@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 class Exam17 : BaseExam
 {
-    public override string Name => "Периферический венозный доступ №13 Забор крови с латеральной вены локтевого сгиба";
+    public override string Name => "Периферический венозный доступ №17 Забор крови с вены стопы";
     public override string LoadName => "Exam17";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
