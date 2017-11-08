@@ -63,8 +63,6 @@ public class StepListView : MonoBehaviour {
         btn.onClick.AddListener(CloseModal);
 
         Name.text = CurrentUser.User.Name;
-        Debug.Log(CurrentAdminExam.Exam.Name);
-        Debug.Log(CurrentAdminExam.Exam.User.Name);
         ExamDescription.text = "Користувачем " + CurrentAdminExam.Exam.User.Name + " було пройдено сценарій «" + CurrentAdminExam.Exam.Name + "»";
 
         // Initialize Table

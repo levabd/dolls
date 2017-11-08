@@ -167,8 +167,8 @@ namespace DB.Models
             }
             else //Update
             {
-                Execute("UPDATE Exams SET user_id = '" + _userId + ", name = '" + Name.Trim() + ", error_message = '" +
-                        Error.Trim() + ", passed = '" + (Passed ? "1" : "0") + ", passed_at = '" + _passedAtTimestamp + 
+                Execute("UPDATE Exams SET user_id = '" + _userId + "', name = '" + Name.Trim() + "', error_message = '" +
+                        Error.Trim() + "', passed = '" + (Passed ? "1" : "0") + "', passed_at = '" + _passedAtTimestamp + 
                         "' WHERE id = '" + Id + "'");
             }
 
