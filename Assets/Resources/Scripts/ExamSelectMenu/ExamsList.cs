@@ -10,9 +10,9 @@ public class ExamsList : MonoBehaviour {
     private ExamsView exams;
     // Use this for initialization
     void Start () {
-		//CreateExamsList ("venopunction");
-		//UserPanel users = Instantiate (UserPanelPrefab);
-		//users.transform.SetParent(TargetTransform, false);
+        //CreateExamsList ("venopunction");
+        //UserPanel users = Instantiate (UserPanelPrefab);
+        //users.transform.SetParent(TargetTransform, false);
         //users.name = UserPanelPrefab.name;
         //foreach (var item in Based) {
         //	Debug.Log (item.Name);

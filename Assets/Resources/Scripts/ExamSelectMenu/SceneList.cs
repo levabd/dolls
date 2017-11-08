@@ -25,9 +25,10 @@ public enum Scenes
 	Exam20 = 20,
 	Exam21 = 21,
 	HydrotoraxExam = 22,
-	Autorization_first_scene = 23,
-	Examining_menu_scene = 24,
-	ExamManager_scene = 25,
-	Administrator_menu_scene = 26
+	PneumotoraxExam = 23,
+	Autorization_first_scene = 24,
+	Examining_menu_scene = 25,
+	ExamManager_scene = 26,
+	Administrator_menu_scene = 27
 }
 
