@@ -48,8 +48,11 @@ public class EndExamControlPanel : MonoBehaviour {
 
     void GoEndPanel(Transform backgroundPanel, string headPanelText, Transform EndPanel)
     {
-        //Button closeButton = ButtonPanel.GetChild(0).GetChild(0).GetComponent<Button>();
-        //closeButton.onClick.AddListener(CloseExam);
+        Button closeButton = ButtonPanel.transform.GetChild(0).transform.GetComponent<Button>();
+        closeButton.onClick.AddListener(CloseExam);
+        Debug.Log(closeButton.name);
+        Debug.Log(closeButton.transform.GetChild(0).transform.GetComponent<Text>().text);
+        Debug.Log(closeButton.onClick);
 
         Transform panel = Instantiate(backgroundPanel);
         panel.transform.SetParent(TargetTransform, false);
@@ -66,10 +69,11 @@ public class EndExamControlPanel : MonoBehaviour {
         ButtonInMiniPanel.transform.SetParent(miniPanel, false);
     }
 
-    //void CloseExam()
-    //{
-    //    SceneManager.LoadScene("Examining_menu_scene");
-    //}
+    public void CloseExam()
+    {
+        Debug.Log("Запуск сцены");
+        SceneManager.LoadScene("Examining_menu_scene");
+    }
 
     public void EndExam(bool PassedExam, string errorMessage = "")
     {
