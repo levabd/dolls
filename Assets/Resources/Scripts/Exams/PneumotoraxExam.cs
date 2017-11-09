@@ -21,7 +21,7 @@ class PneumotoraxExam : BaseExam
         { "trocar_connect",                 "Подсоединяем удлинитель"},
         { "trocar_connect_valve",           "Подсоединен дренажный вентиль"},
         { "bobrov_bank_connect",            "Подсоеденить вентиль с клапаном к банке"},
-        { "trocar_clamp_out",               "Снять зажим с катетера" }
+        { "trocar_clamp_out",               "Снять зажим с катетера"}
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
