@@ -610,6 +610,101 @@ public class ActionController : MonoBehaviour {
                 }
 
                 break;
+            case "trocar":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования трокара"); }
+
+                            OnActionPosition(ActionPositionPoint, "vein_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "pull":
+                            
+                            break;
+                        case "trocar_connect":
+
+                            break;
+                        case "trocar_connect_valve":
+
+                            break;
+                        case "clamp_out":
+
+                            break;
+                        case "clamp":
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "stitch":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+                        case "stitch":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "scalpel":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "scalpel_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "incision":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
 
             default:
                     break;

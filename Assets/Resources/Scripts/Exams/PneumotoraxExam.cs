@@ -102,7 +102,7 @@ class PneumotoraxExam : BaseExam
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять" }
+                    { "stitch", "Пришить катетер к коже" }
                 };
             default:
                 return new TupleList<string, string>();
