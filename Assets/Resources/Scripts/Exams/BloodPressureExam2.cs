@@ -3,37 +3,37 @@
 // ReSharper disable once CheckNamespace
 class BloodPressureExam2 : BaseExam
 {
-    public override string Name => "Измерение артериального давления (АД) настоящим манометром";
+    public override string Name => "Вимірювання артеріального тиску справжнім манометром";
     public override string LoadName => "BloodPressureExam2";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
-        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
-        { "sterile_tissue",                 "Накрываем операционное поле стерильными салфетками." },
-        { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        { "anesthesia",                     "Сделать местную анестезию." },
-        { "palpation",                      "Пальпируем артерию." },
-        { "remove_mandren",                 "Вынимаем из канюли мандрен" },
-        { "pull_cannula",                   "Канюля тянется на себя" },
-        { "push_cannula",                   "Катерер заводится в глубину просвета артерии" },
-        { "rinse_cannula",                  "Канюля промывается" },
-        { "stitch",                         "Крылья канюли пришиваются к коже" },
-        { "connect_sensor",                 "Соединить датчик инвазивного измерения с канюлей и монитором." }
+        { "wear_examination_gloves",        "Одягти оглядові рукавички" },
+        { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
+        { "sterile_tissue",                 "Накрити операційне поле стерильними серветками" },
+        { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
+        { "anesthesia",                     "Зробити місцеву анестезію" },
+        { "palpation",                      "Пальпувати артерію" },
+        { "remove_mandren",                 "Вийняти з канюлі мандрен" },
+        { "pull_cannula",                   "Канюля тягнеться на себе" },
+        { "push_cannula",                   "Катетер заводиться в глибину просвіту артерії" },
+        { "rinse_cannula",                  "Канюля промивається" },
+        { "stitch",                         "Крила канюлі пришиваються до шкіри" },
+        { "connect_sensor",                 "З'єднати датчик інвазивного вимірювання з канюлею і монітором" }
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        { "gloves",                         "Перчатки" },
-        { "sterile_tissue",                 "Стерильные салфетки" },
-        { "hand",                           "Рука для дополнительных действий" },
-        { "syringe",                        "Шприц без иглы" },
-        { "gauze_balls",                    "Стерильные марлевые шарики" },
-        { "cannule",                        "Артериальная канюля." },
-        { "invasive_sensor",                "Датчик инвазивного измерения АД с системой" },
-        { "stitch",                         "Шовный материал + иглодержатель." }
+        { "gloves",                         "Рукавички" },
+        { "sterile_tissue",                 "Стерильні серветки" },
+        { "hand",                           "Рука для додаткових дій" },
+        { "syringe",                        "Шприц без голки" },
+        { "gauze_balls",                    "Стерильні марлеві кульки" },
+        { "cannule",                        "Артеріальна канюля" },
+        { "invasive_sensor",                "Датчик інвазивного вимірювання артеріального тиску з системою" },
+        { "stitch",                         "Шовний матеріал + голкотримач" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
@@ -43,64 +43,64 @@ class BloodPressureExam2 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear_examination", "Надеть смотровые перчатки"},
-                    { "wear_sterile", "Сменить перчатки на стерильные"}
+                    { "wear_examination", "Одягти оглядові рукавички"},
+                    { "wear_sterile",     "Змінити рукавички на стерильні"}
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпация" }
+                    { "get_palpation",              "Пальпація" }
                 };
             case "sterile_tissue":
                 return new TupleList<string, string>
                 {
-                    { "put", "Накрываем операционное поле стерильными салфетками"}
+                    { "put", "Накрити операційне поле стерильними серветками"}
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "needle_removing",        "Отсоеденить от иглы" },
-                    { "anesthesia",             "Сделать местную анестезию" },
-                    { "piston_pulling",         "Потягивание поршня на себя" },
+                    { "needle_removing",        "Від'єднати від голки" },
+                    { "anesthesia",             "Зробити місцеву анестезію" },
+                    { "piston_pulling",         "Потягнути поршень на себе" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "a45_d4_punction_needle",   "Взять иглу для пункции вены длинной не менее 4 см с внутренним просветом канала 1,0-1,4 мм и срезом острия иглы под углом 40-45°" },
+                    { "anesthesia_needle",      "Взяти голку для анестезії шкіри і наповнити шприц анестетиком" },
+                    { "g22G_needle",            "Взяти голку для спинномозкової анестезії 22G і наповнити шприц анестетиком" },
+                    { "wire_needle",            "Взяти голку для провідникової анестезії та наповнити шприц анестетиком" },
+                    { "a45_d10_punction_needle",  "Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
+                    { "a45_d4_punction_needle",   "Взяти голку для пункції вени довжиною не менше 4 см з внутрішнім просвітом каналу 1,0-1,4 мм і зрізом вістря голки під кутом 40-45°" },
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
-                    { "spirit_p70",  "Промокнуть в 70% раствором спирта" },
-                    { "spirit_p60",  "Промокнуть в 60% раствор спирта" },
-                    { "spirit_p80",  "Промокнуть в 80% раствор спирта" },
-                    { "iodine_p1",   "Промокнуть в 1% раствором йодоната" },
-                    { "iodine_p3",   "Промокнуть в 3% раствором йодоната" },
-                    { "clear",      "Взять новый шарик (очистить)" },
-                    { "null",         "---" },
-                    { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "get_balls", "Приложить шарик" }, // "attach_balls"
-                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
+                    { "spirit_p70",  "Промокнути в 70% розчині спирту" },
+                    { "spirit_p60",  "Промокнути в 60% розчині спирту" },
+                    { "spirit_p80",  "Промокнути в 80% розчині спирту" },
+                    { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
+                    { "clear",       "Взяти нову стерильну кульку" },
+                    { "null",        "---" },
+                    { "throw_balls", "Викинути кульки в смітник" },
+                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
                 };
             case "invasive_sensor":
                 return new TupleList<string, string>
                 {
-                    { "connect", "Соединить с канюлей и монитором" }
+                    { "connect", "З'єднати з канюлею і монітором" }
                 };
             case "cannule":
                 return new TupleList<string, string>
                 {
-                    { "get",                            "Взять" },
-                    { "push",                           "Завести в глубину просвета" },
-                    { "rinse",                          "Промыть канюлю" },
-                    { "remove_mandren",                 "Вытащить мадрен" },
-                    { "pull",                           "Потянуть канюлю на себя" }
+                    { "get",                            "Взяти" },
+                    { "push",                           "Завести в глибину просвіту" },
+                    { "rinse",                          "Промити канюлю" },
+                    { "remove_mandren",                 "Витягнути мадрен" },
+                    { "pull",                           "Потягнути канюлю на себе" }
                 };
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять" }
+                    { "get", "Взяти" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -133,7 +133,7 @@ class BloodPressureExam2 : BaseExam
         // Перчатки + Спирт
         if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep)) return returnedStep;
 
-        // { "sterile_tissue",                    "Накрываем операционное поле стерильными салфетками." },
+        // { "sterile_tissue",                    "Накриваємо операційне поле стерильними серветками" },
         if (CurrentTool.Instance.Tool.CodeName == "sterile_tissue" && actionCode == "put")
         {
             CurrentTool.Instance.Tool.StateParams["putted"] = "true";
@@ -154,7 +154,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
-                errorMessage = "Пальпируется не то место";
+                errorMessage = "Пальпується не те місце";
             return 8;
         }
 
@@ -171,7 +171,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "pull")
         {
             if (LastTakenStep() != 9)
-                errorMessage = "Сначала вытяните мандрен.";
+                errorMessage = "Спочатку витягніть мандрен";
             return 10;
         }
 
@@ -179,7 +179,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "push")
         {
             if (LastTakenStep() != 10)
-                errorMessage = "Сначала потяните канюлю";
+                errorMessage = "Спочатку потягніть канюлю";
             return 11;
         }
 
@@ -187,7 +187,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "rinse")
         {
             if (LastTakenStep() != 11)
-                errorMessage = "Сначала заведите канюлю";
+                errorMessage = "Спочатку заведіть канюлю";
             return 12;
         }
 
@@ -195,7 +195,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "stitch")
         {
             if (LastTakenStep() != 12)
-                errorMessage = "Нечего фиксировать";
+                errorMessage = "Нічого фіксувати";
             return 13;
         }
 
@@ -203,7 +203,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "invasive_sensor" && actionCode == "connect")
         {
             if (LastTakenStep() != 13)
-                errorMessage = "Сначала возьмите шприц и наберите в него физраствор";
+                errorMessage = "Спочатку візьміть шприц і наберіть в нього фізрозчин";
             return 14;
         }
 

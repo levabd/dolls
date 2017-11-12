@@ -21,14 +21,14 @@ public static class TweezersHelper
         CurrentTool.Instance.Tool.StateParams["balls_liquid"] = ballLiquid;
         CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[liquidDict[ballLiquid]];
 
-        CurrentTool.Instance.Tool.Title = "Пинцет с шариками";
+        CurrentTool.Instance.Tool.Title = "Пінцет з кульками";
     }
 
     public static void RemoveBall()
     {
         CurrentTool.Instance.Tool.StateParams["has_balls"] = "false";
         CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
-        CurrentTool.Instance.Tool.Title = "Пинцет без ничего";
+        CurrentTool.Instance.Tool.Title = "Пінцет без нічого";
     }
 
     public static bool RemoveBallsAction(this BaseExam exam, string actionCode)

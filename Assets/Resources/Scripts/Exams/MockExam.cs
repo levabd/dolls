@@ -3,17 +3,17 @@
 // ReSharper disable once CheckNamespace
 class MockExam : BaseExam
 {
-    public override string Name => "Тестовый сценарий";
+    public override string Name => "Тестовий сценарій";
     public override string LoadName => "1";
 
-    public override TupleList<string, string> CorrectSteps => new TupleList<string, string> { { "testStep", "Тестовый шаг" } };
+    public override TupleList<string, string> CorrectSteps => new TupleList<string, string> { { "testStep", "Тестовий крок" } };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
     {
-        return new TupleList<string, string> { { "testAction", "Тестовое действие" } };
+        return new TupleList<string, string> { { "testAction", "Тестова дія" } };
     }
 
-    public override Dictionary<string, string> InventoryTool => new Dictionary<string, string> { { "default_tool", "Любой инструмент" } };
+    public override Dictionary<string, string> InventoryTool => new Dictionary<string, string> { { "default_tool", "Будь-який інструмент" } };
 
     public override bool CheckMove(string colliderTag, out string errorMessage)
     {

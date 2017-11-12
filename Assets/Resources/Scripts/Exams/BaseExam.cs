@@ -104,7 +104,7 @@ public abstract class BaseExam: IExamInterface
 
         if (_takenSteps.Count != CorrectSteps.Count)
         {
-            SaveModel("Було проведено недостатньо кроків.");
+            SaveModel("Було проведено недостатньо кроків");
             return false;
         }
         
@@ -113,12 +113,12 @@ public abstract class BaseExam: IExamInterface
         {
             if (step.Item1 != currentStepNumber)
             {
-                SaveModel("Хибний порядок дій.");
+                SaveModel("Хибний порядок дій");
                 return false;
             }
             if (!step.Item2)
             {
-                SaveModel("Пропущено кроки.");
+                SaveModel("Пропущено кроки");
                 return false;
             }
             currentStepNumber++;

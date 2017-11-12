@@ -21,7 +21,7 @@ public static class BallHelper
 
         if (CurrentTool.Instance.Tool.StateParams.ContainsKey("wet") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["wet"]))
         {
-            errorMessage = "Марлевые шарики уже мокрые";
+            errorMessage = "Марлеві кульки вже змочені";
             return false;
         }
 
@@ -32,11 +32,11 @@ public static class BallHelper
         CurrentTool.Instance.Tool.StateParams["liquid"] = liquid;
         CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[liquidDict[liquid]];
 
-        CurrentTool.Instance.Tool.Title = "Смоченные марлевые шарики";
+        CurrentTool.Instance.Tool.Title = "Змочені марлеві кульки";
 
         if (liquid != targetLiquid)
         {
-            errorMessage = "Не та жидкость";
+            errorMessage = "Не та рідина";
             return false;
         }
 
@@ -61,6 +61,6 @@ public static class BallHelper
         CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
         exam.CurrentBallLiquid = "none";
 
-        CurrentTool.Instance.Tool.Title = "Стерильные марлевые шарики";
+        CurrentTool.Instance.Tool.Title = "Стерильні марлеві кульки";
     }
 }

@@ -4,34 +4,34 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 class TibiaExam : BaseExam
 {
-    public override string Name => "Внутрикостный доступ в большеберцовую кость";
+    public override string Name => "Внутрішньокістковий доступ в великогомілкову кістку";
     public override string LoadName => "TibiaExam";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
-        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
-        { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        { "anesthesia",                     "Сделать местную анестезию." },
-        { "big_prepare",                    "Освободить защелку шприца-пистолета B.I.G." },
-        { "big_activate",                   "Активировать пистолет B.I.G." },
-        { "big_remove",                     "Извлечь стилет троакара" },
-        { "fixation_with_plaster",          "Фиксация пластырем." },
-        { "syringe_nacl",                   "Наполнить шприц физраствором." },
-        { "big_nacl",                       "Ввести физраствор." },
-        { "big_stopcock",                   "Подсоеденить запорный кран с системой для инфузии." }
+        { "wear_examination_gloves",        "Одягти оглядові рукавички" },
+        { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
+        { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
+        { "anesthesia",                     "Зробити місцеву анестезію" },
+        { "big_prepare",                    "Звільнити засувку шприца-пістолета B.I.G." },
+        { "big_activate",                   "Активувати пістолет B.I.G." },
+        { "big_remove",                     "Витягти стилет троакара" },
+        { "fixation_with_plaster",          "Фіксація пластиром" },
+        { "syringe_nacl",                   "Наповнити шприц фізрозчином" },
+        { "big_nacl",                       "Ввести фізрозчин" },
+        { "big_stopcock",                   "Приєднати запірний кран з системою для інфузії" }
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        { "gloves",                         "Перчатки" },
-        { "syringe",                        "Шприц без иглы" },
-        { "gauze_balls",                    "Стерильные марлевые шарики" },
-        { "big",                            "Шприц-пистолет для внутрикостных инъекций B.I.G." },
-        { "stopcock",                       "Запорный кран для инфузий с системой" },
-        { "patch",                          "Пластырь" }
+        { "gloves",                         "Рукавички" },
+        { "syringe",                        "Шприц без голки" },
+        { "gauze_balls",                    "Стерильні марлеві кульки" },
+        { "big",                            "Шприц-пістолет для внутрішньокісткових ін'єкцій B.I.G." },
+        { "stopcock",                       "Запірний кран для інфузій з системою" },
+        { "patch",                          "Пластир" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
@@ -41,55 +41,55 @@ class TibiaExam : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear_examination", "Надеть смотровые перчатки"},
-                    { "wear_sterile", "Сменить перчатки на стерильные"}
+                    { "wear_examination", "Одягти оглядові рукавички"},
+                    { "wear_sterile",     "Змінити рукавички на стерильні"}
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "needle_removing",        "Отсоеденить от иглы" },
-                    { "anesthesia",             "Сделать местную анестезию" },
-                    { "piston_pulling",         "Потягивание поршня на себя" },
+                    { "needle_removing",        "Від'єднати від голки" },
+                    { "anesthesia",             "Зробити місцеву анестезію" },
+                    { "piston_pulling",         "Потягування поршня на себе" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "a45_d4_punction_needle",   "Взять иглу для пункции вены длинной не менее 4 см с внутренним просветом канала 1,0-1,4 мм и срезом острия иглы под углом 40-45°" },
-                    { "filling_nacl",            "Наполнить 10-20 мл физраствора" },
-                    { "big_nacl",                "Ввести физраствор в канюлю иглы" }
+                    { "anesthesia_needle",      "Взяти голку для анестезії шкіри і наповнити шприц анестетиком" },
+                    { "g22G_needle",            "Взяти голку для спинномозкової анестезії 22G і наповнити шприц анестетиком" },
+                    { "wire_needle",            "Взяти голку для провідникової анестезії та наповнити шприц анестетиком" },
+                    { "a45_d10_punction_needle","Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
+                    { "a45_d4_punction_needle", "Взяти голку для пункції вени довжиною не менше 4 см з внутрішнім просвітом каналу 1,0-1,4 мм і зрізом вістря голки під кутом 40-45°" },
+                    { "filling_nacl",           "Наповнити 10-20 мл фізрозчином" },
+                    { "big_nacl",               "Ввести фізрозчин в канюлю голки" }
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
-                    { "spirit_p70",  "Промокнуть в 70% раствором спирта" },
-                    { "spirit_p60",  "Промокнуть в 60% раствор спирта" },
-                    { "spirit_p80",  "Промокнуть в 80% раствор спирта" },
-                    { "iodine_p1",   "Промокнуть в 1% раствором йодоната" },
-                    { "iodine_p3",   "Промокнуть в 3% раствором йодоната" },
-                    { "clear",      "Взять новый шарик (очистить)" },
-                    { "null",         "---" },
-                    { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "get_balls", "Приложить шарик" }, // "attach_balls"
-                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
+                    { "spirit_p70",  "Промокнути в 70% розчині спирту" },
+                    { "spirit_p60",  "Промокнути в 60% розчині спирту" },
+                    { "spirit_p80",  "Промокнути в 80% розчині спирту" },
+                    { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
+                    { "clear",       "Взяти нову стерильну кульку" },
+                    { "null",        "---" },
+                    { "throw_balls", "Викинути кульки в смітник" },
+                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
                 };
             case "big":
                 return new TupleList<string, string>
                 {
-                    { "get", "взять" },
-                    { "prepare", "Освободить защелку шприца-пистолета B.I.G." },
-                    { "activate", "Активировать пистолет B.I.G." },
-                    { "remove", "Извлечь стилет троакара" }
+                    { "get",      "Взяти" },
+                    { "prepare",  "Звільнити засувку шприца-пістолета B.I.G." },
+                    { "activate", "Активувати пістолет B.I.G." },
+                    { "remove",   "Витягти стилет троакара" }
                 };
             case "stopcock":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять" }
+                    { "get", "Взяти" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять" }
+                    { "get", "Взяти" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -139,7 +139,7 @@ class TibiaExam : BaseExam
             {
                 if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") ||
                     !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(85, 95))
-                    errorMessage = "Неправильный угол установки";
+                    errorMessage = "Неправильний кут установки";
                 return 7;
             }
 
@@ -150,7 +150,7 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "activate")
         {
             if (LastTakenStep() != 7)
-                errorMessage = "Не удается активировать пистолет. Освободите защелку.";
+                errorMessage = "Неможливо активувати пістолет. Звільніть засувку";
             return 8;
         }
 
@@ -158,17 +158,17 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "remove")
         {
             if (LastTakenStep() != 8)
-                errorMessage = "Нельзя удалять стилет до активации";
+                errorMessage = "Не можна видаляти стилет до активації";
             return 9;
         }
 
-        //{ "fixation_with_plaster",          "Фиксация пластырем." }
+        //{ "fixation_with_plaster",          "Фіксація пластиром" }
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
             if (LastTakenStep() != 9)
-                errorMessage = "Нечего фиксировать";
+                errorMessage = "Нічого фіксувати";
             if (!locatedColliderTag.Contains("big"))
-                errorMessage = "Не то место установки. Сначала должен быть корректно установлен пистолет";
+                errorMessage = "Не те місце установки. Спочатку повинен бути коректно встановлений пістолет";
             return 10;
         }
 
@@ -176,7 +176,7 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl")
         {
             if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
-                errorMessage = "Нужно наполнять физраствором шприц без иглы для ввода в канюлю пистолета.";
+                errorMessage = "Потрібно наповнювати фізрозчином шприц без голки для введення в канюлю пістолета";
             return 11;
         }
 
@@ -184,7 +184,7 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "big_nacl")
         {
             if (LastTakenStep() != 11)
-                errorMessage = "Сначала возьмите шприц и наберите в него физраствор";
+                errorMessage = "Спочатку візьміть шприц і наберіть в нього фізрозчин";
             return 12;
         }
 
@@ -192,7 +192,7 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "connect")
         {
             if (LastTakenStep() != 12)
-                errorMessage = "Сначала введите физраствор";
+                errorMessage = "Спочатку введіть фізрозчин";
             return 13;
         }
 

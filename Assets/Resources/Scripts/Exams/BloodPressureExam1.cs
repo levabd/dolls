@@ -3,22 +3,22 @@
 // ReSharper disable once CheckNamespace
 class BloodPressureExam1 : BaseExam
 {
-    public override string Name => "NIMP Измерение артериального давления (АД) (метод Короткова)";
+    public override string Name => "NIMP Вимірювання артеріального тиску (метод Короткова)";
     public override string LoadName => "BloodPressureExam1";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "palpation",                    "Пальпируем артерию." },
-        { "manometer_close_piston",       "Закрыть клапан манометра" },
-        { "manometer_pump_it",            "Накачать манометр" },
-        { "manometer_air_out",            "Выпустить воздух" }
+        { "palpation",                    "Пальпуємо артерію" },
+        { "manometer_close_piston",       "Закрити клапан манометра" },
+        { "manometer_pump_it",            "Накачати манометр" },
+        { "manometer_air_out",            "Випустити повітря" }
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
         { "manometer",                      "Манометр" },
         { "phonendoscope",                  "Фонендоскоп" },
-        { "hand",                           "Рука для дополнительных действий" },
+        { "hand",                           "Рука для додаткових дій" },
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
@@ -28,20 +28,20 @@ class BloodPressureExam1 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпация" }
+                    { "get_palpation",        "Пальпація" }
                 };
             case "manometer":
                 return new TupleList<string, string>
                 {
-                    { "get",                  "Взять" },
-                    { "pump_it",              "Накачать" },
-                    { "air_out",              "Выпустить воздух" },
-                    { "close_piston",         "Закрыть клапан" },
+                    { "get",                  "Взяти" },
+                    { "pump_it",              "Накачати" },
+                    { "air_out",              "Випустить повітря" },
+                    { "close_piston",         "Закрити клапан" },
                 };
             case "phonendoscope":
                 return new TupleList<string, string>
                 {
-                    { "get",              "Взять" }
+                    { "get",                  "Взяти" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -54,13 +54,13 @@ class BloodPressureExam1 : BaseExam
 
         if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target")
         {
-            errorMessage = "Пальпируется и зажимается не то место";
+            errorMessage = "Пальпується і затискається не те місце";
             return false;
         }
 
         if (CurrentTool.Instance.Tool.CodeName == "phonendoscope" && colliderTag != "phonendoscope_target")
         {
-            errorMessage = "Фонендоскоп установлен не туда";
+            errorMessage = "Фонендоскоп встановлений не туди";
             return false;
         }
 
@@ -77,7 +77,7 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
-                errorMessage = "Пальпируется не то место";
+                errorMessage = "Пальпується не те місце";
             return 1;
         }
 
@@ -88,7 +88,7 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "pump_it")
         {
             if (LastTakenStep() != 2)
-                errorMessage = "Не был закрыт клапан.";
+                errorMessage = "Клапан не був закритий";
             return 3;
         }
 
@@ -96,7 +96,7 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "air_out")
         {
             if (LastTakenStep() != 3)
-                errorMessage = "Не был закачан воздух.";
+                errorMessage = "Не було закачане повітря";
             return 4;
         }
 

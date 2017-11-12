@@ -11,7 +11,7 @@ public static class SyringeHelper
 
         if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
-            errorMessage = "Уже есть другая игла";
+            errorMessage = "Вже приєднана інша голка";
             return false;
         }
         
@@ -19,7 +19,7 @@ public static class SyringeHelper
         CurrentTool.Instance.Tool.StateParams["needle"] = needle;
         CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[spriteIndex];
 
-        CurrentTool.Instance.Tool.Title = "Шприц с иглой";
+        CurrentTool.Instance.Tool.Title = "Шприц з голкою";
 
         return true;
     }
@@ -28,11 +28,11 @@ public static class SyringeHelper
     {
         if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
-            errorMessage = "Отсутсвует игла";
+            errorMessage = "Відсутня голка";
             return false;
         }
 
-        errorMessage = CurrentTool.Instance.Tool.StateParams.ContainsKey("needle") && CurrentTool.Instance.Tool.StateParams["needle"] == "anesthesia_needle" ? "" : "Несоответствующая игла";
+        errorMessage = CurrentTool.Instance.Tool.StateParams.ContainsKey("needle") && CurrentTool.Instance.Tool.StateParams["needle"] == "anesthesia_needle" ? "" : "Невідповідна голка";
 
         return String.IsNullOrEmpty(errorMessage);
     }
@@ -55,7 +55,7 @@ public static class SyringeHelper
 
             if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") ||
                 !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
-                errorMessage = "Отсутсвует игла для шприца";                
+                errorMessage = "Відсутня голка для шприца";                
 
             return true;
         }
@@ -88,14 +88,14 @@ public static class SyringeHelper
         {
             
             if (exam.LastTakenStep() != lastStep)
-                errorMessage = "Не та игла на текущем шаге";                
+                errorMessage = "Не та голка на поточному кроці";                
             else
                 TryGetNeedle(targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
         else
         {
             if (exam.LastTakenStep() == lastStep)
-                errorMessage = "Не та игла";
+                errorMessage = "Не та голка";
             else
                 return false;
         }
@@ -107,17 +107,17 @@ public static class SyringeHelper
     {
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
         {
-            errorMessage = "Отсутсвует игла";
+            errorMessage = "Відсутня голка";
             return false;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
-            errorMessage = "Слишком много новокаина";
+            errorMessage = "Занадто багато новокаїну";
             return true;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
         {
-            errorMessage = "Не та жидкость";
+            errorMessage = "Не та рідина";
             return true;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
@@ -129,19 +129,19 @@ public static class SyringeHelper
     {
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
         {
-            errorMessage = "Отсутсвует игла";
+            errorMessage = "Відсутня голка";
             return false;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_full")
         {
-            errorMessage = "Не та жидкость";
+            errorMessage = "Не та рідина";
             return true;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl_half")
             return true;
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
         {
-            errorMessage = "Не та жидкость";
+            errorMessage = "Не та рідина";
             return true;
         }
         return false;
@@ -157,7 +157,7 @@ public static class SyringeHelper
             CurrentTool.Instance.Tool.StateParams["has_needle"] = "false";
             CurrentTool.Instance.Tool.StateParams.Remove("needle");
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
-            CurrentTool.Instance.Tool.Title = "Шприц без иглы";
+            CurrentTool.Instance.Tool.Title = "Шприц без голки";
 
             if (!String.IsNullOrEmpty(targetLocatedColliderTag))
             {
@@ -165,14 +165,14 @@ public static class SyringeHelper
                 {
                     if (maxAngle < 180)
                         if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
-                            errorMessage = "Неправильный угол установки";
+                            errorMessage = "Неправильний кут установки";
                     if (CurrentTool.Instance.Tool.StateParams.ContainsKey("blood_inside"))
                     {
                         if (!Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["blood_inside"]))
-                            errorMessage = "Во время углубления не был потянут поршень на себя";
+                            errorMessage = "Під час поглиблення не було потягнуто поршень на себе";
                     }
                     else
-                        errorMessage = "Во время углубления не был потянут поршень на себя";
+                        errorMessage = "Під час поглиблення не було потягнуто поршень на себе";
                 }
                 else
                     return false;

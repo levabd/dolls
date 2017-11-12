@@ -3,37 +3,37 @@
 // ReSharper disable once CheckNamespace
 class PneumotoraxExam : BaseExam
 {
-    public override string Name => "Декомпрессия и дренирование плевральной полости больному с пневмотораксом слева";
+    public override string Name => "Декомпресія і дренування плевральної порожнини хворому з пневмотораксом зліва";
     public override string LoadName => "PneumotoraxExam";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        { "spirit_disinfection",            "Дезинфекция спиртом. Протереть сверху вниз." },
-        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
-        { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        { "anesthesia",                     "Сделать местную анестезию." },
-        { "scalpel_incision",               "Надрез для облегчения вхождения троакара" },
-        { "trocar_pull",                    "Вытянуть стилет заводя ПВХ трубку в плевральную полость."},
-        { "trocar_clamp",                   "Пережать зажимом"},
-        { "stitch",                         "Пришиваем к коже" },
-        { "trocar_connect",                 "Подсоединяем удлинитель"},
-        { "trocar_connect_valve",           "Подсоединен дренажный вентиль"},
-        { "bobrov_bank_connect",            "Подсоеденить вентиль с клапаном к банке"},
-        { "trocar_clamp_out",               "Снять зажим с катетера"}
+        { "wear_examination_gloves",        "Одягти оглядові рукавички" },
+        { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
+        { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
+        { "anesthesia",                     "Зробити місцеву анестезію" },
+        { "scalpel_incision",               "Надріз для полегшення входження троакара" },
+        { "trocar_pull",                    "Витягнути стилет заводячи ПВХ трубку в плевральну порожнину"},
+        { "trocar_clamp",                   "Перетиснути затискачем"},
+        { "stitch",                         "Пришиваємо до шкіри" },
+        { "trocar_connect",                 "Під'єднуємо подовжувач"},
+        { "trocar_connect_valve",           "Приєднаний дренажний вентиль"},
+        { "bobrov_bank_connect",            "Приєднати вентиль з клапаном до банки"},
+        { "trocar_clamp_out",               "Зняти затискач з катетера"}
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        { "gloves",                         "Перчатки" },
-        { "trocar",                         "Дренаж торакальный" },
-        { "hand",                           "Рука для дополнительных действий" },
-        { "syringe",                        "Шприц без иглы" },
-        { "gauze_balls",                    "Стерильные марлевые шарики" },
+        { "gloves",                         "Рукавички" },
+        { "trocar",                         "Дренаж торакальний" },
+        { "hand",                           "Рука для додаткових дій" },
+        { "syringe",                        "Шприц без голки" },
+        { "gauze_balls",                    "Стерильні марлеві кульки" },
         { "scalpel",                        "Скальпель" },
-        { "bobrov_bank",                    "Банка Боброва наполненная антисептиком" },
-        { "stitch",                         "Шовный материал + иглодержатель." }
+        { "bobrov_bank",                    "Банка Боброва наповнена антисептиком" },
+        { "stitch",                         "Шовний матеріал + голкотримач" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
@@ -43,66 +43,66 @@ class PneumotoraxExam : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear_examination", "Надеть смотровые перчатки"},
-                    { "wear_sterile", "Сменить перчатки на стерильные"}
+                    { "wear_examination", "Одягти оглядові рукавички"},
+                    { "wear_sterile",     "Змінити рукавички на стерильні"}
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпация" }
+                    { "get_palpation",    "Пальпація" }
                 };
             case "scalpel":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять"},
-                    { "incision", "Сделатть надрез"}
+                    { "get",      "Взяти"},
+                    { "incision", "Зробити надріз"}
                 };
             case "bobrov_bank":
                 return new TupleList<string, string>
                 {
-                    { "connect", "Подсоеденить вентиль с клапаном к банке"}
+                    { "connect", "Приєднати вентиль з клапаном до банки"}
                 };
             case "trocar":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять"},
-                    { "pull", "Вытянуть стилет заводя ПВХ трубку в плевральную полость"},
-                    { "trocar_connect", "Подсоединить удлинитель"},
-                    { "trocar_connect_valve", "Подсоединить дренажный вентиль"},
-                    { "clamp_out", "Снять зажим"},
-                    { "clamp", "Пережать зажимом"}
+                    { "get",                   "Взяти"},
+                    { "pull",                  "Витягнути стилет заводячи ПВХ трубку в плевральну порожнину"},
+                    { "trocar_connect",        "Приєднати подовжувач"},
+                    { "trocar_connect_valve",  "Приєднати дренажний вентиль"},
+                    { "clamp_out",             "Зняти затискач"},
+                    { "clamp",                 "Перетиснути затискачем"}
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "needle_removing",        "Отсоеденить от иглы" },
-                    { "anesthesia",             "Сделать местную анестезию" },
-                    { "piston_pulling",         "Потягивание поршня на себя" },
+                    { "needle_removing",        "Від'єднати від голки" },
+                    { "anesthesia",             "Зробити місцеву анестезію" },
+                    { "piston_pulling",         "Потягування поршня на себе" },
                     { "null",                   "---" },
-                    { "anesthesia_needle",      "Взять иглу для анестезии кожи и наполнить шприц анестетиком" },
-                    { "g22G_needle",             "Взять иглу для спинномозговой анестезии 22G и наполнить шприц анестетиком" },
-                    { "wire_needle",            "Взять иглу для проводниковой анестезии и наполнить шприц анестетиком" },
-                    { "a45_d10_punction_needle",  "Взять иглу для пункции вены длинной 10 см с внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°" },
-                    { "a45_d4_punction_needle",   "Взять иглу для пункции вены длинной не менее 4 см с внутренним просветом канала 1,0-1,4 мм и срезом острия иглы под углом 40-45°" },
+                    { "anesthesia_needle",      "Взяти голку для анестезії шкіри і наповнити шприц анестетиком" },
+                    { "g22G_needle",            "Взяти голку для спинномозкової анестезії 22G і наповнити шприц анестетиком" },
+                    { "wire_needle",            "Взяти голку для провідникової анестезії та наповнити шприц анестетиком" },
+                    { "a45_d10_punction_needle","Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
+                    { "a45_d4_punction_needle", "Взяти голку для пункції вени довжиною не менше 4 см з внутрішнім просвітом каналу 1,0-1,4 мм і зрізом вістря голки під кутом 40-45°" },
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
-                    { "spirit_p70",  "Промокнуть в 70% раствором спирта" },
-                    { "spirit_p60",  "Промокнуть в 60% раствор спирта" },
-                    { "spirit_p80",  "Промокнуть в 80% раствор спирта" },
-                    { "iodine_p1",   "Промокнуть в 1% раствором йодоната" },
-                    { "iodine_p3",   "Промокнуть в 3% раствором йодоната" },
-                    { "clear",      "Взять новый шарик (очистить)" },
-                    { "null",         "---" },
-                    { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "get_balls", "Приложить шарик" }, // "attach_balls"
-                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
+                    { "spirit_p70",  "Промокнути в 70% розчині спирту" },
+                    { "spirit_p60",  "Промокнути в 60% розчині спирту" },
+                    { "spirit_p80",  "Промокнути в 80% розчині спирту" },
+                    { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
+                    { "clear",       "Взяти нову стерильну кульку" },
+                    { "null",        "---" },
+                    { "throw_balls", "Викинути кульки в смітник" },
+                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
                 };
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "stitch", "Пришить катетер к коже" }
+                    { "stitch", "Пришити катетер до шкіри" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -149,7 +149,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "scalpel" && actionCode == "incision")
         {
             if (!locatedColliderTag.Contains("scalpel_target"))
-                errorMessage = "Надрез не в том месте";
+                errorMessage = "Надріз не в тому місці";
             return 7;
         }
 
@@ -157,7 +157,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "pull")
         {
             if (locatedColliderTag != "pleural_cavity2")
-                errorMessage = "Дренажный троакар не достиг цели";
+                errorMessage = "Дренажний троакар не досяг цілі";
 
             return 8;
         }
@@ -166,7 +166,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "clamp")
         {
             if (LastTakenStep() != 8)
-                errorMessage = "Сначала вытяните стилет.";
+                errorMessage = "Спочатку витягніть стилет";
             return 9;
         }
 
@@ -174,7 +174,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "stitch")
         {
             if (LastTakenStep() != 9)
-                errorMessage = "Нечего фиксировать или не пережато зажимом";
+                errorMessage = "Нічого фіксувати або не затиснуто затискачем";
             return 10;
         }
 
@@ -182,7 +182,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "trocar_connect")
         {
             if (LastTakenStep() != 10)
-                errorMessage = "Сначала зафиксируйте подшиванием к коже";
+                errorMessage = "Спочатку зафіксуйте підшиванням до шкіри";
             return 11;
         }
 
@@ -190,7 +190,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "trocar_connect_valve")
         {
             if (LastTakenStep() != 11)
-                errorMessage = "Сначала удлинитель";
+                errorMessage = "Спочатку подовжувач";
             return 12;
         }
 
@@ -198,7 +198,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "bobrov_bank" && actionCode == "connect")
         {
             if (LastTakenStep() != 12)
-                errorMessage = "Сначала подсоедините вентиль";
+                errorMessage = "Спочатку під'єднайте вентиль";
             return 13;
         }
 
@@ -206,7 +206,7 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "clamp_out")
         {
             if (LastTakenStep() != 13)
-                errorMessage = "Сначала соедините c банкой Боброва";
+                errorMessage = "Спочатку з'єднайте з банкою Боброва";
             return 14;
         }
 

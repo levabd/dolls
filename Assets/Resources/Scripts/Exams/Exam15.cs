@@ -3,38 +3,38 @@
 // ReSharper disable once CheckNamespace
 class Exam15 : BaseExam
 {
-    public override string Name => "Периферический венозный доступ №15 Постановка внутривенного катетера venflon в латеральную вену локтевого сгиба";
+    public override string Name => "Периферичний венозний доступ №14 Постановка внутрішньовенного катетера venflon в латеральну вену ліктьового згину";
     public override string LoadName => "Exam15";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "wear_examination_gloves",        "Надеть смотровые перчатки" },
-        { "tourniquet",                     "Взять жгут и наложить" },
-        { "palpation",                      "Пальпируем вену." },
-        { "spirit_balls",                   "Промокнуть марлевые шарики 70% раствором спирта" },
-        { "balls_spirit_disinfection",      "Дезинфекция спиртом. Протереть сверху вниз." },
-        { "throw_balls",                    "Выкинуть шарики." },
-        { "wear_sterile_gloves",            "Сменить перчатки на стерильные" },
-        { "stretch_the_skin",               "Натянуть кожу." },
-        { "pull_mandren",                   "Потягиваем мадрен." },
-        { "remove_tourniquet",              "Снимаем жгут." },
-        { "clamp_the_vein",                 "Пережать вену." },
-        { "remove_mandren",                 "Вытаскиваем мадрен." },
-        { "liquid_transfusion_connection",  "Соединение с системой переливания жидкости." },
-        { "get_plaster",                    "Взять пластырь" },
-        { "fixation_with_plaster",          "Фиксация пластырем." },
+        { "wear_examination_gloves",        "Одягти оглядові рукавички" },
+        { "tourniquet",                     "Взяти джгут і накласти" },
+        { "palpation",                      "Пальпуємо вену" },
+        { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
+        { "balls_spirit_disinfection",      "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "throw_balls",                    "Викинути кульки" },
+        { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
+        { "stretch_the_skin",               "Натягнути шкіру" },
+        { "pull_mandren",                   "Потягнути мадрен" },
+        { "remove_tourniquet",              "Зняти джгут" },
+        { "clamp_the_vein",                 "Перетиснути вену" },
+        { "remove_mandren",                 "Витягнути мадрен" },
+        { "liquid_transfusion_connection",  "З'єднати з системою переливання рідини" },
+        { "get_plaster",                    "Взяти пластир" },
+        { "fixation_with_plaster",          "Фіксація пластиром" },
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
-        { "gloves",                         "Перчатки" },
+        { "gloves",                         "Рукавички" },
         { "gown",                           "Халат" },
-        { "hand",                           "Рука для дополнительных действий" },
-        { "gauze_balls",                    "Стерильные марлевые шарики" },
-        { "tweezers",                       "Пинцет без ничего" },
-        { "tourniquet",                     "Жгут" },
+        { "hand",                           "Рука для додаткових дій" },
+        { "gauze_balls",                    "Стерильні марлеві кульки" },
+        { "tweezers",                       "Пінцет без нічого" },
+        { "tourniquet",                     "Джгут" },
         { "venflon",                        "Катетер Venflon"},
-        { "patch",                          "Пластырь" }
+        { "patch",                          "Пластир" }
     };
 
     public override TupleList<string, string> ToolActions(ToolItem tool)
@@ -44,64 +44,64 @@ class Exam15 : BaseExam
             case "gloves":
                 return new TupleList<string, string>
                 {
-                    { "wear_examination", "Надеть смотровые перчатки"},
-                    { "wear_sterile", "Сменить перчатки на стерильные"}
+                    { "wear_examination", "Одягти оглядові рукавички"},
+                    { "wear_sterile",     "Змінити рукавички на стерильні"}
                 };
             case "gown":
                 return new TupleList<string, string>
                 {
-                    { "wear", "Надеть"}
+                    { "wear", "Одягти"}
                 };
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взять жгут" },
-                    { "lay",    "Наложить жгут" },
-                    { "remove", "Снять жгут" }
+                    { "get",    "Взяти джгут" },
+                    { "lay",    "Накласти джгут" },
+                    { "remove", "Зняти джгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпация" },// "palpation"
-                    { "get_stretch_the_skin",              "Натянуть кожу" }, // "stretch_the_skin"
-                    { "get_clamp",              "Зажать вену" }, //clamp
-                    { "clamp_out",        "Отпустить вену" },
+                    { "get_palpation",          "Пальпація" },// "palpation"
+                    { "get_stretch_the_skin",   "Натягнути шкіру" }, // "stretch_the_skin"
+                    { "get_clamp",              "Затиснути вену" }, //clamp
+                    { "clamp_out",              "Відпустити вену"},
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
-                    { "spirit_p70",    "Промокнуть в 70% раствором спирта" },
-                    { "spirit_p60",    "Промокнуть в 60% раствор спирта" },
-                    { "spirit_p80",    "Промокнуть в 80% раствор спирта" },
-                    { "iodine_p1",     "Промокнуть в 1% раствором йодоната" },
-                    { "iodine_p3",     "Промокнуть в 3% раствором йодоната" },
-                    { "null",         "---" },
-                    { "throw_balls",  "Выкинуть шарики в мусорник" },
-                    { "get_balls", "Приложить шарик" }, // "attach_balls"
-                    { "get_top_down",     "Протереть сверху вниз" }, // "top_down"
+                    { "spirit_p70",    "Промокнути в 70% розчині спирту" },
+                    { "spirit_p60",    "Промокнути в 60% розчині спирту" },
+                    { "spirit_p80",    "Промокнути в 80% розчині спирту" },
+                    { "iodine_p1",     "Промокнути в 1% розчині йодоната" },
+                    { "iodine_p3",     "Промокнути в 3% розчині йодоната" },
+                    { "null",          "---" },
+                    { "throw_balls",   "Викинути кульки в смітник" },
+                    { "get_balls",     "Прикласти кульку" }, // "attach_balls"
+                    { "get_top_down",  "Протерти зверху вниз" }, // "top_down"
                 };
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взять марлевые шарики" },
-                    { "remove_balls",   "Сбросить марлевые шарики" },
+                    { "tweezers_balls", "Взяти марлеві кульки"},
+                    { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протереть сверху вниз" },
-                    { "right_left",     "Протереть справа налево" }
+                    { "top_down",       "Протерти зверху вниз" },
+                    { "right_left",     "Протерти справа наліво" }
                 };
             case "venflon":
                 return new TupleList<string, string>
                 {
-                    { "get",                            "Взять" },
-                    { "remove",                         "Удалить катетер" },
-                    { "liquid_transfusion_connection",  "Соединить с системой переливания жидкостей" },
-                    { "remove_mandren",                 "Вытащить мадрен" },
-                    { "pull_mandren",                   "Потягивать мадрен" }
+                    { "get",                            "Взяти" },
+                    { "remove",                         "Видалити катетер" },
+                    { "liquid_transfusion_connection",  "З'єднати з системою переливання рідин" },
+                    { "remove_mandren",                 "Витягнути мадрен" },
+                    { "pull_mandren",                   "Потягнути мадрен" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взять" }
+                    { "get", "Взяти" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -114,9 +114,9 @@ class Exam15 : BaseExam
 
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
-            { "nerves", "Повреждение нервных узлов"},
-            { "lymph", "Повреждение лимфатических узлов"},
-            { "bones", "Попадание в кость"},
+            { "nerves", "Пошкодження нервових вузлів"},
+            { "lymph",  "Пошкодження лімфатичних вузлів"},
+            { "bones",  "Попадання в кістку"},
         };
 
         foreach (var syringeError in criticalSyringeErrors)
@@ -157,7 +157,7 @@ class Exam15 : BaseExam
         // Критическая ошибка
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "remove")
         {
-            errorMessage = "Катетер был извлечен. Катетеризация провалена";
+            errorMessage = "Катетер був витягнутий. Катетеризація провалена";
             return null;
         }
 
