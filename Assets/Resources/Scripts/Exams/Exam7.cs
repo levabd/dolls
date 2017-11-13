@@ -130,7 +130,7 @@ class Exam7 : BaseExam
                     { "push",                           "Вставити катетер по провіднику" },
                     { "remove",                         "Видалити катетер" },
                     { "liquid_transfusion_connection",  "З'єднати з системою переливання рідин" },
-                    { "rotation_insertion",             "Поглибити обертальними рухами"" },
+                    { "rotation_insertion",             "Поглибити обертальними рухами" },
                     { "direct_insertion",               "Поглибити прямими рухами" }
                 };
             case "patch":
