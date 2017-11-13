@@ -749,24 +749,28 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "prepare":
 
-                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            if (debugMode) { Debug.Log("Запуск анимацию снятия предохранителя"); }
+
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            CreateFromPrefab(TCS.BIGRemoveTheFuseCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.BIGRemoveTheFuse, 2000f);
+                            Destroy(GameObject.Find("TransformSkin/BIG"));
+
                             break;
                         case "activate":
 
-                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            if (debugMode) { Debug.Log("Запуск анимацию выстрела пистолета"); }
+
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            CreateFromPrefab(TCS.BIGFireCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.BIGFire, 2000f);
+                            Destroy(GameObject.Find("TransformSkin/BIGRemoveTheFuse"));
+
                             break;
                         case "remove":
 
                             if (debugMode) { Debug.Log("Запуск анимацию удаления"); }
-                            OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+
+                            Destroy(GameObject.Find("TransformSkin/BIGFire"));
+
                             break;
                         default:
                             break;

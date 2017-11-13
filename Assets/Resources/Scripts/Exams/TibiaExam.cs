@@ -135,14 +135,12 @@ class TibiaExam : BaseExam
         // { "big_prepare",                    "Освободить защелку шприца-пистолета B.I.G." },
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
         {
-            if (locatedColliderTag == "tubercle_the_tibia")
-            {
-                if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") ||
-                    !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(85, 95))
-                    errorMessage = "Неправильний кут установки";
+            
+            if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") ||
+                !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(85, 95))
+                errorMessage = "Неправильний кут установки";
                 return 7;
-            }
-
+            
             return null;
         }
 

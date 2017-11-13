@@ -22,6 +22,8 @@ public class MoveTools
     public Vector3 Syringe_anestesia;
     [Header("Стерильні серветки")]
     public Vector3 SterileTissue;
+    [Header("BIG")]
+    public Vector3 BIG;
 }
 [System.Serializable]
 public class AnimationTool
@@ -70,6 +72,10 @@ public class AnimationTool
     public Vector3 VenflonGetMandren;
     [Header("Венфлон ввести раствор")]
     public Vector3 NaclToVenflon;
+    [Header("BIG активировать (стрелять)")]
+    public Vector3 BIGFire;
+    [Header("BIG снять предохранитель")]
+    public Vector3 BIGRemoveTheFuse;
 
 }
 

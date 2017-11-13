@@ -12,6 +12,9 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject PushCreate; // A
     public GameObject PushOn;
     public GameObject SkinCollider;
+    public GameObject BIG;
+    public GameObject BIGFireCreate;
+    public GameObject BIGRemoveTheFuseCreate;
     public GameObject PalpationCreate;
     public GameObject ClampVeinCreate;
     public GameObject StretchTheSkinLeftCreate;

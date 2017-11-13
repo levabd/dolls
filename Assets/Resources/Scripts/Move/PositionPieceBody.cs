@@ -64,6 +64,15 @@ public class PositionPieceBody : MonoBehaviour {
                             Venflon.SetActive(true);
                             TCS.SkinCollider.SetActive(true);
                             break;
+                        case "big":
+                            actionController.OffActionPosition(actionController.ActionPositionPoint);
+
+                            CurrentTool.Instance.Tool.StateParams["entry_angle"] = "90";
+                            actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);
+                            CurrentExam.Instance.Exam.Action("big", out errorMessage, hit.transform.gameObject.tag);
+                            TIAR.CreateLogEntry();
+
+                            break;
 
                         case "gauze_balls":
                             if (actionController.actionName != "")
@@ -96,10 +105,6 @@ public class PositionPieceBody : MonoBehaviour {
 
                             CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
                             TIAR.CreateLogEntry();
-                            //foreach (var item in CurrentExam.Instance.Exam.TakenSteps)
-                            //{
-                            //    Debug.Log($"{System.Convert.ToString(item.Item1)} + {item.Item2} + {System.Convert.ToString(item.Item3)}");
-                            //}
                             break;
 
                         case "hand":
