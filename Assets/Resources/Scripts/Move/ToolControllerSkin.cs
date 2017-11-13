@@ -11,6 +11,7 @@ public class ToolControllerSkin : MonoBehaviour {
 	public GameObject DesinfectionCreate;
     public GameObject PushCreate; // A
     public GameObject PushOn;
+    public GameObject NeedleBIG;
     public GameObject SkinCollider;
     public GameObject BIG;
     public GameObject BIGFireCreate;
@@ -23,6 +24,8 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject ShaveCreate;
     public GameObject NapkinPutCreate;
     public GameObject SterileTissueCreate;
+    public GameObject BIGNeedleOutCreate;
+    public GameObject PatchToBIGNeedleCreate;
 
     // Use this for initialization
     void Start () {

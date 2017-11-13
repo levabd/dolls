@@ -367,6 +367,15 @@ public class ActionController : MonoBehaviour {
 						    PBD.step1 = true;
 						
                             break;
+
+                        case "impose":
+
+                            if (debugMode) { Debug.Log("Запуск анимация пластыря"); }
+
+                            //CurrentExam.Instance.Exam.Action("patch", out errorMessage, locatedColliderTag.Contains("big"));
+                            CreateFromPrefab(TCS.PatchToBIGNeedleCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.PatchToBIGNeedle, 2000f);
+
+                            break;
                     }
                 }
                 else
@@ -770,6 +779,7 @@ public class ActionController : MonoBehaviour {
                             if (debugMode) { Debug.Log("Запуск анимацию удаления"); }
 
                             Destroy(GameObject.Find("TransformSkin/BIGFire"));
+                            CreateFromPrefab(TCS.BIGNeedleOutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.BIGNeedleOut, 2000f);
 
                             break;
                         default:
@@ -789,7 +799,7 @@ public class ActionController : MonoBehaviour {
                     switch (actionName)
                     {
 
-                        case "get":
+                        case "impose":
 
                             if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
 

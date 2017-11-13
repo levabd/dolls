@@ -24,6 +24,8 @@ public class MoveTools
     public Vector3 SterileTissue;
     [Header("BIG")]
     public Vector3 BIG;
+    [Header("Игла с Троакаром после выстрела BIG")]
+    public Vector3 NeedleBIG;
 }
 [System.Serializable]
 public class AnimationTool
@@ -76,6 +78,10 @@ public class AnimationTool
     public Vector3 BIGFire;
     [Header("BIG снять предохранитель")]
     public Vector3 BIGRemoveTheFuse;
+    [Header("Извлечь Троакар")]
+    public Vector3 BIGNeedleOut;
+    [Header("Наклеить пластырь на иглу от BIG")]
+    public Vector3 PatchToBIGNeedle;
 
 }
 

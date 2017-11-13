@@ -84,12 +84,12 @@ class TibiaExam : BaseExam
             case "stopcock":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "impose", "Зафіксувати" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "impose", "Наклеїти" }
                 };
             default:
                 return new TupleList<string, string>();

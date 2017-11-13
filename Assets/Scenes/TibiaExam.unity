@@ -8987,6 +8987,7 @@ MonoBehaviour:
     Syringe_anestesia: {x: 0, y: 0, z: 0}
     SterileTissue: {x: 0, y: 0, z: 0}
     BIG: {x: 0, y: 0, z: 90}
+    NeedleBIG: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 0, y: 0, z: 0}
@@ -9012,6 +9013,8 @@ MonoBehaviour:
     NaclToVenflon: {x: 0, y: 0, z: 0}
     BIGFire: {x: 0, y: 0, z: 90}
     BIGRemoveTheFuse: {x: 0, y: 0, z: 90}
+    BIGNeedleOut: {x: 90, y: 0, z: 90}
+    PatchToBIGNeedle: {x: 90, y: 0, z: 90}
 --- !u!1 &351449369
 GameObject:
   m_ObjectHideFlags: 0
@@ -10911,7 +10914,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410299479}
-  m_LocalRotation: {x: -0.6747251, y: 0.7347223, z: -0.044916067, w: -0.05396017}
+  m_LocalRotation: {x: -0.6747252, y: 0.7347224, z: -0.04491607, w: -0.05396017}
   m_LocalPosition: {x: -0.21241103, y: 0.96654904, z: -0.18582688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11179,6 +11182,7 @@ MonoBehaviour:
     type: 2}
   PushCreate: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
   PushOn: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
+  NeedleBIG: {fileID: 1073716819030158, guid: b4059dae8b3aab341ada16a9dd952782, type: 2}
   SkinCollider: {fileID: 550944821}
   BIG: {fileID: 1785242590981574, guid: 079ac447405fa054a9d0d12d10242a15, type: 2}
   BIGFireCreate: {fileID: 1222660861056552, guid: 95e2c7f225f7dc341872a1cc58d50958,
@@ -11200,6 +11204,10 @@ MonoBehaviour:
   NapkinPutCreate: {fileID: 1385785931710138, guid: 60feca057320434469f2622d4083c8f8,
     type: 2}
   SterileTissueCreate: {fileID: 1875237994975888, guid: c7fffecce182f994489982e072a70f35,
+    type: 2}
+  BIGNeedleOutCreate: {fileID: 1657541654743022, guid: c2886083e5fdc5b4d8120b7e9c240041,
+    type: 2}
+  PatchToBIGNeedleCreate: {fileID: 1683338987365874, guid: aa74867d2b2272d4a81719a87075241a,
     type: 2}
 --- !u!1 &419449399
 GameObject:
