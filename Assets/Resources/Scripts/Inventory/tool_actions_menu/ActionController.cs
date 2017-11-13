@@ -175,6 +175,9 @@ public class ActionController : MonoBehaviour {
                         case "nacl_to_cateter":
                             CreateFromPrefab(TCV.NaclToVenflonCreate, TCV.Transform, PrefabTransformCtrl.animationTool.NaclToVenflon, 4f);
                             break;
+                        case "big_nacl":
+                            CreateFromPrefab(TCV.NaclToVenflonCreate, TCV.Transform, PrefabTransformCtrl.animationTool.NaclToVenflon, 4f);
+                            break;
                         default:
                             break;
                     }
@@ -694,6 +697,219 @@ public class ActionController : MonoBehaviour {
                             OffActionPosition(ActionPositionPoint);
                             CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
                             StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "bobrov_bank":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "connect":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию соединения с банкой"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "big":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования шприца BIG"); }
+
+                            OnActionPosition(ActionPositionPoint, "tubercle_the_tibia");
+                            PBD.step1 = true;
+
+                            break;
+                        case "prepare":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        case "activate":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        case "remove":
+
+                            if (debugMode) { Debug.Log("Запуск анимацию удаления"); }
+                            OffActionPosition(ActionPositionPoint);
+                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "stopcock":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "scalpel_target");
+                            PBD.step1 = true;
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "manometer":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "scalpel_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "pump_it":
+                            
+                            break;
+                        case "close_piston":
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "phonendoscope":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "phonendoscope_target");
+                            PBD.step1 = true;
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "invasive_sensor":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "connect":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "phonendoscope_target");
+                            PBD.step1 = true;
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+            case "cannule":
+
+                if (actionName != "")
+                {
+                    switch (actionName)
+                    {
+
+                        case "get":
+
+                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+
+                            OnActionPosition(ActionPositionPoint, "phonendoscope_target");
+                            PBD.step1 = true;
+
+                            break;
+                        case "push":
+                            
+                            break;
+                        case "rinse":
+                            
+                            break;
+                        case "remove_mandren":
+                            
+                            break;
+                        case "pull":
+
                             break;
                         default:
                             break;

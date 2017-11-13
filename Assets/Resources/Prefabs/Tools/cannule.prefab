@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4675278349407094}
   - component: {fileID: 114112971880769502}
   m_Layer: 0
-  m_Name: stopcock
+  m_Name: cannule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,10 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: e7955684db1f622458709eca876f7130, type: 3}
-  - {fileID: 21300000, guid: e7955684db1f622458709eca876f7130, type: 3}
-  Prefab: Prefabs/Tools/stopcock
+  - {fileID: 21300000, guid: a40002d91f38c5b48a8b798c22e1fdbf, type: 3}
+  - {fileID: 21300000, guid: a40002d91f38c5b48a8b798c22e1fdbf, type: 3}
+  Prefab: Prefabs/Tools/cannule
   cursorTexture: {fileID: 0}
-  CodeName: stopcock
-  Title: "\u0417\u0430\u043F\u0456\u0440\u043D\u0438\u0439 \u043A\u0440\u0430\u043D
-    \u0434\u043B\u044F \u0456\u043D\u0444\u0443\u0437\u0456\u0439 \u0437 \u0441\u0438\u0441\u0442\u0435\u043C\u043E\u044E"
+  CodeName: cannule
+  Title: "\u0410\u0440\u0442\u0435\u0440\u0456\u0430\u043B\u044C\u043D\u0430 \u043A\u0430\u043D\u044E\u043B\u044F"
