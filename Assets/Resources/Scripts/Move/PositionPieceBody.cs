@@ -76,7 +76,7 @@ public class PositionPieceBody : MonoBehaviour {
                         case "cannule":
                             actionController.OffActionPosition(actionController.VeinPositionPoint);
 
-                            actionController.CreateFromPrefab(actionController.TCS.CannuleEnterCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.CannuleEnter, 2000f);
+                            actionController.CreateFromPrefab(actionController.TCS.CannuleEnterCreate, actionController.TCS.gameObject, actionController.PrefabTransformCtrl.animationTool.CannuleEnter, 2000f);
                             break;
                         case "gauze_balls":
                             if (actionController.actionName != "")

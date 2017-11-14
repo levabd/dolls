@@ -952,12 +952,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -977,12 +977,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -1002,12 +1002,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -1126,12 +1126,12 @@ MonoBehaviour:
     BIGNeedleOut: {x: 0, y: 0, z: 0}
     PatchToBIGNeedle: {x: 0, y: 0, z: 0}
     CannuleEnter: {x: -51.74, y: -1.921, z: -90.68401}
-    CannuleRemoveMandren: {x: -51.74, y: -1.921, z: -90.68401}
-    CannulePull: {x: -51.74, y: -1.921, z: -90.68401}
-    CannulePush: {x: -51.74, y: -1.921, z: -90.68401}
-    CannuleRinse: {x: -51.74, y: -1.921, z: -90.68401}
-    CannuleStitch: {x: -51.74, y: -1.921, z: -90.68401}
-    InvasiveSensorConnect: {x: -51.74, y: -1.921, z: -90.68401}
+    CannuleRemoveMandren: {x: 0, y: 0, z: 0}
+    CannulePull: {x: 0, y: 0, z: 0}
+    CannulePush: {x: 0, y: 0, z: 0}
+    CannuleRinse: {x: 0, y: 0, z: 0}
+    CannuleStitch: {x: 0, y: 0, z: 0}
+    InvasiveSensorConnect: {x: 0, y: 0, z: 0}
     Monitor: {x: 0, y: 0, z: 0}
 --- !u!43 &397059510
 Mesh:
@@ -4802,7 +4802,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

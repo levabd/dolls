@@ -676,7 +676,7 @@ public class ActionController : MonoBehaviour {
                             StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
                             break;
                         case "cannule_stitch":
-                            Destroy(GameObject.Find("TransformSkin/CannuleRinse"));
+                            Destroy(GameObject.Find("ToolPosition/CannuleRinse"));
                             if (debugMode) { Debug.Log("Запуск анимацию пришивания канюли"); }
                             OffActionPosition(ActionPositionPoint);
                             CreateFromPrefab(TCS.CannuleStitchCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannuleStitch, 2000f);
@@ -890,7 +890,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск анимации присоединения к датчику"); }
                             OffActionPosition(ActionPositionPoint);
-                            Destroy(GameObject.Find("TransformSkin/CannuleStitch"));
+                            Destroy(GameObject.Find("ToolPosition/CannuleStitch"));
                             CreateFromPrefab(TCS.InvasiveSensorConnectCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.InvasiveSensorConnect, 2000);
                             break;
                         default:
@@ -921,25 +921,25 @@ public class ActionController : MonoBehaviour {
                         case "push":
                             if (debugMode) { Debug.Log("Запуск анимации введения канюли в глубину просвета артерии"); }
                             OffActionPosition(ActionPositionPoint);
-                            Destroy(GameObject.Find("TransformSkin/CannulePull"));
+                            Destroy(GameObject.Find("ToolPosition/CannulePull"));
                             CreateFromPrefab(TCS.CannulePushCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannulePush, 2000);
                             break;
                         case "rinse":
                             if (debugMode) { Debug.Log("Запуск анимацию промывания канюли"); }
                             OffActionPosition(ActionPositionPoint);
-                            Destroy(GameObject.Find("TransformSkin/CannulePush"));
+                            Destroy(GameObject.Find("ToolPosition/CannulePush"));
                             CreateFromPrefab(TCS.CannuleRinseCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannuleRinse, 2000);
                             break;
                         case "remove_mandren":
                             if (debugMode) { Debug.Log("Запуск анимации удаления мандрена"); }
                             OffActionPosition(ActionPositionPoint);
-                            Destroy(GameObject.Find("TransformSkin/CannuleEnter"));
+                            Destroy(GameObject.Find("ToolPosition/CannuleEnter"));
                             CreateFromPrefab(TCS.CannuleRemoveMandrenCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannuleRemoveMandren, 2000);
                             break;
                         case "pull":
                             if (debugMode) { Debug.Log("Запуск анимации потягивания канюли на себя"); }
                             OffActionPosition(ActionPositionPoint);
-                            Destroy(GameObject.Find("TransformSkin/CannuleRemoveMandren"));
+                            Destroy(GameObject.Find("ToolPosition/CannuleRemoveMandren"));
                             CreateFromPrefab(TCS.CannulePullCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannulePull, 2000);
                             break;
                         default:
