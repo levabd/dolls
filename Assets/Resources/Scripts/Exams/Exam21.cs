@@ -166,6 +166,9 @@ class Exam21 : BaseExam
         if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "medial_saphenous_vein_final_target"))
             return returnedStep;
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

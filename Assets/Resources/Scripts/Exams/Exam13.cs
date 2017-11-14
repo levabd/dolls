@@ -167,6 +167,9 @@ class Exam13 : BaseExam
         if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "lateral_subcutaneous_arm_vein_final_target"))
             return returnedStep;
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

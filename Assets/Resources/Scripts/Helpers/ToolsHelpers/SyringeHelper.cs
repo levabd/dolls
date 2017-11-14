@@ -9,6 +9,8 @@ public static class SyringeHelper
     {
         errorMessage = "";
 
+        Debug.Log("ExamToolName: " + CurrentTool.Instance.Tool.CodeName);
+
         if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
             errorMessage = "Вже приєднана інша голка";
@@ -105,7 +107,8 @@ public static class SyringeHelper
 
     public static bool HalfFillingNovocaine(this BaseExam exam, string actionCode, ref string errorMessage)
     {
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("filling_") &&
+            (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"])))
         {
             errorMessage = "Відсутня голка";
             return false;

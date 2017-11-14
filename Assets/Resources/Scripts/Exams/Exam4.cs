@@ -207,9 +207,10 @@ class Exam4 : BaseExam
 
         //{ "puncture_needle",                "Взяти голку для пункції вени" },
         if (this.GetNeedleAction(actionCode, ref errorMessage, "a45_d4_punction_needle", 10)) return 11;
-
+        
         //{ "puncture_novocaine",             "Наповнити 0,25% новокаїну на половину" },
         if (this.HalfFillingNovocaine(actionCode, ref errorMessage)) return 12;
+
         if (errorMessage == "Відсутня голка") return null;
 
         //{ "tourniquet",                     "Зняти джгут" },
@@ -241,6 +242,10 @@ class Exam4 : BaseExam
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 16, out returnedStep)) return returnedStep;
+
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

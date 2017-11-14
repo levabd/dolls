@@ -207,6 +207,10 @@ class BloodPressureExam2 : BaseExam
             return 14;
         }
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
+
         return null;
     }
 }

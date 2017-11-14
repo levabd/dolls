@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 class Exam1 : BaseExam
@@ -220,6 +221,10 @@ class Exam1 : BaseExam
 
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise( actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
+
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

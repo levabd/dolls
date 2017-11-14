@@ -136,12 +136,10 @@ class TibiaExam : BaseExam
         // { "big_prepare",                    "Освободить защелку шприца-пистолета B.I.G." },
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
         {
-            
             if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") ||
                 !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(85, 95))
                 errorMessage = "Неправильний кут установки";
             return 7;
-            
         }
 
         // { "big_activate",                   "Активировать пистолет B.I.G." },
@@ -169,7 +167,8 @@ class TibiaExam : BaseExam
         }
 
         // Отсоединяем в любом другом месте
-        //if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
+        DateTime mockDateTime = DateTime.Now;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref mockDateTime)) return null;
 
         // { "syringe_nacl",                   "Наполнить шприц физраствором." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl")
@@ -194,6 +193,10 @@ class TibiaExam : BaseExam
                 errorMessage = "Спочатку введіть фізрозчин";
             return 13;
         }
+
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

@@ -164,6 +164,10 @@ class Exam16 : BaseExam
             return null;
         }
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
+
         return null;
     }
 }

@@ -221,6 +221,10 @@ class Exam3 : BaseExam
         // Вставка проводника, удаление иглы, Катетеризация, присоединение системы, фиксация пластырем
         if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 15, out returnedStep)) return returnedStep;
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
+
         return null;
     }
 }

@@ -163,11 +163,12 @@ class Exam17 : BaseExam
 
         int returnedStep;
 
-
 		if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "great_saphenous_vein_final_target"))
-
             return returnedStep;
 
+        // Добавление иголки
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
+            SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
         return null;
     }

@@ -110,7 +110,6 @@ class EyeExamCoagulationView : MonoBehaviour
     void FinishEvent()
     {
         bool examResult = true;
-        
     }
 
     void CloseModal()
