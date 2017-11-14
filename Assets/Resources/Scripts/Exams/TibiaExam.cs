@@ -84,12 +84,13 @@ class TibiaExam : BaseExam
             case "stopcock":
                 return new TupleList<string, string>
                 {
-                    { "impose", "Зафіксувати" }
+                    { "impose", "Зафіксувати" },
+                    { "connect", "Приєднати запірний кран з системою" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "impose", "Наклеїти" }
+                    { "stick", "Наклеїти" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -139,9 +140,8 @@ class TibiaExam : BaseExam
             if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") ||
                 !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(85, 95))
                 errorMessage = "Неправильний кут установки";
-                return 7;
+            return 7;
             
-            return null;
         }
 
         // { "big_activate",                   "Активировать пистолет B.I.G." },
@@ -165,10 +165,11 @@ class TibiaExam : BaseExam
         {
             if (LastTakenStep() != 9)
                 errorMessage = "Нічого фіксувати";
-            if (!locatedColliderTag.Contains("big"))
-                errorMessage = "Не те місце установки. Спочатку повинен бути коректно встановлений пістолет";
             return 10;
         }
+
+        // Отсоединяем в любом другом месте
+        //if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
 
         // { "syringe_nacl",                   "Наполнить шприц физраствором." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl")

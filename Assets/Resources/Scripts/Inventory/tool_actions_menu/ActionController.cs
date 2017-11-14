@@ -176,7 +176,7 @@ public class ActionController : MonoBehaviour {
                             CreateFromPrefab(TCV.NaclToVenflonCreate, TCV.Transform, PrefabTransformCtrl.animationTool.NaclToVenflon, 4f);
                             break;
                         case "big_nacl":
-                            CreateFromPrefab(TCV.NaclToVenflonCreate, TCV.Transform, PrefabTransformCtrl.animationTool.NaclToVenflon, 4f);
+                            CreateFromPrefab(TCS.SyringeToBIGNeedleCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.SyringeToBIGNeedle, 4f);
                             break;
                         default:
                             break;
@@ -368,7 +368,7 @@ public class ActionController : MonoBehaviour {
 						
                             break;
 
-                        case "impose":
+                        case "stick":
 
                             if (debugMode) { Debug.Log("Запуск анимация пластыря"); }
 
@@ -807,10 +807,17 @@ public class ActionController : MonoBehaviour {
 
                         case "impose":
 
-                            if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
+                            if (debugMode) { Debug.Log("Включить модель крана"); }
 
-                            OnActionPosition(ActionPositionPoint, "scalpel_target");
-                            PBD.step1 = true;
+                            GameObject.Find("Kran").transform.GetChild(0).gameObject.SetActive(true);
+
+                            break;
+
+                        case "connect":
+
+                            if (debugMode) { Debug.Log("Включить модель шлангов для крана"); }
+
+                            GameObject.Find("Kran").transform.GetChild(1).gameObject.SetActive(true);
 
                             break;
                         default:

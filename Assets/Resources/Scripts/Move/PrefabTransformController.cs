@@ -82,6 +82,8 @@ public class AnimationTool
     public Vector3 BIGNeedleOut;
     [Header("Наклеить пластырь на иглу от BIG")]
     public Vector3 PatchToBIGNeedle;
+    [Header("Вывести физраствор в иглу big")]
+    public Vector3 SyringeToBIGNeedle;
     [Header("Ввести канюлю в руку")]
     public Vector3 CannuleEnter;
     [Header("Удалить мандрен из канюли")]
