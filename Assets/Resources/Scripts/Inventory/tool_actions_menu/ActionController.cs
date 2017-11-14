@@ -899,6 +899,7 @@ public class ActionController : MonoBehaviour {
                             OffActionPosition(ActionPositionPoint);
                             Destroy(GameObject.Find("ToolPosition/CannuleStitch"));
                             CreateFromPrefab(TCS.InvasiveSensorConnectCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.InvasiveSensorConnect, 2000);
+                            TCS.MonitorCreate.SetActive(true);
                             break;
                         default:
                             break;

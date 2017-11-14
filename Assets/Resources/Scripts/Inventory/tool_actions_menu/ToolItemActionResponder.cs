@@ -65,7 +65,6 @@ public class ToolItemActionResponder : MonoBehaviour {
         //{
         //    logActionText = "Угол наклона шприца = " + CurrentTool.Instance.Tool.StateParams["entry_angle"];
         //}
-
         MainLoglogCtrl.LogActionCreate(activeControl, logActionTextColor, logActionText);
     }
 
