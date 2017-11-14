@@ -83,8 +83,8 @@ public class AuthView : MonoBehaviour {
                 {
                     case User.UserRoles.Admin: SceneManager.LoadScene("Administrator_menu_scene"); break;
                     case User.UserRoles.Manager: SceneManager.LoadScene("ExamManager_scene"); break;
-                    case User.UserRoles.User: SceneManager.LoadScene("Examining_menu_scene"); break;
-                    default: SceneManager.LoadScene("Examining_menu_scene"); break;
+                    case User.UserRoles.User: SceneManager.LoadScene("ExamManager_scene"); break;
+                    default: SceneManager.LoadScene("ExamManager_scene"); break;
                 }
             }
         }

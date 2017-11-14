@@ -45,7 +45,7 @@ public class ExamsList : MonoBehaviour {
                 Based = new List<BaseExam>();
                 Exam1 ex1 = new Exam1();
                 Exam2 ex2 = new Exam2();
-                Exam3 ex3 = new Exam3();
+                // Exam3 ex3 = new Exam3();
                 Exam4 ex4 = new Exam4();
                 Exam5 ex5 = new Exam5();
                 Exam6 ex6 = new Exam6();
@@ -67,7 +67,7 @@ public class ExamsList : MonoBehaviour {
 
                 Based.Add(ex1);
                 Based.Add(ex2);
-                Based.Add(ex3);
+                // Based.Add(ex3);
                 Based.Add(ex4);
                 Based.Add(ex5);
                 Based.Add(ex6);
@@ -89,6 +89,12 @@ public class ExamsList : MonoBehaviour {
                 break;
             case "eyes":
                 Based = new List<BaseExam>();
+                EyeDiabeticExam diabetic = new EyeDiabeticExam();
+                EyeExamCoagulationExam coagulation = new EyeExamCoagulationExam();
+                EyeRetinaExam retina = new EyeRetinaExam();
+                Based.Add(diabetic);
+                Based.Add(coagulation);
+                Based.Add(retina);
                 break;
             case "decompression":
                 Based = new List<BaseExam>();
@@ -99,12 +105,20 @@ public class ExamsList : MonoBehaviour {
                 break;
             case "auscultation":
                 Based = new List<BaseExam>();
+                HeartAuscultationExam heart = new HeartAuscultationExam();
+                LungsAuscultationExam lungs = new LungsAuscultationExam();
+                Based.Add(heart);
+                Based.Add(lungs);
                 break;
             case "reanimation":
                 Based = new List<BaseExam>();
+                SkinExam skin = new SkinExam();
+                Based.Add(skin);
                 break;
             case "heart_rate":
                 Based = new List<BaseExam>();
+                PulseExam heartRate = new PulseExam();
+                Based.Add(heartRate);
                 break;
             case "intraosseous_access":
                 Based = new List<BaseExam>();
