@@ -82,6 +82,22 @@ public class AnimationTool
     public Vector3 BIGNeedleOut;
     [Header("Наклеить пластырь на иглу от BIG")]
     public Vector3 PatchToBIGNeedle;
+    [Header("Ввести канюлю в руку")]
+    public Vector3 CannuleEnter;
+    [Header("Удалить мандрен из канюли")]
+    public Vector3 CannuleRemoveMandren;
+    [Header("Потянуть канюлю на себя")]
+    public Vector3 CannulePull;
+    [Header("Ввести канюлю в артерию")]
+    public Vector3 CannulePush;
+    [Header("Промыть канюлю")]
+    public Vector3 CannuleRinse;
+    [Header("Пришить канюлю")]
+    public Vector3 CannuleStitch;
+    [Header("Соединить с датчиком")]
+    public Vector3 InvasiveSensorConnect;
+    [Header("Вывести монитор")]
+    public Vector3 Monitor;
 
 }
 

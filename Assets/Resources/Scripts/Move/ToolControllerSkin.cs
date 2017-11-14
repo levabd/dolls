@@ -26,6 +26,15 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject SterileTissueCreate;
     public GameObject BIGNeedleOutCreate;
     public GameObject PatchToBIGNeedleCreate;
+    [Header("Анимации с канюлей")]
+    public GameObject CannuleEnterCreate;
+    public GameObject CannuleRemoveMandrenCreate;
+    public GameObject CannulePullCreate;
+    public GameObject CannulePushCreate;
+    public GameObject CannuleRinseCreate;
+    public GameObject CannuleStitchCreate;
+    public GameObject InvasiveSensorConnectCreate;
+    public GameObject MonitorCreate;
 
     // Use this for initialization
     void Start () {

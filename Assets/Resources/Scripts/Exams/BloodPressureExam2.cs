@@ -100,7 +100,7 @@ class BloodPressureExam2 : BaseExam
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "cannule_stitch", "Пришить к коже" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -192,7 +192,7 @@ class BloodPressureExam2 : BaseExam
         }
 
         // { "stitch",                         "Крылья канюли пришиваются к коже" },
-        if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "stitch")
+        if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "cannule_stitch")
         {
             if (LastTakenStep() != 12)
                 errorMessage = "Нічого фіксувати";
