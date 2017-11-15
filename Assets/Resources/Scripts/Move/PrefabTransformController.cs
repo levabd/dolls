@@ -102,6 +102,10 @@ public class AnimationTool
     public Vector3 Monitor;
     [Header("Сделать надрез используя скальпель")]
     public Vector3 Cut;
+    [Header("Вставить дренаж в надрез")]
+    public Vector3 DrenajToIncision;
+    [Header("Вытянуть метал. стилет и углубить дренаж")]
+    public Vector3 DrenajOutConductor;
 }
 
 public class PrefabTransformController : MonoBehaviour

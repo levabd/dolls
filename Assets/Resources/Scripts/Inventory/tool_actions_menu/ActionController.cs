@@ -632,12 +632,17 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск позиционирования трокара"); }
 
-                            OnActionPosition(ActionPositionPoint, "vein_target");
+                            OnActionPosition(ActionPositionPoint, "pleural_cavity");
                             PBD.step1 = true;
 
                             break;
                         case "pull":
-                            
+
+                            if (debugMode) { Debug.Log("Запуск анимации вытягивания стилета"); }
+
+                            CreateFromPrefab(TCS.DrenajOutConductorCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.DrenajOutConductor, 2000f);
+                            Destroy(GameObject.Find("TransformSkin/DrenajToIncision"));
+
                             break;
                         case "trocar_connect":
 
