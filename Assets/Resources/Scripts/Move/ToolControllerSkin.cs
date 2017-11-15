@@ -31,6 +31,7 @@ public class ToolControllerSkin : MonoBehaviour {
     [Header("Анимации с дренажом")]
     public GameObject DrenajToIncisionCreate;
     public GameObject DrenajOutConductorCreate;
+    public GameObject StitchCreate;
     [Header("Анимации с канюлей")]
     public GameObject CannuleEnterCreate;
     public GameObject CannuleRemoveMandrenCreate;

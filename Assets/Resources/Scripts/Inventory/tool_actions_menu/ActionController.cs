@@ -646,8 +646,15 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "trocar_connect":
 
+                            if (debugMode) { Debug.Log("Включить удлинитель"); }
+
+                            GameObject.Find("Extension").transform.GetChild(0).gameObject.SetActive(true);
+
                             break;
                         case "trocar_connect_valve":
+                            if (debugMode) { Debug.Log("Включить дренажный вентель"); }
+
+                            GameObject.Find("DrenagGemlixa").transform.GetChild(0).gameObject.SetActive(true);
 
                             break;
                         case "clamp_out":
@@ -677,8 +684,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            CreateFromPrefab(TCS.StitchCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Stitch, 3f);
                             break;
                         case "cannule_stitch":
                             Destroy(GameObject.Find("ToolPosition/CannuleRinse"));
@@ -737,10 +743,10 @@ public class ActionController : MonoBehaviour {
 
                         case "connect":
 
-                            if (debugMode) { Debug.Log("Запуск анимацию соединения с банкой"); }
-                            OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            if (debugMode) { Debug.Log("Включить банку"); }
+
+                            GameObject.Find("Bottle").transform.GetChild(0).gameObject.SetActive(true);
+
                             break;
                         default:
                             break;

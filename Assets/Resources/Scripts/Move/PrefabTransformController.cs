@@ -106,6 +106,8 @@ public class AnimationTool
     public Vector3 DrenajToIncision;
     [Header("Вытянуть метал. стилет и углубить дренаж")]
     public Vector3 DrenajOutConductor;
+    [Header("анимация сшивания")]
+    public Vector3 Stitch;
 }
 
 public class PrefabTransformController : MonoBehaviour
