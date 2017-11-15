@@ -708,9 +708,9 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "incision":
 
-                            if (debugMode) { Debug.Log("Запуск анимацию пришивания"); }
+                            if (debugMode) { Debug.Log("Запуск анимацию надреза"); }
                             OffActionPosition(ActionPositionPoint);
-                            CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
+                            CreateFromPrefab(TCS.CutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Cut, 3600f);
                             StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
                             break;
                         default:

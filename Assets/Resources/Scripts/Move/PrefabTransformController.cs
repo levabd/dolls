@@ -100,7 +100,8 @@ public class AnimationTool
     public Vector3 InvasiveSensorConnect;
     [Header("Вывести монитор")]
     public Vector3 Monitor;
-
+    [Header("Сделать надрез используя скальпель")]
+    public Vector3 Cut;
 }
 
 public class PrefabTransformController : MonoBehaviour
