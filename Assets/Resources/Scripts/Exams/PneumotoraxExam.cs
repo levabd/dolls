@@ -113,7 +113,7 @@ class PneumotoraxExam : BaseExam
     {
         errorMessage = "";
 
-        if (!this.GenericMoveHelper(colliderTag, "pleural_cavity2", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "pleural_cavity", ref errorMessage))
             return false;
 
         return true;
@@ -156,7 +156,7 @@ class PneumotoraxExam : BaseExam
         // { "trocar_pull",                    "Вытянуть стилет заводя ПВХ трубку в плевральную полость."},
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "pull")
         {
-            if (locatedColliderTag != "pleural_cavity2")
+            if (locatedColliderTag != "pleural_cavity")
                 errorMessage = "Дренажний троакар не досяг цілі";
 
             return 8;

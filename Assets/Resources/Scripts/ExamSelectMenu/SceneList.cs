@@ -28,7 +28,7 @@ public enum Scenes
 	BloodPressureExam1 = 23,
 	BloodPressureExam2 = 24,
 	HydrotoraxExam = 25,
-	PneumotoraxExam = 26,
+	_5bf679cdf8a59b041ac49734de29bb1b = 26,
 	TibiaExam = 27,
 	EyeDiabeticExam = 28,
 	EyeRetinaExam = 29,
@@ -37,6 +37,7 @@ public enum Scenes
 	Administrator_menu_scene = 32,
 	AuscultationLungsExam = 33,
 	EyeCoagulationExam = 34,
-	AuscultationHeartExam = 35
+	PneumotoraxExam = 35,
+	AuscultationHeartExam = 36
 }
 
