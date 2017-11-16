@@ -3,60 +3,51 @@ using System.Collections;
 
 public class AnimationSoundsPlayer : MonoBehaviour
 {
+    [Header("Источник звука")]
     public AudioSource toneSource;
+    [Header("Набор звуков")]
     public AudioClip[] toneAudio;
+    [Header("Стрелка манометра")]
     public Transform ManometersArrow;
+    private AudioClip clip = null;
+    [Header("Громкость звука")]
+    public float vol = 1.0f;
 
-    // Use this for initialization
-    void Start()
+    void ToneControl(int tone)
     {
+        switch (tone)
+        {
+            case 1:                
+                clip = toneAudio[0];
+                if (clip != null)
+                {
+                    toneSource.PlayOneShot(clip, vol);
+                }
+                break;
+            case 2:
+                clip = toneAudio[1];
+                if (clip != null)
+                {
+                    toneSource.PlayOneShot(clip, vol);
+                }
+                break;
+            case 3:
+                clip = toneAudio[2];
+                if (clip != null)
+                {
+                    toneSource.PlayOneShot(clip, vol);
+                }
+                break;
+            case 4:
+                clip = toneAudio[3];
+                if (clip != null)
+                {
+                    toneSource.PlayOneShot(clip, vol);
+                }
+                break;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void FirstTone()
-    {
-        AudioClip clip = null;
-        float vol = 1.0f;
-        clip = toneAudio[0];
-        if (clip != null)
-        {
-            toneSource.PlayOneShot(clip, vol);
+            default:
+                break;
         }
-    }
-    void SecondTone()
-    {
-        AudioClip clip = null;
-        float vol = 1.0f;
-        clip = toneAudio[1];
-        if (clip != null)
-        {
-            toneSource.PlayOneShot(clip, vol);
-        }
-    }
-    void ThirdTone()
-    {
-        AudioClip clip = null;
-        float vol = 1.0f;
-        clip = toneAudio[2];
-        if (clip != null)
-        {
-            toneSource.PlayOneShot(clip, vol);
-        }
-    }
-    void FourthTone()
-    {
-        AudioClip clip = null;
-        float vol = 1.0f;
-        clip = toneAudio[3];
-        if (clip != null)
-        {
-            toneSource.PlayOneShot(clip, vol);
-        }
-    }
-    
+    }    
 }
