@@ -33,7 +33,7 @@ class BloodPressureExam1 : BaseExam
             case "manometer":
                 return new TupleList<string, string>
                 {
-                    { "get",                  "Взяти" },
+                    { "get",                  "Одягти" },
                     { "pump_it",              "Накачати" },
                     { "air_out",              "Випустить повітря" },
                     { "close_piston",         "Закрити клапан" },

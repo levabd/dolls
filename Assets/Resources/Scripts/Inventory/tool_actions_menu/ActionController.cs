@@ -855,16 +855,16 @@ public class ActionController : MonoBehaviour {
                         case "get":
 
                             if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
-
-                            OnActionPosition(ActionPositionPoint, "scalpel_target");
-                            PBD.step1 = true;
-
+                            TCS.ManometerCreate.SetActive(true);
                             break;
                         case "pump_it":
-                            
+                            TCS.ManometerCreate.GetComponent<Animator>().SetBool("compress", true);
                             break;
                         case "close_piston":
-
+                            TCS.ManometerCreate.GetComponent<Animator>().SetBool("closepiston", true);
+                            break;
+                        case "air_out":
+                            TCS.ManometerCreate.GetComponent<Animator>().SetBool("decompress", true);
                             break;
                         default:
                             break;
