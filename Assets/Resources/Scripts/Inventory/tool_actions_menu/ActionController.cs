@@ -658,10 +658,14 @@ public class ActionController : MonoBehaviour {
 
                             break;
                         case "clamp_out":
+                            if (debugMode) { Debug.Log("Выключить зажатие дренажа"); }
 
+                            GameObject.Find("ClampDrenag").transform.GetChild(0).gameObject.SetActive(false);
                             break;
                         case "clamp":
+                            if (debugMode) { Debug.Log("Включить зажатие дренажа"); }
 
+                            GameObject.Find("ClampDrenag").transform.GetChild(0).gameObject.SetActive(true);
                             break;
 
                         default:
