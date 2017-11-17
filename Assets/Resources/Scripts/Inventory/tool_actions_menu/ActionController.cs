@@ -160,6 +160,12 @@ public class ActionController : MonoBehaviour {
                             Destroy(GameObject.Find("TransformSkin/StretchTheSkinLeft"));
                             
                             break;
+                        case "throw_needle":
+                            if (debugMode) { Debug.Log("Запуск анимации руки"); }
+
+                            GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().SetBool("bend", true);
+
+                            break;
                         case "needle_pull":
                             if (debugMode) { Debug.Log("Запуск анимации извлечения шприца"); }
 

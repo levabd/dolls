@@ -6855,7 +6855,11 @@ MonoBehaviour:
     type: 2}
   PushCreate: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
   PushOn: {fileID: 1841388059323052, guid: 5074b39fd28328a4c82bd63918f58138, type: 2}
+  NeedleBIG: {fileID: 0}
   SkinCollider: {fileID: 550944821}
+  BIG: {fileID: 0}
+  BIGFireCreate: {fileID: 0}
+  BIGRemoveTheFuseCreate: {fileID: 0}
   PalpationCreate: {fileID: 1403568807416796, guid: d3e0782d82f6ca94bb8c307858ab9384,
     type: 2}
   ClampVeinCreate: {fileID: 0}
@@ -6868,6 +6872,22 @@ MonoBehaviour:
   ShaveCreate: {fileID: 0}
   NapkinPutCreate: {fileID: 0}
   SterileTissueCreate: {fileID: 0}
+  BIGNeedleOutCreate: {fileID: 0}
+  PatchToBIGNeedleCreate: {fileID: 0}
+  SyringeToBIGNeedleCreate: {fileID: 0}
+  CutCreate: {fileID: 0}
+  DrenajToIncisionCreate: {fileID: 0}
+  DrenajOutConductorCreate: {fileID: 0}
+  StitchCreate: {fileID: 0}
+  CannuleEnterCreate: {fileID: 0}
+  CannuleRemoveMandrenCreate: {fileID: 0}
+  CannulePullCreate: {fileID: 0}
+  CannulePushCreate: {fileID: 0}
+  CannuleRinseCreate: {fileID: 0}
+  CannuleStitchCreate: {fileID: 0}
+  InvasiveSensorConnectCreate: {fileID: 0}
+  MonitorCreate: {fileID: 0}
+  ManometerCreate: {fileID: 0}
 --- !u!43 &206095087
 Mesh:
   m_ObjectHideFlags: 0
@@ -10939,12 +10959,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10964,12 +10984,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10989,12 +11009,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -11382,6 +11402,8 @@ MonoBehaviour:
     Syringe: {x: 0, y: 0, z: 0}
     Syringe_anestesia: {x: 0, y: 0, z: 0}
     SterileTissue: {x: 0, y: 0, z: 0}
+    BIG: {x: 0, y: 0, z: 0}
+    NeedleBIG: {x: 0, y: 0, z: 0}
   animationTool:
     AnastesiaV2: {x: 0, y: 0, z: 0}
     CatcheterOut: {x: 0, y: 0, z: 0}
@@ -11404,6 +11426,24 @@ MonoBehaviour:
     StretchTheSkinLeft: {x: 0, y: 0, z: 90}
     VenflonTransfusion: {x: 0, y: 0, z: 0}
     VenflonGetMandren: {x: 0, y: 0, z: 0}
+    NaclToVenflon: {x: 0, y: 0, z: 0}
+    BIGFire: {x: 0, y: 0, z: 0}
+    BIGRemoveTheFuse: {x: 0, y: 0, z: 0}
+    BIGNeedleOut: {x: 0, y: 0, z: 0}
+    PatchToBIGNeedle: {x: 0, y: 0, z: 0}
+    SyringeToBIGNeedle: {x: 0, y: 0, z: 0}
+    CannuleEnter: {x: 0, y: 0, z: 0}
+    CannuleRemoveMandren: {x: 0, y: 0, z: 0}
+    CannulePull: {x: 0, y: 0, z: 0}
+    CannulePush: {x: 0, y: 0, z: 0}
+    CannuleRinse: {x: 0, y: 0, z: 0}
+    CannuleStitch: {x: 0, y: 0, z: 0}
+    InvasiveSensorConnect: {x: 0, y: 0, z: 0}
+    Monitor: {x: 0, y: 0, z: 0}
+    Cut: {x: 0, y: 0, z: 0}
+    DrenajToIncision: {x: 0, y: 0, z: 0}
+    DrenajOutConductor: {x: 0, y: 0, z: 0}
+    Stitch: {x: 0, y: 0, z: 0}
 --- !u!1 &354768076
 GameObject:
   m_ObjectHideFlags: 0
@@ -57434,7 +57474,7 @@ Animator:
   m_GameObject: {fileID: 1894633480}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2b8fb505657b76e43b121c2cf9e266c4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e86cd171e8e1724dba6eb2190c78567, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
