@@ -16,10 +16,12 @@ public class ToolItemActionResponder : MonoBehaviour {
     private string errorMessage = "";
     private bool CheckAction;
     private bool activeControl = true;
+    private int MainLogChild;
     // Use this for initialization
     void Start()
     {
         ToolItemActionDisplay.OnAction += HandleonClick;
+
     }
 
     // ReSharper disable once InconsistentNaming
@@ -45,12 +47,13 @@ public class ToolItemActionResponder : MonoBehaviour {
 
         CreateLogEntry();
 
-        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+
+        if (debugMode) { Debug.Log($"{CurrentExam.Instance.Exam.LastTakenStep().ToString()} точно это :)"); }
     }
 
     public void CreateLogEntry()
     {
-        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLoglogCtrl.mainLogDisplay.transform.childCount)
+        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLogChild)
         {
             return;
         }
@@ -71,7 +74,7 @@ public class ToolItemActionResponder : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        MainLogChild = MainLoglogCtrl.mainLogDisplay.transform.childCount;
     }
     
 }

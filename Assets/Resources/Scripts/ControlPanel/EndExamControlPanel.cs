@@ -24,8 +24,11 @@ public class EndExamControlPanel : MonoBehaviour {
 
 
     void Start () {
-        errorMessage = "";
-        ErrorMessagePanelText.text = "";
+        if (ErrorMessagePanelText)
+        {
+            errorMessage = "";
+            ErrorMessagePanelText.text = "";
+        }
 	}
 
 	void Update () {
