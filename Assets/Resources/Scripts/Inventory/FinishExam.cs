@@ -32,6 +32,6 @@ public class FinishExam : MonoBehaviour {
         {
             examControl.EndExam(Finished, "В ходе экзамена были допущены ошибки");
         }
-                
+        CurrentExam.Instance.Exam = null;
     }
 }
