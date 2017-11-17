@@ -119,9 +119,10 @@ class HydrotoraxExam : BaseExam
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
+        showAnimation = true;
 
         // Безопасные операции
         if (this.BallClearAction(actionCode)) return null;
@@ -210,6 +211,7 @@ class HydrotoraxExam : BaseExam
             return 14;
         }
 
+        showAnimation = false;
         return null;
     }
 }

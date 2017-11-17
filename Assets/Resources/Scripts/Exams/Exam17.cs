@@ -149,13 +149,14 @@ class Exam17 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
+        showAnimation = true;
 
         // Безопасные операции
 
-		if (this.BallClearAction(actionCode)) return null;
+        if (this.BallClearAction(actionCode)) return null;
         if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
@@ -170,6 +171,7 @@ class Exam17 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
             SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
+        showAnimation = false;
         return null;
     }
 }

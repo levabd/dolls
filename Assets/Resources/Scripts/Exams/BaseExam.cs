@@ -42,6 +42,8 @@ public abstract class BaseExam: IExamInterface
             _examModel.Save();
         }
 
+        if (result && stepNumber != _takenSteps.Count + 1)
+            errorMessage = "Крок виконано вірно, проте не в тій послідовності.";
         new Step(_examModel, CorrectSteps[stepNumber - 1].Item2, errorMessage, stepNumber, _takenSteps.Count + 1, result).Save();
 
         _takenSteps.Add(step);
@@ -71,12 +73,14 @@ public abstract class BaseExam: IExamInterface
         return result;
     }
 
-    public bool Action(string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public bool Action(string actionCode, out string errorMessage, out string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
+        tipMessage = "";
+        showAnimation = true;
 
         string currentErrorMessage;
-        int? stepNumber = CheckAction(actionCode, out currentErrorMessage, locatedColliderTag);
+        int? stepNumber = CheckAction(actionCode, out currentErrorMessage, out showAnimation, locatedColliderTag);
         errorMessage = currentErrorMessage;
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
@@ -90,7 +94,19 @@ public abstract class BaseExam: IExamInterface
 
         bool stepResult = String.IsNullOrEmpty(errorMessage);
         if (stepNumber != null)
-            TakeStep((int)stepNumber, stepResult, errorMessage);
+        {
+            if (stepResult && stepNumber != _takenSteps.Count + 1)
+            {
+                tipMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій.";
+                showAnimation = false;
+            }
+            else
+                tipMessage = "Вітаємо. Крок виконано абсолютно вірно.";
+            TakeStep((int) stepNumber, stepResult, errorMessage);
+        }
+
+        if (!showAnimation)
+            tipMessage = "Схоже що ця дія була необов'язковою.";
 
         return true;
     }
@@ -141,6 +157,6 @@ public abstract class BaseExam: IExamInterface
 
     public abstract bool CheckMove(string colliderTag, out string errorMessage);
 
-    public abstract int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "");
+    public abstract int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "");
 }
 

@@ -56,18 +56,21 @@ interface IExamInterface
     /// </summary>
     /// <param name="actionCode">Tool action codename</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="showAnimation">Show or not animation</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "");
+    int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "");
 
     /// <summary>
     /// Action step checking
     /// </summary>
     /// <param name="actionCode">Tool action codename</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="tipMessage">Displayed message (tip but error)</param>
+    /// <param name="showAnimation">Show or not animation</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    bool Action(string actionCode, out string errorMessage, string locatedColliderTag = "");
+    bool Action(string actionCode, out string errorMessage, out string tipMessage, out bool showAnimation, string locatedColliderTag = "");
 
     /// <summary>
     /// Final steps check

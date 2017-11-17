@@ -15,6 +15,8 @@ public class ToolItemActionResponder : MonoBehaviour
     public EndExamControlPanel examControl;
     public GameObject colliderHit = null;
     private string errorMessage = "";
+    private string tipMessage = "";
+    private bool showAnimations;
     private bool CheckAction;
     private bool activeControl = true;
     // Use this for initialization
@@ -36,7 +38,7 @@ public class ToolItemActionResponder : MonoBehaviour
         CtrlStat.activeControl = true;
         ActionCtrl.ActionControl(activeControl, actionName);
 
-        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
+        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, out tipMessage, out showAnimations, colliderHit != null ? colliderHit.tag : null);
 
 
         if (!CheckAction)

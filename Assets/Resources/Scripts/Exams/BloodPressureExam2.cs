@@ -117,9 +117,10 @@ class BloodPressureExam2 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
+        showAnimation = true;
 
         // Безопасные операции
         if (this.BallClearAction(actionCode)) return null;
@@ -211,6 +212,7 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
             SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
 
+        showAnimation = false;
         return null;
     }
 }

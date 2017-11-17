@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class PositionPieceBody : MonoBehaviour {
 
@@ -11,10 +7,12 @@ public class PositionPieceBody : MonoBehaviour {
     //public Texture2D cursorTexture;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
-    public bool step1 = false;
-    private bool step2 = false;
+    public bool step1;
+    private bool step2;
     private bool CheckPosition;
     private string errorMessage;
+    private string tipMessage;
+    private bool showAnimations;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
     public GameObject Venflon;
@@ -33,7 +31,7 @@ public class PositionPieceBody : MonoBehaviour {
         {
             Cursor.SetCursor(CurrentTool.Instance.Tool.cursorTexture, hotSpot, cursorMode);
         }
-        if (Input.GetMouseButtonDown(0) && step1 == true)
+        if (Input.GetMouseButtonDown(0) && step1)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -69,7 +67,7 @@ public class PositionPieceBody : MonoBehaviour {
 
                             CurrentTool.Instance.Tool.StateParams["entry_angle"] = "90";
                             actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);
-                            CurrentExam.Instance.Exam.Action("big", out errorMessage, hit.transform.gameObject.tag);
+                            CurrentExam.Instance.Exam.Action("big", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                             TIAR.CreateLogEntry();
 
                             break;
@@ -93,12 +91,12 @@ public class PositionPieceBody : MonoBehaviour {
                                         actionController.OffActionPosition(actionController.ActionPositionPoint);
 
                                         actionController.CreateFromPrefab(TCS.GauzeBallsEncloseCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsEnclose, 2000f);
-                                        CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, hit.transform.gameObject.tag);
+                                        CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
                                     case "get_top_down":
                                         actionController.CreateFromPrefab(TCS.GauzeBallsRubUpDownCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsRubUpDown, 5f);
-                                        CurrentExam.Instance.Exam.Action("top_down", out errorMessage, hit.transform.gameObject.tag);
+                                        CurrentExam.Instance.Exam.Action("top_down", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
                                 }
@@ -112,7 +110,7 @@ public class PositionPieceBody : MonoBehaviour {
                         case "patch":
                             actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
 
-                            CurrentExam.Instance.Exam.Action("stick", out errorMessage, hit.transform.gameObject.tag);
+                            CurrentExam.Instance.Exam.Action("stick", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                             TIAR.CreateLogEntry();
                             break;
 
@@ -124,17 +122,17 @@ public class PositionPieceBody : MonoBehaviour {
                                     case "get_palpation":
                                         actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
 
-                                        CurrentExam.Instance.Exam.Action("palpation", out errorMessage, hit.transform.gameObject.tag);
+                                        CurrentExam.Instance.Exam.Action("palpation", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
                                     case "get_clamp":
                                         actionController.CreateFromPrefab(TCS.ClampVeinCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.ClampVeins, 2000f);
-                                        CurrentExam.Instance.Exam.Action("clamp", out errorMessage, hit.transform.gameObject.tag);
+                                        CurrentExam.Instance.Exam.Action("clamp", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
                                     case "get_stretch_the_skin":
                                         actionController.CreateFromPrefab(TCS.StretchTheSkinLeftCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.StretchTheSkinLeft, 2000f);
-                                        CurrentExam.Instance.Exam.Action("stretch_the_skin", out errorMessage, hit.transform.gameObject.tag);
+                                        CurrentExam.Instance.Exam.Action("stretch_the_skin", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                                         TIAR.CreateLogEntry();
                                         break;
                                 }
@@ -143,9 +141,6 @@ public class PositionPieceBody : MonoBehaviour {
                             {
                                 Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
                             }
-                            break;
-
-                        default:
                             break;
                     }
                     if (cameraPosition.transform.position != Camera.main.transform.position)
@@ -161,16 +156,13 @@ public class PositionPieceBody : MonoBehaviour {
                 step1 = false;
             }
         }
-        else if (step2 == true)
+        else if (step2)
         {
 
             Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, cameraPosition.transform.position, 2f);
             Camera.main.transform.eulerAngles = Vector3.MoveTowards(Camera.main.transform.eulerAngles, cameraPosition.transform.eulerAngles, 2f);
             if (Camera.main.transform.position == cameraPosition.transform.position && Camera.main.transform.eulerAngles == cameraPosition.transform.eulerAngles)
-            {
                 step2 = false;
-            }
-            
         }
 
     }
