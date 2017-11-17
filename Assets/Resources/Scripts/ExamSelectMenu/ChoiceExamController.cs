@@ -31,6 +31,7 @@ public class ChoiceExamController : MonoBehaviour {
         if (sceneListCheck.Has(exam.LoadName))
         {
             Debug.Log("Loading Scene " + exam.Name);
+            CurrentExam.Instance.Exam = null;
             CurrentExam.Instance.Exam = exam;
 #pragma warning disable 618
             Application.LoadLevel(exam.LoadName);
