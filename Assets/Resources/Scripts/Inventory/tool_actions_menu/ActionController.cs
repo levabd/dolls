@@ -16,6 +16,7 @@ public class ActionController : MonoBehaviour {
     public GameObject ActionPositionPoint;
     public GameObject VeinPositionPoint;
     public GameObject TourniquetPositionPoint;
+    public Animator poseAnimator;
 
     // Use this for initialization
     void Start () {
@@ -162,9 +163,12 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "throw_needle":
                             if (debugMode) { Debug.Log("Запуск анимации руки"); }
-
                             GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().SetBool("bend", true);
-
+                            //poseAnimator.SetBool("bend", true);
+                            //if (GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().gameObject.activeSelf)
+                            //{
+                            //    GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().Play("Take 001");
+                            //}
                             break;
                         case "needle_pull":
                             if (debugMode) { Debug.Log("Запуск анимации извлечения шприца"); }
