@@ -11,9 +11,9 @@ public class ExamViewResponder : MonoBehaviour {
 
 	// ReSharper disable once InconsistentNaming
 	// ReSharper disable once UnusedMember.Local
-	void onDestroy()
+	void OnDestroy()
 	{
-		Debug.Log("Unsigned-up for onClick");
+		//Debug.Log("Unsigned-up for onClick");
 		ExamView.OnClick -= HandleonClick;
 	}
 

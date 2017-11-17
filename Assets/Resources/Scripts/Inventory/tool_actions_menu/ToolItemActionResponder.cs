@@ -5,30 +5,29 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 
-public class ToolItemActionResponder : MonoBehaviour {
-	public bool debugMode = true;
+public class ToolItemActionResponder : MonoBehaviour
+{
+    public bool debugMode = true;
 
-	public ControlStatusDisplay CtrlStat;
+    public ControlStatusDisplay CtrlStat;
     public ActionController ActionCtrl;
     public MainLogController MainLoglogCtrl;
-	public EndExamControlPanel examControl;
-	public GameObject colliderHit = null;
+    public EndExamControlPanel examControl;
+    public GameObject colliderHit = null;
     private string errorMessage = "";
     private bool CheckAction;
     private bool activeControl = true;
-    private int MainLogChild;
     // Use this for initialization
     void Start()
     {
         ToolItemActionDisplay.OnAction += HandleonClick;
-
     }
 
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once UnusedMember.Local
-    void onDestroy()
+    void OnDestroy()
     {
-        Debug.Log("Unsigned-up for onClick");
+        //Debug.Log("Unsigned-up for onClick");
         ToolItemActionDisplay.OnAction -= HandleonClick;
     }
 
@@ -36,24 +35,23 @@ public class ToolItemActionResponder : MonoBehaviour {
     {
         CtrlStat.activeControl = true;
         ActionCtrl.ActionControl(activeControl, actionName);
-        
-        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
-        
 
-		if (!CheckAction) 
-		{
-            examControl.EndExam (false, errorMessage);
-		}      
+        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, colliderHit != null ? colliderHit.tag : null);
+
+
+        if (!CheckAction)
+        {
+            examControl.EndExam(false, errorMessage);
+        }
 
         CreateLogEntry();
 
-
-        if (debugMode) { Debug.Log($"{CurrentExam.Instance.Exam.LastTakenStep().ToString()} точно это :)"); }
+        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
     }
 
     public void CreateLogEntry()
     {
-        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLogChild)
+        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLoglogCtrl.mainLogDisplay.transform.childCount)
         {
             return;
         }
@@ -74,7 +72,6 @@ public class ToolItemActionResponder : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        MainLogChild = MainLoglogCtrl.mainLogDisplay.transform.childCount;
+
     }
-    
 }
