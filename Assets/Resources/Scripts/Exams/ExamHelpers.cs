@@ -4,8 +4,15 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public static class ExamHelpers
 {
-    public static bool GenericMoveHelper(this BaseExam exam, string colliderTag, string finalColliderTag, ref string errorMessage)
+    public static bool GenericMoveHelper(this BaseExam exam, string colliderTag, string finalColliderTag, ref string errorMessage, ref string tipMessage)
     {
+        if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon" ||
+             CurrentTool.Instance.Tool.CodeName == "big" || CurrentTool.Instance.Tool.CodeName == "cannule" ||
+             CurrentTool.Instance.Tool.CodeName == "trocar")
+            && colliderTag == finalColliderTag)
+        {
+            tipMessage = "Кінцеве місце пункції досягнуте";
+        }
 
         if ((CurrentTool.Instance.Tool.CodeName == "syringe" || CurrentTool.Instance.Tool.CodeName == "venflon" || 
             CurrentTool.Instance.Tool.CodeName == "big" || CurrentTool.Instance.Tool.CodeName == "cannule" || 
@@ -51,18 +58,22 @@ public static class ExamHelpers
         return true;
     }
 
-    public static bool CateterFinalise(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, string catheterConductor, int expectedFirstStep, out int returnedStep)
+    public static bool CateterFinalise(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, string catheterConductor, int expectedFirstStep, out int returnedStep, ref bool showAnimation)
     {
         //{ "wire_insertion",                 "Вставка провідника" },
         if (CurrentTool.Instance.Tool.CodeName == "standart_catheter_conductor" && actionCode == "push")
         {
             if (exam.LastTakenStep() != expectedFirstStep - 1)
+            {
                 errorMessage = "Нікуди вставити провідник";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep;
             return true;
         }
         if (CurrentTool.Instance.Tool.CodeName == "soft_catheter_conductor" && actionCode == "push")
         {
+            showAnimation = false;
             errorMessage = "Не той провідник";
             returnedStep = expectedFirstStep;
             return true;
@@ -72,7 +83,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "needle_removing")
         {
             if (exam.LastTakenStep() != expectedFirstStep)
+            {
                 errorMessage = "Не можна видаляти голку без провідника";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 1;
             return true;
         }
@@ -80,7 +94,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "push")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 1)
+            {
                 errorMessage = "Не можна вставити катетер без провідника";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 2;
             return true;
         }
@@ -89,7 +106,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "rotation_insertion")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 2)
+            {
+                showAnimation = false;
                 errorMessage = "Нікуди поглиблювати катетер";
+            }
             returnedStep = expectedFirstStep + 3;
             return true;
         }
@@ -104,14 +124,24 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "standart_catheter_conductor" && actionCode == "pull")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 3)
-                errorMessage = CurrentTool.Instance.Tool.CodeName == catheterConductor ? "Не можна видаляти провідник на цьому кроці" : "Не той провідник";
+            {
+                errorMessage = CurrentTool.Instance.Tool.CodeName == catheterConductor
+                    ? "Не можна видаляти провідник на цьому кроці"
+                    : "Не той провідник";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 4;
             return true;
         }
         if (CurrentTool.Instance.Tool.CodeName == "soft_catheter_conductor" && actionCode == "pull")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 3)
-                errorMessage = CurrentTool.Instance.Tool.CodeName == catheterConductor ? "Не можна видаляти провідник на цьому кроці" : "Не той провідник";
+            {
+                errorMessage = CurrentTool.Instance.Tool.CodeName == catheterConductor
+                    ? "Не можна видаляти провідник на цьому кроці"
+                    : "Не той провідник";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 4;
             return true;
         }
@@ -120,7 +150,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "liquid_transfusion_connection")
         {
             if (exam.LastTakenStep() != expectedFirstStep + 4)
+            {
                 errorMessage = "Спочатку повинен бути коректно встановлений катетер";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 5;
             return true;
         }
@@ -136,7 +169,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
             if (!locatedColliderTag.Contains("catheter"))
+            {
                 errorMessage = "Не те місце установки. Спочатку повинен бути коректно встановлений катетер";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 7;
             return true;
         }
@@ -145,12 +181,12 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetySpirit(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep)
+    public static bool BiosafetySpirit(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, ref bool showAnimation)
     {
         // { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
-            CurrentTool.Instance.Tool.Title = "Оглядові рукавички надіті";
+            CurrentTool.Instance.Tool.Title = "Оглядові рукавички одягнуті";
             CurrentTool.Instance.Tool.StateParams["weared_examination"] = "true";
             CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "false";
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[2];
@@ -171,7 +207,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
         {
             if (locatedColliderTag != "disinfection_target")
+            {
+                showAnimation = false;
                 errorMessage = "Дезінфекцію треба робити не тут";
+            }
 
             returnedStep = 3;
             return true;
@@ -186,7 +225,7 @@ public static class ExamHelpers
         // { "wear_sterile_gloves",        "Змінити рукавички на стерильні" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_sterile")
         {
-            CurrentTool.Instance.Tool.Title = "Стерильні рукавички надіті";
+            CurrentTool.Instance.Tool.Title = "Стерильні рукавички одягнуті";
             CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "true";
             CurrentTool.Instance.Tool.StateParams["weared_examination"] = "false";
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[3];
@@ -198,7 +237,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool BiosafetySpiritIodine(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, bool wearGown = false, bool shave = false)
+    public static bool BiosafetySpiritIodine(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, ref bool showAnimation, bool wearGown = false, bool shave = false)
     {
         // { "shave_pubis",                    "Поголити лобковую зону" },
         if (shave && CurrentTool.Instance.Tool.CodeName == "razor" && actionCode == "shave_pubis")
@@ -211,7 +250,7 @@ public static class ExamHelpers
         // { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
-            CurrentTool.Instance.Tool.Title = "Оглядові рукавички надіті";
+            CurrentTool.Instance.Tool.Title = "Оглядові рукавички одягнуті";
             CurrentTool.Instance.Tool.StateParams["weared_examination"] = "true";
             CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "false";
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[2];
@@ -255,7 +294,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "top_down")
         {
             if (locatedColliderTag != "disinfection_target")
+            {
                 errorMessage = "Дезінфекцію треба робити не тут";
+                showAnimation = false;
+            }
 
             int lastStep4Spirit = !wearGown ? 3 : 4;
             lastStep4Spirit = !shave ? lastStep4Spirit : lastStep4Spirit + 1;
@@ -288,7 +330,7 @@ public static class ExamHelpers
         // { "wear_sterile_gloves",        "Змінити рукавички на стерильні" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_sterile")
         {
-            CurrentTool.Instance.Tool.Title = "Стерильні рукавички надіті";
+            CurrentTool.Instance.Tool.Title = "Стерильні рукавички одягнуті";
             CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "true";
             CurrentTool.Instance.Tool.StateParams["weared_examination"] = "false";
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[3];
@@ -302,7 +344,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool FenceInjections(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, bool injection = false)
+    public static bool FenceInjections(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, ref bool showAnimation, bool injection = false)
     {
         // { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
@@ -316,7 +358,7 @@ public static class ExamHelpers
         }
 
         // { "puncture_needle",                "Взяти голку для забору крові" },
-		if (exam.GetNeedleAction(actionCode, ref errorMessage, "simple_needle", 1))
+		if (exam.GetNeedleAction(actionCode, ref errorMessage, "simple_needle", 1, ref showAnimation))
         {
             returnedStep = 2;
             return true;
@@ -463,7 +505,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_pull")
         {
             if (exam.LastTakenStep() != (injection ? 14 : 13))
+            {
                 errorMessage = "Сепсис";
+                showAnimation = false;
+            }
             // else
             //     Рука сгибается.
             returnedStep = injection ? 15 : 14;
@@ -474,7 +519,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "put_on_the_cap")
         {
             if (exam.LastTakenStep() != (injection ? 15 : 14))
+            {
                 errorMessage = "Голка в тілі або була давно вилучена. Спочатку треба було витягти і відразу надіти ковпачок";
+                showAnimation = false;
+            }
             returnedStep = injection ? 16 : 15;
             return true;
         }
@@ -483,7 +531,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "throw_needle")
         {
             if (exam.LastTakenStep() != (injection ? 16 : 15))
+            {
                 errorMessage = "Цю дію треба здійснювати відразу після надягання на голку ковпачка";
+                showAnimation = false;
+            }
             returnedStep = injection ? 17 : 16;
             return true;
         }
@@ -492,7 +543,7 @@ public static class ExamHelpers
         return false;
     }
 
-    public static bool VenflonInstallation(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, bool head = false)
+    public static bool VenflonInstallation(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, out int returnedStep, string finalTarget, ref bool showAnimation, bool head = false)
     {
         // { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
@@ -578,8 +629,13 @@ public static class ExamHelpers
             else
             {
                 if (exam.LastTakenStep() != 8)
+                {
                     errorMessage = "Не була натягнута шкіра";
-                else if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(head ? 20 : 10, head ? 30 : 20))
+                    showAnimation = false;
+                }
+                else if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float
+                             .Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"])
+                             .CheckRange(head ? 20 : 10, head ? 30 : 20))
                     errorMessage = "Неправильний кут установки";
                 else
                     CurrentTool.Instance.Tool.StateParams["mandren_pulling"] = "true";
@@ -591,7 +647,6 @@ public static class ExamHelpers
         // { "remove_tourniquet",              "Зняти джгут" },
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove")
         {
-            
             returnedStep = 10;
             return true;
         }
@@ -609,7 +664,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "remove_mandren")
         {
             if (exam.LastTakenStep() != 11)
+            {
                 errorMessage = "Не була перетиснута вена";
+                showAnimation = false;
+            }
             returnedStep = 12;
             return true;
         }
@@ -632,7 +690,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "liquid_transfusion_connection")
         {
             if (exam.LastTakenStep() != (head ? 14 : 12))
+            {
                 errorMessage = "Спочатку повинен бути коректно встановлений катетер";
+                showAnimation = false;
+            }
             returnedStep = head ? 15 : 13;
             return true;
         }

@@ -160,7 +160,7 @@ namespace DB.Models
         public void Save()
         {
             if (Id == null) // Create
-                Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim() + "', '" + Role + "')");
+                Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim() + "', '" + (int)Role + "')");
             else // Update
                 Execute("UPDATE Users SET name = '" + Name.Trim() + "', role = '" + (int)Role + "' WHERE id = '" + Id + "'");
         }

@@ -41,7 +41,7 @@ public class PositionPieceBody : MonoBehaviour {
                 Debug.Log(hit.transform.gameObject.tag);
                 Debug.Log(CurrentTool.Instance.Tool.CodeName);
 
-                CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage);
+                CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage, out tipMessage);
                 Cursor.SetCursor(null, hotSpot, cursorMode);
 
                 

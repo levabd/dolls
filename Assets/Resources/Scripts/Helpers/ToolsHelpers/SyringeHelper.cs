@@ -65,7 +65,7 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool GetNeedleAction(this BaseExam exam, string actionCode, ref string errorMessage, string targetNeedle, int lastStep)
+    public static bool GetNeedleAction(this BaseExam exam, string actionCode, ref string errorMessage, string targetNeedle, int lastStep, ref bool showAnimation)
     {
         Dictionary<string, int> needleDict = new Dictionary<string, int>
         {
@@ -88,9 +88,12 @@ public static class SyringeHelper
 
         if (actionCode == targetNeedle)
         {
-            
+
             if (exam.LastTakenStep() != lastStep)
-                errorMessage = "Не та голка на поточному кроці";                
+            {
+                errorMessage = "Не та голка на поточному кроці";
+                showAnimation = false;
+            }
             else
                 TryGetNeedle(targetNeedle, out errorMessage, needleDict[targetNeedle]);
         }
@@ -150,7 +153,7 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool NeedleRemovingAction(this BaseExam exam, string actionCode, ref string errorMessage, string locatedColliderTag, ref DateTime needleRemovingMoment, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
+    public static bool NeedleRemovingAction(this BaseExam exam, string actionCode, ref string errorMessage, ref string tipMessage, string locatedColliderTag, ref DateTime needleRemovingMoment, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
     {
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")
         {
@@ -166,8 +169,11 @@ public static class SyringeHelper
             {
                 if (locatedColliderTag == targetLocatedColliderTag)
                 {
+                    tipMessage = "До від'єднання голки кінцева точка пункції була досягнута";
                     if (maxAngle < 180)
-                        if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(minAngle, maxAngle))
+                        if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float
+                                .Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"])
+                                .CheckRange(minAngle, maxAngle))
                             errorMessage = "Неправильний кут установки";
                     if (CurrentTool.Instance.Tool.StateParams.ContainsKey("blood_inside"))
                     {
@@ -178,7 +184,10 @@ public static class SyringeHelper
                         errorMessage = "Під час поглиблення не було потягнуто поршень на себе";
                 }
                 else
+                {
+                    tipMessage = "До від'єднання голки кінцева точка пункції не була досягнута";
                     return false;
+                }
             }
                 
             return true;

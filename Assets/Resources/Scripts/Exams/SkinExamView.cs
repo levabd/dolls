@@ -67,7 +67,7 @@ class SkinExamView : MonoBehaviour
         _rend1.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend2.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend3.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
-        SceneManager.LoadScene("ExamManager_scene");
+        SceneManager.LoadScene("ExamList");
     }
 
     void CloseModal()

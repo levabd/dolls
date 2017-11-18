@@ -40,26 +40,29 @@ interface IExamInterface
     /// </summary>
     /// <param name="colliderTag">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="tipMessage">Displayed message (tip but error)</param>
     /// <returns>True if moving is valid. Othervise False with errorMessage</returns>
-    bool CheckMove(string colliderTag, out string errorMessage);
+    bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage);
 
     /// <summary>
     /// Collider intersection checking
     /// </summary>
     /// <param name="colliderTag">Current collider checking for</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="tipMessage">Displayed message (tip but error)</param>
     /// <returns>True if moving is valid. Othervise False with errorMessage</returns>
-    bool Move(string colliderTag, out string errorMessage);
+    bool Move(string colliderTag, out string errorMessage, out string tipMessage);
 
     /// <summary>
     /// Action step checking
     /// </summary>
     /// <param name="actionCode">Tool action codename</param>
     /// <param name="errorMessage">Displayed error message</param>
+    /// <param name="tipMessage">Displayed message (tip but error)</param>
     /// <param name="showAnimation">Show or not animation</param>
     /// <param name="locatedColliderTag">Current collider checking for</param>
     /// <returns>Correct step numbe. If Null than error was throwed into errorMessage</returns>
-    int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "");
+    int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "");
 
     /// <summary>
     /// Action step checking

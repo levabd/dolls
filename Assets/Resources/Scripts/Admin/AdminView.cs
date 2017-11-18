@@ -50,6 +50,7 @@ public class AdminView : MonoBehaviour {
     public InputField AddUserNameInputField;
     public InputField AddLoginInputField;
     public InputField AddPasswordInputField;
+    public InputField RepeatPasswordInputField;
     public Dropdown AddUserRoleDropdown;
 
     private int _currentTableIndex;
@@ -232,9 +233,17 @@ public class AdminView : MonoBehaviour {
 
     void CreateUser()
     {
+        if (AddPasswordInputField.text != RepeatPasswordInputField.text)
+        {
+            GeneralSceneHelper.ShowMessage("Паролі не співпадають.", Dialog, DialogText);
+            CreateUserAccountPanel.SetActive(true);
+            return;
+        }
+
         try
         {
-            User newUser = new User(AddLoginInputField.text, AddPasswordInputField.text, AddUserNameInputField.text, AddUserRoleDropdown.value);
+            User newUser = new User(AddLoginInputField.text, AddPasswordInputField.text, AddUserNameInputField.text,
+                AddUserRoleDropdown.value);
             newUser.Save();
 
             CreateUserAccountPanel.SetActive(false);
@@ -244,10 +253,12 @@ public class AdminView : MonoBehaviour {
         catch (ArgumentException ex)
         {
             GeneralSceneHelper.ShowMessage(ex.Message, Dialog, DialogText);
+            CreateUserAccountPanel.SetActive(true);
         }
         catch (Exception ex)
         {
             GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося додати користувача.", Dialog, DialogText);
+            CreateUserAccountPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
     }
@@ -268,10 +279,12 @@ public class AdminView : MonoBehaviour {
         catch (ArgumentException ex)
         {
             GeneralSceneHelper.ShowMessage(ex.Message, Dialog, DialogText);
+            EditUserAccountPanel.SetActive(true);
         }
         catch (Exception ex)
         {
             GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати користувача.", Dialog, DialogText);
+            EditUserAccountPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
     }
@@ -289,11 +302,13 @@ public class AdminView : MonoBehaviour {
         catch (ConstraintException ex)
         {
             GeneralSceneHelper.ShowMessage("Можна змінювати пароль тільки у існуючого користувача", Dialog, DialogText);
+            ChangeUserPasswordPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
         catch (Exception ex)
         {
             GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати пароль користувача.", Dialog, DialogText);
+            ChangeUserPasswordPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
     }

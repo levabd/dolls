@@ -127,13 +127,13 @@ class LungsAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        SceneManager.LoadScene("ExamManager_scene");
+        SceneManager.LoadScene("ExamList");
     }
 
     void CloseModal()
     {
         Dialog.SetActive(false);
-        //SceneManager.LoadScene("Examining_menu_scene");
+        //SceneManager.LoadScene("StepList");
     }
 
     private void MuteAllSound()

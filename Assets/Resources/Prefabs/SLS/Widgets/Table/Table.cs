@@ -893,7 +893,7 @@ namespace SLS.Widgets.Table {
     }
 
     public void SetLayoutVertical() {
-      if(this.bodyRect == null || !this.isRunning)
+      if(this.bodyRect == null || !this.isRunning || this.control == null)
         return;
       this.control.SetLayoutVertical();
     }

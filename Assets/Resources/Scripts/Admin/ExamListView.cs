@@ -63,9 +63,9 @@ public class ExamListView : MonoBehaviour {
             if (CurrentUser.User.Role == User.UserRoles.Manager) d.elements.Add(exam.User.Name);
             d.elements.Add(exam.Name);
             d.elements.Add(exam.Error);
+            d.elements.Add("Детальніше ➦");
+            d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 4 : 3].color = new Color(0, 0, 1f);
             d.elements.Add(exam.PassedAt.Date.ToString("dd MMMM yyyy"));
-            d.elements.Add("Детальніше");
-            d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 5 : 4].color = new Color(0, 0, 1f);
             d.elements.Add(exam.Passed ? "passed" : "not_passed");
 
             _dataTable.data.Add(d);
@@ -119,12 +119,13 @@ public class ExamListView : MonoBehaviour {
         // Initialize Table
         _dataTable = DataTable.GetComponent<Table>();
         _dataTable.ResetTable();
-        _dataTable.AddTextColumn("№", null, 20f, 20f);
+        Column numberColumn = _dataTable.AddTextColumn("ID сценарію", null, 100f, 100f);
+        numberColumn.horAlignment = Column.HorAlignment.RIGHT;
         if (CurrentUser.User.Role == User.UserRoles.Manager) _dataTable.AddTextColumn("ПІБ", null, 300f, 300f);
         _dataTable.AddTextColumn("Назва тесту", null, 500f, 500f);
         _dataTable.AddTextColumn("Помилка", null, 400f, 400f);
-        _dataTable.AddTextColumn("Дата прохоження", null, 150f, 150f);
-        _dataTable.AddTextColumn("Детальніше", null, 150f, 150f);
+        _dataTable.AddTextColumn("Деталізація", null, 150f, 150f);
+        _dataTable.AddTextColumn("Дата проходження", null, 150f, 150f);
         _dataTable.AddImageColumn("Результат");
 
         Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>
@@ -189,11 +190,10 @@ public class ExamListView : MonoBehaviour {
         if (datum == null) return;
         if (column != null)
         {
-            Debug.Log("You Clicked: " + datum.uid + " Column: " + column.idx);
-            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 5)
+            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 4)
             {
                 CurrentAdminExam.Exam = _exams[Int32.Parse(datum.uid)];
-                SceneManager.LoadScene("Examining_menu_scene");
+                SceneManager.LoadScene("StepList");
             }
         }
     }

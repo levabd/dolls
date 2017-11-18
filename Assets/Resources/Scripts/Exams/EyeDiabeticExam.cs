@@ -15,13 +15,14 @@ class EyeDiabeticExam : BaseExam
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>();
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;

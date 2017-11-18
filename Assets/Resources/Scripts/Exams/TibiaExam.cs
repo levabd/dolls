@@ -97,17 +97,18 @@ class TibiaExam : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
-        if (!this.GenericMoveHelper(colliderTag, "tubercle_the_tibia", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "tubercle_the_tibia", ref errorMessage, ref tipMessage))
             return false;
 
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -122,10 +123,10 @@ class TibiaExam : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт
-        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep)) return returnedStep;
+        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep, ref showAnimation)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 4)) return 5;
+        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 4, ref showAnimation)) return 5;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -147,7 +148,10 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "activate")
         {
             if (LastTakenStep() != 7)
+            {
+                showAnimation = false;
                 errorMessage = "Неможливо активувати пістолет. Звільніть засувку";
+            }
             return 8;
         }
 
@@ -155,7 +159,10 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "remove")
         {
             if (LastTakenStep() != 8)
+            {
+                showAnimation = false;
                 errorMessage = "Не можна видаляти стилет до активації";
+            }
             return 9;
         }
 
@@ -163,19 +170,26 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
             if (LastTakenStep() != 9)
+            {
+                showAnimation = false;
                 errorMessage = "Нічого фіксувати";
+            }
             return 10;
         }
 
         // Отсоединяем в любом другом месте
         DateTime mockDateTime = DateTime.Now;
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, locatedColliderTag, ref mockDateTime)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref mockDateTime)) return null;
 
         // { "syringe_nacl",                   "Наполнить шприц физраствором." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl")
         {
-            if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") && Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
+            if (CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") &&
+                Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
+            {
+                showAnimation = false;
                 errorMessage = "Потрібно наповнювати фізрозчином шприц без голки для введення в канюлю пістолета";
+            }
             return 11;
         }
 
@@ -183,7 +197,10 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "big_nacl")
         {
             if (LastTakenStep() != 11)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку візьміть шприц і наберіть в нього фізрозчин";
+            }
             return 12;
         }
 
@@ -191,7 +208,10 @@ class TibiaExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "connect")
         {
             if (LastTakenStep() != 12)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку введіть фізрозчин";
+            }
             return 13;
         }
 

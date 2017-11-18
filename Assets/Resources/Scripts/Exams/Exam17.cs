@@ -120,9 +120,10 @@ class Exam17 : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
@@ -143,13 +144,13 @@ class Exam17 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && colliderTag == "great_saphenous_vein_final_target")
             NeedleInsideTarget = true;
 
-        if (!this.GenericMoveHelper(colliderTag, "great_saphenous_vein_final_target", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "great_saphenous_vein_final_target", ref errorMessage, ref tipMessage))
             return false;
 
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -164,7 +165,7 @@ class Exam17 : BaseExam
 
         int returnedStep;
 
-		if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "great_saphenous_vein_final_target"))
+		if (this.FenceInjections(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "great_saphenous_vein_final_target", ref showAnimation))
             return returnedStep;
 
         // Добавление иголки

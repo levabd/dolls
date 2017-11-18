@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DB.Models;
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public abstract class BaseExam: IExamInterface
@@ -49,7 +48,7 @@ public abstract class BaseExam: IExamInterface
         _takenSteps.Add(step);
     }
 
-    public bool Move(string colliderTag, out string errorMessage)
+    public bool Move(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
 
@@ -57,10 +56,11 @@ public abstract class BaseExam: IExamInterface
         if (colliderTag == "Untagged" || String.IsNullOrWhiteSpace(colliderTag))
         {
             errorMessage = "";
+            tipMessage = "";
             return true;
         }
 
-        bool result = CheckMove(colliderTag, out currentErrorMessage);
+        bool result = CheckMove(colliderTag, out currentErrorMessage, out tipMessage);
         errorMessage = currentErrorMessage;
         if (!result)
         {
@@ -80,7 +80,7 @@ public abstract class BaseExam: IExamInterface
         showAnimation = true;
 
         string currentErrorMessage;
-        int? stepNumber = CheckAction(actionCode, out currentErrorMessage, out showAnimation, locatedColliderTag);
+        int? stepNumber = CheckAction(actionCode, out currentErrorMessage, ref tipMessage, out showAnimation, locatedColliderTag);
         errorMessage = currentErrorMessage;
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
@@ -95,13 +95,18 @@ public abstract class BaseExam: IExamInterface
         bool stepResult = String.IsNullOrEmpty(errorMessage);
         if (stepNumber != null)
         {
-            if (stepResult && stepNumber != _takenSteps.Count + 1)
+            if (stepResult)
             {
-                tipMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій.";
-                showAnimation = false;
+                if (stepNumber != _takenSteps.Count + 1)
+                {
+                    tipMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій.";
+                    showAnimation = false;
+                }
+                else
+                    tipMessage = "Вітаємо. Крок виконано абсолютно вірно.";
             }
             else
-                tipMessage = "Вітаємо. Крок виконано абсолютно вірно.";
+                tipMessage = "Крок виконано невірно. " + errorMessage;
             TakeStep((int) stepNumber, stepResult, errorMessage);
         }
 
@@ -155,8 +160,8 @@ public abstract class BaseExam: IExamInterface
 
     public abstract Dictionary<string, string> InventoryTool { get; }
 
-    public abstract bool CheckMove(string colliderTag, out string errorMessage);
+    public abstract bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage);
 
-    public abstract int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "");
+    public abstract int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "");
 }
 

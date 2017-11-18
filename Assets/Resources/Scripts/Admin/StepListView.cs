@@ -8,6 +8,8 @@ using SLS.Widgets.Table;
 // ReSharper disable once CheckNamespace
 public class StepListView : MonoBehaviour {
 
+    public Button LogoutButton;
+    public Button Exit;
     public Button BackButton;
     public Button ExamsButton;
 
@@ -53,7 +55,13 @@ public class StepListView : MonoBehaviour {
     void Start()
     {
         // Event listeners
-        Button btn = BackButton.GetComponent<Button>();
+        Button btn = Exit.GetComponent<Button>();
+        btn.onClick.AddListener(CloseApp);
+
+        btn = LogoutButton.GetComponent<Button>();
+        btn.onClick.AddListener(Logout);
+
+        btn = BackButton.GetComponent<Button>();
         btn.onClick.AddListener(OpenExamList);
 
         btn = ExamsButton.GetComponent<Button>();
@@ -63,7 +71,10 @@ public class StepListView : MonoBehaviour {
         btn.onClick.AddListener(CloseModal);
 
         Name.text = CurrentUser.User.Name;
-        ExamDescription.text = "Користувачем " + CurrentAdminExam.Exam.User.Name + " було пройдено сценарій «" + CurrentAdminExam.Exam.Name + "»";
+        ExamDescription.text = "Користувачем " + CurrentAdminExam.Exam.User.Name + " було " + (CurrentAdminExam.Exam.Passed ? "пройдено" : "провалено") + " сценарій «" + CurrentAdminExam.Exam.Name + "»";
+        ExamDescription.color = CurrentAdminExam.Exam.Passed ? Color.green : Color.red;
+
+        ExamsButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
 
         // Initialize Table
         _dataTable = DataTable.GetComponent<Table>();
@@ -93,9 +104,19 @@ public class StepListView : MonoBehaviour {
         Dialog.SetActive(false);
     }
 
+    void CloseApp()
+    {
+        GeneralSceneHelper.QuitGame();
+    }
+
+    void Logout()
+    {
+        SceneManager.LoadScene("Autorization_first_scene");
+    }
+
     void OpenExamList()
     {
-        SceneManager.LoadScene("ExamManager_scene");
+        SceneManager.LoadScene("ExamList");
     }
 
     void OpenExams()

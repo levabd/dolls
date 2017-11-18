@@ -145,7 +145,7 @@ class EyeExamRetinaView : MonoBehaviour
     void CloseModal()
     {
         if (_finished)
-            SceneManager.LoadScene("Examining_menu_scene");
+            SceneManager.LoadScene("StepList");
         else
             Dialog.SetActive(false);
     }

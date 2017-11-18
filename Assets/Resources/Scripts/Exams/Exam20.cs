@@ -118,9 +118,10 @@ class Exam20 : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
         TupleList<string, string> criticalSyringeErrors = new TupleList<string, string>
         {
@@ -141,7 +142,7 @@ class Exam20 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "venflon" && colliderTag == "posterior_auricular_vein_final_target")
             NeedleInsideTarget = true;
 
-        if (!this.GenericMoveHelper(colliderTag, "posterior_auricular_vein_final_target", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "posterior_auricular_vein_final_target", ref errorMessage, ref tipMessage))
             return false;
 
         this.BloodInsidePavilion(colliderTag, "posterior_auricular_vein_final_target");
@@ -149,7 +150,7 @@ class Exam20 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -162,7 +163,7 @@ class Exam20 : BaseExam
 
         int returnedStep;
 
-        if (this.VenflonInstallation(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "posterior_auricular_vein_final_target", true))
+        if (this.VenflonInstallation(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, "posterior_auricular_vein_final_target", ref showAnimation, true))
             return returnedStep;
 
         // Критическая ошибка

@@ -109,17 +109,18 @@ class PneumotoraxExam : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
-        if (!this.GenericMoveHelper(colliderTag, "pleural_cavity", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "pleural_cavity", ref errorMessage, ref tipMessage))
             return false;
 
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -134,10 +135,10 @@ class PneumotoraxExam : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт
-        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep)) return returnedStep;
+        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep, ref showAnimation)) return returnedStep;
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 4)) return 5;
+        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 4, ref showAnimation)) return 5;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -167,7 +168,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "clamp")
         {
             if (LastTakenStep() != 8)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку витягніть стилет";
+            }
             return 9;
         }
 
@@ -175,7 +179,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "stitch")
         {
             if (LastTakenStep() != 9)
+            {
+                showAnimation = false;
                 errorMessage = "Нічого фіксувати або не затиснуто затискачем";
+            }
             return 10;
         }
 
@@ -183,7 +190,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "trocar_connect")
         {
             if (LastTakenStep() != 10)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку зафіксуйте підшиванням до шкіри";
+            }
             return 11;
         }
 
@@ -191,7 +201,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "trocar_connect_valve")
         {
             if (LastTakenStep() != 11)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку подовжувач";
+            }
             return 12;
         }
 
@@ -199,7 +212,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "bobrov_bank" && actionCode == "connect")
         {
             if (LastTakenStep() != 12)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку під'єднайте вентиль";
+            }
             return 13;
         }
 
@@ -207,7 +223,10 @@ class PneumotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "clamp_out")
         {
             if (LastTakenStep() != 13)
+            {
+                showAnimation = false;
                 errorMessage = "Спочатку з'єднайте з банкою Боброва";
+            }
             return 14;
         }
 

@@ -11,6 +11,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     public EndExamControlPanel examControl;
     //public GameObject MainToolObject;
     private string errorMessage;
+    private string tipMessage;
     public ToolItemActionResponder TIAR;
     private bool vein;
 
@@ -24,7 +25,7 @@ public class StartNeedleTrigger : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {        
-        CheckObject = CurrentExam.Instance.Exam.Move(col.gameObject.tag, out errorMessage);
+        CheckObject = CurrentExam.Instance.Exam.Move(col.gameObject.tag, out errorMessage, out tipMessage);
         TIAR.colliderHit = col.gameObject;
         if (CheckObject == false)
         {

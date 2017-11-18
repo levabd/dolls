@@ -48,9 +48,10 @@ class BloodPressureExam1 : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
         if (CurrentTool.Instance.Tool.CodeName == "hand" && colliderTag != "palpation_target")
         {
@@ -67,7 +68,7 @@ class BloodPressureExam1 : BaseExam
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -89,7 +90,10 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "pump_it")
         {
             if (LastTakenStep() != 2)
+            {
                 errorMessage = "Клапан не був закритий";
+                showAnimation = false;
+            }
             return 3;
         }
 
@@ -97,7 +101,10 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "air_out")
         {
             if (LastTakenStep() != 3)
+            {
                 errorMessage = "Не було закачане повітря";
+                showAnimation = false;
+            }
             return 4;
         }
 

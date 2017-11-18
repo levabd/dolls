@@ -107,17 +107,18 @@ class BloodPressureExam2 : BaseExam
         }
     }
 
-    public override bool CheckMove(string colliderTag, out string errorMessage)
+    public override bool CheckMove(string colliderTag, out string errorMessage, out string tipMessage)
     {
         errorMessage = "";
+        tipMessage = "";
 
-        if (!this.GenericMoveHelper(colliderTag, "radial_artery", ref errorMessage))
+        if (!this.GenericMoveHelper(colliderTag, "radial_artery", ref errorMessage, ref tipMessage))
             return false;
 
         return true;
     }
 
-    public override int? CheckAction(string actionCode, out string errorMessage, out bool showAnimation, string locatedColliderTag = "")
+    public override int? CheckAction(string actionCode, out string errorMessage, ref string tipMessage, out bool showAnimation, string locatedColliderTag = "")
     {
         errorMessage = "";
         showAnimation = true;
@@ -132,7 +133,7 @@ class BloodPressureExam2 : BaseExam
         int returnedStep;
 
         // Перчатки + Спирт
-        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag,  out returnedStep)) return returnedStep;
+        if (this.BiosafetySpirit(actionCode, ref errorMessage, locatedColliderTag, out returnedStep, ref showAnimation)) return returnedStep;
 
         // { "sterile_tissue",                    "Накриваємо операційне поле стерильними серветками" },
         if (CurrentTool.Instance.Tool.CodeName == "sterile_tissue" && actionCode == "put")
@@ -142,7 +143,7 @@ class BloodPressureExam2 : BaseExam
         }
 
         //{ "anesthesia_needle",              "Взять иглу для анестезии кожи." },
-        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 5)) return 6;
+        if (this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 5, ref showAnimation)) return 6;
 
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -172,7 +173,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "pull")
         {
             if (LastTakenStep() != 9)
+            {
                 errorMessage = "Спочатку витягніть мандрен";
+                showAnimation = false;
+            }
             return 10;
         }
 
@@ -180,7 +184,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "push")
         {
             if (LastTakenStep() != 10)
+            {
                 errorMessage = "Спочатку потягніть канюлю";
+                showAnimation = false;
+            }
             return 11;
         }
 
@@ -188,7 +195,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "rinse")
         {
             if (LastTakenStep() != 11)
+            {
                 errorMessage = "Спочатку заведіть канюлю";
+                showAnimation = false;
+            }
             return 12;
         }
 
@@ -196,7 +206,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "stitch" && actionCode == "cannule_stitch")
         {
             if (LastTakenStep() != 12)
+            {
                 errorMessage = "Нічого фіксувати";
+                showAnimation = false;
+            }
             return 13;
         }
 
@@ -204,7 +217,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "invasive_sensor" && actionCode == "connect")
         {
             if (LastTakenStep() != 13)
+            {
                 errorMessage = "Спочатку візьміть шприц і наберіть в нього фізрозчин";
+                showAnimation = false;
+            }
             return 14;
         }
 
