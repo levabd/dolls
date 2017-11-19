@@ -38,6 +38,8 @@ namespace DB.Models
 
             if (String.IsNullOrWhiteSpace(loginCandidate))
                 throw new ArgumentException("Логін не може бути порожнім");
+            if (password.Trim().Length < 6)
+                throw new ArgumentException("Пароль не може бути меншим за 6 символів");
             if (SelectFirst("SELECT id FROM Users WHERE login = '" + loginCandidate + "'").Count > 0)
                 throw new ArgumentException("Такий логін вже використовується");
 
@@ -94,13 +96,6 @@ namespace DB.Models
             PasswordHash = password;
             Name = name;
             Role = (UserRoles)role;
-            /*switch (role)
-            {
-                case 0: Role = UserRoles.Admin; break;
-                case 1: Role = UserRoles.Manager; break;
-                case 2: Role = UserRoles.User; break;
-                default: Role = UserRoles.User; break;
-            }*/
         }
 
         private User(string login)
@@ -167,6 +162,8 @@ namespace DB.Models
 
         public void ChangePassword(string password)
         {
+            if (password.Trim().Length < 6)
+                throw new ArgumentException("Пароль не може бути меншим за 6 символів");
             if (Id == null)
                 throw new ConstraintException("id is null. We can't UPDATE DB Record while password changing.");
             GeneratePwdAndTime(password);

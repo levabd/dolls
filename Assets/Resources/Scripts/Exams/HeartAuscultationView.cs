@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DB.Models;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,8 +46,6 @@ class HeartAuscultationView : MonoBehaviour
             return;
 
         Transform objectHit = hit.transform;
-
-        Debug.Log(objectHit.tag);
 
         MuteAllSound();
 
@@ -156,6 +155,7 @@ class HeartAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        new Exam(CurrentUser.User, "Тренажер для аускультації серця", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

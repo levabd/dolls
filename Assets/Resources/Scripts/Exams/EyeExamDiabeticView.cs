@@ -121,7 +121,7 @@ class EyeExamDiabeticView : MonoBehaviour
     void CloseModal()
     {
         if (_finished)
-            SceneManager.LoadScene("StepList");
+            SceneManager.LoadScene("ExamList");
         else
             Dialog.SetActive(false);
     }
@@ -150,8 +150,7 @@ class EyeExamDiabeticView : MonoBehaviour
         if (Retina8.isOn)
             rightAnsversCount++;
 
-
-        if (rightAnsversCount > 4)
+        if (rightAnsversCount > 5)
             return true;
 
         return false;

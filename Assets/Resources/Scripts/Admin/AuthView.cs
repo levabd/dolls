@@ -27,8 +27,13 @@ public class AuthView : MonoBehaviour {
         {
             _perferences.CurrentLogin = LoginInput.text;
             _perferences.CurrentPasswordHash = PasswordInput.text;
-            _perferences.SaveLogin();
         }
+        else
+        {
+            _perferences.CurrentLogin = "";
+            _perferences.CurrentPasswordHash = "";
+        }
+        _perferences.SaveLogin();
     }
 
     // Unused Unity Methods

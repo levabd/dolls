@@ -94,10 +94,14 @@ namespace DB.Models
             bool filterByName = false;
             List<User> users = new List<User>();
 
+            List<Exam> exams = new List<Exam>();
+
             if (!String.IsNullOrWhiteSpace(userName))
             {
                 filterByUser = true;
                 users = User.FindAllByName(userName);
+                if (users.Count == 0)
+                    return exams;
             }
 
             if (!String.IsNullOrWhiteSpace(examName))
@@ -136,8 +140,6 @@ namespace DB.Models
             query += "ORDER BY passed_at DESC";
 
             List<List<object>> rawExams = SelectAll(query);
-
-            List<Exam> exams = new List<Exam>();
 
             foreach (var rawExam in rawExams)
             {

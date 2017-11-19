@@ -1,4 +1,5 @@
 ﻿using System;
+using DB.Models;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -27,13 +28,19 @@ class LungsAuscultationView : MonoBehaviour
     public AudioSource BronchialBreathing;
 
     private bool _rotateBody;
+    private bool _backBody;
 
     // Update is called once per frame
     // ReSharper disable once UnusedMember.Local
     void Update()
     {
-        if (Math.Abs(Body.transform.rotation.y + 1f) < 0.01f || Math.Abs(Body.transform.rotation.y - 1f) < 0.01f || Math.Abs(Body.transform.rotation.y) < 0.01f)
+        if (Math.Abs(Body.transform.rotation.y + 1f) < 0.01f || Math.Abs(Body.transform.rotation.y - 1f) < 0.01f ||
+            Math.Abs(Body.transform.rotation.y) < 0.01f)
+        {
+            if (_rotateBody)
+                _backBody = !_backBody;
             _rotateBody = false;
+        }
 
         if (_rotateBody)
             Body.transform.RotateAround(Body.transform.position, Body.transform.up, 40f * Time.deltaTime);
@@ -52,22 +59,33 @@ class LungsAuscultationView : MonoBehaviour
 
         MuteAllSound();
 
-        if (objectHit.tag == "VezycularBreathing")
+        if (!_backBody)
         {
-            AudioSource heartAudio = VezycularBreathing.GetComponent<AudioSource>();
-            heartAudio.Play();
-        }
+            if (objectHit.tag == "VezycularBreathing")
+            {
+                AudioSource heartAudio = VezycularBreathing.GetComponent<AudioSource>();
+                heartAudio.Play();
+            }
 
-        if (objectHit.tag == "BronchialBreathing")
-        {
-            AudioSource heartAudio = BronchialBreathing.GetComponent<AudioSource>();
-            heartAudio.Play();
-        }
+            if (objectHit.tag == "BronchialBreathing")
+            {
+                AudioSource heartAudio = BronchialBreathing.GetComponent<AudioSource>();
+                heartAudio.Play();
+            }
 
-        if (objectHit.tag == "CavernousBreathing")
+            if (objectHit.tag == "CavernousBreathing")
+            {
+                AudioSource heartAudio = CavernousBreathing.GetComponent<AudioSource>();
+                heartAudio.Play();
+            }
+        }
+        else
         {
-            AudioSource heartAudio = CavernousBreathing.GetComponent<AudioSource>();
-            heartAudio.Play();
+            if (objectHit.tag == "BackVezycularBreathing")
+            {
+                AudioSource heartAudio = VezycularBreathing.GetComponent<AudioSource>();
+                heartAudio.Play();
+            }
         }
     }
 
@@ -127,6 +145,7 @@ class LungsAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        new Exam(CurrentUser.User, "Тренажер для аускультації легень", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

@@ -293,11 +293,17 @@ public class AdminView : MonoBehaviour {
     {
         try
         {
-            User.FindById(_users[_currentTableIndex].Id).Save();
+            User currentUser = User.FindById(_users[_currentTableIndex].Id);
+            currentUser.ChangePassword(AddNewPasswordInputField.text);
 
             ChangeUserPasswordPanel.SetActive(false);
             GeneralSceneHelper.ShowMessage("Пароль користувача було успішно відредаговано.", Dialog, DialogText);
             ReloadData();
+        }
+        catch (ArgumentException ex)
+        {
+            GeneralSceneHelper.ShowMessage(ex.Message, Dialog, DialogText);
+            ChangeUserPasswordPanel.SetActive(true);
         }
         catch (ConstraintException ex)
         {

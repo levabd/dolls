@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DB.Models;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -52,9 +53,9 @@ class SkinExamView : MonoBehaviour
     private void ColorSliderChange(float arg0)
     {
         LabelText.text = "Рівень сатурації: " + arg0 + "%";
-        _rend1.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (134 - arg0) / 255f, 1));
-        _rend2.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (134 - arg0) / 255f, 1));
-        _rend3.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (134 - arg0) / 255f, 1));
+        _rend1.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (234 - arg0) / 255f, 1));
+        _rend2.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (234 - arg0) / 255f, 1));
+        _rend3.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, (234 - arg0) / 255f, 1));
     }
 
     public void ReturnDefaultCursor(BaseEventData baseEvent)
@@ -67,6 +68,7 @@ class SkinExamView : MonoBehaviour
         _rend1.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend2.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend3.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
+        new Exam(CurrentUser.User, "Серцево-легенева реанімація", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

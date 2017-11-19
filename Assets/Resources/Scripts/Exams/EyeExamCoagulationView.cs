@@ -44,9 +44,9 @@ class EyeExamCoagulationView : MonoBehaviour
 
     private bool CheckCrater(int cx, int cy)
     {
-        for (int y = cy - (int)(CratersRadius * 1.8); y < cy + CratersRadius * 1.8; y++)
+        for (int y = cy - (int)(CratersRadius * 1.1); y < cy + CratersRadius * 1.1; y++)
         {
-            for (int x = cx - (int)(CratersRadius * 1.8); x < cx + CratersRadius * 1.8; x++)
+            for (int x = cx - (int)(CratersRadius * 1.15); x < cx + CratersRadius * 1.15; x++)
                 if (_texture.GetPixel(x, y) != Color.clear)
                     return false;
         }
@@ -118,8 +118,8 @@ class EyeExamCoagulationView : MonoBehaviour
                 return;
             }
 
-            int cx = (int)((hit.point.x - _imageLeft + 17) * 800 / _imageWidth);
-            int cy = (int)((hit.point.y - _imageBottom - 17) * 680 / _imageHeight);
+            int cx = (int)((hit.point.x - _imageLeft + 16) * 800 / _imageWidth);
+            int cy = (int)((hit.point.y - _imageBottom - 18) * 680 / _imageHeight);
 
             if (!CheckCrater(cx, cy))
             {
@@ -208,16 +208,17 @@ class EyeExamCoagulationView : MonoBehaviour
 
     void FinishEvent()
     {
+        Debug.Log(_cratersCount);
         if (_cratersCount < 300)
             Finish(false, "Тест не пройдено, не оброблена вся площа сітківки ");
-
-        Finish(true);
+        else
+            Finish(true);
     }
 
     void CloseModal()
     {
         if (_finished)
-            SceneManager.LoadScene("StepList");
+            SceneManager.LoadScene("ExamList");
         else
             Dialog.SetActive(false);
     }

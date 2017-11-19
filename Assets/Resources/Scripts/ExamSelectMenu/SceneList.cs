@@ -28,16 +28,17 @@ public enum Scenes
 	BloodPressureExam1 = 23,
 	BloodPressureExam2 = 24,
 	HydrotoraxExam = 25,
-	_5bf679cdf8a59b041ac49734de29bb1b = 26,
-	TibiaExam = 27,
-	EyeDiabeticExam = 28,
-	EyeRetinaExam = 29,
-    StepList = 30,
-    ExamList = 31,
-	Administrator_menu_scene = 32,
-	AuscultationLungsExam = 33,
-	EyeCoagulationExam = 34,
-	PneumotoraxExam = 35,
-	AuscultationHeartExam = 36
+	TibiaExam = 26,
+	EyeDiabeticExam = 27,
+	EyeRetinaExam = 28,
+	StepList = 29,
+	ExamList = 30,
+	Administrator_menu_scene = 31,
+	AuscultationLungsExam = 32,
+	EyeCoagulationExam = 33,
+	PneumotoraxExam = 34,
+	AuscultationHeartExam = 35,
+	PulseExam = 36,
+    SkinExam = 37
 }
 

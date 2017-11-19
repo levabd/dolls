@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 42446807}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -924,7 +924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &198924923
 Light:
   m_ObjectHideFlags: 0
@@ -1257,6 +1257,89 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304479749}
+--- !u!1 &320611454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 320611456}
+  - component: {fileID: 320611455}
+  m_Layer: 0
+  m_Name: SpectrumOrigin 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &320611455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320611454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c5288dfa9efd14da62feee804531cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnabled: 1
+  audioSource: {fileID: 990572795}
+  useListenerInstead: 0
+  sampleChannel: 0
+  numSamples: 256
+  windowUsed: 5
+  useLogarithmicFrequency: 1
+  multiplyByFrequency: 1
+  highFrequencyTrim: 1
+  linearSampleStretch: 1
+  barAmount: 400
+  barYScale: 50
+  barMinYScale: 0.1
+  barPrefab: {fileID: 1111153027474118, guid: c0c1e17a8f1ed6c4bbffed84fc91a108, type: 2}
+  barXScale: 1
+  barXSpacing: 0
+  barCurveAngle: 0
+  barXRotation: 0
+  attackDamp: 0.2
+  decayDamp: 0.12
+  useColorGradient: 0
+  colorMin: {r: 0.6069961, g: 0.67024964, b: 0.75735295, a: 1}
+  colorMax: {r: 1, g: 0, b: 0, a: 1}
+  colorValueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0.06513002
+      outSlope: 0.06513002
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.03686688
+      outSlope: 0.03686688
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  colorAttackDamp: 1
+  colorDecayDamp: 1
+--- !u!4 &320611456
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320611454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.3, y: 207.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331877805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,7 +1470,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.306
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2203,7 +2286,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.532
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2268,7 +2351,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.493
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2620,7 +2703,7 @@ GameObject:
   - component: {fileID: 1084077703}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2702,7 +2785,7 @@ GameObject:
   - component: {fileID: 1084320503}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2784,7 +2867,7 @@ GameObject:
   - component: {fileID: 1094197405}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3110,7 +3193,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.502
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -3279,7 +3362,7 @@ MonoBehaviour:
   multiplyByFrequency: 1
   highFrequencyTrim: 1
   linearSampleStretch: 1
-  barAmount: 115
+  barAmount: 100
   barYScale: 100
   barMinYScale: 0.1
   barPrefab: {fileID: 1394287570210470, guid: 449fbf707e8efbb499710e90b6acc107, type: 2}
@@ -3319,7 +3402,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1265568411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 213, y: -13.3, z: 5}
+  m_LocalPosition: {x: 192.3, y: 16.1, z: -24.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3486,7 +3569,7 @@ GameObject:
   - component: {fileID: 1359359439}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3652,7 +3735,7 @@ GameObject:
   - component: {fileID: 1418910035}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4155,7 +4238,7 @@ GameObject:
   - component: {fileID: 1589666709}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4390,7 +4473,7 @@ GameObject:
   - component: {fileID: 1645186590}
   m_Layer: 0
   m_Name: BlueAuscultation
-  m_TagString: VezycularBreathing
+  m_TagString: BackVezycularBreathing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
