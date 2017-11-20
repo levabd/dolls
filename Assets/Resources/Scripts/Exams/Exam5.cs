@@ -185,6 +185,7 @@ class Exam5 : BaseExam
         showAnimation = true;
 
         // Безопасные операции
+        if (this.GetActions(actionCode)) return null;
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;
@@ -252,6 +253,7 @@ class Exam5 : BaseExam
         // Добавление иголки
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
             SyringeHelper.TryGetNeedle(actionCode, out errorMessage, 2);
+
         showAnimation = false;
 
         return null;

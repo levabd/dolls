@@ -113,6 +113,15 @@ public class PositionPieceBody : MonoBehaviour {
                                 actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
                             }
                             CurrentExam.Instance.Exam.Action("stick", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
+                            if (tipMessage != "")
+                            {
+                                TIAR.CtrlStat.TipMessage(tipMessage);
+                            }
+                            if (showAnimations)
+                            {
+                                TIAR.CtrlStat.activeControl = true;
+                                TIAR.ActionCtrl.ActionControl(TIAR.activeControl, "stick");
+                            }
                             TIAR.CreateLogEntry();
                             break;
 

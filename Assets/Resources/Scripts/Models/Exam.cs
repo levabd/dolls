@@ -114,7 +114,7 @@ namespace DB.Models
                 "passed_at >= '" + fromTimestamp + "' AND passed_at <= '" + toTimestamp + "' ";
 
             if (filterByName)
-                query += "AND name LIKE '%" + examName + "%' ";
+                query += "AND name LIKE '%" + examName.Replace("'", "''") + "%' ";
 
             if (filterByUser && users.Count > 0)
             {
@@ -157,7 +157,7 @@ namespace DB.Models
                 DbPerference.Instance.Dbconn().Open();
                 IDbCommand dbcmd = DbPerference.Instance.Dbconn().CreateCommand();
                 dbcmd.CommandText = "INSERT INTO Exams (user_id, name, error_message, passed, passed_at) VALUES ('" +
-                                    _userId + "', '" + Name + "', '" + Error + "', '" + (Passed ? "1" : "0") + "', '" +
+                                    _userId + "', '" + Name.Replace("'", "''") + "', '" + Error.Replace("'", "''") + "', '" + (Passed ? "1" : "0") + "', '" +
                                     _passedAtTimestamp + "')";
                 dbcmd.ExecuteNonQuery();
                 dbcmd.CommandText = "SELECT last_insert_rowid()";
@@ -169,8 +169,8 @@ namespace DB.Models
             }
             else //Update
             {
-                Execute("UPDATE Exams SET user_id = '" + _userId + "', name = '" + Name.Trim() + "', error_message = '" +
-                        Error.Trim() + "', passed = '" + (Passed ? "1" : "0") + "', passed_at = '" + _passedAtTimestamp + 
+                Execute("UPDATE Exams SET user_id = '" + _userId + "', name = '" + Name.Trim().Replace("'", "''") + "', error_message = '" +
+                        Error.Trim().Replace("'", "''") + "', passed = '" + (Passed ? "1" : "0") + "', passed_at = '" + _passedAtTimestamp + 
                         "' WHERE id = '" + Id + "'");
             }
 

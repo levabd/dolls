@@ -114,6 +114,7 @@ class TibiaExam : BaseExam
         showAnimation = true;
 
         // Безопасные операции
+        if (this.GetActions(actionCode)) return null;
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.PistonPullingAction(actionCode)) return null;

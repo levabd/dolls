@@ -161,6 +161,11 @@ public static class ExamHelpers
         // { "get_plaster",                    "Взяти пластир" },
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "get")
         {
+            if (exam.LastTakenStep() != expectedFirstStep + 5)
+            {
+                errorMessage = "Спочатку з'єднайте з системою переливання рідини";
+                showAnimation = false;
+            }
             returnedStep = expectedFirstStep + 6;
             return true;
         }
@@ -168,7 +173,7 @@ public static class ExamHelpers
         //{ "fixation_with_plaster",          "Фіксація пластиром" }
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
-            if (!locatedColliderTag.Contains("catheter"))
+            if (!locatedColliderTag.Contains("catheter") || exam.LastTakenStep() != expectedFirstStep + 6)
             {
                 errorMessage = "Не те місце установки. Спочатку повинен бути коректно встановлений катетер";
                 showAnimation = false;
@@ -715,6 +720,47 @@ public static class ExamHelpers
         }
 
         returnedStep = 0;
+        return false;
+    }
+
+    public static bool GetActions(this BaseExam exam, string actionCode)
+    {
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "venflon" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && (actionCode == "get_balls" || actionCode == "get_top_down"))
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "hand" && (actionCode == "get_palpation" || actionCode == "get_clamp" || actionCode == "get_stretch_the_skin"))
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "razor" && actionCode == "cannule_stitch")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "scalpel" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "get")
+            return true;
+
+        if (CurrentTool.Instance.Tool.CodeName == "phonendoscope" && actionCode == "get")
+            return true;
+
         return false;
     }
 }

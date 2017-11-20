@@ -52,7 +52,7 @@ namespace DB.Models
 
         public void SaveLogin()
         {
-            Execute("UPDATE Perferences SET login = '" + CurrentLogin.Trim() + "', password = '" + CurrentPasswordHash + "' WHERE id = 1");
+            Execute("UPDATE Perferences SET login = '" + CurrentLogin.Trim().Replace("'", "''") + "', password = '" + CurrentPasswordHash + "' WHERE id = 1");
         }
 
         public bool LoadLogin()
