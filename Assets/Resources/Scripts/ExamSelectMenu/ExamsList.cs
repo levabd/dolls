@@ -34,7 +34,10 @@ public class ExamsList : MonoBehaviour {
 
     public void ExamViewOff()
     {
-        Destroy(GameObject.Find("Main Interface/"+ exams.name));
+        if (GameObject.Find("Main Interface/" + exams.name))
+        {
+            Destroy(GameObject.Find("Main Interface/" + exams.name));
+        }       
     }
 
 	public void CreateExamsList(string cathegory)
