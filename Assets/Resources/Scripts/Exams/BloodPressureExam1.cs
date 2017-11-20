@@ -73,6 +73,8 @@ class BloodPressureExam1 : BaseExam
         errorMessage = "";
         showAnimation = true;
 
+        // Безопасные операции
+        if (this.GetActions(actionCode)) return null;
         if (actionCode == "null") return null;
 
         // { "palpation",                      "Пальпируем." },

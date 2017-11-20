@@ -18,7 +18,7 @@ public class ToolItemActionResponder : MonoBehaviour
     private string tipMessage = "";
     private bool showAnimations;
     private bool CheckAction;
-    private bool activeControl = true;
+    public bool activeControl = true;
     // Use this for initialization
     void Start()
     {
@@ -47,7 +47,7 @@ public class ToolItemActionResponder : MonoBehaviour
         {
             CtrlStat.TipMessage(tipMessage);
         }
-        if (showAnimations == true)
+        if (showAnimations)
         {
             CtrlStat.activeControl = true;
             ActionCtrl.ActionControl(activeControl, actionName);
@@ -59,14 +59,14 @@ public class ToolItemActionResponder : MonoBehaviour
 
     public void CreateLogEntry()
     {
-        if (CurrentExam.Instance.Exam.TakenSteps.Count() == MainLoglogCtrl.mainLogDisplay.transform.childCount)
+        if (CurrentExam.Instance.Exam.TakenSteps.Count == MainLoglogCtrl.mainLogDisplay.transform.childCount)
         {
             return;
         }
         string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
 
         bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
-        if (errorMessage != "")
+        if (!String.IsNullOrWhiteSpace(errorMessage))
         {
             logActionText = logActionText + "/" + errorMessage;
         }

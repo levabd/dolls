@@ -42,7 +42,7 @@ public abstract class BaseExam: IExamInterface
         }
 
         if (result && stepNumber != _takenSteps.Count + 1)
-            errorMessage = "Крок виконано вірно, проте не в тій послідовності.";
+            errorMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій. Натисніть «Завершити сценарій».";
         new Step(_examModel, CorrectSteps[stepNumber - 1].Item2, errorMessage, stepNumber, _takenSteps.Count + 1, result).Save();
 
         _takenSteps.Add(step);
@@ -99,19 +99,19 @@ public abstract class BaseExam: IExamInterface
             {
                 if (stepNumber != _takenSteps.Count + 1)
                 {
-                    tipMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій.";
+                    tipMessage = "Крок виконано вірно, проте не в тій послідовності. Бажано переробити сценарій. Натисніть «Завершити сценарій».";
                     showAnimation = false;
                 }
                 else
                     tipMessage = "Вітаємо. Крок виконано абсолютно вірно.";
             }
             else
-                tipMessage = "Крок виконано невірно. " + errorMessage;
+                tipMessage = "Крок виконано невірно. " + errorMessage + " Бажано переробити сценарій. Натисніть «Завершити сценарій».";
             TakeStep((int) stepNumber, stepResult, errorMessage);
         }
 
-        if (!showAnimation)
-            tipMessage = "Схоже що ця дія була необов'язковою.";
+        if (String.IsNullOrEmpty(tipMessage) && !showAnimation)
+            tipMessage = "Схоже що ця дія була зайвою, або сценарій вже провалено.";
 
         return true;
     }

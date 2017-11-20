@@ -40,7 +40,7 @@ namespace DB.Models
                 throw new ArgumentException("Логін не може бути порожнім");
             if (password.Trim().Length < 6)
                 throw new ArgumentException("Пароль не може бути меншим за 6 символів");
-            if (SelectFirst("SELECT id FROM Users WHERE login = '" + loginCandidate + "'").Count > 0)
+            if (SelectFirst("SELECT id FROM Users WHERE login = '" + loginCandidate.Replace("'", "''") + "'").Count > 0)
                 throw new ArgumentException("Такий логін вже використовується");
 
             Id = null;
@@ -76,7 +76,7 @@ namespace DB.Models
 
         public static List<User> FindAllByName(string name)
         {
-            List<List<object>> rawUsers = SelectAll("SELECT id, login, password, timestamp, name, role FROM Users WHERE name LIKE '%" + name + "%'");
+            List<List<object>> rawUsers = SelectAll("SELECT id, login, password, timestamp, name, role FROM Users WHERE name LIKE '%" + name.Replace("'", "''") + "%'");
             List<User> users = new List<User>();
 
             foreach (var rawUser in rawUsers)
@@ -102,7 +102,7 @@ namespace DB.Models
         {
             string loginCandidate = login.Trim();
 
-            var currentUser = SelectFirst("SELECT id, password, timestamp, name, role FROM Users WHERE login = '" + loginCandidate + "'");
+            var currentUser = SelectFirst("SELECT id, password, timestamp, name, role FROM Users WHERE login = '" + loginCandidate.Replace("'", "''") + "'");
             //if (currentUser == null || currentUser.Count == 0)
             if (currentUser.Count == 0)
                 throw new ArgumentException("Can't find user with required login", nameof(login));
@@ -155,9 +155,9 @@ namespace DB.Models
         public void Save()
         {
             if (Id == null) // Create
-                Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim() + "', '" + (int)Role + "')");
+                Execute("INSERT INTO Users (login, password, timestamp, name, role) VALUES ('" + Login.Replace("'", "''") + "', '" + PasswordHash + "', '" + Timestamp + "', '" + Name.Trim().Replace("'", "''") + "', '" + (int)Role + "')");
             else // Update
-                Execute("UPDATE Users SET name = '" + Name.Trim() + "', role = '" + (int)Role + "' WHERE id = '" + Id + "'");
+                Execute("UPDATE Users SET name = '" + Name.Trim().Replace("'", "''") + "', role = '" + (int)Role + "' WHERE id = '" + Id + "'");
         }
 
         public void ChangePassword(string password)

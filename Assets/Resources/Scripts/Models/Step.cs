@@ -78,7 +78,7 @@ namespace DB.Models
         {
             if (Id == null) // Create
                 Execute("INSERT INTO Steps (exam_id, name, error_message, order_number, ordered_at, passed) VALUES ('" 
-                    + _examId + "', '" + Name + "', '" + Error + "', '" + OrderNumber + "', '" + OrderedAt + 
+                    + _examId + "', '" + Name.Replace("'", "''") + "', '" + Error.Replace("'", "''") + "', '" + OrderNumber + "', '" + OrderedAt + 
                     "', '" + (Passed ? "1" : "0") + "')");
             else // Update
                 throw new ConstraintException("id not null. We can't UPDATE Step DB Record.");

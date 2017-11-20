@@ -146,6 +146,7 @@ class Exam12 : BaseExam
         showAnimation = true;
 
         // Безопасные операции
+        if (this.GetActions(actionCode)) return null;
         if (this.BallClearAction(actionCode)) return null;
         if (this.RemoveBallsAction(actionCode)) return null;
         if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
