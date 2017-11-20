@@ -10318,12 +10318,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10343,12 +10343,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -10368,12 +10368,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -10934,6 +10934,10 @@ MonoBehaviour:
     CannuleStitch: {x: 0, y: 0, z: 0}
     InvasiveSensorConnect: {x: 0, y: 0, z: 0}
     Monitor: {x: 0, y: 0, z: 0}
+    Cut: {x: 0, y: 0, z: 0}
+    DrenajToIncision: {x: 0, y: 0, z: 0}
+    DrenajOutConductor: {x: 0, y: 0, z: 0}
+    Stitch: {x: 0, y: 0, z: 0}
 --- !u!1 &351449369
 GameObject:
   m_ObjectHideFlags: 0
@@ -13269,7 +13273,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410299479}
-  m_LocalRotation: {x: -0.6747252, y: 0.7347224, z: -0.04491607, w: -0.05396015}
+  m_LocalRotation: {x: -0.6747251, y: 0.7347223, z: -0.044916067, w: -0.05396014}
   m_LocalPosition: {x: -0.21241103, y: 0.96654904, z: -0.18582688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13566,6 +13570,10 @@ MonoBehaviour:
     type: 2}
   SyringeToBIGNeedleCreate: {fileID: 1483227721765802, guid: 1fe6cca73908c3649bc413d294b8053a,
     type: 2}
+  CutCreate: {fileID: 0}
+  DrenajToIncisionCreate: {fileID: 0}
+  DrenajOutConductorCreate: {fileID: 0}
+  StitchCreate: {fileID: 0}
   CannuleEnterCreate: {fileID: 0}
   CannuleRemoveMandrenCreate: {fileID: 0}
   CannulePullCreate: {fileID: 0}
@@ -13574,6 +13582,7 @@ MonoBehaviour:
   CannuleStitchCreate: {fileID: 0}
   InvasiveSensorConnectCreate: {fileID: 0}
   MonitorCreate: {fileID: 0}
+  ManometerCreate: {fileID: 0}
 --- !u!1 &419449399
 GameObject:
   m_ObjectHideFlags: 0
@@ -34402,6 +34411,7 @@ MonoBehaviour:
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
   TourniquetPositionPoint: {fileID: 0}
+  poseAnimator: {fileID: 0}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34443,13 +34453,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b718faf7688f9424589b494716974bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeControl: 0
   examStatus: {fileID: 1133619241}
   itemStatus: {fileID: 1223892933}
   itemStatusSprite: {fileID: 1839274827}
   NeedlePanel: {fileID: 698571078}
   HintPanel: {fileID: 1121793855}
   entryAngle: {fileID: 1121793854}
-  activeControl: 0
+  TipDisplayPrefab: {fileID: 1417197990414976, guid: 7570c5f219b25b24e8e8a86c929624e5,
+    type: 2}
+  TipTargetTransform: {fileID: 1166830725}
 --- !u!4 &1107126317
 Transform:
   m_ObjectHideFlags: 0
@@ -52799,7 +52812,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

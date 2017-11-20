@@ -35,8 +35,6 @@ public class ToolItemActionResponder : MonoBehaviour
 
     public void HandleonClick(string actionName)
     {
-        CtrlStat.activeControl = true;
-        ActionCtrl.ActionControl(activeControl, actionName);
 
         CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, out tipMessage, out showAnimations, colliderHit != null ? colliderHit.tag : null);
 
@@ -45,7 +43,15 @@ public class ToolItemActionResponder : MonoBehaviour
         {
             examControl.EndExam(false, errorMessage);
         }
-
+        if (tipMessage != "")
+        {
+            CtrlStat.TipMessage(tipMessage);
+        }
+        if (showAnimations == true)
+        {
+            CtrlStat.activeControl = true;
+            ActionCtrl.ActionControl(activeControl, actionName);
+        }
         CreateLogEntry();
 
         if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }

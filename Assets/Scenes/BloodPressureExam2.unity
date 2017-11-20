@@ -1134,6 +1134,10 @@ MonoBehaviour:
     CannuleStitch: {x: 0, y: 0, z: 0}
     InvasiveSensorConnect: {x: 0, y: 0, z: 0}
     Monitor: {x: 0, y: 0, z: 0}
+    Cut: {x: 0, y: 0, z: 0}
+    DrenajToIncision: {x: 0, y: 0, z: 0}
+    DrenajOutConductor: {x: 0, y: 0, z: 0}
+    Stitch: {x: 0, y: 0, z: 0}
 --- !u!43 &397059510
 Mesh:
   m_ObjectHideFlags: 0
@@ -1594,6 +1598,10 @@ MonoBehaviour:
   BIGNeedleOutCreate: {fileID: 0}
   PatchToBIGNeedleCreate: {fileID: 0}
   SyringeToBIGNeedleCreate: {fileID: 0}
+  CutCreate: {fileID: 0}
+  DrenajToIncisionCreate: {fileID: 0}
+  DrenajOutConductorCreate: {fileID: 0}
+  StitchCreate: {fileID: 0}
   CannuleEnterCreate: {fileID: 1876131323483962, guid: 3ce82aa6533e3e949879d55008e48481,
     type: 2}
   CannuleRemoveMandrenCreate: {fileID: 1302178912510682, guid: daa62a86bfc63dd4893220e62a7c9bd6,
@@ -1609,6 +1617,7 @@ MonoBehaviour:
   InvasiveSensorConnectCreate: {fileID: 1709245983226958, guid: 07785166ddb554647a12b19fc7e5e381,
     type: 2}
   MonitorCreate: {fileID: 602105035}
+  ManometerCreate: {fileID: 0}
 --- !u!1 &434351668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,6 +3057,7 @@ MonoBehaviour:
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
   TourniquetPositionPoint: {fileID: 0}
+  poseAnimator: {fileID: 0}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3089,13 +3099,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b718faf7688f9424589b494716974bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeControl: 0
   examStatus: {fileID: 1133619241}
   itemStatus: {fileID: 1223892933}
   itemStatusSprite: {fileID: 1839274827}
   NeedlePanel: {fileID: 698571078}
   HintPanel: {fileID: 1121793855}
   entryAngle: {fileID: 1121793854}
-  activeControl: 0
+  TipDisplayPrefab: {fileID: 1417197990414976, guid: 7570c5f219b25b24e8e8a86c929624e5,
+    type: 2}
+  TipTargetTransform: {fileID: 1166830725}
 --- !u!4 &1107126317
 Transform:
   m_ObjectHideFlags: 0
@@ -5400,7 +5413,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

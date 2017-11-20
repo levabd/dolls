@@ -2366,6 +2366,9 @@ MonoBehaviour:
   NeedlePanel: {fileID: 698571078}
   HintPanel: {fileID: 429370595}
   entryAngle: {fileID: 945399385}
+  TipDisplayPrefab: {fileID: 1417197990414976, guid: 7570c5f219b25b24e8e8a86c929624e5,
+    type: 2}
+  TipTargetTransform: {fileID: 1166830725}
   activeControl: 0
 --- !u!4 &1107126317
 Transform:
@@ -3424,7 +3427,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

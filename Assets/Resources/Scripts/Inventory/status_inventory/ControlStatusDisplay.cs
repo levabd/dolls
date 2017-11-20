@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ControlStatusDisplay : MonoBehaviour {
+    public bool activeControl = false;
     [Header("Exam Status Panel")]
     public Text examStatus;
     [Header("ToolItem Status Panel")]
@@ -14,8 +15,9 @@ public class ControlStatusDisplay : MonoBehaviour {
     [Header("Syringe Hint Panel")]
     public GameObject HintPanel;
     public Text entryAngle;
-
-    public bool activeControl = false;
+    [Header("Tip Panel")]
+    public GameObject TipDisplayPrefab;
+    public Transform TipTargetTransform;   
 
     // Use this for initialization
     void Start () {
@@ -45,5 +47,13 @@ public class ControlStatusDisplay : MonoBehaviour {
         }
             
         activeControl = false;
+    }
+
+    public void TipMessage(string tipMessage) {
+        GameObject tipDisplay = Instantiate(TipDisplayPrefab);
+        tipDisplay.name = "Tip";
+        tipDisplay.transform.SetParent(TipTargetTransform, false);
+        tipDisplay.GetComponentInChildren<Text>().text = tipMessage;
+        Destroy(tipDisplay, 5f);
     }
 }

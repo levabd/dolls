@@ -4109,6 +4109,7 @@ MonoBehaviour:
   CannuleStitchCreate: {fileID: 0}
   InvasiveSensorConnectCreate: {fileID: 0}
   MonitorCreate: {fileID: 0}
+  ManometerCreate: {fileID: 0}
 --- !u!43 &206095087
 Mesh:
   m_ObjectHideFlags: 0
@@ -30427,6 +30428,7 @@ MonoBehaviour:
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1335663087}
   TourniquetPositionPoint: {fileID: 1811322865}
+  poseAnimator: {fileID: 0}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30468,13 +30470,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b718faf7688f9424589b494716974bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeControl: 0
   examStatus: {fileID: 1133619241}
   itemStatus: {fileID: 1223892933}
   itemStatusSprite: {fileID: 1839274827}
   NeedlePanel: {fileID: 698571078}
   HintPanel: {fileID: 1121793855}
   entryAngle: {fileID: 1121793854}
-  activeControl: 0
+  TipDisplayPrefab: {fileID: 1417197990414976, guid: 7570c5f219b25b24e8e8a86c929624e5,
+    type: 2}
+  TipTargetTransform: {fileID: 1166830725}
 --- !u!4 &1107126317
 Transform:
   m_ObjectHideFlags: 0
@@ -46082,7 +46087,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
