@@ -6,7 +6,7 @@ class Exam2 : BaseExam
 {
     private DateTime _needleRemovingMoment;
 
-    public override string Name => "Центральний венозний доступ №2 Підключичної надключичній доступ";
+    public override string Name => "Центральний венозний доступ №2 Підключичної надключичний доступ";
     public override string LoadName => "Exam2";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>

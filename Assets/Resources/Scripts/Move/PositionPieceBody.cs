@@ -108,8 +108,10 @@ public class PositionPieceBody : MonoBehaviour {
                             break;
 
                         case "patch":
-                            actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
-
+                            if (hit.transform.gameObject.tag == "catheter")
+                            {
+                                actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
+                            }
                             CurrentExam.Instance.Exam.Action("stick", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
                             TIAR.CreateLogEntry();
                             break;
