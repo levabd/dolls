@@ -35,18 +35,17 @@ public class ToolItemActionResponder : MonoBehaviour
 
     public void HandleonClick(string actionName)
     {
-
-        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, out tipMessage, out showAnimations, colliderHit != null ? colliderHit.tag : null);
-        CheckActionControl(CheckAction, showAnimations, errorMessage, tipMessage, actionName);
+        CheckActionControl(actionName, colliderHit);
 
         if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
     }
 
-    public void CheckActionControl(bool _checkAction,  bool _showAnimations, string _errorMessage, string _tipMessage, string _actionName)
+    public void CheckActionControl(string actionName, GameObject colliderHit)
     {
+        CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, out tipMessage, out showAnimations, colliderHit != null ? colliderHit.tag : null);
         if (!CheckAction)
         {
-            examControl.EndExam(false, _errorMessage);
+            examControl.EndExam(false, errorMessage);
         }
         if (!String.IsNullOrWhiteSpace(tipMessage))
         {
@@ -55,9 +54,9 @@ public class ToolItemActionResponder : MonoBehaviour
         if (showAnimations)
         {
             CtrlStat.activeControl = true;
-            ActionCtrl.ActionControl(activeControl, _actionName);
+            ActionCtrl.ActionControl(activeControl, actionName);
         }
-        CreateLogEntry(_errorMessage);
+        CreateLogEntry(errorMessage);
     }
 
 

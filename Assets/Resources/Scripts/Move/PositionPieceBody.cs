@@ -66,10 +66,8 @@ public class PositionPieceBody : MonoBehaviour {
                             actionController.OffActionPosition(actionController.ActionPositionPoint);
 
                             CurrentTool.Instance.Tool.StateParams["entry_angle"] = "90";
-                            actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);
-                            bool big = CurrentExam.Instance.Exam.Action("big", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                            TIAR.CheckActionControl(big, showAnimations, errorMessage, tipMessage, "big");
-
+                            actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);                            
+                            TIAR.CheckActionControl("big", hit.transform.gameObject);
                             break;
                         case "cannule":
                             actionController.OffActionPosition(actionController.VeinPositionPoint);
@@ -91,13 +89,12 @@ public class PositionPieceBody : MonoBehaviour {
                                         actionController.OffActionPosition(actionController.ActionPositionPoint);
 
                                         actionController.CreateFromPrefab(TCS.GauzeBallsEncloseCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsEnclose, 2000f);
-                                        bool attach_balls = CurrentExam.Instance.Exam.Action("attach_balls", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                                        TIAR.CheckActionControl(attach_balls, showAnimations, errorMessage, tipMessage, "attach_balls");
+                                        TIAR.CheckActionControl("attach_balls", hit.transform.gameObject);
                                         break;
                                     case "get_top_down":
+
                                         actionController.CreateFromPrefab(TCS.GauzeBallsRubUpDownCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.GauzeBallsRubUpDown, 5f);
-                                        bool top_down = CurrentExam.Instance.Exam.Action("top_down", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                                        TIAR.CheckActionControl(top_down, showAnimations, errorMessage, tipMessage, "top_down");
+                                        TIAR.CheckActionControl("top_down", hit.transform.gameObject);
                                         break;
                                 }
                             }
@@ -112,8 +109,7 @@ public class PositionPieceBody : MonoBehaviour {
                             {
                                 actionController.CreateFromPrefab(TCS.PushCreate, hit.transform.gameObject, actionController.PrefabTransformCtrl.animationTool.HandWithPatch, 2000f);
                             }
-                            bool stick = CurrentExam.Instance.Exam.Action("stick", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                            TIAR.CheckActionControl(stick, showAnimations, errorMessage, tipMessage, "stick");
+                            TIAR.CheckActionControl("stick", hit.transform.gameObject);                            
                             break;
 
                         case "hand":
@@ -123,19 +119,15 @@ public class PositionPieceBody : MonoBehaviour {
                                 {
                                     case "get_palpation":
                                         actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
-
-                                        bool palpation = CurrentExam.Instance.Exam.Action("palpation", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                                        TIAR.CheckActionControl(palpation, showAnimations, errorMessage, tipMessage, "palpation");
+                                        TIAR.CheckActionControl("palpation", hit.transform.gameObject);
                                         break;
                                     case "get_clamp":
                                         actionController.CreateFromPrefab(TCS.ClampVeinCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.ClampVeins, 2000f);
-                                        bool clamp = CurrentExam.Instance.Exam.Action("clamp", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                                        TIAR.CheckActionControl(clamp, showAnimations, errorMessage, tipMessage, "clamp");
+                                        TIAR.CheckActionControl("clamp", hit.transform.gameObject);
                                         break;
                                     case "get_stretch_the_skin":
                                         actionController.CreateFromPrefab(TCS.StretchTheSkinLeftCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.StretchTheSkinLeft, 2000f);
-                                        bool stretch_the_skin = CurrentExam.Instance.Exam.Action("stretch_the_skin", out errorMessage, out tipMessage, out showAnimations, hit.transform.gameObject.tag);
-                                        TIAR.CheckActionControl(stretch_the_skin, showAnimations, errorMessage, tipMessage, "stretch_the_skin");
+                                        TIAR.CheckActionControl("stretch_the_skin", hit.transform.gameObject);
                                         break;
                                 }
                             }
