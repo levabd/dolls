@@ -24,7 +24,7 @@ public class FinishExam : MonoBehaviour {
         }
 
         Finished = CurrentExam.Instance.Exam.Finish();
-        if (Finished == true)
+        if (Finished)
         {
             examControl.EndExam(Finished, "Поздравляем с успешным завершением");
         }

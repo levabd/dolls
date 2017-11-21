@@ -16,7 +16,6 @@ public class ActionController : MonoBehaviour {
     public GameObject ActionPositionPoint;
     public GameObject VeinPositionPoint;
     public GameObject TourniquetPositionPoint;
-    public Animator poseAnimator;
 
     // Use this for initialization
     void Start () {
@@ -76,8 +75,7 @@ public class ActionController : MonoBehaviour {
 	}
     
     public void ActionControl(bool action, string actionName)
-    {
-        
+    {        
         this.actionName = actionName;
         this.action = action;
     }
@@ -90,7 +88,7 @@ public class ActionController : MonoBehaviour {
            
             case "syringe":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -164,11 +162,6 @@ public class ActionController : MonoBehaviour {
                         case "throw_needle":
                             if (debugMode) { Debug.Log("Запуск анимации руки"); }
                             GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().SetBool("bend", true);
-                            //poseAnimator.SetBool("bend", true);
-                            //if (GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().gameObject.activeSelf)
-                            //{
-                            //    GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().Play("Take 001");
-                            //}
                             break;
                         case "needle_pull":
                             if (debugMode) { Debug.Log("Запуск анимации извлечения шприца"); }
@@ -201,7 +194,7 @@ public class ActionController : MonoBehaviour {
            
             case "tweezers":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -242,7 +235,7 @@ public class ActionController : MonoBehaviour {
 
             case "standart_catheter_conductor":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -275,7 +268,7 @@ public class ActionController : MonoBehaviour {
 
             case "soft_catheter_conductor":
 
-                if (actionName != "")
+                if(!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -307,7 +300,7 @@ public class ActionController : MonoBehaviour {
                 break;
 
             case "catheter":
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -364,7 +357,7 @@ public class ActionController : MonoBehaviour {
            
 
             case "patch":
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -395,8 +388,8 @@ public class ActionController : MonoBehaviour {
                 break;
 
 		    case "needle":
-			    if (actionName != "")
-			    {
+                if (!String.IsNullOrWhiteSpace(actionName))
+                {
 				    switch (actionName)
 				    {
 				        case "finger_covering":
@@ -423,7 +416,7 @@ public class ActionController : MonoBehaviour {
 			    break;
 
             case "hand":
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -462,7 +455,7 @@ public class ActionController : MonoBehaviour {
 
             case "tourniquet":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -503,7 +496,7 @@ public class ActionController : MonoBehaviour {
 
             case "gauze_balls":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -536,7 +529,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "venflon":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -579,7 +572,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "razor":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -610,7 +603,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "sterile_tissue":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -634,7 +627,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "trocar":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -690,7 +683,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "stitch":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -718,7 +711,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "scalpel":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -750,7 +743,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "bobrov_bank":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -774,7 +767,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "big":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -825,7 +818,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "stopcock":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -857,13 +850,12 @@ public class ActionController : MonoBehaviour {
                 break;
             case "manometer":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
 
                         case "get":
-
                             if (debugMode) { Debug.Log("Запуск позиционирования скальпеля"); }
                             TCS.ManometerCreate.SetActive(true);
                             break;
@@ -888,7 +880,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "phonendoscope":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -913,7 +905,7 @@ public class ActionController : MonoBehaviour {
                 break;
             case "invasive_sensor":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
@@ -938,13 +930,12 @@ public class ActionController : MonoBehaviour {
                 break;
             case "cannule":
 
-                if (actionName != "")
+                if (!String.IsNullOrWhiteSpace(actionName))
                 {
                     switch (actionName)
                     {
 
                         case "get":
-
                             if (debugMode) { Debug.Log("Запуск позиционирования канюли"); }
                             OffActionPosition(ActionPositionPoint);
                             OnActionPosition(VeinPositionPoint, "radial_artery");

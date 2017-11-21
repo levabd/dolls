@@ -10,12 +10,14 @@ public class MainLogController : MonoBehaviour {
     public bool activeControl = false;
     public bool trueColor = false;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (activeControl == true)
+        if (activeControl)
         {
             LogActionUpdate();
         }
@@ -23,15 +25,13 @@ public class MainLogController : MonoBehaviour {
 
     public void LogActionCreate(bool activeControl, bool whatColor, string actionLogText)
     {
-
         this.activeControl = activeControl;
         actionLog = actionLogText;
         trueColor = whatColor;
     }
 
     void LogActionUpdate()
-    {      
-        
+    {        
         Text mainLogItem = Instantiate(mainLogItemPrefab);
         mainLogItem.transform.SetParent(mainLogDisplay.transform, false);
         mainLogItem.text = actionLog;
@@ -49,14 +49,5 @@ public class MainLogController : MonoBehaviour {
         Canvas.ForceUpdateCanvases();
 
         activeControl = false;
-        // GameObject.Find("Scroll Rect").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
-        // int cCount = mainLogDisplay.transform.childCount;
-        // int width = 932;
-        // int height = ;
-        //float pTop = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.top;
-        //float pBottom = mainLogDisplay.GetComponent<VerticalLayoutGroup>().padding.bottom;
-        //float pSpacing = mainLogDisplay.GetComponent<VerticalLayoutGroup>().spacing;
-
-        //mainLogDisplay.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
     }
 }

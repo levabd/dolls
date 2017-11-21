@@ -37,27 +37,31 @@ public class ToolItemActionResponder : MonoBehaviour
     {
 
         CheckAction = CurrentExam.Instance.Exam.Action(actionName, out errorMessage, out tipMessage, out showAnimations, colliderHit != null ? colliderHit.tag : null);
+        CheckActionControl(CheckAction, showAnimations, errorMessage, tipMessage, actionName);
 
+        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+    }
 
+    public void CheckActionControl(bool _checkAction,  bool _showAnimations, string _errorMessage, string _tipMessage, string _actionName)
+    {
         if (!CheckAction)
         {
-            examControl.EndExam(false, errorMessage);
+            examControl.EndExam(false, _errorMessage);
         }
-        if (tipMessage != "")
+        if (!String.IsNullOrWhiteSpace(tipMessage))
         {
             CtrlStat.TipMessage(tipMessage);
         }
         if (showAnimations)
         {
             CtrlStat.activeControl = true;
-            ActionCtrl.ActionControl(activeControl, actionName);
+            ActionCtrl.ActionControl(activeControl, _actionName);
         }
-        CreateLogEntry();
-
-        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+        CreateLogEntry(_errorMessage);
     }
 
-    public void CreateLogEntry()
+
+    public void CreateLogEntry(string _errorMessage)
     {
         if (CurrentExam.Instance.Exam.TakenSteps.Count == MainLoglogCtrl.mainLogDisplay.transform.childCount)
         {
@@ -66,14 +70,10 @@ public class ToolItemActionResponder : MonoBehaviour
         string logActionText = CurrentExam.Instance.Exam.CorrectSteps[CurrentExam.Instance.Exam.TakenSteps.Last().Item1 - 1].Item2;
 
         bool logActionTextColor = CurrentExam.Instance.Exam.TakenSteps.Last().Item2;
-        if (!String.IsNullOrWhiteSpace(errorMessage))
+        if (!String.IsNullOrWhiteSpace(_errorMessage))
         {
-            logActionText = logActionText + "/" + errorMessage;
+            logActionText = logActionText + "/" + _errorMessage;
         }
-        //if (CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") && CurrentTool.Instance.Tool.StateParams["entry_angle"] != "")
-        //{
-        //    logActionText = "Угол наклона шприца = " + CurrentTool.Instance.Tool.StateParams["entry_angle"];
-        //}
         MainLoglogCtrl.LogActionCreate(activeControl, logActionTextColor, logActionText);
     }
 

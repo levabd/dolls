@@ -29,7 +29,7 @@ public class ControlStatusDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (activeControl == true)
+        if (activeControl)
         {
             ControlStatusUpdate();
         }    
