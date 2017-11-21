@@ -59,6 +59,21 @@ public class ActionController : MonoBehaviour {
         }
     }
 
+    public void CreateFromPrefab(GameObject prefabTool, GameObject transformGO, Vector3 prefabRotation, float destroyTime, string animation, bool animationBool)
+    {
+        if (!GameObject.Find("TransformSkin/" + prefabTool.name))
+        {
+            GameObject prefabAmination = Instantiate(prefabTool);
+            prefabAmination.name = prefabTool.name;
+            prefabAmination.transform.SetParent(transformGO.transform);
+            prefabAmination.transform.localPosition = new Vector3(0, 0, 0);
+            prefabAmination.transform.rotation = transformGO.transform.rotation;
+            prefabAmination.transform.localEulerAngles = prefabRotation;
+            prefabAmination.GetComponent<Animator>().SetBool(animation, animationBool);
+            Destroy(prefabAmination, destroyTime);
+        }
+    }
+
     public void OnActionPosition(GameObject position, string tag)
 	{
 		position.SetActive (true);
@@ -211,7 +226,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(сверху-вниз)"); }
 
 					        OffActionPosition (ActionPositionPoint);
-					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 4.5f);
+					        CreateFromPrefab (TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 4.5f, "DesinfectionUpDown", true);
 
                             break;
                         case "right_left":
@@ -219,7 +234,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации дезинфекции(слева-направо)"); }
 
 					        OffActionPosition (ActionPositionPoint);
-                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 4.5f);
+                            CreateFromPrefab(TCS.DesinfectionCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.Desinfection, 4.5f, "DesinfectionLeftRight", true);
 
                             break;
                          default:
