@@ -13,6 +13,7 @@ public class PositionPieceBody : MonoBehaviour {
     private string errorMessage;
     private string tipMessage;
     private bool showAnimations;
+    private bool embolia = true;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
     public GameObject Venflon;
@@ -25,9 +26,23 @@ public class PositionPieceBody : MonoBehaviour {
 
     }
 	
+    void Embolism()
+    {
+        if (embolia)
+        {
+            if (CurrentExam.Instance.Exam.CheckAirEmbolism() == "Повітряна емболія")
+            {
+                CurrentExam.Instance.Exam.AirEmbolismFinish("Повітряна емболія");
+                examControl.EndExam(false, "Повітряна емболія");
+                embolia = false;
+            }
+        }
+        
+    }
 
 	void Update ()
     {
+        Embolism();
         if (step1 && CurrentTool.Instance.Tool.cursorTexture != null)
         {
             Cursor.SetCursor(CurrentTool.Instance.Tool.cursorTexture, hotSpot, cursorMode);
