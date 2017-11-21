@@ -800,12 +800,12 @@ Prefab:
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224000819214505440, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -825,12 +825,12 @@ Prefab:
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224116779178496664, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
@@ -850,12 +850,12 @@ Prefab:
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224644027306314014, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
@@ -1032,6 +1032,9 @@ MonoBehaviour:
   MainLoglogCtrl: {fileID: 1107126318}
   examControl: {fileID: 1166830729}
   colliderHit: {fileID: 0}
+  CheckAction: 0
+  activeControl: 1
+  needleInVein: 0
 --- !u!114 &401152580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,7 +2017,6 @@ MonoBehaviour:
   ActionPositionPoint: {fileID: 245088688}
   VeinPositionPoint: {fileID: 1942087821}
   TourniquetPositionPoint: {fileID: 0}
-  poseAnimator: {fileID: 0}
 --- !u!114 &1107126314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,10 +2514,6 @@ Prefab:
       propertyPath: GetToolItemActionResponder
       value: 
       objectReference: {fileID: 401152579}
-    - target: {fileID: 1679039289922024, guid: ee55b2c0fa1b9154d8dc3eed23a42570, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee55b2c0fa1b9154d8dc3eed23a42570, type: 2}
   m_IsPrefabParent: 0
@@ -3036,7 +3034,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}

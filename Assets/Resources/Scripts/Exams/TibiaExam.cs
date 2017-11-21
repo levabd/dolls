@@ -180,9 +180,7 @@ class TibiaExam : BaseExam
             return 10;
         }
 
-        // Отсоединяем в любом другом месте
-        DateTime mockDateTime = DateTime.Now;
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref mockDateTime)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag)) return null;
 
         // { "syringe_nacl",                   "Наполнить шприц физраствором." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_nacl")
