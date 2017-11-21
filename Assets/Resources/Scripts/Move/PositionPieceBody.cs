@@ -22,6 +22,7 @@ public class PositionPieceBody : MonoBehaviour {
     
 
     void Start () {
+
     }
 	
 
@@ -137,7 +138,7 @@ public class PositionPieceBody : MonoBehaviour {
                             }
                             break;
                     }
-                    if (cameraPosition.transform.position != Camera.main.transform.position)
+                    if (cameraPosition.transform.position != Camera.main.transform.position && TIAR.CheckAction && (hit.transform.gameObject.tag == "disinfection_target" || hit.transform.gameObject.tag == "tourniquet_target" || hit.transform.gameObject.tag == "phonendoscope_target" || hit.transform.gameObject.tag == "palpation_target") )
                     {
                         step2 = true;
                     }

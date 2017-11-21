@@ -17,7 +17,7 @@ public class ToolItemActionResponder : MonoBehaviour
     private string errorMessage = "";
     private string tipMessage = "";
     private bool showAnimations;
-    private bool CheckAction;
+    public bool CheckAction;
     public bool activeControl = true;
     // Use this for initialization
     void Start()
