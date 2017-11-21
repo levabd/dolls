@@ -25,7 +25,8 @@ public class ControlTransformSyringe : MonoBehaviour {
     {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
-	}
+        CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
+    }
 	
 	void Update ()
     {

@@ -19,6 +19,7 @@ public class ToolItemActionResponder : MonoBehaviour
     private bool showAnimations;
     public bool CheckAction;
     public bool activeControl = true;
+    public bool needleInVein;
     // Use this for initialization
     void Start()
     {

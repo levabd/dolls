@@ -114,7 +114,14 @@ public class ActionController : MonoBehaviour {
 							TCSWC.SyringeEloneOff.SetActive (false);
                             if (CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle"))
                             {
-                                PBD.TIAR.CtrlStat.NeedlePanel.SetActive(true);
+                                if (!PBD.TIAR.needleInVein)
+                                {
+                                    PBD.TIAR.CtrlStat.TipMessage("Кінцеве місце пункції не досягнуте");
+                                }
+                                else
+                                {
+                                    PBD.TIAR.CtrlStat.NeedlePanel.SetActive(true);
+                                }
                             }                            
                             PBD.TIAR.CtrlStat.HintPanel.SetActive(false);
 
