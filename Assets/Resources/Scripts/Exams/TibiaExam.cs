@@ -4,6 +4,8 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 class TibiaExam : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "Внутрішньокістковий доступ в великогомілкову кістку";
     public override string LoadName => "TibiaExam";
 
@@ -132,7 +134,7 @@ class TibiaExam : BaseExam
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
-            SyringeHelper.CheckAnestesiaNeedle(out errorMessage);
+            SyringeHelper.CheckAnestesiaNeedle(out errorMessage, ref showAnimation);
             return 6;
         }
 

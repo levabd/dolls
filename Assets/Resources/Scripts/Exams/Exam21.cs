@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class Exam21 : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "Периферичний венозний доступ №20 Забір крові з серединної вени ліктя";
     public override string LoadName => "Exam21";
 

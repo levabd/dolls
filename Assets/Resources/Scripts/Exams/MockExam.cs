@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class MockExam : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "Тестовий сценарій";
     public override string LoadName => "1";
 

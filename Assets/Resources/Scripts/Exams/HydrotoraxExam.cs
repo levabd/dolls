@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class HydrotoraxExam : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "Декомпресія і дренування плевральної порожнини хворому з гідротораксом / піоторакс / гемотораксом зліва";
     public override string LoadName => "HydrotoraxExam";
 
@@ -144,7 +147,7 @@ class HydrotoraxExam : BaseExam
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
-            SyringeHelper.CheckAnestesiaNeedle(out errorMessage);
+            SyringeHelper.CheckAnestesiaNeedle(out errorMessage, ref showAnimation);
             return 6;
         }
 

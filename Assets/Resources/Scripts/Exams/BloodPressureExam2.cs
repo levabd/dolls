@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class BloodPressureExam2 : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "Вимірювання артеріального тиску справжнім манометром";
     public override string LoadName => "BloodPressureExam2";
 
@@ -149,7 +152,7 @@ class BloodPressureExam2 : BaseExam
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
-            SyringeHelper.CheckAnestesiaNeedle(out errorMessage);
+            SyringeHelper.CheckAnestesiaNeedle(out errorMessage, ref showAnimation);
             return 7;
         }
 

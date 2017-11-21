@@ -26,16 +26,19 @@ public static class SyringeHelper
         return true;
     }
 
-    public static bool CheckAnestesiaNeedle(out string errorMessage)
+    // ReSharper disable once RedundantAssignment
+    public static bool CheckAnestesiaNeedle(out string errorMessage, ref bool showAnimation)
     {
         if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
         {
             errorMessage = "Відсутня голка";
+            showAnimation = false;
             return false;
         }
 
         errorMessage = CurrentTool.Instance.Tool.StateParams.ContainsKey("needle") && CurrentTool.Instance.Tool.StateParams["needle"] == "anesthesia_needle" ? "" : "Невідповідна голка";
 
+        showAnimation = String.IsNullOrEmpty(errorMessage);
         return String.IsNullOrEmpty(errorMessage);
     }
 
@@ -154,12 +157,10 @@ public static class SyringeHelper
         return false;
     }
 
-    public static bool NeedleRemovingAction(this BaseExam exam, string actionCode, ref string errorMessage, ref string tipMessage, string locatedColliderTag, ref DateTime needleRemovingMoment, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
+    public static bool NeedleRemovingAction(this BaseExam exam, string actionCode, ref string errorMessage, ref string tipMessage, string locatedColliderTag, string targetLocatedColliderTag = "", float minAngle = 0, float maxAngle = 180)
     {
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")
         {
-            needleRemovingMoment = DateTime.Now;
-
             CurrentTool.Instance.Tool.StateParams.Remove("piston_pulling");
             CurrentTool.Instance.Tool.StateParams["has_needle"] = "false";
             CurrentTool.Instance.Tool.StateParams.Remove("needle");
@@ -170,6 +171,8 @@ public static class SyringeHelper
             {
                 if (locatedColliderTag == targetLocatedColliderTag)
                 {
+                    exam.NeedleRemovingMoment = DateTime.Now;
+
                     tipMessage = "До від'єднання голки кінцева точка пункції була досягнута";
                     if (maxAngle < 180)
                         if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float

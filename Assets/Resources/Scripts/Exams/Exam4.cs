@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 class Exam4 : BaseExam
 {
-    private DateTime _needleRemovingMoment;
+    public override DateTime NeedleRemovingMoment { get; set; }
 
     public override string Name => "Периферичний венозний доступ №3 Пахвова вена";
     public override string LoadName => "Exam4";
@@ -220,15 +220,15 @@ class Exam4 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "remove") return 13;
 
         //{ "disconnect_syringe",             "Від'єднати шприц від голки" },
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref _needleRemovingMoment, "axillary_vien_final_target", 28, 32)) return 14;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, "axillary_vien_final_target", 28, 32)) return 14;
 
         // Отсоединяем в любом другом месте
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "", ref _needleRemovingMoment)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "")) return null;
 
         //{ "cover_cannula",                  "Швидко прикриваємо канюлю пальцем" },
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 5)
+            if ((DateTime.Now - NeedleRemovingMoment).TotalSeconds > 5)
             {
                 errorMessage = "Повітряна емболія";
                 return null;

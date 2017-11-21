@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 class Exam6 : BaseExam
 {
-    private DateTime _needleRemovingMoment;
+    public override DateTime NeedleRemovingMoment { get; set; }
 
     public override string Name => "Центральний венозний доступ №5 Внутрішня яремна вена (задній доступ)";
     public override string LoadName => "Exam6";
@@ -188,7 +188,7 @@ class Exam6 : BaseExam
         //{ "anesthesia",                     "Сделать местную анестезию." },
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
-            SyringeHelper.CheckAnestesiaNeedle(out errorMessage);
+            SyringeHelper.CheckAnestesiaNeedle(out errorMessage, ref showAnimation);
             return 10;
         }
 
@@ -200,15 +200,15 @@ class Exam6 : BaseExam
         if (errorMessage == "Відсутня голка") return null;
 
         //{ "disconnect_syringe",             "Від'єднати шприц від голки" },
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref _needleRemovingMoment, "internal_jugular2_vein_final_target")) return 13;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, "internal_jugular2_vein_final_target")) return 13;
 
         // Отсоединяем в любом другом месте
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "", ref _needleRemovingMoment)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "")) return null;
 
         //{ "cover_cannula",                  "Швидко прикриваємо канюлю пальцем" },
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 5)
+            if ((DateTime.Now - NeedleRemovingMoment).TotalSeconds > 5)
             {
                 errorMessage = "Повітряна емболія";
                 return null;

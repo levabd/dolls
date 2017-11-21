@@ -106,7 +106,7 @@ public abstract class BaseExam: IExamInterface
                     tipMessage = "Вітаємо. Крок виконано абсолютно вірно.";
             }
             else
-                tipMessage = "Крок виконано невірно. " + errorMessage + " Бажано переробити сценарій. Натисніть «Завершити сценарій».";
+                tipMessage = "Крок виконано невірно. " + errorMessage + ". Бажано переробити сценарій. Натисніть «Завершити сценарій».";
             TakeStep((int) stepNumber, stepResult, errorMessage);
         }
 
@@ -150,7 +150,27 @@ public abstract class BaseExam: IExamInterface
 
         return true;
     }
+
+    public string CheckAirEmbolism()
+    {
+        if (NeedleRemovingMoment != DateTime.MinValue && (DateTime.Now - NeedleRemovingMoment).TotalSeconds > 5)
+            return "Повітряна емболія";
+
+        return "";
+    }
+
+    public void AirEmbolismFinish(string errorMessage)
+    {
+        if (_examModel == null)
+            _examModel = new Exam(CurrentUser.User, Name, "");
+
+        _examModel.Passed = false;
+        SaveModel(errorMessage);
+    }
+
     public abstract string Name { get; }
+
+    public abstract DateTime NeedleRemovingMoment { get; set; }
 
     public abstract string LoadName { get; }
 

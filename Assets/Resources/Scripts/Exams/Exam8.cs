@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 class Exam8 : BaseExam
 {
-    private DateTime _needleRemovingMoment;
+    public override DateTime NeedleRemovingMoment { get; set; }
 
     public override string Name => "Центральний венозний доступ №7 Зовнішня яремна вена";
     public override string LoadName => "Exam8";
@@ -73,6 +73,7 @@ class Exam8 : BaseExam
             case "syringe":
                 return new TupleList<string, string>
                 {
+                    { "get",                    "Взяти шприц з голкою" },
                     { "needle_removing",        "Від'єднати від голки" },
                     { "anesthesia",             "Зробити місцеву анестезію" },
                     { "piston_pulling",         "Потягування поршня на себе" },
@@ -201,15 +202,15 @@ class Exam8 : BaseExam
         if (this.GetNeedleAction(actionCode, ref errorMessage, "a45_d4_d14_punction_needle", 10, ref showAnimation)) return 11;
 
         //{ "disconnect_syringe",             "Від'єднати шприц від голки" },
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref _needleRemovingMoment, "external_jugular_vein_final_target", 10, 15)) return 12;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, "external_jugular_vein_final_target", 10, 15)) return 12;
 
         // Отсоединяем в любом другом месте
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "", ref _needleRemovingMoment)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "")) return null;
 
         //{ "cover_cannula",                  "Швидко прикриваємо канюлю пальцем" },
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            if ((DateTime.Now - _needleRemovingMoment).TotalSeconds > 5)
+            if ((DateTime.Now - NeedleRemovingMoment).TotalSeconds > 5)
             {
                 errorMessage = "Повітряна емболія";
                 return null;

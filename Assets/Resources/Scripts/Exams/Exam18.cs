@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class Exam18 : BaseExam
@@ -6,6 +7,8 @@ class Exam18 : BaseExam
 #pragma warning disable 414
     private bool _needleInsideTarget;
 #pragma warning restore 414
+
+    public override DateTime NeedleRemovingMoment { get; set; }
 
     public override string Name => "Периферичний венозний доступ №17 Внутрішньовенна ін'єкція в вену стопи";
     public override string LoadName => "Exam18";

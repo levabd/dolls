@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 class BloodPressureExam1 : BaseExam
 {
+    public override DateTime NeedleRemovingMoment { get; set; }
+
     public override string Name => "NIMP Вимірювання артеріального тиску (метод Короткова)";
     public override string LoadName => "BloodPressureExam1";
 
