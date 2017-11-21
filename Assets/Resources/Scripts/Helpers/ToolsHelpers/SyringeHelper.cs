@@ -65,6 +65,7 @@ public static class SyringeHelper
         return false;
     }
 
+    // ReSharper disable once RedundantAssignment
     public static bool GetNeedleAction(this BaseExam exam, string actionCode, ref string errorMessage, string targetNeedle, int lastStep, ref bool showAnimation)
     {
         Dictionary<string, int> needleDict = new Dictionary<string, int>
@@ -165,7 +166,7 @@ public static class SyringeHelper
             CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[1];
             CurrentTool.Instance.Tool.Title = "Шприц без голки";
 
-            if (!String.IsNullOrEmpty(targetLocatedColliderTag))
+            if (!String.IsNullOrEmpty(targetLocatedColliderTag) && !String.IsNullOrEmpty(locatedColliderTag))
             {
                 if (locatedColliderTag == targetLocatedColliderTag)
                 {
@@ -189,6 +190,8 @@ public static class SyringeHelper
                     return false;
                 }
             }
+            else
+                tipMessage = "Голка успішно від'єднана";
                 
             return true;
         }

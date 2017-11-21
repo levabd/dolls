@@ -203,7 +203,7 @@ class Exam6 : BaseExam
         if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref _needleRemovingMoment, "internal_jugular2_vein_final_target")) return 13;
 
         // Отсоединяем в любом другом месте
-        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, locatedColliderTag, ref _needleRemovingMoment)) return null;
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "", ref _needleRemovingMoment)) return null;
 
         //{ "cover_cannula",                  "Швидко прикриваємо канюлю пальцем" },
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
