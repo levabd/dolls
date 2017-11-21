@@ -9,6 +9,7 @@ public class ControlTransformSyringe : MonoBehaviour {
 
     private GameObject Syringe;
     private GameObject SyringeModel;
+    private GameObject SyringeElone;
     public Text ToolAngels;
     [Header("Поворот в градусах")]
     public int stateParamRotate;
@@ -25,37 +26,39 @@ public class ControlTransformSyringe : MonoBehaviour {
     {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
-        CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
+        SyringeElone = SyringeModel.transform.GetChild(1).transform.gameObject; 
     }
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != 80)
-        {
-            IncreaseAngle();
-            print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
-            if (TIAR.CtrlStat.HintPanel)
+        
+            if (Input.GetKeyDown(KeyCode.A) && stepCounter == 0 && toolAngel != 80)
             {
-                TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+                IncreaseAngle();
+                print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
+                if (TIAR.CtrlStat.HintPanel)
+                {
+                    TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != -10)
-        {
-            ReduceAngle();
-            print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
-            if (TIAR.CtrlStat.HintPanel)
+            if (Input.GetKeyDown(KeyCode.D) && stepCounter == 0 && toolAngel != -10)
             {
-                TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+                ReduceAngle();
+                print($"{CurrentTool.Instance.Tool.StateParams["entry_angle"]}");
+                if (TIAR.CtrlStat.HintPanel)
+                {
+                    TIAR.CtrlStat.entryAngle.text = CurrentTool.Instance.Tool.StateParams["entry_angle"];
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false)
-        {
-            TransformIn();
-        }
-        if (Input.GetKeyDown(KeyCode.S)&& stepCounter > 0)
-        {
-            TransformOut();
-        }
+            if (Input.GetKeyDown(KeyCode.W) && EndNeedleInCollider == false && SyringeElone.activeSelf)
+            {
+                TransformIn();
+                CurrentTool.Instance.Tool.StateParams["entry_angle"] = System.Convert.ToString(toolAngel);
+            }
+            if (Input.GetKeyDown(KeyCode.S) && stepCounter > 0 && SyringeElone.activeSelf)
+            {
+                TransformOut();
+            }
 
     }
 
