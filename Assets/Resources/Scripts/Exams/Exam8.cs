@@ -31,8 +31,8 @@ class Exam8 : BaseExam
         { "wire_removing",                  "Витягнути провідник" },
         { "liquid_transfusion_connection",  "З'єднати з системою переливання рідини" },
         { "get_plaster",                    "Взяти пластир" },
-        { "fixation_with_plaster",          "Фіксація пластиром" },
-        { "clamp_out_the_vein",             "Відпускаємо зовнішню яремну вену" }
+        { "fixation_with_plaster",          "Фіксація пластиром" }
+        //{ "clamp_out_the_vein",             "Відпускаємо зовнішню яремну вену" }
     };
 
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
@@ -229,7 +229,7 @@ class Exam8 : BaseExam
         if (this.CateterFinalise(actionCode, ref errorMessage, locatedColliderTag, "standart_catheter_conductor", 14, out returnedStep, ref showAnimation)) return returnedStep;
 
         //{ "clamp_out_the_vein",             "Відпускаємо зовнішню яремну вену" }
-        if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp_out") return 22;
+        //if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp_out") return 22;
 
         // Добавление иголки
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode.Contains("_needle"))
