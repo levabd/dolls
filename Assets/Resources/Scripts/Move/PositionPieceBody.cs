@@ -83,7 +83,7 @@ public class PositionPieceBody : MonoBehaviour {
 
                             CurrentTool.Instance.Tool.StateParams["entry_angle"] = "90";
                             actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);                            
-                            TIAR.CheckActionControl("big", hit.transform.gameObject);
+                            //TIAR.CheckActionControl("big", hit.transform.gameObject);
                             break;
                         case "cannule":
                             actionController.OffActionPosition(actionController.VeinPositionPoint);

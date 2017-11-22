@@ -23,6 +23,7 @@ class TibiaExam : BaseExam
         { "fixation_with_plaster",          "Фіксація пластиром" },
         { "syringe_nacl",                   "Наповнити шприц фізрозчином" },
         { "big_nacl",                       "Ввести фізрозчин" },
+        { "big_impose",                     "Зафіксувати кран" },
         { "big_stopcock",                   "Приєднати запірний кран з системою для інфузії" }
     };
 
@@ -205,8 +206,8 @@ class TibiaExam : BaseExam
             return 12;
         }
 
-        // { "big_stopcock",                   "Подсоеденить запорный кран с системой для инфузии." }
-        if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "connect")
+        // { "big_stopcock",                   "Подсоеденить запорный кран." }
+        if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "impose")
         {
             if (LastTakenStep() != 12)
             {
@@ -214,6 +215,17 @@ class TibiaExam : BaseExam
                 errorMessage = "Спочатку введіть фізрозчин";
             }
             return 13;
+        }
+
+        // { "big_stopcock",                   "Подсоеденить запорный кран с системой для инфузии." }
+        if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "connect")
+        {
+            if (LastTakenStep() != 13)
+            {
+                showAnimation = false;
+                errorMessage = "Спочатку зафіксуйте кран";
+            }
+            return 14;
         }
 
         // Добавление иголки
