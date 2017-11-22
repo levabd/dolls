@@ -43,6 +43,7 @@ public class ToolControllerSkin : MonoBehaviour {
     public GameObject MonitorCreate;
     [Header("Анимации с манометром")]
     public GameObject ManometerCreate;
+    public GameObject StethoscopeCreate;
 
     // Use this for initialization
     void Start () {

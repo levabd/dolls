@@ -127,6 +127,11 @@ public class PositionPieceBody : MonoBehaviour {
                             }
                             TIAR.CheckActionControl("stick", hit.transform.gameObject);                            
                             break;
+                        case "phonendoscope":                           
+                                TCS.StethoscopeCreate.SetActive(true);
+                            
+                            TIAR.CheckActionControl("set", hit.transform.gameObject);
+                            break;
 
                         case "hand":
                             if (actionController.actionName != "")
