@@ -163,7 +163,11 @@ class HydrotoraxExam : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "trocar" && actionCode == "pull")
         {
             if (locatedColliderTag != "pleural_cavity")
-                errorMessage = "Дренажний троакар не досяг цілі";
+            {
+                showAnimation = false;
+                errorMessage = "Дренажний троакар не досяг цілі, або не був вставлений";
+                return null;
+            }
 
             return 8;
         }

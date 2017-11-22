@@ -12,6 +12,7 @@ class BloodPressureExam1 : BaseExam
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
         { "palpation",                    "Пальпуємо артерію" },
+        { "phonendoscope_get",            "Приєднуємо фонендоскоп" },
         { "manometer_close_piston",       "Закрити клапан манометра" },
         { "manometer_pump_it",            "Накачати манометр" },
         { "manometer_air_out",            "Випустити повітря" }
@@ -36,7 +37,6 @@ class BloodPressureExam1 : BaseExam
             case "manometer":
                 return new TupleList<string, string>
                 {
-                    { "get",                  "Одягти" },
                     { "pump_it",              "Накачати" },
                     { "air_out",              "Випустить повітря" },
                     { "close_piston",         "Закрити клапан" },
@@ -88,29 +88,48 @@ class BloodPressureExam1 : BaseExam
             return 1;
         }
 
-        // { "manometer_close_piston",       "Закрыть клапан манометра" },
-        if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "close_piston") return 2;
+        // { "phonendoscope_get",            "Приєднуємо фонендоскоп" },
+        if (CurrentTool.Instance.Tool.CodeName == "phonendoscope" && actionCode == "set")
+        {
+            if (LastTakenStep() != 1)
+            {
+                errorMessage = "Не була пропальпована артерія";
+                showAnimation = false;
+            }
+            return 2;
+        }
 
-        // { "manometer_pump_it",            "Накачать манометр" },
-        if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "pump_it")
+        // { "manometer_close_piston",       "Закрыть клапан манометра" },
+        if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "close_piston")
         {
             if (LastTakenStep() != 2)
             {
-                errorMessage = "Клапан не був закритий";
+                errorMessage = "Не було приєднано фонендоскоп";
                 showAnimation = false;
             }
             return 3;
         }
 
+        // { "manometer_pump_it",            "Накачать манометр" },
+        if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "pump_it")
+        {
+            if (LastTakenStep() != 3)
+            {
+                errorMessage = "Клапан не був закритий";
+                showAnimation = false;
+            }
+            return 4;
+        }
+
         // { "manometer_air_out",            "Выпустить воздух" }
         if (CurrentTool.Instance.Tool.CodeName == "manometer" && actionCode == "air_out")
         {
-            if (LastTakenStep() != 3)
+            if (LastTakenStep() != 4)
             {
                 errorMessage = "Не було закачане повітря";
                 showAnimation = false;
             }
-            return 4;
+            return 5;
         }
 
         // Добавление иголки
