@@ -13,7 +13,7 @@ public class PositionPieceBody : MonoBehaviour {
     private string errorMessage;
     private string tipMessage;
     private bool showAnimations;
-    private bool embolia = true;
+    public bool embolia = true;
     public EndExamControlPanel examControl;
     public GameObject Syringe;
     public GameObject Venflon;

@@ -419,6 +419,7 @@ public class ActionController : MonoBehaviour {
                             if (debugModeForAnimation) { Debug.Log("Запуск анимации прикрытия иглы пальцем"); }
                             ActionPositionPoint.SetActive(false);
                             VeinPositionPoint.SetActive(false);
+                            PBD.embolia = false;
 
                             break;
 				        case "needle_removing":
