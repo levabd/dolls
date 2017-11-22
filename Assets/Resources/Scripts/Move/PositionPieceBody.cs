@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+
 
 public class PositionPieceBody : MonoBehaviour {
 
@@ -21,11 +23,35 @@ public class PositionPieceBody : MonoBehaviour {
     public ToolControllerSkin TCS;
 	public ToolItemActionResponder TIAR;
     
+    private List<string> piercingTools => new List<string>
+    {
+        "syringe",
+        "venflon",
+        "tweezers",
+        "big",
+        "cannule",
+        "razor",
+        "trocar",
+        "stitch",
+        "scalpel"
+    };
 
-    void Start () {
-
+    void Start ()
+    {
+        
     }
 	
+    void CheckPositionPiercingTools(bool checkAction)
+    {
+        foreach (var piercingTool in piercingTools)
+        {
+            if (piercingTool == CurrentTool.Instance.Tool.name && !checkAction)
+            {
+                TIAR.CtrlStat.TipMessage("Гострим інструментом було досягнуто не те місце!");
+            }
+        }
+    }
+
     void Embolism()
     {
         if (embolia)
