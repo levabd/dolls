@@ -37,12 +37,12 @@ public class EndExamControlPanel : MonoBehaviour {
         {
             if (PassedExam)
             {
-                GoEndPanel(PassedBackgroundPanel, "Екзамен пройдено успішно", BlueEndPanel);
+                GoEndPanel(PassedBackgroundPanel, "Сценарій пройдено", BlueEndPanel);
                 ActiveEndPanel = false;
             }
             else
             {
-                GoEndPanel(NotPassedBackgroundPanel, "Екзамен не пройден", RedEndPanel);
+                GoEndPanel(NotPassedBackgroundPanel, "Сценарій не пройдено", RedEndPanel);
                 ActiveEndPanel = false;
             }
         }

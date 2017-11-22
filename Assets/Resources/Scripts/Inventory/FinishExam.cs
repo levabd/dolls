@@ -26,11 +26,11 @@ public class FinishExam : MonoBehaviour {
         Finished = CurrentExam.Instance.Exam.Finish();
         if (Finished)
         {
-            examControl.EndExam(Finished, "Поздравляем с успешным завершением");
+            examControl.EndExam(Finished, "Вітаємо з успішним проходженням");
         }
         else
         {
-            examControl.EndExam(Finished, "В ходе экзамена были допущены ошибки");
+            examControl.EndExam(Finished, "При виконанні сценарію були допущені помилки");
         }
     }
 }
