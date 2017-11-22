@@ -154,7 +154,10 @@ public abstract class BaseExam: IExamInterface
     public string CheckAirEmbolism()
     {
         if (NeedleRemovingMoment != DateTime.MinValue && (DateTime.Now - NeedleRemovingMoment).TotalSeconds > 5)
+        {
+            NeedleRemovingMoment = DateTime.MinValue;
             return "Повітряна емболія";
+        }
 
         return "";
     }
