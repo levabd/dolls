@@ -6,7 +6,7 @@ class Exam14 : BaseExam
 {
     public override DateTime NeedleRemovingMoment { get; set; }
 
-    public override string Name => "Периферичний венозний доступ №13 Внутрішньовенна ін'єкція в вену ліктьового згину";
+    public override string Name => "Периферичний венозний доступ №13 Внутрішньовенна ін'єкція в латеральну вену ліктьового згину";
     public override string LoadName => "Exam14";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
