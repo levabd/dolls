@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class StepListView : MonoBehaviour {
     public Button LogoutButton;
     public Button Exit;
     public Button BackButton;
+    public Button RepeatButton;
     public Button ExamsButton;
 
     public Text Name;
@@ -64,6 +66,9 @@ public class StepListView : MonoBehaviour {
         btn = BackButton.GetComponent<Button>();
         btn.onClick.AddListener(OpenExamList);
 
+        btn = RepeatButton.GetComponent<Button>();
+        btn.onClick.AddListener(RepeatExam);
+
         btn = ExamsButton.GetComponent<Button>();
         btn.onClick.AddListener(OpenExams);
 
@@ -102,6 +107,14 @@ public class StepListView : MonoBehaviour {
     void CloseModal()
     {
         Dialog.SetActive(false);
+    }
+
+    void RepeatExam()
+    {
+        Type examType = CurrentExam.Instance.Exam.GetType();
+        CurrentExam.Instance.Exam = null;
+        CurrentExam.Instance.Exam = (BaseExam)Activator.CreateInstance(examType);
+        SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
     }
 
     void CloseApp()

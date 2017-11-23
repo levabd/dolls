@@ -68,7 +68,7 @@ class SkinExamView : MonoBehaviour
         _rend1.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend2.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
         _rend3.material.SetColor("_Color", new Color(234 / 255f, 192 / 255f, 134 / 255f, 1));
-        new Exam(CurrentUser.User, "Серцево-легенева реанімація", "", true).Save();
+        new Exam(CurrentUser.User, GetType().Name, "Серцево-легенева реанімація", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

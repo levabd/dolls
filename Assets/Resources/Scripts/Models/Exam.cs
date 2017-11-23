@@ -26,24 +26,30 @@ namespace DB.Models
         public int? Id { get; private set; }
         public User User => User.FindById(_userId);
         public string Name { get; set; }
+        public string Class { get; set; }
         public string Error { get; set; }
         public bool Passed { get; set; }
         public DateTime PassedAt => new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(_passedAtTimestamp).ToLocalTime();
 
-        public Exam(int userId, string name, string error, bool passed = false)
+        public Exam(int userId, string _class, string name, string error, bool passed = false)
         {
+            if (String.IsNullOrWhiteSpace(_class))
+                throw new ArgumentException("Exam class cannot be empty", nameof(_class));
             if (String.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Exam name cannot be empty", nameof(name));
 
             _userId = userId;
             Name = name.Trim();
+            Class = _class.Trim();
             Error = error;
             _passedAtTimestamp = (Int32)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             Passed = passed;
         }
 
-        public Exam(User user, string name, string error, bool passed = false)
+        public Exam(User user, string _class, string name, string error, bool passed = false)
         {
+            if (String.IsNullOrWhiteSpace(_class))
+                throw new ArgumentException("Exam class cannot be empty", nameof(_class));
             if (String.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Exam name cannot be empty", nameof(name));
             if (user?.Id == null)
@@ -51,16 +57,18 @@ namespace DB.Models
 
             _userId = user.Id ?? 0;
             Name = name.Trim();
+            Class = _class.Trim();
             Error = error;
             _passedAtTimestamp = (Int32)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             Passed = passed;
         }
 
-        private Exam(int id, int userId, string name, string error, int passed, int passedAtTimestamp)
+        private Exam(int id, int userId, string _class, string name, string error, int passed, int passedAtTimestamp)
         {
             Id = id;
             _userId = userId;
             Name = name.Trim();
+            Class = _class.Trim();
             Error = error;
             _passedAtTimestamp = passedAtTimestamp;
             Passed = passed != 0;
@@ -77,10 +85,11 @@ namespace DB.Models
 
             Id = id;
             _userId = (int)currentExam[1];
-            Name = (string)currentExam[2];
-            Error = (string)currentExam[3];
-            Passed = (int)currentExam[4] != 0;
-            _passedAtTimestamp = (int)currentExam[5];
+            Class = (string)currentExam[2];
+            Name = (string)currentExam[3];
+            Error = (string)currentExam[4];
+            Passed = (int)currentExam[5] != 0;
+            _passedAtTimestamp = (int)currentExam[6];
         }
 
         public static Exam FindById(int? id)
@@ -110,7 +119,7 @@ namespace DB.Models
             int fromTimestamp = (Int32)fromDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             int toTimestamp = (Int32)toDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
-            string query = "SELECT id, user_id, name, error_message, passed, passed_at FROM Exams WHERE " +
+            string query = "SELECT id, user_id, class, name, error_message, passed, passed_at FROM Exams WHERE " +
                 "passed_at >= '" + fromTimestamp + "' AND passed_at <= '" + toTimestamp + "' ";
 
             if (filterByName)
@@ -143,7 +152,7 @@ namespace DB.Models
 
             foreach (var rawExam in rawExams)
             {
-                Exam exam = new Exam((int)rawExam[0], (int)rawExam[1], (string)rawExam[2], (string)rawExam[3], (int)rawExam[4], (int)rawExam[5]);
+                Exam exam = new Exam((int)rawExam[0], (int)rawExam[1], (string)rawExam[2], (string)rawExam[3], (string)rawExam[4], (int)rawExam[5], (int)rawExam[6]);
                 exams.Add(exam);
             }
 
@@ -156,8 +165,8 @@ namespace DB.Models
             {
                 DbPerference.Instance.Dbconn().Open();
                 IDbCommand dbcmd = DbPerference.Instance.Dbconn().CreateCommand();
-                dbcmd.CommandText = "INSERT INTO Exams (user_id, name, error_message, passed, passed_at) VALUES ('" +
-                                    _userId + "', '" + Name.Replace("'", "''") + "', '" + Error.Replace("'", "''") + "', '" + (Passed ? "1" : "0") + "', '" +
+                dbcmd.CommandText = "INSERT INTO Exams (user_id, class, name, error_message, passed, passed_at) VALUES ('" +
+                                    _userId + "', '" + Class + "', '" + Name.Replace("'", "''") + "', '" + Error.Replace("'", "''") + "', '" + (Passed ? "1" : "0") + "', '" +
                                     _passedAtTimestamp + "')";
                 dbcmd.ExecuteNonQuery();
                 dbcmd.CommandText = "SELECT last_insert_rowid()";
@@ -169,7 +178,7 @@ namespace DB.Models
             }
             else //Update
             {
-                Execute("UPDATE Exams SET user_id = '" + _userId + "', name = '" + Name.Trim().Replace("'", "''") + "', error_message = '" +
+                Execute("UPDATE Exams SET user_id = '" + _userId + "', class = '" + Class.Trim() + "', name = '" + Name.Trim().Replace("'", "''") + "', error_message = '" +
                         Error.Trim().Replace("'", "''") + "', passed = '" + (Passed ? "1" : "0") + "', passed_at = '" + _passedAtTimestamp + 
                         "' WHERE id = '" + Id + "'");
             }

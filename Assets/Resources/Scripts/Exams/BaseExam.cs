@@ -37,7 +37,7 @@ public abstract class BaseExam: IExamInterface
 
         if (_examModel == null)
         {
-            _examModel = new Exam(CurrentUser.User, Name, "");
+            _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
             _examModel.Save();
         }
 
@@ -65,7 +65,7 @@ public abstract class BaseExam: IExamInterface
         if (!result)
         {
             if (_examModel == null)
-                _examModel = new Exam(CurrentUser.User, Name, "");
+                _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
 
             _examModel.Passed = false;
             SaveModel(errorMessage);
@@ -85,7 +85,7 @@ public abstract class BaseExam: IExamInterface
         if (stepNumber == null && !String.IsNullOrEmpty(errorMessage))
         {
             if (_examModel == null)
-                _examModel = new Exam(CurrentUser.User, Name, "");
+                _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
 
             _examModel.Passed = false;
             SaveModel(errorMessage);
@@ -119,7 +119,7 @@ public abstract class BaseExam: IExamInterface
     public bool Finish()
     {
         if (_examModel == null)
-            _examModel = new Exam(CurrentUser.User, Name, "");
+            _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
 
         _examModel.Passed = false;
 
@@ -165,7 +165,7 @@ public abstract class BaseExam: IExamInterface
     public void AirEmbolismFinish(string errorMessage)
     {
         if (_examModel == null)
-            _examModel = new Exam(CurrentUser.User, Name, "");
+            _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
 
         _examModel.Passed = false;
         SaveModel(errorMessage);
