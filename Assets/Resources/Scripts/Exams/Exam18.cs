@@ -56,11 +56,6 @@ class Exam18 : BaseExam
                     { "wear_examination", "Одягти оглядові рукавички"},
                     { "wear_sterile",     "Змінити рукавички на стерильні"}
                 };
-            case "gown":
-                return new TupleList<string, string>
-                {
-                    { "wear", "Одягти"}
-                };
             case "tourniquet":
                 return new TupleList<string, string>
                 {

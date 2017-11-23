@@ -41,13 +41,13 @@ public class PositionPieceBody : MonoBehaviour {
         
     }
 	
-    void CheckPositionPiercingTools(bool checkAction)
+    void CheckPositionPiercingTools(string target)
     {
         foreach (var piercingTool in piercingTools)
         {
-            if (piercingTool == CurrentTool.Instance.Tool.name && !checkAction)
+            if (piercingTool == CurrentTool.Instance.Tool.name && target == "boby_target")
             {
-                TIAR.CtrlStat.TipMessage("Гострим інструментом було досягнуто не те місце!");
+                TIAR.CtrlStat.TipMessage("Ви не потрапили інструментом у потрібне місце");
             }
         }
     }
@@ -86,7 +86,7 @@ public class PositionPieceBody : MonoBehaviour {
                 CheckPosition = CurrentExam.Instance.Exam.Move(hit.transform.gameObject.tag, out errorMessage, out tipMessage);
                 Cursor.SetCursor(null, hotSpot, cursorMode);
 
-                
+                CheckPositionPiercingTools(hit.transform.gameObject.tag);
                 if (CheckPosition)
                 {
 					TIAR.colliderHit = hit.transform.gameObject;

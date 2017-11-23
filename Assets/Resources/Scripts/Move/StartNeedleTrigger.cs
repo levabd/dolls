@@ -36,7 +36,7 @@ public class StartNeedleTrigger : MonoBehaviour {
             if (col.gameObject.tag.Contains("vein") || col.gameObject.tag.Contains("vien"))
             {
                 TIAR.needleInVein = true;
-                TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Игла вошла в вену");
+                TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Голка потрапила в вену");
                 vein = true;
             }        
         }
