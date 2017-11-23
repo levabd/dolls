@@ -183,6 +183,7 @@ public class ActionController : MonoBehaviour {
                             break;
                         case "throw_needle":
                             if (debugMode) { Debug.Log("Запуск анимации руки"); }
+                            Destroy(GameObject.Find("TransformSkin/GauzeBallsEnclose"));
                             GameObject.Find("pose_10_11_12_13_14_15_21_Collider").GetComponent<Animator>().SetBool("bend", true);
                             break;
                         case "needle_pull":
