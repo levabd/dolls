@@ -45,7 +45,7 @@ public class PositionPieceBody : MonoBehaviour {
     {
         foreach (var piercingTool in piercingTools)
         {
-            if (piercingTool == CurrentTool.Instance.Tool.name && target == "boby_target")
+            if (piercingTool == CurrentTool.Instance.Tool.name && target == "body_target")
             {
                 TIAR.CtrlStat.TipMessage("Ви не потрапили інструментом у потрібне місце");
             }
