@@ -134,7 +134,7 @@ class EyeExamRetinaView : MonoBehaviour
         {
             bool examResult = CheckExam();
             _finished = true;
-            Exam exam = new Exam(CurrentUser.User, "Відшарування сітківки", examResult ? "" : "Тест не пройдено, перевірте свої відповіді на кожному кроці", examResult);
+            Exam exam = new Exam(CurrentUser.User, GetType().Name, "Відшарування сітківки", examResult ? "" : "Тест не пройдено, перевірте свої відповіді на кожному кроці", examResult);
             exam.Save();
             CurrentAdminExam.Exam = exam;
             GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді на кожному кроці",

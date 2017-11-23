@@ -199,7 +199,7 @@ class EyeExamCoagulationView : MonoBehaviour
     private void Finish(bool examResult, string errorMessage = "")
     {
         _finished = true;
-        Exam exam = new Exam(CurrentUser.User, "Фотокоагуляція", examResult ? "" : errorMessage, examResult);
+        Exam exam = new Exam(CurrentUser.User, GetType().Name, "Фотокоагуляція", examResult ? "" : errorMessage, examResult);
         exam.Save();
         CurrentAdminExam.Exam = exam;
         GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : errorMessage,

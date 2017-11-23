@@ -110,7 +110,8 @@ namespace DB.Models
 
         public IDbConnection Dbconn()
         {
-            return _dbconn ?? (_dbconn = new SqliteConnection("URI=file:" + Application.dataPath + "/dolls.db"));
+            // C:/Users/%user%/AppData/LocalLow/DPIProjects/ClinicalSkills
+            return _dbconn ?? (_dbconn = new SqliteConnection("URI=file:" + Application.persistentDataPath + "/dolls.db"));
         } 
     }
 }

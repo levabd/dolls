@@ -145,7 +145,7 @@ class LungsAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        new Exam(CurrentUser.User, "Тренажер для аускультації легень", "", true).Save();
+        new Exam(CurrentUser.User, GetType().Name, "Тренажер для аускультації легень", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

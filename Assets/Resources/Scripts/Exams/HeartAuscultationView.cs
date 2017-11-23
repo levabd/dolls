@@ -155,7 +155,7 @@ class HeartAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        new Exam(CurrentUser.User, "Тренажер для аускультації серця", "", true).Save();
+        new Exam(CurrentUser.User, GetType().Name, "Тренажер для аускультації серця", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 
