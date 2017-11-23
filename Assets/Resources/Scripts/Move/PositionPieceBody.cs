@@ -93,10 +93,27 @@ public class PositionPieceBody : MonoBehaviour {
                     switch (CurrentTool.Instance.Tool.name)
                     {
                         case "syringe":
-                            actionController.OffActionPosition(actionController.VeinPositionPoint);
+                            string needle;
+                            if (CurrentTool.Instance.Tool.StateParams.TryGetValue("has_needle", out needle))
+                            {
+                                if (needle == "true")
+                                {
 
-                            Syringe.SetActive(true);
-                            TCS.SkinCollider.SetActive(true);
+                                    actionController.OffActionPosition(actionController.VeinPositionPoint);
+
+                                    Syringe.SetActive(true);
+                                    TCS.SkinCollider.SetActive(true);
+                                }
+                                else
+                                {
+                                    TIAR.CtrlStat.TipMessage("Шприц без голки");
+                                }
+                            }
+                            else
+                            {
+                                TIAR.CtrlStat.TipMessage("Шприц без голки");
+                            }
+                            
                             break;
                         case "venflon":
                             actionController.OffActionPosition(actionController.VeinPositionPoint);
