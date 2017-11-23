@@ -9123,9 +9123,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350784734}
   m_LocalRotation: {x: -0.07095852, y: -0.054280467, z: -0.8540138, w: 0.5125222}
-  m_LocalPosition: {x: -20.16, y: 25.62, z: -61.41}
+  m_LocalPosition: {x: -21.6, y: 27.7, z: -61.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1704627942}
   m_Father: {fileID: 351149009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -9.523001, y: 3.8120003, z: -118.379005}
@@ -9194,15 +9195,15 @@ MonoBehaviour:
     ClampVeins: {x: 0, y: 0, z: 0}
     ConductorInANeedle: {x: 0, y: 0, z: 0}
     ConductorOut: {x: 0, y: 0, z: 0}
-    Desinfection: {x: 180, y: 0, z: 0}
+    Desinfection: {x: 136, y: 0, z: 36}
     GauzeBallsEnclose: {x: 0, y: 0, z: 90}
     GauzeBallsRubUpDown: {x: 0, y: 0, z: 90}
     HandWithPatch: {x: 56, y: -28, z: 17}
-    NapkinPut: {x: 99, y: 21, z: 120}
+    NapkinPut: {x: 107, y: -17, z: 95}
     NeedleOut: {x: 0, y: 0, z: 0}
-    Paplation: {x: 60, y: 65, z: 165}
+    Paplation: {x: 76, y: 52, z: 151}
     ReleaseTheVein: {x: 0, y: 0, z: 0}
-    Shave: {x: -273, y: -85, z: 0}
+    Shave: {x: 148, y: -43, z: 90}
     StretchTheSkin: {x: 0, y: 0, z: 90}
     StretchTheSkinLeft: {x: 0, y: 0, z: 90}
     VenflonTransfusion: {x: 0, y: 0, z: 0}
@@ -11089,7 +11090,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410299479}
-  m_LocalRotation: {x: -0.6747251, y: 0.7347223, z: -0.044916067, w: -0.053960174}
+  m_LocalRotation: {x: -0.6747251, y: 0.7347223, z: -0.044916067, w: -0.05396017}
   m_LocalPosition: {x: -0.21241103, y: 0.96654904, z: -0.18582688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11372,7 +11373,7 @@ MonoBehaviour:
     type: 2}
   GauzeBallsRubUpDownCreate: {fileID: 1539830380161056, guid: c2042fdb1338c7a429b9e2900fa1978d,
     type: 2}
-  ShaveCreate: {fileID: 1673849421382716, guid: ec617c72af9c8c24e8469a5fc8741bba,
+  ShaveCreate: {fileID: 1210637320506714, guid: f5f2970fde9b3d740b6b0a6b9111b2af,
     type: 2}
   NapkinPutCreate: {fileID: 1385785931710138, guid: 60feca057320434469f2622d4083c8f8,
     type: 2}
@@ -39476,7 +39477,7 @@ Prefab:
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}
@@ -45011,6 +45012,88 @@ Transform:
   m_Father: {fileID: 953893170}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1704627941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1704627942}
+  - component: {fileID: 1704627945}
+  - component: {fileID: 1704627944}
+  - component: {fileID: 1704627943}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1704627942
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704627941}
+  m_LocalRotation: {x: 0.0000000037252907, y: 0.0000000037252907, z: 0.05807734, w: 0.9983121}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 350784735}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1704627943
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704627941}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1704627944
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704627941}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1704627945
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704627941}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1705081974
 GameObject:
   m_ObjectHideFlags: 0

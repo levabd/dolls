@@ -600,14 +600,14 @@ public class ActionController : MonoBehaviour {
                 {
                     switch (actionName)
                     {
-                        case "get_razor":
+                        //case "get_razor":
 
-                            if (debugMode) { Debug.Log("Запуск позиционирования бритвы"); }
+                        //    if (debugMode) { Debug.Log("Запуск позиционирования бритвы"); }
 
-                            OnActionPosition(ActionPositionPoint, "disinfection_target");
-                            PBD.step1 = true;
+                        //    OnActionPosition(ActionPositionPoint, "disinfection_target");
+                        //    PBD.step1 = true;
 
-                            break;
+                        //    break;
                         case "shave_pubis":
 
                             if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
