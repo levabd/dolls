@@ -18,11 +18,10 @@ public class TutorialController : MonoBehaviour
         
     }
 
-    public void TutorialCreate()
+    public void TutorialCreate(string examLoadName)
     {
-        //Sprite[] sp = Resources.LoadAll<Sprite>("Tutorials/Test" + CurrentExam.Instance.Exam.Name);
-        sp = Resources.LoadAll<Sprite>("Tutorials/Test");
-        foreach (var t in sp) Debug.Log(t.name);
+        sp = Resources.LoadAll<Sprite>("Tutorials/" + examLoadName);
+        //foreach (var t in sp) Debug.Log(t.name);
         Prime(sp);
     }
 
