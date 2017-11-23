@@ -26,7 +26,20 @@ public class ControlTransformSyringe : MonoBehaviour {
     {
         Syringe = this.gameObject;
         SyringeModel = this.gameObject.transform.GetChild(0).transform.gameObject;
-        SyringeElone = SyringeModel.transform.GetChild(1).transform.gameObject; 
+        //SyringeElone = SyringeModel.transform.GetChild(1).transform.gameObject;
+        for (int i = 0; i < SyringeModel.transform.childCount; i++)
+        {
+            string child = SyringeModel.transform.GetChild(i).transform.gameObject.name;
+            if (child == "SyringeElone" || child == "Main")
+            {
+                SyringeElone = SyringeModel.transform.GetChild(i).transform.gameObject;
+                break;
+            }
+            else
+            {
+                SyringeElone = SyringeModel;
+            }
+        }
     }
 	
 	void Update ()
