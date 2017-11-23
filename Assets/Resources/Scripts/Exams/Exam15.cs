@@ -31,7 +31,6 @@ class Exam15 : BaseExam
     public override Dictionary<string, string> InventoryTool => new Dictionary<string, string>
     {
         { "gloves",                         "Рукавички" },
-        { "gown",                           "Халат" },
         { "hand",                           "Рука для додаткових дій" },
         { "gauze_balls",                    "Стерильні марлеві кульки" },
         { "tweezers",                       "Пінцет без нічого" },
