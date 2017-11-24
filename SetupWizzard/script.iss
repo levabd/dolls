@@ -15,14 +15,14 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={pf}\MedicalDolls
+DefaultDirName={pf}\ClinicalSkills
 DisableProgramGroupPage=yes
-LicenseFile=F:\Repos\dolls\SetupWizzard\LICENSE.txt
-InfoBeforeFile=F:\Repos\dolls\SetupWizzard\BEFORE.txt
-InfoAfterFile=F:\Repos\dolls\SetupWizzard\AFTER.txt
-OutputDir=F:\Repos\dolls\SetupWizzard
-OutputBaseFilename=DollsSetup
-SetupIconFile=F:\Repos\dolls\SetupWizzard\icon2.ico
+LicenseFile=LICENSE.txt
+InfoBeforeFile=BEFORE.txt
+InfoAfterFile=AFTER.txt
+OutputDir=..\SetupWizzard
+OutputBaseFilename=ClinicalSkillsSetup
+SetupIconFile=icon2.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -34,10 +34,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
+[Dirs]
+Name: "{%USERPROFILE}\AppData\LocalLow\DPIProjects"
+Name: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"
+
 [Files]
-Source: "F:\Repos\dolls\Build\dolls.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Repos\dolls\SetupWizzard\dolls.db"; DestDir: "{USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
-Source: "F:\Repos\dolls\Build\dolls_Data\*"; DestDir: "{app}\dolls_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\Build\dolls.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dolls.db"; DestDir: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
+Source: "..\Build\dolls_Data\*"; DestDir: "{app}\dolls_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

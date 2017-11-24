@@ -18,6 +18,10 @@ class EyeExamCoagulationView : MonoBehaviour
     public Image RedLight;
     public Image BlueLight;
 
+    public Image ProgressBar;
+    public Image ProgressBarContainer;
+    public Text ProgressBarText;
+
     public Texture2D CursorTexture;
 
     public Dropdown LaserWaveLength;
@@ -44,9 +48,9 @@ class EyeExamCoagulationView : MonoBehaviour
 
     private bool CheckCrater(int cx, int cy)
     {
-        for (int y = cy - (int)(CratersRadius * 1.1); y < cy + CratersRadius * 1.1; y++)
+        for (int y = cy - (int)(CratersRadius * 0.8); y < cy + CratersRadius * 0.8; y++)
         {
-            for (int x = cx - (int)(CratersRadius * 1.15); x < cx + CratersRadius * 1.15; x++)
+            for (int x = cx - (int)(CratersRadius * 0.85); x < cx + CratersRadius * 0.85; x++)
                 if (_texture.GetPixel(x, y) != Color.clear)
                     return false;
         }
@@ -77,6 +81,15 @@ class EyeExamCoagulationView : MonoBehaviour
         }
 
         _texture.Apply();
+    }
+
+    private void ChangePercent(double percent)
+    {
+        Debug.Log(percent);
+        float newWidth = (float)(percent * ProgressBarContainer.rectTransform.rect.width);
+        ProgressBar.rectTransform.sizeDelta = new Vector2(newWidth, 0);
+        ProgressBar.transform.localPosition = new Vector2(0 - (ProgressBarContainer.rectTransform.rect.width - newWidth) / 2, 0);
+        ProgressBarText.text = percent < 0.09 ? "" : Math.Round(percent * 100, 2) + "%";
     }
 
     // Update is called once per frame
@@ -129,6 +142,8 @@ class EyeExamCoagulationView : MonoBehaviour
 
             DrawCrater(cx, cy);
             _cratersCount++;
+
+            ChangePercent(_cratersCount / 300.0);
         }
     }
 
@@ -199,7 +214,7 @@ class EyeExamCoagulationView : MonoBehaviour
     private void Finish(bool examResult, string errorMessage = "")
     {
         _finished = true;
-        Exam exam = new Exam(CurrentUser.User, GetType().Name, "Фотокоагуляція", examResult ? "" : errorMessage, examResult);
+        Exam exam = new Exam(CurrentUser.User, "EyeExamCoagulationExam", "Фотокоагуляція", examResult ? "" : errorMessage, examResult);
         exam.Save();
         CurrentAdminExam.Exam = exam;
         GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : errorMessage,

@@ -14,9 +14,16 @@ class HeartAuscultationView : MonoBehaviour
 
     public GameObject StatusDisplay;
 
-    public GameObject Equalizer;
+    //public GameObject Equalizer;
 
     public Dropdown Condition;
+
+    public GameObject PinkAuscultation;
+    public GameObject PurpleAuscultation;
+    public GameObject GreenAuscultation;
+    public GameObject RedAuscultation;
+    public GameObject BlueAuscultation;
+    public GameObject YellowAuscultation;
 
     public GameObject Dialog;
     public Button DialogButton;
@@ -120,6 +127,9 @@ class HeartAuscultationView : MonoBehaviour
         btn = DialogButton.GetComponent<Button>();
         btn.onClick.AddListener(CloseModal);
 
+        Dropdown drpdwn = Condition.GetComponent<Dropdown>();
+        drpdwn.onValueChanged.AddListener(DropdownChange);
+
         EventTrigger trigger = StatusDisplay.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry
         {
@@ -142,6 +152,59 @@ class HeartAuscultationView : MonoBehaviour
         Cursor.SetCursor(CursorTexture, Vector2.zero, CursorMode.Auto);
     }
 
+    void DropdownChange(int value)
+    {
+        if (Condition.value == 0) // Normal
+        {
+            PinkAuscultation.SetActive(true);
+            PurpleAuscultation.SetActive(true);
+            GreenAuscultation.SetActive(true);
+            RedAuscultation.SetActive(true);
+            BlueAuscultation.SetActive(true);
+            YellowAuscultation.SetActive(true);
+        }
+
+        if (Condition.value == 1) // Мітральний стеноз
+        {
+            PinkAuscultation.SetActive(true);
+            PurpleAuscultation.SetActive(true);
+            GreenAuscultation.SetActive(false);
+            RedAuscultation.SetActive(false);
+            BlueAuscultation.SetActive(false);
+            YellowAuscultation.SetActive(false);
+        }
+
+        if (Condition.value == 2) // Недостатність мітрального клапана
+        {
+            PinkAuscultation.SetActive(true);
+            PurpleAuscultation.SetActive(true);
+            GreenAuscultation.SetActive(false);
+            RedAuscultation.SetActive(false);
+            BlueAuscultation.SetActive(false);
+            YellowAuscultation.SetActive(false);
+        }
+
+        if (Condition.value == 3) // Стеноз вістя аорти
+        {
+            PinkAuscultation.SetActive(false);
+            PurpleAuscultation.SetActive(false);
+            GreenAuscultation.SetActive(false);
+            RedAuscultation.SetActive(true);
+            BlueAuscultation.SetActive(false);
+            YellowAuscultation.SetActive(false);
+        }
+
+        if (Condition.value == 4) // Шум на аортальному клапані
+        {
+            PinkAuscultation.SetActive(false);
+            PurpleAuscultation.SetActive(false);
+            GreenAuscultation.SetActive(false);
+            RedAuscultation.SetActive(true);
+            BlueAuscultation.SetActive(false);
+            YellowAuscultation.SetActive(false);
+        }
+    }
+
     public void SetCustomCursor(BaseEventData baseEvent)
     {
         Cursor.SetCursor(CursorTexture, Vector2.zero, CursorMode.Auto);
@@ -155,7 +218,7 @@ class HeartAuscultationView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        new Exam(CurrentUser.User, GetType().Name, "Тренажер для аускультації серця", "", true).Save();
+        new Exam(CurrentUser.User, "HeartAuscultationExam", "Тренажер для аускультації серця", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 
