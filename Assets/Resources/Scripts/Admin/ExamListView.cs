@@ -30,7 +30,8 @@ public class ExamListView : MonoBehaviour
     private List<Exam> _exams;
 
     public GameObject Tutorial;
-    public GameObject TutorialControllerObject;
+    public Button TutorialCloseButton;
+    public TutorialController TutorialControllerObj;
 
     public GameObject Dialog;
     public Button DialogButton;
@@ -94,6 +95,9 @@ public class ExamListView : MonoBehaviour
 
         btn = LogoutButton.GetComponent<Button>();
         btn.onClick.AddListener(Logout);
+
+        btn = TutorialCloseButton.GetComponent<Button>();
+        btn.onClick.AddListener(TutorialClose);
 
         btn = ExamsButton.GetComponent<Button>();
         btn.onClick.AddListener(OpenExams);
@@ -161,6 +165,11 @@ public class ExamListView : MonoBehaviour
         Dialog.SetActive(false);
     }
 
+    void TutorialClose()
+    {
+        Tutorial.SetActive(false);
+    }
+
     void PassedFilterClick()
     {
         _passedFilter = Exam.PassedFilter.Passed;
@@ -221,8 +230,7 @@ public class ExamListView : MonoBehaviour
                 if (examType != null)
                 {
                     BaseExam currentExam = (BaseExam)Activator.CreateInstance(examType);
-                    TutorialController tutorialController = Tutorial.GetComponent<TutorialController>();
-                    tutorialController.TutorialCreate(currentExam.LoadName);
+                    TutorialControllerObj.TutorialCreate(currentExam.LoadName);
                     Tutorial.SetActive(true);
                 }
             }
