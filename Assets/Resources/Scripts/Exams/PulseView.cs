@@ -122,7 +122,7 @@ class PulseView : MonoBehaviour
     void FinishEvent()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        new Exam(CurrentUser.User, GetType().Name, "Наявність пульсу на артеріях", "", true).Save();
+        new Exam(CurrentUser.User, "PulseExam", "Наявність пульсу на артеріях", "", true).Save();
         SceneManager.LoadScene("ExamList");
     }
 

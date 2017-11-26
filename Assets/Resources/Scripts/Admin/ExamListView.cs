@@ -7,11 +7,10 @@ using UnityEngine.SceneManagement;
 using DB.Models;
 using SLS.Widgets.Table;
 using UI.Dates;
-using Debug = UnityEngine.Debug;
 
 // ReSharper disable once CheckNamespace
-public class ExamListView : MonoBehaviour {
-
+public class ExamListView : MonoBehaviour
+{
     public Button LogoutButton;
     public Button Exit;
     public Button ExamsButton;
@@ -24,10 +23,14 @@ public class ExamListView : MonoBehaviour {
     public Text Name;
 
     public Image DataTable;
+    public Sprite TutorialIcon;
     public Sprite PassedIcon;
     public Sprite NotPassedIcon;
     private Table _dataTable;
     private List<Exam> _exams;
+
+    public GameObject Tutorial;
+    public GameObject TutorialControllerObject;
 
     public GameObject Dialog;
     public Button DialogButton;
@@ -37,11 +40,6 @@ public class ExamListView : MonoBehaviour {
     public DatePicker ExamToDate;
     public Dropdown ExamsDropdown;
     public InputField UsernameFilterInputField;
-    
-    [Header("Tutorial")]
-    public Text TutorialHeader;
-    public TutorialController TutorialController;
-    public Button TutorialCloseButton;
 
     private Exam.PassedFilter _passedFilter = Exam.PassedFilter.All;
 
@@ -55,8 +53,8 @@ public class ExamListView : MonoBehaviour {
         if (ExamFromDate.SelectedDate.HasValue) Debug.Log(ExamFromDate.SelectedDate.Date);
 
         _exams = Exam.Find(
-            ExamFromDate.SelectedDate.HasValue ? ExamFromDate.SelectedDate.Date.AddDays(-1) : new DateTime(1970, 1, 1), 
-            ExamToDate.SelectedDate.HasValue ? ExamToDate.SelectedDate.Date.AddDays(1) : DateTime.Now.AddDays(1), 
+            ExamFromDate.SelectedDate.HasValue ? ExamFromDate.SelectedDate.Date.AddDays(-1) : new DateTime(1970, 1, 1),
+            ExamToDate.SelectedDate.HasValue ? ExamToDate.SelectedDate.Date.AddDays(1) : DateTime.Now.AddDays(1),
             examName, userName, _passedFilter);
 
         int index = 0;
@@ -68,8 +66,11 @@ public class ExamListView : MonoBehaviour {
             if (CurrentUser.User.Role == User.UserRoles.Manager) d.elements.Add(exam.User.Name);
             d.elements.Add(exam.Name);
             d.elements.Add(exam.Error);
-            d.elements.Add("Детальніше ➦");
+            d.elements.Add("Пройти знову ➦");
             d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 4 : 3].color = new Color(0, 0, 1f);
+            d.elements.Add("Деталізація покроково ➦");
+            d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 5 : 4].color = new Color(0, 0, 1f);
+            d.elements.Add("tutorial");
             d.elements.Add(exam.PassedAt.Date.ToString("dd MMMM yyyy"));
             d.elements.Add(exam.Passed ? "passed" : "not_passed");
 
@@ -81,7 +82,7 @@ public class ExamListView : MonoBehaviour {
     // Unused Unity Methods
     // Update is called once per frame
     // ReSharper disable once UnusedMember.Local
-    void Update() {  }
+    void Update() { }
 
     // Initialisation
     // ReSharper disable once UnusedMember.Local
@@ -129,14 +130,17 @@ public class ExamListView : MonoBehaviour {
         if (CurrentUser.User.Role == User.UserRoles.Manager) _dataTable.AddTextColumn("ПІБ", null, 300f, 300f);
         _dataTable.AddTextColumn("Назва тесту", null, 500f, 500f);
         _dataTable.AddTextColumn("Помилка", null, 400f, 400f);
-        _dataTable.AddTextColumn("Деталізація", null, 150f, 150f);
+        _dataTable.AddTextColumn("", null, 180f, 180f);
+        _dataTable.AddTextColumn("", null, 250f, 250f);
+        _dataTable.AddImageColumn("Інструкція");
         _dataTable.AddTextColumn("Дата проходження", null, 150f, 150f);
         _dataTable.AddImageColumn("Результат");
 
         Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>
         {
-            {"passed", PassedIcon},
-            {"not_passed", NotPassedIcon}
+            { "tutorial", TutorialIcon},
+            { "passed", PassedIcon},
+            { "not_passed", NotPassedIcon}
         };
 
         _dataTable.Initialize(OnTableSelectedWithCol, spriteDict);
@@ -197,8 +201,30 @@ public class ExamListView : MonoBehaviour {
         {
             if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 4)
             {
+                Type examType = Type.GetType(_exams[Int32.Parse(datum.uid)].Class);
+                if (examType != null)
+                {
+                    BaseExam currentExam = (BaseExam)Activator.CreateInstance(examType);
+                    SceneManager.LoadScene(currentExam.LoadName);
+                }
+            }
+
+            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 5)
+            {
                 CurrentAdminExam.Exam = _exams[Int32.Parse(datum.uid)];
                 SceneManager.LoadScene("StepList");
+            }
+
+            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 6)
+            {
+                Type examType = Type.GetType(_exams[Int32.Parse(datum.uid)].Class);
+                if (examType != null)
+                {
+                    BaseExam currentExam = (BaseExam)Activator.CreateInstance(examType);
+                    TutorialController tutorialController = Tutorial.GetComponent<TutorialController>();
+                    tutorialController.TutorialCreate(currentExam.LoadName);
+                    Tutorial.SetActive(true);
+                }
             }
         }
     }

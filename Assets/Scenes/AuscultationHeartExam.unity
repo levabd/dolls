@@ -632,8 +632,13 @@ MonoBehaviour:
   "\u0421amera": {fileID: 2096941543}
   CursorTexture: {fileID: 2800000, guid: 47050b3a9a32d8449ba6a48618b2b6d1, type: 3}
   StatusDisplay: {fileID: 1579130653}
-  Equalizer: {fileID: 0}
   Condition: {fileID: 1581035657}
+  PinkAuscultation: {fileID: 1228919568}
+  PurpleAuscultation: {fileID: 693328047}
+  GreenAuscultation: {fileID: 732699670}
+  RedAuscultation: {fileID: 730276781}
+  BlueAuscultation: {fileID: 597057835}
+  YellowAuscultation: {fileID: 290190543}
   Dialog: {fileID: 183452400}
   DialogButton: {fileID: 696545591}
   DialogText: {fileID: 934593837}
@@ -4284,8 +4289,7 @@ MonoBehaviour:
     - m_Text: "\u0421\u0442\u0435\u043D\u043E\u0437 \u0432\u0456\u0441\u0442\u044F
         \u0430\u043E\u0440\u0442\u0438"
       m_Image: {fileID: 0}
-    - m_Text: "\u0428\u0443\u043C \u043D\u0430 \u0430\u043E\u0440\u0442\u0430\u043B\u044C\u043D\u043E\u043C\u0443
-        \u043A\u043B\u0430\u043F\u0430\u043D\u0456"
+    - m_Text: "\u0410\u043E\u0440\u0442\u0430\u043B\u044C\u043D\u0430 \u043D\u0435\u0434\u043E\u0441\u0442\u0430\u0442\u043D\u0456\u0441\u0442\u044C"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

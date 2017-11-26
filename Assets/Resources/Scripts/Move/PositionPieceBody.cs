@@ -56,7 +56,7 @@ public class PositionPieceBody : MonoBehaviour {
     {
         if (embolia)
         {
-            if (CurrentExam.Instance.Exam.CheckAirEmbolism() == "Повітряна емболія")
+            if (CurrentExam.Instance?.Exam.CheckAirEmbolism() == "Повітряна емболія")
             {
                 CurrentExam.Instance.Exam.AirEmbolismFinish("Повітряна емболія");
                 examControl.EndExam(false, "Повітряна емболія");
