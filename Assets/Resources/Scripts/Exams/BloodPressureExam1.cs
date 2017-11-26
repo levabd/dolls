@@ -96,6 +96,11 @@ class BloodPressureExam1 : BaseExam
                 errorMessage = "Не була пропальпована артерія";
                 showAnimation = false;
             }
+            if (!locatedColliderTag.Contains("phonendoscope_target"))
+            {
+                errorMessage = "Фонендоскоп встановлений не туди";
+                showAnimation = false;
+            }
             return 2;
         }
 
