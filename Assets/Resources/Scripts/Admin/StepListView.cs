@@ -80,6 +80,7 @@ public class StepListView : MonoBehaviour {
         ExamDescription.color = CurrentAdminExam.Exam.Passed ? Color.green : Color.red;
 
         ExamsButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
+        RepeatButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
 
         // Initialize Table
         _dataTable = DataTable.GetComponent<Table>();

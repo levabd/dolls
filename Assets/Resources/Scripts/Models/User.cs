@@ -7,7 +7,7 @@ namespace DB.Models
 {
     public static class CurrentUser
     {
-        public static User User = User.FindById(3);
+        public static User User = User.FindById(2);
     }
 
     public class User: BaseModel

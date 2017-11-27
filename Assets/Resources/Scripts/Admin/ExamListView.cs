@@ -67,10 +67,13 @@ public class ExamListView : MonoBehaviour
             if (CurrentUser.User.Role == User.UserRoles.Manager) d.elements.Add(exam.User.Name);
             d.elements.Add(exam.Name);
             d.elements.Add(exam.Error);
-            d.elements.Add("Пройти знову ➦");
-            d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 4 : 3].color = new Color(0, 0, 1f);
+            if (CurrentUser.User.Role == User.UserRoles.User)
+            {
+                d.elements.Add("Пройти знову ➦");
+                d.elements[3].color = new Color(0, 0, 1f);
+            }
             d.elements.Add("Деталізація покроково ➦");
-            d.elements[CurrentUser.User.Role == User.UserRoles.Manager ? 5 : 4].color = new Color(0, 0, 1f);
+            d.elements[4].color = new Color(0, 0, 1f);
             d.elements.Add("tutorial");
             d.elements.Add(exam.PassedAt.Date.ToString("dd MMMM yyyy"));
             d.elements.Add(exam.Passed ? "passed" : "not_passed");
@@ -134,7 +137,7 @@ public class ExamListView : MonoBehaviour
         if (CurrentUser.User.Role == User.UserRoles.Manager) _dataTable.AddTextColumn("ПІБ", null, 300f, 300f);
         _dataTable.AddTextColumn("Назва тесту", null, 500f, 500f);
         _dataTable.AddTextColumn("Помилка", null, 400f, 400f);
-        _dataTable.AddTextColumn("", null, 180f, 180f);
+        if (CurrentUser.User.Role == User.UserRoles.User) _dataTable.AddTextColumn("", null, 180f, 180f);
         _dataTable.AddTextColumn("", null, 250f, 250f);
         _dataTable.AddImageColumn("Інструкція");
         _dataTable.AddTextColumn("Дата проходження", null, 150f, 150f);
@@ -167,6 +170,7 @@ public class ExamListView : MonoBehaviour
 
     void TutorialClose()
     {
+        Debug.Log("Tutorial Close");
         Tutorial.SetActive(false);
     }
 
@@ -208,7 +212,7 @@ public class ExamListView : MonoBehaviour
         if (datum == null) return;
         if (column != null)
         {
-            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 4)
+            if (CurrentUser.User.Role == User.UserRoles.User && column.idx == 3)
             {
                 Type examType = Type.GetType(_exams[Int32.Parse(datum.uid)].Class);
                 if (examType != null)
@@ -218,13 +222,13 @@ public class ExamListView : MonoBehaviour
                 }
             }
 
-            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 5)
+            if (column.idx == 4)
             {
                 CurrentAdminExam.Exam = _exams[Int32.Parse(datum.uid)];
                 SceneManager.LoadScene("StepList");
             }
 
-            if (Convert.ToInt32(CurrentUser.User.Role == User.UserRoles.User) + column.idx == 6)
+            if (column.idx == 5)
             {
                 Type examType = Type.GetType(_exams[Int32.Parse(datum.uid)].Class);
                 if (examType != null)
