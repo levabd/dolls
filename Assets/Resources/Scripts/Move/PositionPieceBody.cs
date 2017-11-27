@@ -179,8 +179,15 @@ public class PositionPieceBody : MonoBehaviour {
                                 switch (actionController.actionName)
                                 {
                                     case "get_palpation":
-                                        actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
-                                        TIAR.CheckActionControl("palpation", hit.transform.gameObject);
+                                        if (!GameObject.Find("Stethoscope"))
+                                        {
+                                            actionController.CreateFromPrefab(TCS.PalpationCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.Paplation, 4f);
+                                            TIAR.CheckActionControl("palpation", hit.transform.gameObject);
+                                        }
+                                        else
+                                        {
+                                            TIAR.CtrlStat.TipMessage("Напевно, ви робите зайву дію");
+                                        }
                                         break;
                                     case "get_clamp":
                                         actionController.CreateFromPrefab(TCS.ClampVeinCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.ClampVeins, 2000f);
