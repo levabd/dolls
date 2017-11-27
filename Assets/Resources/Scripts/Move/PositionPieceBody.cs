@@ -127,11 +127,6 @@ public class PositionPieceBody : MonoBehaviour {
                             actionController.CreateFromPrefab(actionController.TCS.BIG, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.moveTools.BIG, 2000f);                            
                             //TIAR.CheckActionControl("big", hit.transform.gameObject);
                             break;
-                        case "cannule":
-                            actionController.OffActionPosition(actionController.VeinPositionPoint);
-
-                            actionController.CreateFromPrefab(actionController.TCS.CannuleEnterCreate, actionController.TCS.gameObject, actionController.PrefabTransformCtrl.animationTool.CannuleEnter, 2000f);
-                            break;
                         case "trocar":
 
                             actionController.CreateFromPrefab(actionController.TCS.DrenajToIncisionCreate, actionController.TCS.SkinTransform, actionController.PrefabTransformCtrl.animationTool.DrenajToIncision, 2000f);

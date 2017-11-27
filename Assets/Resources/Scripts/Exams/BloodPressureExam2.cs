@@ -167,10 +167,7 @@ class BloodPressureExam2 : BaseExam
         // { "remove_mandren",                 "Вынимаем из канюли мандрен" },
         if (CurrentTool.Instance.Tool.CodeName == "cannule" && actionCode == "remove_mandren")
         {
-            if (locatedColliderTag == "radial_artery")
-                return 9;
-
-            return null;
+            return 9;
         }
 
         // { "pull_cannula",                   "Канюля тянется на себя" },

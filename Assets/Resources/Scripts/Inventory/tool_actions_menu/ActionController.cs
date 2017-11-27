@@ -956,14 +956,23 @@ public class ActionController : MonoBehaviour {
 
                 if (!String.IsNullOrWhiteSpace(actionName))
                 {
+                    string errorMessage, tipMessage;
                     switch (actionName)
                     {
-
                         case "get":
                             if (debugMode) { Debug.Log("Запуск позиционирования канюли"); }
-                            OffActionPosition(ActionPositionPoint);
-                            OnActionPosition(VeinPositionPoint, "radial_artery");
-                            PBD.step1 = true;
+                            if (!GameObject.Find("ToolPosition/CannuleEnter"))
+                            {
+                                OffActionPosition(ActionPositionPoint);
+                                OnActionPosition(VeinPositionPoint, "radial_artery");
+                                CurrentExam.Instance.Exam.Move("radial_artery", out errorMessage, out tipMessage);
+                                OffActionPosition(VeinPositionPoint);
+                                CreateFromPrefab(TCS.CannuleEnterCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.CannuleEnter, 2000f);
+                            }
+                            else
+                            {
+                                PBD.TIAR.CtrlStat.TipMessage("Канюля вже вставлена");
+                            }
 
                             break;
                         case "push":
