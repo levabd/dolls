@@ -94,19 +94,17 @@ public class PositionPieceBody : MonoBehaviour {
                     {
                         case "syringe":
                             string needle;
-                            if (CurrentTool.Instance.Tool.StateParams.TryGetValue("has_needle", out needle))
+                            if (CurrentTool.Instance.Tool.StateParams.TryGetValue("has_needle", out needle) && needle == "true")
                             {
-                                if (needle == "true")
+                                if (hit.transform.gameObject.tag == "vein_target")
                                 {
-
                                     actionController.OffActionPosition(actionController.VeinPositionPoint);
-
                                     Syringe.SetActive(true);
                                     TCS.SkinCollider.SetActive(true);
                                 }
                                 else
                                 {
-                                    TIAR.CtrlStat.TipMessage("Шприц без голки");
+                                    examControl.EndExam(false, "Шприц було спрямовано не в те місце");
                                 }
                             }
                             else
