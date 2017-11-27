@@ -37,6 +37,7 @@ public class StartNeedleTrigger : MonoBehaviour {
             {
                 TIAR.needleInVein = true;
                 TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Голка потрапила в вену");
+                TIAR.CtrlStat.TipMessage("Голка потрапила в вену");
                 vein = true;
             }        
         }

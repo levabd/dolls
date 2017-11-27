@@ -33,7 +33,8 @@ public class PositionPieceBody : MonoBehaviour {
         "razor",
         "trocar",
         "stitch",
-        "scalpel"
+        "scalpel",
+        "phonendoscope"
     };
 
     void Start ()
@@ -168,9 +169,12 @@ public class PositionPieceBody : MonoBehaviour {
                             }
                             TIAR.CheckActionControl("stick", hit.transform.gameObject);                            
                             break;
-                        case "phonendoscope":                           
+
+                        case "phonendoscope":
+                            if (hit.transform.gameObject.tag == "phonendoscope_target")
+                            {
                                 TCS.StethoscopeCreate.SetActive(true);
-                            
+                            } 
                             TIAR.CheckActionControl("set", hit.transform.gameObject);
                             break;
 
