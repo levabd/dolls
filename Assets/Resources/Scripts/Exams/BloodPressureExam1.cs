@@ -8,6 +8,7 @@ class BloodPressureExam1 : BaseExam
 
     public override string Name => "NIMP Вимірювання артеріального тиску (метод Короткова)";
     public override string LoadName => "BloodPressureExam1";
+    public override string HelpString => "Ми працюємо з правою рукою";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

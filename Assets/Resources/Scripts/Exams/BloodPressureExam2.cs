@@ -8,6 +8,7 @@ class BloodPressureExam2 : BaseExam
 
     public override string Name => "Вимірювання артеріального тиску справжнім манометром";
     public override string LoadName => "BloodPressureExam2";
+    public override string HelpString => "Ми працюємо з лівою рукою";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

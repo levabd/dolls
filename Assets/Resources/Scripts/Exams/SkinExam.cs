@@ -8,6 +8,7 @@ class SkinExam : BaseExam
 
     public override string Name => "Серцево-легенева реанімація";
     public override string LoadName => "SkinExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 

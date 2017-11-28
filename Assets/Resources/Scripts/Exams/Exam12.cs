@@ -8,6 +8,7 @@ class Exam12 : BaseExam
 
     public override string Name => "Периферичний венозний доступ №11 Постановка внутрішньовенного катетера venflon в вену ліктьового згину";
     public override string LoadName => "Exam12";
+    public override string HelpString => "Ми працюємо з правою рукою";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

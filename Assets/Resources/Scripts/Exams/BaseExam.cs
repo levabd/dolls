@@ -173,6 +173,8 @@ public abstract class BaseExam: IExamInterface
 
     public abstract string Name { get; }
 
+    public abstract string HelpString { get; }
+
     public abstract DateTime NeedleRemovingMoment { get; set; }
 
     public abstract string LoadName { get; }

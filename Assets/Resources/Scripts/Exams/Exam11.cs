@@ -8,6 +8,7 @@ class Exam11 : BaseExam
 
     public override string Name => "Периферичний венозний доступ №10 Внутрішньовенна ін'єкція в вену ліктьового згину";
     public override string LoadName => "Exam11";
+    public override string HelpString => "Ми працюємо з правою рукою";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

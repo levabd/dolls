@@ -8,6 +8,7 @@ class PneumotoraxExam : BaseExam
 
     public override string Name => "Декомпресія і дренування плевральної порожнини хворому з пневмотораксом зліва";
     public override string LoadName => "PneumotoraxExam";
+    public override string HelpString => "Ми працюємо з правою частиною тіла";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

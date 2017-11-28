@@ -8,6 +8,7 @@ class HydrotoraxExam : BaseExam
 
     public override string Name => "Декомпресія і дренування плевральної порожнини хворому з гідротораксом / піоторакс / гемотораксом зліва";
     public override string LoadName => "HydrotoraxExam";
+    public override string HelpString => "Ми працюємо з лівою частиною тіла";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

@@ -8,6 +8,7 @@ class EyeExamCoagulationExam : BaseExam
 
     public override string Name => "Фотокоагуляція";
     public override string LoadName => "EyeCoagulationExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 

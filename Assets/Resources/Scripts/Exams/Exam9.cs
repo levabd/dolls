@@ -8,6 +8,7 @@ class Exam9 : BaseExam
 
     public override string Name => "Центральний венозний доступ №8 Стегнова вена";
     public override string LoadName => "Exam9";
+    public override string HelpString => "Ми працюємо з правою частиною тіла";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

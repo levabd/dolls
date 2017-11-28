@@ -8,6 +8,7 @@ class PulseExam : BaseExam
 
     public override string Name => "Наявність пульсу на артеріях";
     public override string LoadName => "PulseExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 

@@ -8,6 +8,7 @@ class TibiaExam : BaseExam
 
     public override string Name => "Внутрішньокістковий доступ в великогомілкову кістку";
     public override string LoadName => "TibiaExam";
+    public override string HelpString => "Ми працюємо з правою ногою";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

@@ -9,6 +9,11 @@ interface IExamInterface
     string Name { get; }
 
     /// <summary>
+    /// Exam help string
+    /// </summary>
+    string HelpString { get; }
+
+    /// <summary>
     /// Exam load name
     /// </summary>
     string LoadName { get; }

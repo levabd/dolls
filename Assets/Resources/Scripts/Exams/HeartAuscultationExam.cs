@@ -8,6 +8,7 @@ class HeartAuscultationExam : BaseExam
 
     public override string Name => "Тренажер для аускультації серця";
     public override string LoadName => "AuscultationHeartExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 

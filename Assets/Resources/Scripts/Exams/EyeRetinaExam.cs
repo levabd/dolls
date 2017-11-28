@@ -8,6 +8,7 @@ class EyeRetinaExam : BaseExam
 
     public override string Name => "Відшарування сітківки";
     public override string LoadName => "EyeRetinaExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 

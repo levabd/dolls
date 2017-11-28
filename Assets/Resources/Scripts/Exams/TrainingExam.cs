@@ -8,6 +8,7 @@ class TrainingExam : BaseExam
 
     public override string Name => "Тестовий сценарій";
     public override string LoadName => "TrainingExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {

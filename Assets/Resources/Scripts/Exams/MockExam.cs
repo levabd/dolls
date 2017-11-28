@@ -8,6 +8,7 @@ class MockExam : BaseExam
 
     public override string Name => "Тестовий сценарій";
     public override string LoadName => "1";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string> { { "testStep", "Тестовий крок" } };
 

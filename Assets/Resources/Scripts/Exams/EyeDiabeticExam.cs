@@ -8,6 +8,7 @@ class EyeDiabeticExam : BaseExam
 
     public override string Name => "Препроліферативна діабетична ретинопатія";
     public override string LoadName => "EyeDiabeticExam";
+    public override string HelpString => "";
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>();
 
