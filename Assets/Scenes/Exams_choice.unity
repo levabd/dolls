@@ -1154,7 +1154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &807410899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1842,12 +1842,12 @@ Prefab:
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 449
+      value: 151
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 252.5
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
@@ -1857,7 +1857,7 @@ Prefab:
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1079.7328
+      value: 1080.7947
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
@@ -1892,17 +1892,17 @@ Prefab:
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.46770832
+      value: 0.15729167
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.46770832
+      value: 0.15729167
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.46770832
+      value: 0.15729167
       objectReference: {fileID: 0}
     - target: {fileID: 223326543244214212, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
@@ -1982,7 +1982,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\r\u0420\u0435\u0436\u0438\u043C \u043D\u0430\u0432\u0447\u0430\u043D\u043D\u044F"
+  m_Text: "\u0422\u0435\u0441\u0442\u043E\u0432\u0438\u0439 \u0441\u0446\u0435\u043D\u0430\u0440\u0456\u0439"
 --- !u!222 &1196614935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2331,6 +2331,12 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349146086417252, guid: b1177f60225d3be4b9092a5a86b1b3b1,
+        type: 2}
+      propertyPath: m_Text
+      value: "\u0412\u043D\u0443\u0442\u0440\u0456\u0448\u043D\u044C\u043E-          \u043A\u0456\u0441\u0442\u043A\u043E\u0432\u0438\u0439
+        \u0434\u043E\u0441\u0442\u0443\u043F"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1177f60225d3be4b9092a5a86b1b3b1, type: 2}
