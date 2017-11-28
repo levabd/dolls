@@ -941,6 +941,10 @@ public class ActionController : MonoBehaviour {
                             OffActionPosition(ActionPositionPoint);
                             Destroy(GameObject.Find("ToolPosition/CannuleStitch"));
                             CreateFromPrefab(TCS.InvasiveSensorConnectCreate, TCS.gameObject, PrefabTransformCtrl.animationTool.InvasiveSensorConnect, 2000);
+                            GameObject.Find("EKG-Heart-Rate-Monitor").transform.GetChild(0).transform.gameObject.SetActive(true);
+                            GameObject.Find("EKG-Heart-Rate-Monitor").transform.GetChild(1).transform.gameObject.SetActive(true);
+                            GameObject.Find("EKG-Heart-Rate-Monitor").transform.GetChild(2).transform.gameObject.SetActive(false);
+
                             TCS.MonitorCreate.SetActive(true);
                             break;
                         default:
