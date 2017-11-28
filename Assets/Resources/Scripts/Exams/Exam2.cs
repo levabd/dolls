@@ -15,10 +15,10 @@ class Exam2 : BaseExam
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "iodine_balls",                   "Промокнути марлеві кульки 1% розчином йодоната" },
         { "tweezers_iodine_balls",          "Взяти змочені марлеві кульки" },
-        { "iodine_disinfection",            "Дезінфекція йодом. Протерти зверху вниз" },
+        { "iodine_disinfection",            "Дезінфекція йодом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
         { "anesthesia",                     "Зробити місцеву анестезію" },
@@ -76,12 +76,12 @@ class Exam2 : BaseExam
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
+                    { "clear",       "Взяти нову стерильну кульку" },
                     { "spirit_p70",  "Промокнути в 70% розчині спирту" },
                     { "spirit_p60",  "Промокнути в 60% розчині спирту" },
                     { "spirit_p80",  "Промокнути в 80% розчині спирту" },
                     { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
-                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
-                    { "clear",       "Взяти нову стерильну кульку" }
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" }
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -92,11 +92,9 @@ class Exam2 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти марлеві кульки ⊕" },
-                    { "remove_balls",   "Скинути марлеві кульки" },
-                    { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "tweezers_balls", "Взяти кульку і вибрати місце дезінфекції на тілі ⊕" },
+                    { "remove_balls",   "Скинути марлеві кульки" },                    
+                    { "top_down",       "Обробити операційне поле" }                    
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>
@@ -122,7 +120,7 @@ class Exam2 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти ⊕" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

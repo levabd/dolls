@@ -16,10 +16,10 @@ class Exam8 : BaseExam
         { "wear_gown",                      "Одягти халат" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки"},
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "iodine_balls",                   "Промокнути марлеві кульки 1% розчином йодоната" },
         { "tweezers_iodine_balls",          "Взяти змочені марлеві кульки"},
-        { "iodine_disinfection",            "Дезінфекція йодом. Протерти зверху вниз" },
+        { "iodine_disinfection",            "Дезінфекція йодом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "clamp_the_vein",                 "Здавити зовнішню яремну вену." },
         { "puncture_needle",                "Взяти голку для пункції вени" },
@@ -110,7 +110,7 @@ class Exam8 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки ⊕"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
+                    { "top_down",       "Обробити операційне поле" },
                     { "right_left",     "Протерти справа наліво" }
                 };
             case "standart_catheter_conductor":
@@ -195,7 +195,10 @@ class Exam8 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")
         {
             if (!locatedColliderTag.Contains("clamp_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Здавлена не та вена (місце)";
+            }
             return 10;
         }
 

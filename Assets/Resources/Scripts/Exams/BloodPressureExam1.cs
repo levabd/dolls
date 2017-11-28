@@ -85,7 +85,10 @@ class BloodPressureExam1 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             return 1;
         }
 

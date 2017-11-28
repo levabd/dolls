@@ -14,7 +14,7 @@ class BloodPressureExam2 : BaseExam
     {
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "sterile_tissue",                 "Накрити операційне поле стерильними серветками" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
@@ -85,7 +85,7 @@ class BloodPressureExam2 : BaseExam
                     { "null",        "---" },
                     { "throw_balls", "Викинути кульки в смітник" },
                     { "get_balls",   "Прикласти кульку ⊕" }, // "attach_balls"
-                    { "get_top_down","Протерти зверху вниз ⊕" }, // "top_down"
+                    { "get_top_down","Обробити операційне поле ⊕" }, // "top_down"
                 };
             case "invasive_sensor":
                 return new TupleList<string, string>
@@ -104,7 +104,7 @@ class BloodPressureExam2 : BaseExam
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "cannule_stitch", "Пришить к коже" }
+                    { "cannule_stitch", "Пришити до шкіри" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -161,7 +161,10 @@ class BloodPressureExam2 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             return 8;
         }
 

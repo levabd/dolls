@@ -15,10 +15,10 @@ class Exam4 : BaseExam
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "iodine_balls",                   "Промокнути марлеві кульки 1% розчином йодоната" },
         { "tweezers_iodine_balls",          "Взяти змочені марлеві кульки" },
-        { "iodine_disinfection",            "Дезінфекція йодом. Протерти зверху вниз" },
+        { "iodine_disinfection",            "Дезінфекція йодом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "palpation",                      "Пальпація пахвової артерії" },
         { "tourniquet",                     "Взяти джгут і накласти на артерію" },
@@ -64,7 +64,7 @@ class Exam4 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взяти джгут ⊕" },
+                    { "get",    "Взяти джгут і вибрати місце ⊕" },
                     { "lay",    "Накласти джгут" },
                     { "remove", "Зняти джгут " }
                 };
@@ -91,12 +91,12 @@ class Exam4 : BaseExam
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
+                    { "clear",       "Взяти нову стерильну кульку" },
                     { "spirit_p70",  "Промокнути в 70% розчині спирту" },
                     { "spirit_p60",  "Промокнути в 60% розчині спирту" },
                     { "spirit_p80",  "Промокнути в 80% розчині спирту" },
                     { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
-                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
-                    { "clear",       "Взяти нову стерильну кульку" }
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" }
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -107,11 +107,9 @@ class Exam4 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти марлеві кульки ⊕" },
+                    { "tweezers_balls", "Взяти кульку і вибрати місце дезінфекції на тілі ⊕" },
                     { "remove_balls",   "Скинути марлеві кульки" },
-                    { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Обробити операційне поле" }                   
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>
@@ -137,7 +135,7 @@ class Exam4 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти ⊕" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -197,7 +195,10 @@ class Exam4 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             return 9;
         }
 
@@ -205,7 +206,10 @@ class Exam4 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
             if (!locatedColliderTag.Contains("tourniquet_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Не туди накладено джгут";
+            }
             return 10;
         }
 

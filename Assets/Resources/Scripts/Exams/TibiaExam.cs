@@ -14,7 +14,7 @@ class TibiaExam : BaseExam
     {
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
         { "anesthesia",                     "Зробити місцеву анестезію" },
@@ -74,7 +74,7 @@ class TibiaExam : BaseExam
                     { "null",        "---" },
                     { "throw_balls", "Викинути кульки в смітник" },
                     { "get_balls",   "Прикласти кульку ⊕" }, // "attach_balls"
-                    { "get_top_down","Протерти зверху вниз ⊕" }, // "top_down"
+                    { "get_top_down","Обробити операційне поле ⊕" }, // "top_down"
                 };
             case "big":
                 return new TupleList<string, string>

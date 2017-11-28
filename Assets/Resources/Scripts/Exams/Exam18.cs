@@ -22,7 +22,7 @@ class Exam18 : BaseExam
         { "tourniquet",                     "Взяти джгут і накласти" },
         { "palpation",                      "Пальпуємо вену" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
-        { "balls_spirit_disinfection",      "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "balls_spirit_disinfection",      "Дезінфекція спиртом. Обробити операційне поле" },
         { "throw_balls",                    "Викинути кульки" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "stretch_the_skin",               "Натягнути шкіру" },
@@ -97,7 +97,7 @@ class Exam18 : BaseExam
                     { "null",          "---" },
                     { "throw_balls",   "Викинути кульки в смітник" },
                     { "get_balls",     "Прикласти кульку ⊕" }, // "attach_balls"
-                    { "get_top_down",  "Протерти зверху вниз ⊕" }, // "top_down"
+                    { "get_top_down",  "Обробити операційне поле ⊕" }, // "top_down"
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -111,7 +111,7 @@ class Exam18 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки ⊕"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
+                    { "top_down",       "Обробити операційне поле" },
                     { "right_left",     "Протерти справа наліво" }
                 };
             case "patch":

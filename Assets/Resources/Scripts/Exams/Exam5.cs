@@ -15,10 +15,10 @@ class Exam5 : BaseExam
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "iodine_balls",                   "Промокнути марлеві кульки 1% розчином йодоната" },
         { "tweezers_iodine_balls",          "Взяти змочені марлеві кульки" },
-        { "iodine_disinfection",            "Дезінфекція йодом. Протерти зверху вниз" },
+        { "iodine_disinfection",            "Дезінфекція йодом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "palpation",                      "Пальпування сонної артерії" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
@@ -103,7 +103,7 @@ class Exam5 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки ⊕" },
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
+                    { "top_down",       "Обробити операційне поле" },
                     { "right_left",     "Протерти справа наліво" }
                 };
             case "standart_catheter_conductor":
@@ -202,7 +202,10 @@ class Exam5 : BaseExam
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             return 9;
         }
 

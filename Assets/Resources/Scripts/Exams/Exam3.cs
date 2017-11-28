@@ -15,10 +15,10 @@ class Exam3 : BaseExam
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки"},
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "iodine_balls",                   "Промокнути марлеві кульки 1% розчином йодоната" },
         { "tweezers_iodine_balls",          "Взяти змочені марлеві кульки"},
-        { "iodine_disinfection",            "Дезінфекція йодом. Протерти зверху вниз" },
+        { "iodine_disinfection",            "Дезінфекція йодом. Обробити операційне поле" },
         { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "anesthesia_needle",              "Взять иглу для анестезии кожи." },
         { "anesthesia",                     "Сделать местную анестезию." },
@@ -96,7 +96,7 @@ class Exam3 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки ⊕"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
+                    { "top_down",       "Обробити операційне поле" },
                     { "right_left",     "Протерти справа наліво" }
                 };
             case "standart_catheter_conductor":
@@ -123,7 +123,7 @@ class Exam3 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти ⊕" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

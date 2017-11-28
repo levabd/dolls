@@ -380,7 +380,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
             if (!locatedColliderTag.Contains("tourniquet_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Не туди накладено джгут";
+            }
             // Вена увеличивается.
             returnedStep = injection ? 4 : 3;
             return true;
@@ -390,7 +393,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             returnedStep = injection ? 5 : 4;
             return true;
         }
@@ -410,7 +416,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
         {
             if (locatedColliderTag != "disinfection_target")
+            {
+                showAnimation = false;
                 errorMessage = "Дезінфекцію треба робити не тут";
+            }
             returnedStep = injection ? 7 : 6;
             return true;
         }
@@ -438,7 +447,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "stretch_the_skin")
         {
             if (!locatedColliderTag.Contains("stretch_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Натягнуто не те місце";
+            }
             returnedStep = injection ? 10 : 9;
             return true;
         }
@@ -449,6 +461,7 @@ public static class ExamHelpers
             if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("has_needle") || !Convert.ToBoolean(CurrentTool.Instance.Tool.StateParams["has_needle"]))
             {
                 errorMessage = "Відсутня голка";
+                showAnimation = false;
                 returnedStep = 0;
                 return false;
             }
@@ -487,7 +500,10 @@ public static class ExamHelpers
         if (injection && CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "administer_drug")
         {
             if (locatedColliderTag != finalTarget)
+            {
+                showAnimation = false;
                 errorMessage = "Введення препарату не в те місце";
+            }
             else
             {
                 if (!CurrentTool.Instance.Tool.StateParams.ContainsKey("entry_angle") || !float.Parse(CurrentTool.Instance.Tool.StateParams["entry_angle"]).CheckRange(29, 31))
@@ -501,7 +517,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "attach_balls")
         {
             if (locatedColliderTag != "disinfection_target")
+            {
+                showAnimation = false;
                 errorMessage = "Дезінфекцію треба робити не тут";
+            }
             returnedStep = injection ? 14 : 13;
             return true;
         }
@@ -565,7 +584,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "tourniquet" && actionCode == "lay")
         {
             if (!locatedColliderTag.Contains("tourniquet_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Не туди накладено джгут";
+            }
             // Вена увеличивается.
             returnedStep = 2;
             return true;
@@ -575,7 +597,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "palpation")
         {
             if (!locatedColliderTag.Contains("palpation_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Пальпується не те місце";
+            }
             returnedStep = 3;
             return true;
         }
@@ -593,7 +618,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "top_down")
         {
             if (locatedColliderTag != "disinfection_target")
+            {
+                showAnimation = false;
                 errorMessage = "Дезінфекцію треба робити не тут";
+            }
             returnedStep = 5;
             return true;
         }
@@ -621,7 +649,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "stretch_the_skin")
         {
             if (!locatedColliderTag.Contains("stretch_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Натягнуто не те місце";
+            }
             returnedStep = 8;
             return true;
         }
@@ -660,7 +691,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "hand" && actionCode == "clamp")
         {
             if (!locatedColliderTag.Contains("clamp_target"))
+            {
+                showAnimation = false;
                 errorMessage = "Здавлена не та вена (місце)";
+            }
             returnedStep = 11;
             return true;
         }
@@ -714,7 +748,10 @@ public static class ExamHelpers
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
             if (!locatedColliderTag.Contains("catheter"))
+            {
+                showAnimation = false;
                 errorMessage = "Не те місце установки. Спочатку повинен бути коректно встановлений катетер";
+            }
             returnedStep = head ? 17 : 15;
             return true;
         }
