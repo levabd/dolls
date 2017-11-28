@@ -57,4 +57,10 @@ public class ExamsCategory : MonoBehaviour
         examsList.ExamViewOn();
     }
 
+    public void TrainingMode()
+    {
+        examsList.CreateExamsList("training_mode");
+        examsList.ExamViewOn();
+    }
+
 }

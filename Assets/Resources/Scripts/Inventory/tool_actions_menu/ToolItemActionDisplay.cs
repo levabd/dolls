@@ -6,6 +6,7 @@ using System;
 
 public class ToolItemActionDisplay : MonoBehaviour {
     public Text actionTextName;
+    public Image ImageAction;
     string actionName;
     public delegate void ToolItemActionDisplayDelegate(string actionName);
     public static event ToolItemActionDisplayDelegate OnAction;
@@ -28,7 +29,16 @@ public class ToolItemActionDisplay : MonoBehaviour {
         this.action = action;
         if (actionTextName != null)
         {
-            actionTextName.text = action.Item2;
+            ImageAction.gameObject.SetActive(action.Item2[action.Item2.Length - 1] == '⊕');
+
+            if (action.Item2.Contains("⊕"))
+            {
+                actionTextName.text = action.Item2.TrimEnd('⊕');
+            }
+            else
+            {
+                actionTextName.text = action.Item2;
+            }
         }
 
         actionName = action.Item1;

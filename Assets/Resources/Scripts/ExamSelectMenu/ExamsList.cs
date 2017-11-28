@@ -134,7 +134,12 @@ public class ExamsList : MonoBehaviour {
                 BloodPressureExam2 bloodPressure2 = new BloodPressureExam2();
                 Based.Add(bloodPressure1);
                 Based.Add(bloodPressure2);
-                break;    
+                break;
+            case "training_mode":
+                Based = new List<BaseExam>();
+                TrainingExam trainingExam = new TrainingExam();
+                Based.Add(trainingExam);
+                break;
             default:
                 break;
         }
