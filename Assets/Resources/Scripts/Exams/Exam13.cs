@@ -54,20 +54,20 @@ class Exam13 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взяти джгут" },
+                    { "get",    "Взяти джгут ⊕" },
                     { "lay",    "Накласти джгут" },
                     { "remove", "Зняти джгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпація" },// "palpation"
-                    { "get_stretch_the_skin",       "Натягнути шкіру" }, // "stretch_the_skin"
+                    { "get_palpation",              "Пальпація ⊕" },// "palpation"
+                    { "get_stretch_the_skin",       "Натягнути шкіру ⊕" }, // "stretch_the_skin"
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "get",                    "Взяти шприц з голкою" },
+                    { "get",                    "Взяти шприц з голкою ⊕" },
                     { "needle_removing",        "Від'єднати від голки" },
                     { "needle_pull",            "Витягти шприц з голкою" },
                     { "anesthesia",             "Зробити місцеву анестезію" },
@@ -79,7 +79,7 @@ class Exam13 : BaseExam
                     { "simple_needle",          "Взяти голку для забору крові" },
                     { "a45_d10_punction_needle","Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
                     { "a45_d7_punction_needle", "Взяти голку для пункції вени довжиною 4-7 см з внутрішнім просвітом каналу 1,0-1,5 мм і зрізом вістря голки під кутом 40-45°" },
-                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину" }
+                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину ⊕" }
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
@@ -92,8 +92,8 @@ class Exam13 : BaseExam
                     { "null",          "---" },
                     { "clear",         "Взяти нову стерильну кульку" },
                     { "throw_balls",   "Викинути кульки в смітник" },
-                    { "get_balls",     "Прикласти кульку" }, // "attach_balls"
-                    { "get_top_down",  "Протерти зверху вниз" }, // "top_down"
+                    { "get_balls",     "Прикласти кульку ⊕" }, // "attach_balls"
+                    { "get_top_down",  "Протерти зверху вниз ⊕" }, // "top_down"
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -107,13 +107,13 @@ class Exam13 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Протерти зверху вниз ⊕" },
+                    { "right_left",     "Протерти справа наліво ⊕" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "get", "Взяти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

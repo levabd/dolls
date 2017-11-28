@@ -73,13 +73,13 @@ class TibiaExam : BaseExam
                     { "clear",       "Взяти нову стерильну кульку" },
                     { "null",        "---" },
                     { "throw_balls", "Викинути кульки в смітник" },
-                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
-                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
+                    { "get_balls",   "Прикласти кульку ⊕" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз ⊕" }, // "top_down"
                 };
             case "big":
                 return new TupleList<string, string>
                 {
-                    { "get",      "Взяти" },
+                    { "get",      "Взяти ⊕" },
                     { "prepare",  "Звільнити засувку шприца-пістолета B.I.G." },
                     { "activate", "Активувати пістолет B.I.G." },
                     { "remove",   "Витягти стилет троакара" }

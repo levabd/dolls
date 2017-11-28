@@ -70,8 +70,8 @@ class Exam2 : BaseExam
                     { "wire_needle",            "Взяти голку для провідникової анестезії та наповнити шприц анестетиком" },
                     { "a45_d10_punction_needle","Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
                     { "a45_d4_punction_needle", "Взяти голку для пункції вени довжиною не менше 4 см з внутрішнім просвітом каналу 1,0-1,4 мм і зрізом вістря голки під кутом 40-45°" },
-                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю" },
-                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину" }
+                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю ⊕" },
+                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину ⊕" }
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
@@ -95,8 +95,8 @@ class Exam2 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки" },
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Протерти зверху вниз ⊕" },
+                    { "right_left",     "Протерти справа наліво ⊕" }
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>
@@ -122,7 +122,7 @@ class Exam2 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "get", "Взяти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

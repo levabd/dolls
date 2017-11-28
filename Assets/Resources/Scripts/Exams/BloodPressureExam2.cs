@@ -53,7 +53,7 @@ class BloodPressureExam2 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",              "Пальпація" }
+                    { "get_palpation",              "Пальпація ⊕" }
                 };
             case "sterile_tissue":
                 return new TupleList<string, string>
@@ -84,8 +84,8 @@ class BloodPressureExam2 : BaseExam
                     { "clear",       "Взяти нову стерильну кульку" },
                     { "null",        "---" },
                     { "throw_balls", "Викинути кульки в смітник" },
-                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
-                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
+                    { "get_balls",   "Прикласти кульку ⊕" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз ⊕" }, // "top_down"
                 };
             case "invasive_sensor":
                 return new TupleList<string, string>

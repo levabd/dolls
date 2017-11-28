@@ -33,7 +33,7 @@ class BloodPressureExam1 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",        "Пальпація" }
+                    { "get_palpation",        "Пальпація ⊕" }
                 };
             case "manometer":
                 return new TupleList<string, string>
@@ -45,7 +45,7 @@ class BloodPressureExam1 : BaseExam
             case "phonendoscope":
                 return new TupleList<string, string>
                 {
-                    { "get",                  "Взяти" }
+                    { "get",                  "Взяти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

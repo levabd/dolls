@@ -53,12 +53,12 @@ class PneumotoraxExam : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",    "Пальпація" }
+                    { "get_palpation",    "Пальпація ⊕" }
                 };
             case "scalpel":
                 return new TupleList<string, string>
                 {
-                    { "get",      "Взяти"},
+                    { "get",      "Взяти ⊕"},
                     { "incision", "Зробити надріз"}
                 };
             case "bobrov_bank":
@@ -69,7 +69,7 @@ class PneumotoraxExam : BaseExam
             case "trocar":
                 return new TupleList<string, string>
                 {
-                    { "get",                   "Взяти"},
+                    { "get",                   "Взяти ⊕"},
                     { "pull",                  "Витягнути стилет заводячи ПВХ трубку в плевральну порожнину"},
                     { "trocar_connect",        "Приєднати подовжувач"},
                     { "trocar_connect_valve",  "Приєднати дренажний вентиль"},
@@ -100,8 +100,8 @@ class PneumotoraxExam : BaseExam
                     { "clear",       "Взяти нову стерильну кульку" },
                     { "null",        "---" },
                     { "throw_balls", "Викинути кульки в смітник" },
-                    { "get_balls",   "Прикласти кульку" }, // "attach_balls"
-                    { "get_top_down","Протерти зверху вниз" }, // "top_down"
+                    { "get_balls",   "Прикласти кульку ⊕" }, // "attach_balls"
+                    { "get_top_down","Протерти зверху вниз ⊕" }, // "top_down"
                 };
             case "stitch":
                 return new TupleList<string, string>

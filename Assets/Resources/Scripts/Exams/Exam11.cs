@@ -55,20 +55,20 @@ class Exam11 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взяти джгут" },
+                    { "get",    "Взяти джгут ⊕" },
                     { "lay",    "Накласти джгут" },
                     { "remove", "Зняти джгут" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",        "Пальпація" }, // "palpation"
-                    { "get_stretch_the_skin", "Натягнути шкіру" }, // "stretch_the_skin"
+                    { "get_palpation",        "Пальпація ⊕" }, // "palpation"
+                    { "get_stretch_the_skin", "Натягнути шкіру ⊕" }, // "stretch_the_skin"
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "get",                    "Взяти шприц з голкою" },
+                    { "get",                    "Взяти шприц з голкою ⊕" },
                     { "needle_removing",        "Від'єднати від голки" },
                     { "needle_pull",            "Витягти шприц з голкою" },
                     { "put_on_the_cap",         "Одягти ковпачок на голку" },
@@ -92,8 +92,8 @@ class Exam11 : BaseExam
                     { "iodine_p3",     "Промокнути в 3% розчині йодоната" },
                     { "null",          "---" },
                     { "throw_balls",   "Викинути кульки в смітник" },
-                    { "get_balls",     "Прикласти кульку" }, // "attach_balls"
-                    { "get_top_down",  "Протерти зверху вниз" }, // "top_down"
+                    { "get_balls",     "Прикласти кульку ⊕" }, // "attach_balls"
+                    { "get_top_down",  "Протерти зверху вниз ⊕" }, // "top_down"
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -107,13 +107,13 @@ class Exam11 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Протерти зверху вниз ⊕" },
+                    { "right_left",     "Протерти справа наліво ⊕" }
                 };
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "get", "Взяти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

@@ -1015,6 +1015,31 @@ public class ActionController : MonoBehaviour {
 
                 break;
 
+            case "gloves":
+
+                if (!String.IsNullOrWhiteSpace(actionName))
+                {
+                    switch (actionName)
+                    {
+
+                        case "wear_examination":
+
+                            if (debugMode) { Debug.Log(""); }
+
+                            PBD.TIAR.CtrlStat.TipMessage(CurrentExam.Instance.Exam.HelpString);
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Action Name error " + CurrentTool.Instance.Tool.CodeName);
+                }
+
+                break;
+
             default:
                     break;
         }

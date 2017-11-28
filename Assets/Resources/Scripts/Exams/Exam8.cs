@@ -68,13 +68,13 @@ class Exam8 : BaseExam
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_clamp",         "Затиснути вену" }, //clamp
+                    { "get_clamp",         "Затиснути вену ⊕" }, //clamp
                     { "clamp_out",         "Відпустити вену"},
                 };
             case "syringe":
                 return new TupleList<string, string>
                 {
-                    { "get",                    "Взяти шприц з голкою" },
+                    { "get",                    "Взяти шприц з голкою ⊕" },
                     { "needle_removing",        "Від'єднати від голки" },
                     { "anesthesia",             "Зробити місцеву анестезію" },
                     { "piston_pulling",         "Потягування поршня на себе" },
@@ -84,9 +84,9 @@ class Exam8 : BaseExam
                     { "wire_needle",            "Взяти голку для провідникової анестезії та наповнити шприц анестетиком" },
                     { "a45_d4_d14_punction_needle","Взяти голку для пункції вени довжиною 4 см з внутрішнім просвітом каналу 1,4-1,6 мм і зрізом вістря голки під кутом 40-45°" },
                     { "a45_d7_punction_needle",   "Взяти голку для пункції вени довжиною 4-7 см з внутрішнім просвітом каналу 1,0-1,5 мм і зрізом вістря голки під кутом 40-45°" },
-                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю" },
-                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину" },
-                    { "filling_nacl_half",      "Наповнити 0,9% розчином натрію хлориду наполовину"}
+                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю ⊕" },
+                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину ⊕" },
+                    { "filling_nacl_half",      "Наповнити 0,9% розчином натрію хлориду наполовину ⊕"}
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
@@ -110,8 +110,8 @@ class Exam8 : BaseExam
                     { "tweezers_balls", "Взяти марлеві кульки"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Протерти зверху вниз ⊕" },
+                    { "right_left",     "Протерти справа наліво ⊕" }
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>
@@ -137,7 +137,7 @@ class Exam8 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти" }
+                    { "get", "Взяти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();
