@@ -138,7 +138,7 @@ public class ExamListView : MonoBehaviour
         _dataTable.AddTextColumn("Назва тесту", null, 500f, 500f);
         _dataTable.AddTextColumn("Помилка", null, 400f, 400f);
         if (CurrentUser.User.Role == User.UserRoles.User) _dataTable.AddTextColumn("", null, 180f, 180f);
-        _dataTable.AddTextColumn("", null, 250f, 250f);
+        _dataTable.AddTextColumn("", null, 180f, 180f);
         _dataTable.AddImageColumn("Інструкція");
         _dataTable.AddTextColumn("Дата проходження", null, 150f, 150f);
         _dataTable.AddImageColumn("Результат");
@@ -217,8 +217,9 @@ public class ExamListView : MonoBehaviour
                 Type examType = Type.GetType(_exams[Int32.Parse(datum.uid)].Class);
                 if (examType != null)
                 {
-                    BaseExam currentExam = (BaseExam)Activator.CreateInstance(examType);
-                    SceneManager.LoadScene(currentExam.LoadName);
+                    CurrentExam.Instance.Exam = null;
+                    CurrentExam.Instance.Exam = (BaseExam)Activator.CreateInstance(examType);
+                    SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
                 }
             }
 

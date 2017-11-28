@@ -87,7 +87,7 @@ class TibiaExam : BaseExam
             case "stopcock":
                 return new TupleList<string, string>
                 {
-                    { "impose", "Зафіксувати" },
+                    //{ "impose", "Зафіксувати" },
                     { "connect", "Приєднати запірний кран з системою" }
                 };
             case "patch":
@@ -207,7 +207,7 @@ class TibiaExam : BaseExam
         }
 
         // { "big_stopcock",                   "Подсоеденить запорный кран." }
-        if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "impose")
+        /*if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "impose")
         {
             if (LastTakenStep() != 12)
             {
@@ -215,17 +215,18 @@ class TibiaExam : BaseExam
                 errorMessage = "Спочатку введіть фізрозчин";
             }
             return 13;
-        }
+        }*/
 
         // { "big_stopcock",                   "Подсоеденить запорный кран с системой для инфузии." }
         if (CurrentTool.Instance.Tool.CodeName == "stopcock" && actionCode == "connect")
         {
-            if (LastTakenStep() != 13)
+            if (LastTakenStep() != 12)
             {
                 showAnimation = false;
-                errorMessage = "Спочатку зафіксуйте кран";
+                //errorMessage = "Спочатку зафіксуйте кран";
+                errorMessage = "Спочатку введіть фізрозчин";
             }
-            return 14;
+            return 13;
         }
 
         // Добавление иголки

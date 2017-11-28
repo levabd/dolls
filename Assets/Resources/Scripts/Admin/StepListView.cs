@@ -76,7 +76,13 @@ public class StepListView : MonoBehaviour {
         btn.onClick.AddListener(CloseModal);
 
         Name.text = CurrentUser.User.Name;
-        ExamDescription.text = "Користувачем " + CurrentAdminExam.Exam.User.Name + " було " + (CurrentAdminExam.Exam.Passed ? "пройдено" : "провалено") + " сценарій «" + CurrentAdminExam.Exam.Name + "»";
+
+        if (CurrentUser.User.Role == User.UserRoles.Manager)
+            ExamDescription.text = "Користувачем " + CurrentAdminExam.Exam.User.Name + " було ";
+        if (CurrentUser.User.Role == User.UserRoles.User)
+            ExamDescription.text = "Було ";
+        ExamDescription.text = ExamDescription.text + (CurrentAdminExam.Exam.Passed ? "пройдено" : "провалено") + " сценарій «" + CurrentAdminExam.Exam.Name + "»";
+
         ExamDescription.color = CurrentAdminExam.Exam.Passed ? Color.green : Color.red;
 
         ExamsButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
@@ -112,10 +118,13 @@ public class StepListView : MonoBehaviour {
 
     void RepeatExam()
     {
-        Type examType = CurrentExam.Instance.Exam.GetType();
-        CurrentExam.Instance.Exam = null;
-        CurrentExam.Instance.Exam = (BaseExam)Activator.CreateInstance(examType);
-        SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
+        Type examType = Type.GetType(CurrentAdminExam.Exam.Class);
+        if (examType != null)
+        {
+            CurrentExam.Instance.Exam = null;
+            CurrentExam.Instance.Exam = (BaseExam) Activator.CreateInstance(examType);
+            SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
+        }
     }
 
     void CloseApp()

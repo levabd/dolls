@@ -242,8 +242,15 @@ public class AdminView : MonoBehaviour {
 
         try
         {
-            User newUser = new User(AddLoginInputField.text, AddPasswordInputField.text, AddUserNameInputField.text,
-                AddUserRoleDropdown.value);
+            int role;
+            switch (AddUserRoleDropdown.value)
+            {
+                case 0: role = 2; break;
+                case 1: role = 1; break;
+                case 2: role = 0; break;
+                default: role = 2; break;
+            }
+            User newUser = new User(AddLoginInputField.text, AddPasswordInputField.text, AddUserNameInputField.text, role);
             newUser.Save();
 
             CreateUserAccountPanel.SetActive(false);
