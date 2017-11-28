@@ -636,7 +636,7 @@ public class ActionController : MonoBehaviour {
                             if (debugMode) { Debug.Log("Запуск анимацию бритья"); }
                             OffActionPosition(ActionPositionPoint);
                             CreateFromPrefab(TCS.NapkinPutCreate, TCS.SkinTransform, PrefabTransformCtrl.animationTool.NapkinPut, 4.5f);
-                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 3f));
+                            StartCoroutine(CreateToolFromPrefab(TCS.SterileTissueCreate, TCS.SkinTransform, PrefabTransformCtrl.moveTools.SterileTissue, 4.5f));
                             break;
 
                         default:
@@ -859,6 +859,7 @@ public class ActionController : MonoBehaviour {
 
                             if (debugMode) { Debug.Log("Включить модель шлангов для крана"); }
 
+                            GameObject.Find("Kran").transform.GetChild(0).gameObject.SetActive(true);
                             GameObject.Find("Kran").transform.GetChild(1).gameObject.SetActive(true);
 
                             break;

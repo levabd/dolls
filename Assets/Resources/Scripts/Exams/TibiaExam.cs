@@ -23,7 +23,6 @@ class TibiaExam : BaseExam
         { "fixation_with_plaster",          "Фіксація пластиром" },
         { "syringe_nacl",                   "Наповнити шприц фізрозчином" },
         { "big_nacl",                       "Ввести фізрозчин" },
-        { "big_impose",                     "Зафіксувати кран" },
         { "big_stopcock",                   "Приєднати запірний кран з системою для інфузії" }
     };
 
