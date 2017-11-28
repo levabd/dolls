@@ -106,7 +106,7 @@ class HydrotoraxExam : BaseExam
             case "stitch":
                 return new TupleList<string, string>
                 {
-                    { "stitch", "Пришити катетер до шкіри" }
+                    { "stitch", "Пришити до шкіри" }
                 };
             default:
                 return new TupleList<string, string>();

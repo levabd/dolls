@@ -12,7 +12,7 @@ class Exam9 : BaseExam
 
     public override TupleList<string, string> CorrectSteps => new TupleList<string, string>
     {
-        { "shave_pubis",                    "Поголити лобковую зону" },
+        { "shave_pubis",                    "Поголити лобкову зону" },
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "wear_gown",                      "Одягти халат" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
@@ -119,11 +119,11 @@ class Exam9 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти марлеві кульки"},
+                    { "tweezers_balls", "Взяти марлеві кульки ⊕"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз ⊕" },
-                    { "right_left",     "Протерти справа наліво ⊕" }
+                    { "top_down",       "Протерти зверху вниз" },
+                    { "right_left",     "Протерти справа наліво" }
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>

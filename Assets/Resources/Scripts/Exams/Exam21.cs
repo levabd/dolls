@@ -103,11 +103,11 @@ class Exam21 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти марлеві кульки"},
+                    { "tweezers_balls", "Взяти марлеві кульки  ⊕"},
                     { "remove_balls",   "Скинути марлеві кульки" },
                     { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз ⊕" },
-                    { "right_left",     "Протерти справа наліво ⊕" }
+                    { "top_down",       "Протерти зверху вниз" },
+                    { "right_left",     "Протерти справа наліво" }
                 };
             case "patch":
                 return new TupleList<string, string>
