@@ -99,45 +99,119 @@ public class TrainingController : MonoBehaviour
         {
             case 0:
                 InfoPanelCreate(true, "Добро пожаловать в режим обучения", "Пройдя данный курс Вы научитесь работать с программой.Познакомитесь с интерфейсом.Освоите навыки работы с инструментами в программе.", "tr_1", true);
-                StartCoroutine(ItemMaskCreate(0, 9));
+                StartCoroutine(ItemMaskCreate(0, 8));
                 break;
             case 1:
                 InfoPanelCreate(true, "Шаг 1. Панель инструментов", "Вы видите панель инструментов. Щелкните левой кнопкой мыши по инструменту, чтобы активировать панель действий инструментов", "tr_2");
-                StartCoroutine(ItemMaskCreate(1, 9));
+                StartCoroutine(ItemMaskCreate(1, 8));
                 break;
             case 2:
                 InfoPanelCreate(true, "Шаг 2. Панель действий", "Вы видите панель действий. Щелкните левой кнопкой мыши по действию из списка, чтобы совершить действие с инструментом", "tr_3");
-                StartCoroutine(ItemMaskCreate(0, 9));
+                StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(1, 0, 2));
                 break;
             case 3:
-                InfoPanelCreate(true, "Шаг 3. Выбранный инструмент", "Вы можете увидеть активный инструмент в центре вверху экрана", "tr_4", true);
+                StartCoroutine(ActionMaskCreate(0, 0, 2));
+                InfoPanelCreate(true, "Шаг 3. Активный инструмент", "Вы можете увидеть какой инструмент Вы сейчас используете в середине верхней части экрана", "tr_4", true);
                 break;
             case 4:
-                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Выбирая активные инструменты и действия, Вы сделаете дещинфекцию", "tr_4", true);
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Выбирая активные инструменты и действия, Вы сделаете дезинфекцию.", "tr_5", true);
                 StartCoroutine(ActionMaskCreate(0, 0, 2));
-                StartCoroutine(ItemMaskCreate(3, 9));
+                StartCoroutine(ItemMaskCreate(0, 8));
                 break;
             case 5:
-                StartCoroutine(ItemMaskCreate(0, 9));
-                StartCoroutine(ActionMaskCreate(2, 0, 6));
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Выберите стерильные марлевые шарики", "tr_6");
+                StartCoroutine(ActionMaskCreate(0, 0, 2));
+                StartCoroutine(ItemMaskCreate(3, 8));
                 break;
             case 6:
-                StartCoroutine(ActionMaskCreate(0, 0, 6));
-                StartCoroutine(ItemMaskCreate(4, 9));
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Промокните стерильные марлевые шарики в 70% растворе спирта.", "tr_7");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(2, 0, 6));
                 break;
             case 7:
-                StartCoroutine(ItemMaskCreate(0, 9));
-                StartCoroutine(ActionMaskCreate(1, 3, 5));
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Выберите пинцет", "tr_8");
+                StartCoroutine(ActionMaskCreate(0, 0, 6));
+                StartCoroutine(ItemMaskCreate(4, 8));
                 break;
             case 8:
-                StartCoroutine(ActionMaskCreate(0, 3, 5));
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Возьмите им смоченные марлевые шарики", "tr_9");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(1, 3, 5));
                 break;
             case 9:
-                StartCoroutine(ActionMaskCreate(4, 3, 5));
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Укажите место дезинфекции", "tr_10");
+                BodyTargettingPoint.SetActive(true);
+                StartCoroutine(ActionMaskCreate(0, 3, 5));
                 break;
             case 10:
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Протрите ранее указанную область", "tr_11");
+                BodyTargettingPoint.SetActive(false);
+                StartCoroutine(ActionMaskCreate(3, 3, 5));
+                break;
+            case 11:
+                InfoPanelCreate(true, "Шаг 4. Дезинфекция", "Поздравляем, Вы успешно провели дезинфекцию спиртом", "tr_5", true);
                 StartCoroutine(ActionMaskCreate(0, 3, 5));
+                break;
+            case 12:
+                InfoPanelCreate(true, "Шаг 5. Анестезия", "Выбирая активные инструменты и действия, Вы сделаете анестезию.", "tr_12", true);
+                break;
+            case 13:
+                InfoPanelCreate(true, "Шаг 5. Анестезия", "Выберите шприц без иглы", "tr_13");
+                StartCoroutine(ItemMaskCreate(2, 8));
+                break;
+            case 14:
+                InfoPanelCreate(true, "Шаг 5. Анестезия", "Возьмите иглу для анестезии и наполните шприц анестетиком", "tr_14");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(4, 4, 10));
+                break;
+            case 15:
+                InfoPanelCreate(true, "Шаг 5. Анестезия", "Сделайте местную анестезию", "tr_15");
+                StartCoroutine(ActionMaskCreate(2, 4, 10));
+                break;
+            case 16:
+                InfoPanelCreate(true, "Шаг 5. Анестезия", "Поздравляем, Вы успешно выполнили анестезию", "tr_12", true);
+                StartCoroutine(ActionMaskCreate(0, 4, 10));
+                break;
+            case 17:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Вы ознакомитесь с порядком действий установки катетера", "tr_16", true);
+                StartCoroutine(ActionMaskCreate(0, 4, 10));
+                break;
+            case 18:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Отсоедините шприц от иглы", "tr_17");
+                StartCoroutine(ActionMaskCreate(1, 4, 10));
+                break;
+            case 19:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Возьмите иглу для пункции вены длиной 10 см,  внутренним просветом канала 1,7 мм и срезом острия иглы под углом 45°", "tr_18");
+                StartCoroutine(ActionMaskCreate(6, 4, 10));
+                break;
+            case 20:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Наполните шприц наполовину 0,25 % раствором новокаина", "tr_19");
+                StartCoroutine(ActionMaskCreate(8, 4, 10));
+                break;
+            case 21:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Укажите место укола", "tr_20");
+                BodyTargettingPoint.SetActive(true);
+                StartCoroutine(ActionMaskCreate(0, 4, 10));
+                break;
+            case 22:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Появился шприц. В правом нижнем углу Вы видите подсказку, по управлению шприцем", "tr_21", true);
+                BodyTargettingPoint.SetActive(false);
+                break;
+            case 23:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Установите угол наклона шприца используя клавиши с подсказки на 36°", "tr_21", true);                
+                break;
+            case 24:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Перед тем как начнете вводить шприц в тело, активируйте потягивание поршня шприца", "tr_22");
+                StartCoroutine(ActionMaskCreate(3, 4, 10));
+                break;
+            case 25:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Вводите шприц в тело до появления в нем крови, используя клавиши с подсказки", "tr_23", true);
+                StartCoroutine(ActionMaskCreate(0, 4, 10));
+                break;
+            case 26:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Отсоедините шприц от иглы и меньше чем за 5 секунд нажмите 'Прикрыть игру пальцем' на появившейся панели действий с иглой", "tr_24");
+                StartCoroutine(ActionMaskCreate(1, 4, 10));
                 break;
 
 

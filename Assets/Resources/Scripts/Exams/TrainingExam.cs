@@ -16,7 +16,6 @@ class TrainingExam : BaseExam
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки" },
         { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
-        { "wear_sterile_gloves",            "Змінити рукавички на стерильні" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
         { "anesthesia",                     "Зробити місцеву анестезію" },
         { "puncture_needle",                "Взяти голку для пункції вени" },
@@ -35,7 +34,6 @@ class TrainingExam : BaseExam
         { "hand",                           "Рука для додаткових дій" },
         { "standart_catheter_conductor",    "Стандартний гнучкий провідник до катетера" },
         { "catheter",                       "Катетер з канюлею і заглушкою" },
-        { "venflon",                        "Катетер Venflon"},
         { "patch",                          "Пластир" }
     };
 
@@ -60,7 +58,6 @@ class TrainingExam : BaseExam
                     { "anesthesia_needle",      "Взяти голку для анестезії шкіри і наповнити шприц анестетиком" },
                     { "g22G_needle",            "Взяти голку для спинномозкової анестезії 22G і наповнити шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
-                    { "null",                   "---" },
                     { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю" },
                     { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину" },
                     { "filling_nacl_half",      "Наповнити 0,9% розчином натрію хлориду наполовину"}
@@ -107,19 +104,17 @@ class TrainingExam : BaseExam
                     { "rotation_insertion",             "Поглибити обертальними рухами" },
                     { "direct_insertion",               "Поглибити прямими рухами" }
                 };
-            case "venflon":
-                return new TupleList<string, string>
-                {
-                    { "get",                            "Взяти" },
-                    { "remove",                         "Видалити катетер" },
-                    { "liquid_transfusion_connection",  "З'єднати з системою переливання рідин" },
-                    { "remove_mandren",                 "Витягнути мадрен" },
-                    { "pull_mandren",                   "Потягнути мадрен" }
-                };
             case "patch":
                 return new TupleList<string, string>
                 {
                     { "stick", "Наклеїти" }
+                };
+
+            case "needle":
+                return new TupleList<string, string>
+                {
+                    { "finger_covering", "Прикрити пальцем" },
+                    { "needle_removing", "Видалити голку через провідник" }
                 };
             default:
                 return new TupleList<string, string>();
@@ -137,41 +132,50 @@ class TrainingExam : BaseExam
     {
         errorMessage = "";
         showAnimation = true;
+
+        if (this.GetActions(actionCode)) return null;
+        if (this.BallClearAction(actionCode)) return null;
+        if (this.RemoveBallsAction(actionCode)) return null;
+        if (this.PistonPullingAction(actionCode)) return null;
+        if (this.GetSyringeAction(actionCode, ref errorMessage)) return null;
+        if (actionCode == "null") return null;
+
+
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
             return 1;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia_needle")
+        if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "spirit_p70")
         {
             return 2;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
             return 3;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "top_down")
         {
             return 4;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia_needle")
         {
-            return 4;
+            return 5;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
         {
-            return 4;
+            return 6;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "a45_d10_punction_needle")
         {
-            return 4;
+            return 7;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
         {
-            return 4;
+            return 8;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "big" && actionCode == "prepare")
+        if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
-            return 4;
+            return 9;
         }
         return null;
     }
