@@ -32,6 +32,8 @@ class EyeExamCoagulationView : MonoBehaviour
     public Button DialogButton;
     public Text DialogText;
 
+    public EndExamControlPanel EndExam;
+
     private Texture2D _texture;
 
     private float _imageWidth;
@@ -219,6 +221,7 @@ class EyeExamCoagulationView : MonoBehaviour
         CurrentAdminExam.Exam = exam;
         GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : errorMessage,
             Dialog, DialogText);
+        //EndExam.EndExam(examResult, errorMessage);
     }
 
     void FinishEvent()

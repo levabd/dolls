@@ -12,6 +12,8 @@ class EyeExamDiabeticView : MonoBehaviour
     public Button DialogButton;
     public Text DialogText;
 
+    public EndExamControlPanel EndExam;
+
     public Toggle Retina1;
     public Toggle Retina2;
     public Toggle Retina3;
@@ -116,6 +118,8 @@ class EyeExamDiabeticView : MonoBehaviour
         exam.Save();
         CurrentAdminExam.Exam = exam;
         GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.", Dialog, DialogText);
+        //EndExam.EndExam(examResult, examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.");
+
     }
 
     void CloseModal()

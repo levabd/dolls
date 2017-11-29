@@ -40,6 +40,7 @@ public enum Scenes
 	PneumotoraxExam = 35,
 	AuscultationHeartExam = 36,
 	PulseExam = 37,
-	SkinExam = 38
+	SkinExam = 38,
+	TrainingExam = 39
 }
 
