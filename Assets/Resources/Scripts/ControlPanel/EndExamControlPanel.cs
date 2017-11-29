@@ -67,8 +67,13 @@ public class EndExamControlPanel : MonoBehaviour {
     }
 
     public void CloseExam()
-    {
+    { 
         SceneManager.LoadScene("StepList");
+    }
+
+    public void CloseExamToExamList()
+    {
+        SceneManager.LoadScene("ExamList");
     }
 
     public void EndExam(bool PassedExam, string errorMessage = "")

@@ -117,8 +117,8 @@ class EyeExamDiabeticView : MonoBehaviour
         Exam exam = new Exam(CurrentUser.User, "EyeDiabeticExam", "Препроліферативна діабетична ретинопатія", examResult ? "" : "Тест не пройдено, перевірте свої відповіді.", examResult);
         exam.Save();
         CurrentAdminExam.Exam = exam;
-        GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.", Dialog, DialogText);
-        //EndExam.EndExam(examResult, examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.");
+        //GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.", Dialog, DialogText);
+        EndExam.EndExam(examResult, examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді.");
 
     }
 

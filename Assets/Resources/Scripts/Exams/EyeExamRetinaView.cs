@@ -15,6 +15,8 @@ class EyeExamRetinaView : MonoBehaviour
     public Button DialogButton;
     public Text DialogText;
 
+    public EndExamControlPanel EndExam;
+
     public GameObject Step1;
     public GameObject Step2;
     public GameObject Step3;
@@ -129,7 +131,9 @@ class EyeExamRetinaView : MonoBehaviour
     void FinishEvent()
     {
         if (_currentStep != 3)
+        {
             GeneralSceneHelper.ShowMessage("Спочатку пройдіть всі 4 кроки", Dialog, DialogText);
+        }   
         else
         {
             bool examResult = CheckExam();
@@ -137,8 +141,9 @@ class EyeExamRetinaView : MonoBehaviour
             Exam exam = new Exam(CurrentUser.User, "EyeRetinaExam", "Відшарування сітківки", examResult ? "" : "Тест не пройдено, перевірте свої відповіді на кожному кроці", examResult);
             exam.Save();
             CurrentAdminExam.Exam = exam;
-            GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді на кожному кроці",
-                Dialog, DialogText);
+            //GeneralSceneHelper.ShowMessage(examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді на кожному кроці",
+            //    Dialog, DialogText);
+            EndExam.EndExam(examResult, examResult ? "Вітаємо з успішним проходженням" : "Тест не пройдено, перевірте свої відповіді на кожному кроці");
         }
     }
 
