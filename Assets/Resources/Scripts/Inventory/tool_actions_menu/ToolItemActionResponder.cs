@@ -20,6 +20,8 @@ public class ToolItemActionResponder : MonoBehaviour
     public bool CheckAction;
     public bool activeControl = true;
     public bool needleInVein;
+    public TrainingController TC;
+    public bool TrainingMode = false;
     // Use this for initialization
     void Start()
     {
@@ -35,8 +37,12 @@ public class ToolItemActionResponder : MonoBehaviour
     }
 
     public void HandleonClick(string actionName)
-    {
+    {        
         CheckActionControl(actionName, colliderHit);
+        if (TrainingMode)
+        {
+            TC.IsActive();
+        }
 
         if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
     }

@@ -90,7 +90,11 @@ public class PositionPieceBody : MonoBehaviour {
                 CheckPositionPiercingTools(hit.transform.gameObject.tag);
                 if (CheckPosition)
                 {
-					TIAR.colliderHit = hit.transform.gameObject;
+                    if (TIAR.TrainingMode)
+                    {
+                        TIAR.TC.IsActive();
+                    }
+                    TIAR.colliderHit = hit.transform.gameObject;
                     switch (CurrentTool.Instance.Tool.name)
                     {
                         case "syringe":
