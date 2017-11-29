@@ -153,14 +153,20 @@ class TrainingExam : BaseExam
 
         if (CurrentTool.Instance.Tool.CodeName == "gloves" && actionCode == "wear_examination")
         {
+            CurrentTool.Instance.Tool.Title = "Оглядові рукавички одягнуті";
+            CurrentTool.Instance.Tool.StateParams["weared_examination"] = "true";
+            CurrentTool.Instance.Tool.StateParams["weared_sterile"] = "false";
+            CurrentTool.Instance.Tool.Sprites[0] = CurrentTool.Instance.Tool.Sprites[2];
             return 1;
         }
         if (CurrentTool.Instance.Tool.CodeName == "gauze_balls" && actionCode == "spirit_p70")
         {
+            BallHelper.TryWetBall(actionCode, "spirit_p70", out errorMessage);
             return 2;
         }
         if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "tweezers_balls")
         {
+            TweezersHelper.GetBalls("spirit");
             return 3;
         }
         if (CurrentTool.Instance.Tool.CodeName == "tweezers" && actionCode == "top_down")
@@ -169,6 +175,7 @@ class TrainingExam : BaseExam
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia_needle")
         {
+            this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 5, ref showAnimation);
             return 5;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -183,6 +190,7 @@ class TrainingExam : BaseExam
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
         {
+            this.HalfFillingNovocaine(actionCode, ref errorMessage);
             return 8;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")

@@ -41,14 +41,18 @@ Name: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"
 [Files]
 Source: "..\Build\dolls.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dolls.db"; DestDir: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
+Source: "instructions.pdf"; DestDir: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
 Source: "..\Build\dolls_Data\*"; DestDir: "{app}\dolls_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{commonprograms}\ClinicalSkills\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{commonprograms}\ClinicalSkills\ClinicalSkillsReadme"; Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{commondesktop}\ClinicalSkills Instructions"; Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"; Description: "Переглянути інструкцію"; Flags: shellexec nowait postinstall skipifsilent
 
