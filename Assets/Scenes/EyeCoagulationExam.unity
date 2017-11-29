@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2584,7 +2584,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 640712562}
   m_HandleRect: {fileID: 640712561}
   m_Direction: 0
-  m_Value: 0.5
+  m_Value: 1
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3100,7 +3100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000037174534, y: -0.000081539154}
+  m_AnchoredPosition: {x: 0.000030386116, y: 0.9567314}
   m_SizeDelta: {x: 0, y: 966.65}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &846543696
@@ -6077,8 +6077,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1828451609}
   m_HandleRect: {fileID: 1828451608}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99884313
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6695,6 +6695,7 @@ GameObject:
   - component: {fileID: 1963768743}
   - component: {fileID: 1963768742}
   - component: {fileID: 1963768741}
+  - component: {fileID: 1963768745}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6779,6 +6780,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1963768745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1963768740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451d17f0e37ac2e4aa0cd02dfe366091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTransform: {fileID: 1963768744}
+  PassedBackgroundPanel: {fileID: 224332214585093256, guid: 9303cb55851fb8c4893b178c63a2aac5,
+    type: 2}
+  NotPassedBackgroundPanel: {fileID: 224941548451230844, guid: 08db599297a2f3f40aa7ba5f427b5f98,
+    type: 2}
+  BlueEndPanel: {fileID: 224173065067385524, guid: b34d47347ac4b414cac082a7c5318b9d,
+    type: 2}
+  RedEndPanel: {fileID: 224765713710377562, guid: 56f73eaa4c7813d4fadd73f3d3f765fd,
+    type: 2}
+  HeadPanel: {fileID: 224425303548173696, guid: 7c401597af4b2364e8ad83eaf52bf5b2,
+    type: 2}
+  HeadPanelText: {fileID: 114938117151632874, guid: 7c401597af4b2364e8ad83eaf52bf5b2,
+    type: 2}
+  ErrorMessagePanel: {fileID: 224048788235460356, guid: 539eb632977153e47aeccc791cd96967,
+    type: 2}
+  ErrorMessagePanelText: {fileID: 114527473987420706, guid: 539eb632977153e47aeccc791cd96967,
+    type: 2}
+  ButtonPanel: {fileID: 224484140178898324, guid: 13f6685e96ab54f4c89f92ff31ebdb1f,
+    type: 2}
 --- !u!1 &1996210631
 GameObject:
   m_ObjectHideFlags: 0

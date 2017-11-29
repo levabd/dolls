@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ExamsCategory : MonoBehaviour
 {
     public ExamsList examsList;
+    public Text headerText;
     // Use this for initialization
     void Start()
     {
@@ -14,6 +16,11 @@ public class ExamsCategory : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void ChangeHeaderText(string text)
+    {
+        headerText.text = text;
     }
 
     public void Venipuncture()
