@@ -23,6 +23,9 @@ public class TrainingController : MonoBehaviour
     public Button ButtonInfo;
     [Header("Цель на теле")]
     public GameObject BodyTargettingPoint;
+    [Header("Маска для панели действий иглы")]
+    public GameObject FingerСoveringMask;
+    public GameObject NeedleRemovingMask;
 
     // Use this for initialization
     void Start()
@@ -212,6 +215,33 @@ public class TrainingController : MonoBehaviour
             case 26:
                 InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Отсоедините шприц от иглы и меньше чем за 5 секунд нажмите 'Прикрыть игру пальцем' на появившейся панели действий с иглой", "tr_24");
                 StartCoroutine(ActionMaskCreate(1, 4, 10));
+                break;
+            case 27:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Прикройте иглу пальцем, у Вас есть 5 секунд", "tr_25");
+                StartCoroutine(ActionMaskCreate(0, 4, 10));
+                NeedleRemovingMask.SetActive(true);                
+                break;
+            case 28:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Вы справились.  При закрытии иглы дольше после истечения 5 секунд есть риск возникновения воздушной эмболии. Будьте внимательны.", "tr_25", true);
+                FingerСoveringMask.SetActive(true);
+                break;
+            case 29:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Необходимо вставить проводник в иглу. Активируйте проводник", "tr_24");                
+                StartCoroutine(ItemMaskCreate(6, 8));
+                break;
+            case 30:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Вставьте проводник", "tr_24");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(1, 0, 2));
+                break;
+            case 31:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Удалите иглу через проводник", "tr_24");
+                StartCoroutine(ActionMaskCreate(0, 0, 2));
+                NeedleRemovingMask.SetActive(false);
+                break;
+            case 32:
+                InfoPanelCreate(true, "Шаг 6. Постановка катетера в подключичную вену", "Игла успешно удалена", "tr_24", true);
+                FingerСoveringMask.SetActive(true);
                 break;
 
 

@@ -69,7 +69,10 @@ public class PositionPieceBody : MonoBehaviour {
 
 	void Update ()
     {
-        Embolism();
+        if (CurrentExam.Instance.Exam.LoadName != "TrainingExam")
+        {
+            Embolism();
+        }        
         if (step1 && CurrentTool.Instance.Tool.cursorTexture != null)
         {
             Cursor.SetCursor(CurrentTool.Instance.Tool.cursorTexture, hotSpot, cursorMode);

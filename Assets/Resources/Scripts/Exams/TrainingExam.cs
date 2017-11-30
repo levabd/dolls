@@ -125,6 +125,7 @@ class TrainingExam : BaseExam
     {
         errorMessage = "";
         tipMessage = "";
+        this.BloodInsideMove(colliderTag, "subclavian_vein_final_target");
         return true;
     }
 
@@ -167,6 +168,8 @@ class TrainingExam : BaseExam
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "a45_d10_punction_needle")
         {
+            CurrentTool.Instance.Tool.StateParams["has_needle"] = "true";
+            CurrentTool.Instance.Tool.StateParams["needle"] = "a45_d10_punction_needle";
             return 7;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "filling_novocaine_half")
