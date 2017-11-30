@@ -20,7 +20,16 @@ class TrainingExam : BaseExam
         { "anesthesia",                     "Зробити місцеву анестезію" },
         { "puncture_needle",                "Взяти голку для пункції вени" },
         { "puncture_novocaine",             "Наповнити 0,25% новокаїну на половину" },
-        { "disconnect_syringe",             "Від'єднати шприц від голки" }
+        { "disconnect_syringe",             "Від'єднати шприц від голки" },
+        { "cover_cannula",                  "Швидко прикриваємо канюлю пальцем" },
+        { "wire_insertion",                 "Вставка провідника" },
+        { "needle_removing",                "Видалення голки" },
+        { "catheter_insertion",             "Вставка катетера по провіднику" },
+        { "catheter_pushing",               "Поглиблення обертальними рухами" },
+        { "wire_removing",                  "Витягнути провідник" },
+        { "liquid_transfusion_connection",  "З'єднати з системою переливання рідини" },
+        { "get_plaster",                    "Взяти пластир" },
+        { "fixation_with_plaster",          "Фіксація пластиром" }
 
     };
 
@@ -107,7 +116,7 @@ class TrainingExam : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "stick", "Наклеїти" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
 
             case "needle":
@@ -176,9 +185,45 @@ class TrainingExam : BaseExam
         {
             return 8;
         }
-        if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
+        if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")
         {
             return 9;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
+        {
+            return 10;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "standart_catheter_conductor" && actionCode == "push")
+        {
+            return 11;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "needle_removing")
+        {
+            return 12;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "push")
+        {
+            return 13;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "rotation_insertion")
+        {
+            return 14;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "standart_catheter_conductor" && actionCode == "pull")
+        {
+            return 15;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "catheter" && actionCode == "liquid_transfusion_connection")
+        {
+            return 16;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "get")
+        {
+            return 17;
+        }
+        if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
+        {
+            return 18;
         }
         return null;
     }
