@@ -16313,6 +16313,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114377375337816272, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
+        type: 2}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1166830725}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
   m_IsPrefabParent: 0
@@ -18647,7 +18652,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 365135959}
-  m_LocalRotation: {x: -0.6932933, y: 0.19894166, z: 0.26942843, w: 0.6381026}
+  m_LocalRotation: {x: -0.69329333, y: 0.19894168, z: 0.26942846, w: 0.63810265}
   m_LocalPosition: {x: -10.1, y: -10.2, z: -99.4}
   m_LocalScale: {x: 17.960484, y: 27.005991, z: 17.960527}
   m_Children: []
@@ -20109,6 +20114,8 @@ MonoBehaviour:
   CheckAction: 0
   activeControl: 1
   needleInVein: 0
+  TC: {fileID: 0}
+  TrainingMode: 0
 --- !u!114 &401152580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20122,6 +20129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionMenu: {fileID: 1107126314}
   ctrlStat: {fileID: 1107126316}
+  TC: {fileID: 0}
+  TrainingMode: 0
 --- !u!1 &401234532
 GameObject:
   m_ObjectHideFlags: 0
@@ -73395,7 +73404,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530902411}
-  m_LocalRotation: {x: 0.86343193, y: 0.49491078, z: -0.0068523553, w: 0.09747574}
+  m_LocalRotation: {x: 0.86343205, y: 0.49491084, z: -0.0068523563, w: 0.09747575}
   m_LocalPosition: {x: -0.03174, y: -0.40651, z: -0.2224}
   m_LocalScale: {x: 0.004235614, y: 0.011371019, z: 0.0042356066}
   m_Children: []
@@ -81806,7 +81815,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
@@ -100803,7 +100812,7 @@ Prefab:
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}

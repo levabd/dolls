@@ -9973,7 +9973,7 @@ Prefab:
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224108822104179906, guid: d872845cb04874942935d855ba6fa2eb,
         type: 2}
@@ -20310,6 +20310,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114377375337816272, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
+        type: 2}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1166830725}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
   m_IsPrefabParent: 0
@@ -22862,6 +22867,8 @@ MonoBehaviour:
   CheckAction: 0
   activeControl: 1
   needleInVein: 0
+  TC: {fileID: 0}
+  TrainingMode: 0
 --- !u!114 &401152580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22875,6 +22882,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionMenu: {fileID: 1107126314}
   ctrlStat: {fileID: 1107126316}
+  TC: {fileID: 0}
+  TrainingMode: 0
 --- !u!1 &401373863
 GameObject:
   m_ObjectHideFlags: 0
@@ -26966,7 +26975,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 527414930}
-  m_LocalRotation: {x: 0.32806483, y: -0.5988648, z: -0.35040945, w: 0.64105195}
+  m_LocalRotation: {x: 0.32806486, y: -0.59886485, z: -0.35040948, w: 0.641052}
   m_LocalPosition: {x: 0.010193919, y: 1.0540903, z: -0.89626014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56062,7 +56071,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1452431098}
-  m_LocalRotation: {x: 0.46419024, y: 0.02690033, z: 0.7982284, w: -0.3829296}
+  m_LocalRotation: {x: 0.4641903, y: 0.026900334, z: 0.7982285, w: -0.38292965}
   m_LocalPosition: {x: -0.19909997, y: 0.11400001, z: 0.06139996}
   m_LocalScale: {x: 0.012953831, y: 0.011528606, z: 0.0108047025}
   m_Children: []
@@ -63844,7 +63853,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
