@@ -175,7 +175,8 @@ class TrainingExam : BaseExam
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia_needle")
         {
-            this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 5, ref showAnimation);
+            this.GetNeedleAction(actionCode, ref errorMessage, "anesthesia_needle", 4, ref showAnimation);
+
             return 5;
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "anesthesia")
@@ -195,7 +196,10 @@ class TrainingExam : BaseExam
         }
         if (CurrentTool.Instance.Tool.CodeName == "syringe" && actionCode == "needle_removing")
         {
-            return 9;
+            if (LastTakenStep() == 8)
+            {
+                return 9;
+            }
         }
         if (CurrentTool.Instance.Tool.CodeName == "needle" && actionCode == "finger_covering")
         {
@@ -229,6 +233,7 @@ class TrainingExam : BaseExam
         {
             return 17;
         }
+        if (this.NeedleRemovingAction(actionCode, ref errorMessage, ref tipMessage, "")) return null;
         if (CurrentTool.Instance.Tool.CodeName == "patch" && actionCode == "stick")
         {
             return 18;
