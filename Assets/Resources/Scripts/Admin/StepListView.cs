@@ -14,6 +14,7 @@ public class StepListView : MonoBehaviour {
     public Button BackButton;
     public Button RepeatButton;
     public Button ExamsButton;
+    public Button TutorialButton;
 
     public Text Name;
     public Text ExamDescription;
@@ -26,6 +27,10 @@ public class StepListView : MonoBehaviour {
     public GameObject Dialog;
     public Button DialogButton;
     public Text DialogText;
+
+    public GameObject Tutorial;
+    public Button TutorialCloseButton;
+    public TutorialController TutorialControllerObj;
 
     private void ReloadData()
     {
@@ -68,6 +73,12 @@ public class StepListView : MonoBehaviour {
 
         btn = RepeatButton.GetComponent<Button>();
         btn.onClick.AddListener(RepeatExam);
+
+        btn = TutorialButton.GetComponent<Button>();
+        btn.onClick.AddListener(OpenTutorial);
+
+        btn = TutorialCloseButton.GetComponent<Button>();
+        btn.onClick.AddListener(TutorialClose);
 
         btn = ExamsButton.GetComponent<Button>();
         btn.onClick.AddListener(OpenExams);
@@ -126,6 +137,24 @@ public class StepListView : MonoBehaviour {
             SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
         }
     }
+
+    void OpenTutorial()
+    {
+        Type examType = Type.GetType(CurrentAdminExam.Exam.Class);
+        if (examType != null)
+        {
+            BaseExam currentExam = (BaseExam)Activator.CreateInstance(examType);
+            TutorialControllerObj.TutorialCreate(currentExam.LoadName);
+            Tutorial.SetActive(true);
+        }
+    }
+
+    void TutorialClose()
+    {
+        Debug.Log("Tutorial Close");
+        Tutorial.SetActive(false);
+    }
+
 
     void CloseApp()
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class EndExamControlPanel : MonoBehaviour {
 
     private string errorMessage;
     private bool PassedExam;
-    private bool ActiveEndPanel = false;
+    private bool ActiveEndPanel;
 
     public Transform TargetTransform;
     public Transform PassedBackgroundPanel;
@@ -78,7 +79,7 @@ public class EndExamControlPanel : MonoBehaviour {
 
     public void EndExam(bool PassedExam, string errorMessage = "")
     {
-        this.errorMessage = errorMessage;
+        this.errorMessage = errorMessage + (PassedExam ? "" : " Ви можете подивитися правильний порядок дій в інструкції до сценарію. Кнопка «?»");
         this.PassedExam = PassedExam;
         ActiveEndPanel = true;
     }
