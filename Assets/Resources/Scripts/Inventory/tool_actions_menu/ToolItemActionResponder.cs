@@ -44,7 +44,7 @@ public class ToolItemActionResponder : MonoBehaviour
             TC.IsActive();
         }
 
-        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString()); }
+        if (debugMode) { Debug.Log(CurrentExam.Instance.Exam.LastTakenStep().ToString() +" "+ CurrentTool.Instance.Tool.CodeName + " " + actionName );  }
     }
 
     public void CheckActionControl(string actionName, GameObject colliderHit)
