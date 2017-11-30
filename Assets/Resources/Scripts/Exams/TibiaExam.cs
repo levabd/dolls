@@ -79,7 +79,7 @@ class TibiaExam : BaseExam
             case "big":
                 return new TupleList<string, string>
                 {
-                    { "get",      "Взяти ⊕" },
+                    { "get",      "Взяти і вибрати місце ⊕" },
                     { "prepare",  "Звільнити засувку шприца-пістолета B.I.G." },
                     { "activate", "Активувати пістолет B.I.G." },
                     { "remove",   "Витягти стилет троакара" }

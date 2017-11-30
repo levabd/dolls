@@ -37,7 +37,7 @@ class Exam20 : BaseExam
         { "hand",                           "Рука для додаткових дій" },
         { "syringe",                        "Шприц без голки" },
         { "gauze_balls",                    "Стерильні марлеві кульки" },
-        { "tweezers",                       "Пінцет без нічого" },
+//      { "tweezers",                       "Пінцет без нічого" },
         { "tourniquet",                     "Джгут" },
         { "venflon",                        "Катетер Venflon"},
         { "patch",                          "Пластир" }
@@ -56,7 +56,7 @@ class Exam20 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взяти джгут ⊕" },
+                    { "get",    "Взяти джгут і вибрати місце ⊕" },
                     { "lay",    "Накласти джгут" },
                     { "remove", "Зняти джгут" }
                 };
@@ -65,7 +65,7 @@ class Exam20 : BaseExam
                 {
                     { "get_palpation",        "Пальпація ⊕" },// "palpation"
                     { "get_stretch_the_skin", "Натягнути шкіру і зафіксувати вену ⊕" }, // "stretch_the_skin"
-                    { "get_clamp",            "Затиснути вену ⊕" }, //clamp
+                    { "get_clamp",            "Затиснути вену на тілі ⊕" }, //clamp
                     { "clamp_out",            "Відпустити вену"},
                 };
             case "syringe":
@@ -87,19 +87,17 @@ class Exam20 : BaseExam
                     { "get_balls",     "Прикласти кульку ⊕" }, // "attach_balls"
                     { "get_top_down",  "Обробити операційне поле ⊕" }, // "top_down"
                 };
-            case "tweezers":
-                return new TupleList<string, string>
-                {
-                    { "tweezers_balls", "Взяти марлеві кульки  ⊕"},
-                    { "remove_balls",   "Скинути марлеві кульки" },
-                    { "null",           "---" },
-                    { "top_down",       "Обробити операційне поле" },
-                    { "right_left",     "Протерти справа наліво" }
-                };
+    //        case "tweezers":
+    //            return new TupleList<string, string>
+    //            {
+    //                { "tweezers_balls", "Взяти марлеві кульки  ⊕"},
+    //                 { "remove_balls",   "Скинути марлеві кульки" },
+    //                 { "top_down",       "Обробити операційне поле" }
+    //            };
             case "venflon":
                 return new TupleList<string, string>
                 {
-                    { "get",                            "Взяти ⊕" },
+                    { "get",                            "Взяти і вибрати місце ⊕" },
                     { "remove",                         "Видалити катетер" },
                     { "liquid_transfusion_connection",  "З'єднати з системою переливання рідин" },
                     { "remove_mandren",                 "Витягнути мадрен" },
@@ -108,7 +106,7 @@ class Exam20 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти ⊕" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

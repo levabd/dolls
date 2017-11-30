@@ -78,12 +78,12 @@ class Exam6 : BaseExam
             case "gauze_balls":
                 return new TupleList<string, string>
                 {
+                    { "clear",       "Взяти нову стерильну кульку" },
                     { "spirit_p70",  "Промокнути в 70% розчині спирту" },
                     { "spirit_p60",  "Промокнути в 60% розчині спирту" },
                     { "spirit_p80",  "Промокнути в 80% розчині спирту" },
                     { "iodine_p1",   "Промокнути в 1% розчині йодоната" },
-                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" },
-                    { "clear",       "Взяти нову стерильну кульку" }
+                    { "iodine_p3",   "Промокнути в 3% розчині йодоната" }
                 };
             case "needle":
                 return new TupleList<string, string>
@@ -94,11 +94,9 @@ class Exam6 : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти марлеві кульки ⊕" },
-                    { "remove_balls",   "Скинути марлеві кульки" },
-                    { "null",           "---" },
-                    { "top_down",       "Обробити операційне поле" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "tweezers_balls", "Взяти кульку і вибрати місце дезінфекції на тілі ⊕" },
+                    { "remove_balls",   "Скинути марлеві кульки" },                  
+                    { "top_down",       "Обробити операційне поле" }                   
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>
@@ -124,7 +122,7 @@ class Exam6 : BaseExam
             case "patch":
                 return new TupleList<string, string>
                 {
-                    { "get", "Взяти ⊕" }
+                    { "get", "Взяти і накласти ⊕" }
                 };
             default:
                 return new TupleList<string, string>();

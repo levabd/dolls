@@ -15,7 +15,7 @@ class TrainingExam : BaseExam
         { "wear_examination_gloves",        "Одягти оглядові рукавички" },
         { "spirit_balls",                   "Промокнути марлеві кульки 70% розчином спирту" },
         { "tweezers_spirit_balls",          "Взяти змочені марлеві кульки" },
-        { "spirit_disinfection",            "Дезінфекція спиртом. Протерти зверху вниз" },
+        { "spirit_disinfection",            "Дезінфекція спиртом. Обробити операційне поле" },
         { "anesthesia_needle",              "Взяти голку для анестезії шкіри" },
         { "anesthesia",                     "Зробити місцеву анестезію" },
         { "puncture_needle",                "Взяти голку для пункції вени" },
@@ -67,9 +67,9 @@ class TrainingExam : BaseExam
                     { "anesthesia_needle",      "Взяти голку для анестезії шкіри і наповнити шприц анестетиком" },
                     { "g22G_needle",            "Взяти голку для спинномозкової анестезії 22G і наповнити шприц анестетиком" },
                     { "a45_d10_punction_needle",  "Взяти голку для пункції вени довжиною 10 см з внутрішнім просвітом каналу 1,7 мм і зрізом вістря голки під кутом 45°" },
-                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю" },
-                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину" },
-                    { "filling_nacl_half",      "Наповнити 0,9% розчином натрію хлориду наполовину"}
+                    { "filling_novocaine_full", "Наповнити 0,25% новокаїну повністю ⊕" },
+                    { "filling_novocaine_half", "Наповнити 0,25% новокаїну наполовину ⊕" },
+                    { "filling_nacl_half",      "Наповнити 0,9% розчином натрію хлориду наполовину ⊕"}
                 };
             case "gauze_balls":
                 return new TupleList<string, string>
@@ -84,19 +84,17 @@ class TrainingExam : BaseExam
             case "tweezers":
                 return new TupleList<string, string>
                 {
-                    { "tweezers_balls", "Взяти кульки і вибрати місце дезінфекції на тілі" },
+                    { "tweezers_balls", "Взяти кульки і вибрати місце дезінфекції на тілі ⊕" },
                     { "remove_balls",   "Скинути марлеві кульки" },
-                    { "null",           "---" },
-                    { "top_down",       "Протерти зверху вниз" },
-                    { "right_left",     "Протерти справа наліво" }
+                    { "top_down",       "Обробити операційне поле" }
                 };
             case "hand":
                 return new TupleList<string, string>
                 {
-                    { "get_palpation",        "Пальпація" },// "palpation"
-                    { "get_stretch_the_skin", "Натягнути шкіру і зафіксувати вену" }, // "stretch_the_skin"
-                    { "get_clamp",            "Затиснути вену" }, //clamp
-                    { "clamp_out",            "Відпустити вену"},
+                    { "get_palpation",        "Пальпація ⊕" },// "palpation"
+                    { "get_stretch_the_skin", "Натягнути шкіру і зафіксувати вену ⊕" }, // "stretch_the_skin"
+                    { "get_clamp",            "Затиснути вену ⊕" }, //clamp
+                    { "clamp_out",            "Відпустити вену ⊕"},
                 };
             case "standart_catheter_conductor":
                 return new TupleList<string, string>

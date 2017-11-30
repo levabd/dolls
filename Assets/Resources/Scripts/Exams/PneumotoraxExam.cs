@@ -58,7 +58,7 @@ class PneumotoraxExam : BaseExam
             case "scalpel":
                 return new TupleList<string, string>
                 {
-                    { "get",      "Взяти ⊕"},
+                    { "get",      "Взяти і вибрати місце ⊕"},
                     { "incision", "Зробити надріз"}
                 };
             case "bobrov_bank":
@@ -69,7 +69,7 @@ class PneumotoraxExam : BaseExam
             case "trocar":
                 return new TupleList<string, string>
                 {
-                    { "get",                   "Взяти ⊕"},
+                    { "get",                   "Взяти і вибрати місце ⊕"},
                     { "pull",                  "Витягнути стилет заводячи ПВХ трубку в плевральну порожнину"},
                     { "trocar_connect",        "Приєднати подовжувач"},
                     { "trocar_connect_valve",  "Приєднати дренажний вентиль"},

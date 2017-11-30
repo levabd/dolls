@@ -45,7 +45,7 @@ class BloodPressureExam1 : BaseExam
             case "phonendoscope":
                 return new TupleList<string, string>
                 {
-                    { "get",                  "Взяти ⊕" }
+                    { "get",                  "Взяти і вибрати місце ⊕" }
                 };
             default:
                 return new TupleList<string, string>();
