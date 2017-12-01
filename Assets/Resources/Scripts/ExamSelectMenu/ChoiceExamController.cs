@@ -22,7 +22,7 @@ public class ChoiceExamController : MonoBehaviour {
         {
             StartCoroutine(CounterLoader());
         }
-        if (action)
+        if (action && !activeLoader)
 		{
             loader.SetActive(true);
             activeLoader = true;
