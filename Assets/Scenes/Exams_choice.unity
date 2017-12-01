@@ -203,6 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: 0
   loader: {fileID: 1166445450}
+  loaderText: {fileID: 838721421}
+  loaderImage: {fileID: 838721422}
 --- !u!4 &268787067
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,15 +1207,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11410726, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_FontData.m_FontSize
-      value: 28
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 11410726, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_FontData.m_MinSize
-      value: 28
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 11410726, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_FontData.m_MaxSize
-      value: 28
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 11410728, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_Color.a
@@ -1229,15 +1231,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410720, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22410726, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410720, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &838721421 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11410726, guid: 64db8aba51cd01a47b5dd43a05785951,
+    type: 2}
+  m_PrefabInternal: {fileID: 838721420}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1 &838721422 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 110720, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+  m_PrefabInternal: {fileID: 838721420}
 --- !u!1 &1003869016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,12 +1434,12 @@ Prefab:
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 161
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 90.5
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
@@ -4034,7 +4050,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1166445451}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4053,7 +4069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.8181639, g: 0.7720048, b: 0.9632353, a: 0.156}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -8,12 +8,17 @@ public class ChoiceExamController : MonoBehaviour {
 	public BaseExam exam;
     public AsyncOperation async;
     public GameObject loader;
+    public Text loaderText;
+    public GameObject loaderImage;
     SceneListCheck sceneListCheck;
     private float load = 0;
     private bool activeLoader;
+    private Image mFill;
     // Use this for initialization
     void Start () {
-	}
+        mFill = loaderImage.GetComponent<Image>();
+        mFill.fillAmount = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -86,7 +91,8 @@ public class ChoiceExamController : MonoBehaviour {
         if (load < 100)
         {
             load += 0.5f;
-            GameObject.Find("Main Interface/ProgressRadialPlain").transform.GetChild(1).GetChild(0).transform.gameObject.GetComponent<Text>().text = $"{System.Convert.ToInt32(load)}%";
+            loaderText.text = $"{System.Convert.ToInt32(load)}%";
+            mFill.fillAmount = (load / 100);
         }
     }
 }
