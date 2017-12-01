@@ -414,13 +414,13 @@ namespace SLS.Widgets.Table {
         rt.SetParent(this.table.loadingOverlay.transform, false);
         img = go.AddComponent<Image>();
         img.sprite = this.table.spinnerSprite;
-        img.color = this.table.spinnerColor;
+        // img.color = this.table.spinnerColor;
         go.AddComponent<Spinner>();
         rt.anchorMin = new Vector2(0.5f, 0.5f);
         rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.offsetMin = new Vector2(-16f, -16f);
-        rt.offsetMax = new Vector2(16f, 16f);
+        rt.offsetMin = new Vector2(-40f, -40f);
+        rt.offsetMax = new Vector2(40f, 40f);
 
       }
 

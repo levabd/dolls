@@ -1219,6 +1219,22 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 110720, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410722, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410720, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410726, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64db8aba51cd01a47b5dd43a05785951, type: 2}
   m_IsPrefabParent: 0
@@ -1402,12 +1418,12 @@ Prefab:
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 111.5
+      value: 161
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 62.5
+      value: 90.5
       objectReference: {fileID: 0}
     - target: {fileID: 224224663068782494, guid: 14b4725665c29674b978fc72258e16d6,
         type: 2}
@@ -4045,7 +4061,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
