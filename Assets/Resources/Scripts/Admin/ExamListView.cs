@@ -135,10 +135,10 @@ public class ExamListView : MonoBehaviour
         Column numberColumn = _dataTable.AddTextColumn("ID сценарію", null, 100f, 100f);
         numberColumn.horAlignment = Column.HorAlignment.RIGHT;
         if (CurrentUser.User.Role == User.UserRoles.Manager) _dataTable.AddTextColumn("ПІБ", null, 300f, 300f);
-        _dataTable.AddTextColumn("Назва тесту", null, 500f, 500f);
-        _dataTable.AddTextColumn("Помилка", null, 400f, 400f);
+        _dataTable.AddTextColumn("Назва тесту", null, 380f, 380f);
+        _dataTable.AddTextColumn("Помилка", null, 380f, 380f);
         if (CurrentUser.User.Role == User.UserRoles.User) _dataTable.AddTextColumn("", null, 180f, 180f);
-        _dataTable.AddTextColumn("", null, 180f, 180f);
+        _dataTable.AddTextColumn("", null, 200f, 200f);
         _dataTable.AddImageColumn("Інструкція");
         _dataTable.AddTextColumn("Дата проходження", null, 150f, 150f);
         _dataTable.AddImageColumn("Результат");

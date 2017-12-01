@@ -1182,6 +1182,11 @@ Prefab:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1166830725}
+    - target: {fileID: 114915588753299812, guid: a058e00ef88fe7b4abe1d4b393bb5bd0,
+        type: 2}
+      propertyPath: examControl
+      value: 
+      objectReference: {fileID: 1166830729}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a058e00ef88fe7b4abe1d4b393bb5bd0, type: 2}
   m_IsPrefabParent: 0
@@ -4780,7 +4785,7 @@ Prefab:
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224585792281255892, guid: 2d8874e762efad847b938cb216d7cf87,
         type: 2}
