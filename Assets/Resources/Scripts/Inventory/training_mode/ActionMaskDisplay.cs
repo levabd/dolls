@@ -38,6 +38,7 @@ public class ActionMaskDisplay : MonoBehaviour
             Mask.GetComponent<Button>().interactable = true;
             Mask.GetComponent<Image>().raycastTarget = false;
             Mask.GetComponent<Image>().sprite = spriteTrueAction;
+            Mask.GetComponent<Image>().fillAmount = 0.05f;
         }
         Mask.name = itemName;
         }

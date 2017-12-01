@@ -138,23 +138,23 @@ public class TrainingController : MonoBehaviour
                 StartCoroutine(ItemMaskCreate(4, 8));
                 break;
             case 8:
-                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Візьміть ним змочені марлеві кульки", "tr_9");
+                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Візьміть ним змочені марлеві кульки. Обратите внимание на иконку цели на кнопке действия. При выборе таких действий изменится курсор для позиционирования.", "tr_9");
                 StartCoroutine(ItemMaskCreate(0, 8));
-                StartCoroutine(ActionMaskCreate(1, 3, 5));
+                StartCoroutine(ActionMaskCreate(1, 0, 3));
                 break;
             case 9:
                 InfoPanelCreate(true, "Крок 4. Дезінфекція", "Вкажіть місце дезінфекції на тілі", "tr_10");
                 BodyTargettingPoint.SetActive(true);
-                StartCoroutine(ActionMaskCreate(0, 3, 5));
+                StartCoroutine(ActionMaskCreate(0, 0, 3));
                 break;
             case 10:
                 InfoPanelCreate(true, "Крок 4. Дезінфекція", "Протріть раніше зазначену область", "tr_11");
                 BodyTargettingPoint.SetActive(false);
-                StartCoroutine(ActionMaskCreate(3, 3, 5));
+                StartCoroutine(ActionMaskCreate(3, 0, 3));
                 break;
             case 11:
                 InfoPanelCreate(true, "Крок 4. Дезінфекція", "Вітаємо, Ви успішно провели дезінфекцію спиртом", "tr_5", true);
-                StartCoroutine(ActionMaskCreate(0, 3, 5));
+                StartCoroutine(ActionMaskCreate(0, 0, 3));
                 break;
             case 12:
                 InfoPanelCreate(true, "Крок 5. Анестезія", "Вибираючи активні інструменти і дії, Ви зробите анестезію.", "tr_12", true);
@@ -202,7 +202,7 @@ public class TrainingController : MonoBehaviour
                 BodyTargettingPoint.SetActive(false);
                 break;
             case 23:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36 °", "tr_21", true);                
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36 °. Если угол не изменяется, значит Вы уже начали вводить шприц. Выполните движение шприца назад, а затем меняйте угол", "tr_21", true);                
                 break;
             case 24:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Перед тим як почнете вводити шприц в тіло, активуйте потягування поршня шприца", "tr_22");
@@ -228,6 +228,7 @@ public class TrainingController : MonoBehaviour
             case 29:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Необхідно вставити провідник в голку. Активуйте провідник", "tr_24");                
                 StartCoroutine(ItemMaskCreate(6, 8));
+                FingerСoveringMask.SetActive(true);
                 break;
             case 30:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вставте провідник", "tr_24");
@@ -241,10 +242,81 @@ public class TrainingController : MonoBehaviour
                 break;
             case 32:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Голка успішно видалена", "tr_24", true);
-                FingerСoveringMask.SetActive(true);
+                
                 break;
+            case 33:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Катетер с канюлей и заглушкой", "tr_24");
+                StartCoroutine(ItemMaskCreate(7, 8));
+                break;
+            case 34:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вставить по проводнику", "tr_24");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(1, 0, 5));
+                break;
+            case 35:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Ушлубить вразательными двиениями", "tr_24");
+                StartCoroutine(ActionMaskCreate(4, 0, 5));
+                break;
+            case 36:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активировать проводник", "tr_24");
+                StartCoroutine(ActionMaskCreate(0, 0, 5));
+                StartCoroutine(ItemMaskCreate(6, 8));
+                break;
+            case 37:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Удалить проводник", "tr_24");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(2, 0, 2));                
+                break;
+            case 38:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Продолжаем действия с катетером", "tr_24");
+                StartCoroutine(ItemMaskCreate(7, 8));
+                StartCoroutine(ActionMaskCreate(0, 0, 2));
+                break;
+            case 39:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Соединяем катетер с системой переливания жидкостей", "tr_24");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(3, 0, 5));
+                break;
+            case 40:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Нам необходимо закрепить катетер на теле, берем пластырь", "tr_24");
+                StartCoroutine(ItemMaskCreate(8, 8));
+                StartCoroutine(ActionMaskCreate(0, 0, 5));
+                break;
+            case 41:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активируем позиционирование пластыря", "tr_24");
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(1, 0, 1));
+                break;
+            case 42:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активируем позиционирование пластыря", "tr_24");
+                StartCoroutine(ActionMaskCreate(0, 0, 1));
+                break;
+            case 43:
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Поздавляем Вы справились", "tr_24", true);
+                
+                break;
+            case 44:
+                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "В рамках обучающего сценария нет возможности провести демонстрацию руки для дополнительных действий. Но вы можете посмотреть список действий", "tr_24", true);
 
-
+                break;
+            case 45:
+                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Активируйте руку для дополнительных действий", "tr_24", true);
+                StartCoroutine(ItemMaskCreate(5, 8));
+                break;
+            case 46:
+                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Вы можете ознакомиться с перечнем. Демонстрация доступна в действующих сценариях", "tr_24", true);
+                StartCoroutine(ItemMaskCreate(0, 8));
+                StartCoroutine(ActionMaskCreate(0, 0, 4));
+                break;
+            case 47:
+                InfoPanelCreate(true, "Крок 8. История действий", "На панели в правом нижнем углу экрана Вы можете ознакомиться с историей ваших действий в течении всего экзамена", "tr_24", true);
+                break;
+            case 48:
+                InfoPanelCreate(true, "Крок 9. Инструкция к сценарию", "В левом верхнем углу экрана есть кнопка с вопросительным знаком. Нажав ее Вы сможете ознакомиться с подробной работой в сценарии", "tr_24", true);
+                break;
+            case 49:
+                InfoPanelCreate(true, "Крок 10. Завершение сценария", "Поздравляем. Ваше обучение завершено. В правом верхнем углу экрана есть кнопка Завершити сцену. Нажав ее Вы закончите сценарий и сможете ознакомиться с результатом", "tr_24");
+                break;
             default:
                 break;
         }

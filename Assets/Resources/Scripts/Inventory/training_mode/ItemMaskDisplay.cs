@@ -27,7 +27,8 @@ public class ItemMaskDisplay : MonoBehaviour
         {
             Mask.GetComponent<Button>().interactable = true;
             Mask.GetComponent<Image>().raycastTarget = false;
-            Mask.GetComponent<Image>().sprite = spriteTrueItem;           
+            Mask.GetComponent<Image>().sprite = spriteTrueItem;
+            Mask.GetComponent<Image>().fillAmount = 0.05f;
         }
         Mask.name = itemName;
     }
