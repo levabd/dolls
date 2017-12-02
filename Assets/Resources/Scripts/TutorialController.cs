@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class TutorialController : MonoBehaviour
 {
@@ -28,6 +28,10 @@ public class TutorialController : MonoBehaviour
 
     private void Prime(Sprite[] items)
     {
+        if (TutorialPageContainer.childCount > 0)
+        {
+            DestroyChildren(TutorialPageContainer.gameObject);
+        }
         foreach (Sprite item in items)
         {
             Image page = Instantiate(TutorialPagePrefab);
@@ -36,5 +40,14 @@ public class TutorialController : MonoBehaviour
             page.sprite = item;
             Debug.Log(page.name);
         }
+    }
+    void DestroyChildren(GameObject go)
+    {
+        List<GameObject> children = new List<GameObject>();
+        foreach (Transform tran in go.transform)
+        {
+            children.Add(tran.gameObject);
+        }
+        children.ForEach(child => GameObject.Destroy(child));
     }
 }
