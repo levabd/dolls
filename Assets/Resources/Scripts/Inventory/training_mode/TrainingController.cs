@@ -27,6 +27,8 @@ public class TrainingController : MonoBehaviour
     [Header("Маска для панелі дій голки")]
     public GameObject FingerСoveringMask;
     public GameObject NeedleRemovingMask;
+    private string angle;
+    private bool isAngle = false;
 
     // Use this for initialization
     void Start()
@@ -42,6 +44,15 @@ public class TrainingController : MonoBehaviour
             TrainingControl(step);
             action = false;
         }
+        if (isAngle)
+        {
+            if ((CurrentTool.Instance.Tool.StateParams.TryGetValue("entry_angle", out angle) && angle == "36"))
+            {
+                IsActive();
+                isAngle = false;
+            }
+        }
+        
     }
 
     public void IsActive()
@@ -201,16 +212,17 @@ public class TrainingController : MonoBehaviour
             case 22:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "З'явився шприц. У правому нижньому кутку Ви бачите підказку, по управлінню шприцом", "22", true);
                 BodyTargettingPoint.SetActive(false);
+                isAngle = true;
                 break;
             case 23:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36°. Якщо значення кута не змінюється, значить Ви вже почали вводити шприц. Виконайте рух шприца назад, а потім міняйте кут", "23", true);                
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36°. Якщо значення кута не змінюється, значить Ви вже почали вводити шприц. Виконайте рух шприца назад, а потім міняйте кут", "23");                
                 break;
             case 24:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Перед тим як почнете вводити шприц в тіло, активуйте потягування поршня шприца", "24");
                 StartCoroutine(ActionMaskCreate(3, 4, 10));
                 break;
             case 25:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вводьте шприц з голкою в тіло до появи в ньому крові, використовуючи клавіші з підказки", "25", true);
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вводьте шприц з голкою в тіло до появи в ньому крові, використовуючи клавіші з підказки", "25");
                 StartCoroutine(ActionMaskCreate(0, 4, 10));
                 break;
             case 26:
