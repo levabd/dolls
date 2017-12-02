@@ -32,6 +32,8 @@ public class StepListView : MonoBehaviour {
     public Button TutorialCloseButton;
     public TutorialController TutorialControllerObj;
 
+    public LoaderController Loader;
+
     private void ReloadData()
     {
         _dataTable.data.Clear();
@@ -134,7 +136,8 @@ public class StepListView : MonoBehaviour {
         {
             CurrentExam.Instance.Exam = null;
             CurrentExam.Instance.Exam = (BaseExam) Activator.CreateInstance(examType);
-            SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
+            Loader.ActiveLoader(CurrentExam.Instance.Exam.LoadName);
+            //SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
         }
     }
 

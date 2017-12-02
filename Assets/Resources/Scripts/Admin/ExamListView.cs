@@ -44,6 +44,8 @@ public class ExamListView : MonoBehaviour
     public Text UsernameFilterText;
     public InputField UsernameFilterInputField;
 
+    public LoaderController Loader;
+
     private Exam.PassedFilter _passedFilter = Exam.PassedFilter.All;
 
     private void ReloadData()
@@ -222,7 +224,8 @@ public class ExamListView : MonoBehaviour
                 {
                     CurrentExam.Instance.Exam = null;
                     CurrentExam.Instance.Exam = (BaseExam)Activator.CreateInstance(examType);
-                    SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
+                    Loader.ActiveLoader(CurrentExam.Instance.Exam.LoadName);
+                    //SceneManager.LoadScene(CurrentExam.Instance.Exam.LoadName);
                 }
             }
 

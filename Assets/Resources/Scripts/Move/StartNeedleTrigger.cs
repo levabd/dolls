@@ -14,6 +14,7 @@ public class StartNeedleTrigger : MonoBehaviour {
     private string tipMessage;
     public ToolItemActionResponder TIAR;
     private bool vein;
+    private bool blood = true;
 
     void Start () {
        
@@ -39,6 +40,11 @@ public class StartNeedleTrigger : MonoBehaviour {
                 TIAR.MainLoglogCtrl.LogActionCreate(TIAR.ActionCtrl, TIAR.ActionCtrl, "Голка потрапила в вену");
                 TIAR.CtrlStat.TipMessage("Голка потрапила в вену");
                 vein = true;
+                if (TIAR.TrainingMode && blood)
+                {
+                    TIAR.TC.IsActive();
+                    blood = false;
+                }
             }        
         }
         print("куда-то вошла игла " + col.gameObject.tag);

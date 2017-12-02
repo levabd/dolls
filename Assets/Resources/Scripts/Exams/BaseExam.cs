@@ -39,6 +39,7 @@ public abstract class BaseExam: IExamInterface
         {
             _examModel = new Exam(CurrentUser.User, CurrentExam.Instance.Exam.GetType().Name, Name, "");
             _examModel.Save();
+            CurrentAdminExam.Exam = _examModel;
         }
 
         if (result && stepNumber != _takenSteps.Count + 1)
