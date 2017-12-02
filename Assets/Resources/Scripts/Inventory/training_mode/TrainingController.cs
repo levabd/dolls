@@ -119,7 +119,7 @@ public class TrainingController : MonoBehaviour
                 InfoPanelCreate(true, "Крок 3. Активний інструмент", "Ви можете побачити який інструмент Ви зараз використовуєте в середині верхньої частини екрану", "3", true);
                 break;
             case 4:
-                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Вибираючи активні інструменти і дії, Ви зробите дезінфекцію.", "4", true);
+                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Вибираючи активні інструменти і дії, Ви зробите дезінфекцію", "4", true);
                 StartCoroutine(ActionMaskCreate(0, 0, 2));
                 StartCoroutine(ItemMaskCreate(0, 8));
                 break;
@@ -129,7 +129,7 @@ public class TrainingController : MonoBehaviour
                 StartCoroutine(ItemMaskCreate(3, 8));
                 break;
             case 6:
-                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Промокніть стерильні марлеві кульки в 70% розчині спирту.", "6");
+                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Промокніть стерильні марлеві кульки в 70% розчині спирту", "6");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(2, 0, 6));
                 break;
@@ -139,7 +139,7 @@ public class TrainingController : MonoBehaviour
                 StartCoroutine(ItemMaskCreate(4, 8));
                 break;
             case 8:
-                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Візьміть ним змочені марлеві кульки. Обратите внимание на иконку цели на кнопке действия. При выборе таких действий изменится курсор для позиционирования.", "8");
+                InfoPanelCreate(true, "Крок 4. Дезінфекція", "Візьміть ним змочені марлеві кульки. Зверніть увагу на іконку цілі на кнопці дії. При виборі таких дій зміниться курсор для позиціонування.", "8");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(1, 0, 3));
                 break;
@@ -203,7 +203,7 @@ public class TrainingController : MonoBehaviour
                 BodyTargettingPoint.SetActive(false);
                 break;
             case 23:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36 °. Если угол не изменяется, значит Вы уже начали вводить шприц. Выполните движение шприца назад, а затем меняйте угол", "23", true);                
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Встановіть кут нахилу шприца використовуючи клавіші з підказки на 36°. Якщо значення кута не змінюється, значить Ви вже почали вводити шприц. Виконайте рух шприца назад, а потім міняйте кут", "23", true);                
                 break;
             case 24:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Перед тим як почнете вводити шприц в тіло, активуйте потягування поршня шприца", "24");
@@ -246,78 +246,78 @@ public class TrainingController : MonoBehaviour
                 
                 break;
             case 33:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Катетер с канюлей и заглушкой", "33");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Катетер з канюлею і заглушкой", "33");
                 StartCoroutine(ItemMaskCreate(7, 8));
                 break;
             case 34:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вставить по проводнику", "34");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вставити по провіднику", "34");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(1, 0, 5));
                 break;
             case 35:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Ушлубить вразательными двиениями", "35");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Поглибити обертальними рухами", "35");
                 StartCoroutine(ActionMaskCreate(4, 0, 5));
                 break;
             case 36:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активировать проводник", "36");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активувати провідник", "36");
                 StartCoroutine(ActionMaskCreate(0, 0, 5));
                 StartCoroutine(ItemMaskCreate(6, 8));
                 break;
             case 37:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Удалить проводник", "37");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Видалити провідник", "37");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(2, 0, 2));                
                 break;
             case 38:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Продолжаем действия с катетером", "38");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Продовжуємо дії з катетером", "38");
                 StartCoroutine(ItemMaskCreate(7, 8));
                 StartCoroutine(ActionMaskCreate(0, 0, 2));
                 break;
             case 39:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Соединяем катетер с системой переливания жидкостей", "39");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "З'єднуємо з системою переливання рідин", "39");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(3, 0, 5));
                 break;
             case 40:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Нам необходимо закрепить катетер на теле, берем пластырь", "40");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Нам потрібно зафіксувати катетер на тілі, беремо пластир", "40");
                 StartCoroutine(ItemMaskCreate(8, 8));
                 StartCoroutine(ActionMaskCreate(0, 0, 5));
                 break;
             case 41:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активируем позиционирование пластыря", "41");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Активуємо позиціонування пластира", "41");
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(1, 0, 1));
                 break;
             case 42:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Приклееваем катетер пластырем к коже", "42");
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Фіксуємо катетер пластирем до шкіри", "42");
                 StartCoroutine(ActionMaskCreate(0, 0, 1));
                 CatheterTargettingPoint.SetActive(true);
                 break;
             case 43:
-                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Поздавляем Вы справились", "43", true);
+                InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Вітаємо, Ви впорались", "43", true);
                 CatheterTargettingPoint.SetActive(false);
                 break;
             case 44:
-                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "В рамках обучающего сценария нет возможности провести демонстрацию руки для дополнительных действий. Но вы можете посмотреть список действий", "44", true);
+                InfoPanelCreate(true, "Крок 7. Рука для додаткових дій", "В рамках навчального сценарію немає можливості провести демонстрацію використання руки для додаткових дій. Але ви можете подивитися список можливих дій", "44", true);
 
                 break;
             case 45:
-                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Активируйте руку для дополнительных действий", "45");
+                InfoPanelCreate(true, "Крок 7. Рука для додаткових дій", "Активуйте руку для додаткових дій", "45");
                 StartCoroutine(ItemMaskCreate(5, 8));
                 break;
             case 46:
-                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Вы можете ознакомиться с перечнем. Демонстрация доступна в действующих сценариях", "46", true);
+                InfoPanelCreate(true, "Крок 7. Рука для додаткових дій", "Ви можете ознайомитися з переліком. Демонстрація доступна в діючих сценаріях", "46", true);
                 StartCoroutine(ItemMaskCreate(0, 8));
                 StartCoroutine(ActionMaskCreate(0, 0, 4));
                 break;
             case 47:
-                InfoPanelCreate(true, "Крок 8. История действий", "На панели в правом нижнем углу экрана Вы можете ознакомиться с историей ваших действий в течении всего экзамена", "47", true);
+                InfoPanelCreate(true, "Крок 8. Історія дій", "На панелі в правому нижньому кутку екрану Ви можете ознайомитися з історією ваших дій протягом всього іспиту", "47", true);
                 break;
             case 48:
-                InfoPanelCreate(true, "Крок 9. Инструкция к сценарию", "В левом верхнем углу экрана есть кнопка с вопросительным знаком. Нажав ее Вы сможете ознакомиться с подробной работой в сценарии", "48", true);
+                InfoPanelCreate(true, "Крок 9. Інструкція до сценарію", "У лівому верхньому кутку екрану є кнопка зі знаком питання. Натиснувши її Ви зможете ознайомитися з послідовністю дій в сценарії", "48", true);
                 break;
             case 49:
-                InfoPanelCreate(true, "Крок 10. Завершение сценария", "Поздравляем. Ваше обучение завершено. В правом верхнем углу экрана есть кнопка Завершити сцену. Нажав ее Вы закончите сценарий и сможете ознакомиться с результатом", "49");
+                InfoPanelCreate(true, "Крок 10. Завершення сценарію", "Вітаємо. Ваше навчання завершено. У правому верхньому куті екрану є кнопка Завершити сцену. Натиснувши її Ви закінчите сценарій і зможете ознайомитися з результатом", "49");
                 break;
             default:
                 break;

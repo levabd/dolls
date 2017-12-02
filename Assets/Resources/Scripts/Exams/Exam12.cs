@@ -53,7 +53,7 @@ class Exam12 : BaseExam
             case "tourniquet":
                 return new TupleList<string, string>
                 {
-                    { "get",    "Взяти джгут і вибрати місце ⊕" },
+                    { "get",    "Взяти і вибрати місце ⊕" },
                     { "lay",    "Накласти джгут" },
                     { "remove", "Зняти джгут" }
                 };
