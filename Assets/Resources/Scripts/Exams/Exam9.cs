@@ -61,7 +61,7 @@ class Exam9 : BaseExam
                 return new TupleList<string, string>
                 {
                     //{ "get_razor",   "Взяти бритву"},
-                    { "shave_pubis", "Поголити лобковую зону"}
+                    { "shave_pubis", "Поголити лобкову зону"}
                 }; 
             case "sterile_tissue":
                 return new TupleList<string, string>
