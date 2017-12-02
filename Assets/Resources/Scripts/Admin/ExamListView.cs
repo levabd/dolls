@@ -40,6 +40,8 @@ public class ExamListView : MonoBehaviour
     public DatePicker ExamFromDate;
     public DatePicker ExamToDate;
     public Dropdown ExamsDropdown;
+
+    public Text UsernameFilterText;
     public InputField UsernameFilterInputField;
 
     private Exam.PassedFilter _passedFilter = Exam.PassedFilter.All;
@@ -127,6 +129,7 @@ public class ExamListView : MonoBehaviour
         // if user not manager and admin he cannot filter by user
 
         UsernameFilterInputField.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.Manager);
+        UsernameFilterText.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.Manager);
         ExamsButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
 
         // Initialize Table

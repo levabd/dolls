@@ -94,7 +94,7 @@ public class StepListView : MonoBehaviour {
             ExamDescription.text = "Було ";
         ExamDescription.text = ExamDescription.text + (CurrentAdminExam.Exam.Passed ? "пройдено" : "провалено") + " сценарій «" + CurrentAdminExam.Exam.Name + "»";
 
-        ExamDescription.color = CurrentAdminExam.Exam.Passed ? Color.green : Color.red;
+        ExamDescription.color = CurrentAdminExam.Exam.Passed ? new Color(7f / 256f, 122f / 256f, 63f / 256f, 1f) : Color.red;
 
         ExamsButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);
         RepeatButton.gameObject.SetActive(CurrentUser.User.Role == User.UserRoles.User);

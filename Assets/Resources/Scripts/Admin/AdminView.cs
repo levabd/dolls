@@ -254,7 +254,7 @@ public class AdminView : MonoBehaviour {
             newUser.Save();
 
             CreateUserAccountPanel.SetActive(false);
-            GeneralSceneHelper.ShowMessage("Користувача було успішно додано.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Обліковий запис було успішно додано.", Dialog, DialogText);
             ReloadData();
         }
         catch (ArgumentException ex)
@@ -264,7 +264,7 @@ public class AdminView : MonoBehaviour {
         }
         catch (Exception ex)
         {
-            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося додати користувача.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося додати обліковий запис.", Dialog, DialogText);
             CreateUserAccountPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
@@ -280,7 +280,7 @@ public class AdminView : MonoBehaviour {
             currentUser.Save();
 
             EditUserAccountPanel.SetActive(false);
-            GeneralSceneHelper.ShowMessage("Користувача було успішно відредаговано.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Обліковий запис було успішно відредаговано.", Dialog, DialogText);
             ReloadData();
         }
         catch (ArgumentException ex)
@@ -290,7 +290,7 @@ public class AdminView : MonoBehaviour {
         }
         catch (Exception ex)
         {
-            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати користувача.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати обліковий запис.", Dialog, DialogText);
             EditUserAccountPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
@@ -314,13 +314,13 @@ public class AdminView : MonoBehaviour {
         }
         catch (ConstraintException ex)
         {
-            GeneralSceneHelper.ShowMessage("Можна змінювати пароль тільки у існуючого користувача", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Можна змінювати пароль тільки у існуючого облікового запису.", Dialog, DialogText);
             ChangeUserPasswordPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
         catch (Exception ex)
         {
-            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати пароль користувача.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося відредагувати пароль облікового запису.", Dialog, DialogText);
             ChangeUserPasswordPanel.SetActive(true);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
@@ -332,7 +332,7 @@ public class AdminView : MonoBehaviour {
         {
             if (_users[_currentTableIndex].Role == 0)
             {
-                GeneralSceneHelper.ShowMessage("Не дозволено видаляти користувачів з правами адміністратора", Dialog,
+                GeneralSceneHelper.ShowMessage("Не дозволено видаляти облікові записи з роллю адміністратор", Dialog,
                     DialogText);
                 return;
             }
@@ -340,7 +340,7 @@ public class AdminView : MonoBehaviour {
             User.FindById(_users[_currentTableIndex].Id).Delete();
 
             ApplyDeleteUserAccountPanel.SetActive(false);
-            GeneralSceneHelper.ShowMessage("Користувача було успішно видалено.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Обліковий запис було успішно видалено.", Dialog, DialogText);
             ReloadData();
         }
         catch (Exception ex)
