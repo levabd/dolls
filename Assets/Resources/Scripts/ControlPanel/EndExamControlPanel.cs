@@ -22,6 +22,7 @@ public class EndExamControlPanel : MonoBehaviour {
     public Transform ErrorMessagePanel;
     public Text ErrorMessagePanelText;
     public Transform ButtonPanel;
+    private Sprite ChekedSprite;
 
 
     void Start () {
@@ -38,11 +39,13 @@ public class EndExamControlPanel : MonoBehaviour {
         {
             if (PassedExam)
             {
+                ChekedSprite = Resources.Load<Sprite>("Textures/true");
                 GoEndPanel(PassedBackgroundPanel, "Сценарій пройдено", BlueEndPanel);
                 ActiveEndPanel = false;
             }
             else
             {
+                ChekedSprite = Resources.Load<Sprite>("Textures/false");
                 GoEndPanel(NotPassedBackgroundPanel, "Сценарій не пройдено", RedEndPanel);
                 ActiveEndPanel = false;
             }
@@ -63,6 +66,7 @@ public class EndExamControlPanel : MonoBehaviour {
         HeadInMiniPanel.transform.SetParent(miniPanel, false);
         Transform ErrorMessageInMiniPanel = Instantiate(ErrorMessagePanel);
         ErrorMessageInMiniPanel.transform.SetParent(miniPanel, false);
+        ErrorMessageInMiniPanel.GetChild(1).GetComponent<Image>().sprite = ChekedSprite;
         Transform ButtonInMiniPanel = Instantiate(ButtonPanel);
         ButtonInMiniPanel.transform.SetParent(miniPanel, false);
     }
