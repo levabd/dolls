@@ -34,8 +34,8 @@ class Exam15 : BaseExam
         { "gloves",                         "Рукавички" },
         { "hand",                           "Рука для додаткових дій" },
         { "gauze_balls",                    "Стерильні марлеві кульки" },
-        { "tweezers",                       "Пінцет без нічого" },
- //     { "tourniquet",                     "Джгут" },
+    //  { "tweezers",                       "Пінцет без нічого" },
+        { "tourniquet",                     "Джгут" },
         { "venflon",                        "Катетер Venflon"},
         { "patch",                          "Пластир" }
     };
