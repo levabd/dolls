@@ -23,6 +23,7 @@ public class TrainingController : MonoBehaviour
     public Button ButtonInfo;
     [Header("Ціль на тілі")]
     public GameObject BodyTargettingPoint;
+    public GameObject CatheterTargettingPoint;
     [Header("Маска для панелі дій голки")]
     public GameObject FingerСoveringMask;
     public GameObject NeedleRemovingMask;
@@ -290,17 +291,18 @@ public class TrainingController : MonoBehaviour
             case 42:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Приклееваем катетер пластырем к коже", "42");
                 StartCoroutine(ActionMaskCreate(0, 0, 1));
+                CatheterTargettingPoint.SetActive(true);
                 break;
             case 43:
                 InfoPanelCreate(true, "Крок 6. Постановка катетера в підключичну вену", "Поздавляем Вы справились", "43", true);
-                
+                CatheterTargettingPoint.SetActive(false);
                 break;
             case 44:
                 InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "В рамках обучающего сценария нет возможности провести демонстрацию руки для дополнительных действий. Но вы можете посмотреть список действий", "44", true);
 
                 break;
             case 45:
-                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Активируйте руку для дополнительных действий", "45", true);
+                InfoPanelCreate(true, "Крок 7. Рука для дополнительных действий", "Активируйте руку для дополнительных действий", "45");
                 StartCoroutine(ItemMaskCreate(5, 8));
                 break;
             case 46:
