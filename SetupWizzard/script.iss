@@ -40,6 +40,7 @@ Name: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"
 
 [Files]
 Source: "..\Build\dolls.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Build\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dolls.db"; DestDir: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
 Source: "instructions.pdf"; DestDir: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills"; Flags: ignoreversion
 Source: "..\Build\dolls_Data\*"; DestDir: "{app}\dolls_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -47,7 +48,7 @@ Source: "..\Build\dolls_Data\*"; DestDir: "{app}\dolls_Data"; Flags: ignoreversi
 
 [Icons]
 Name: "{commonprograms}\ClinicalSkills\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{commonprograms}\ClinicalSkills\ClinicalSkillsReadme"; Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"
+Name: "{commonprograms}\ClinicalSkills\ClinicalSkillsInstructions"; Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{commondesktop}\ClinicalSkills Instructions"; Filename: "{%USERPROFILE}\AppData\LocalLow\DPIProjects\ClinicalSkills\instructions.pdf"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon

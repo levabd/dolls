@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace DB.Models

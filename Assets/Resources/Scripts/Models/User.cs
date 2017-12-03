@@ -167,7 +167,7 @@ namespace DB.Models
             if (Id == null)
                 throw new ConstraintException("id is null. We can't UPDATE DB Record while password changing.");
             GeneratePwdAndTime(password);
-            Execute("UPDATE Users SET password = '" + PasswordHash + "' WHERE id = '" + Id + "'");
+            Execute("UPDATE Users SET password = '" + PasswordHash + "', timestamp = '" + Timestamp + "' WHERE id = '" + Id + "'");
         }
     }
 }

@@ -304,7 +304,7 @@ public class AdminView : MonoBehaviour {
             currentUser.ChangePassword(AddNewPasswordInputField.text);
 
             ChangeUserPasswordPanel.SetActive(false);
-            GeneralSceneHelper.ShowMessage("Пароль користувача було успішно відредаговано.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Пароль облікового запису було успішно відредаговано.", Dialog, DialogText);
             ReloadData();
         }
         catch (ArgumentException ex)
@@ -345,7 +345,7 @@ public class AdminView : MonoBehaviour {
         }
         catch (Exception ex)
         {
-            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося видалити користувача.", Dialog, DialogText);
+            GeneralSceneHelper.ShowMessage("Загальна помилка. Не вдалося видалити обліковий запис.", Dialog, DialogText);
             Debug.LogWarning("Oh Crap! " + ex.Message);
         }
     }
